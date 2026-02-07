@@ -1,0 +1,34 @@
+# Stage 1: Build .NET API
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+
+WORKDIR /src
+
+# Copy solution and project files
+COPY FractPal.slnx .
+COPY backend/FractPal.API/FractPal.API.csproj backend/FractPal.API/
+COPY backend/FractPal.Data/FractPal.Data.csproj backend/FractPal.Data/
+COPY backend/FractPal.Model/FractPal.Model.csproj backend/FractPal.Model/
+COPY backend/FractPal.Service/FractPal.Service.csproj backend/FractPal.Service/
+
+# Restore dependencies
+RUN dotnet restore backend/FractPal.API/FractPal.API.csproj
+
+# Copy all backend source
+COPY backend/ backend/
+
+# Build and publish .NET API
+RUN dotnet publish backend/FractPal.API/FractPal.API.csproj \
+    -c Release \
+    -o /app/publish
+
+# Stage 2: Runtime
+FROM mcr.microsoft.com/dotnet/aspnet:10.0
+
+WORKDIR /app
+
+# Copy published app
+COPY --from=build /app/publish .
+
+EXPOSE 8080
+
+ENTRYPOINT ["dotnet", "FractPal.API.dll"]
