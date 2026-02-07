@@ -419,7 +419,8 @@ FodyWeavers.xsd
 
 # Configuration
 .env
+.env.development
 
 # Custom
 bin/
-bin\Debug/
+bin\\Debug

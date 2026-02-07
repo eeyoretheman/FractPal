@@ -1,2 +1,8 @@
 <Solution>
+  <Folder Name="/backend/">
+    <Project Path="backend/FractPal.API/FractPal.API.csproj" />
+    <Project Path="backend/FractPal.Data/FractPal.Data.csproj" />
+    <Project Path="backend/FractPal.Model/FractPal.Model.csproj" />
+    <Project Path="backend/FractPal.Service/FractPal.Service.csproj" />
+  </Folder>
 </Solution>

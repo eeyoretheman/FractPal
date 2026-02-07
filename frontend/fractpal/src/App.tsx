@@ -1,8 +1,9 @@
-import { useState, FormEvent } from 'react'
+import { useState } from 'react'
+import type { FormEvent } from 'react'
 import './App.css'
 
 interface LoginResponse {
-  token: string
+  jwt: any
   refreshToken: string
 }
 
@@ -204,7 +205,7 @@ function App() {
           <h3>Login Successful!</h3>
           <div className="token-display">
             <p><strong>JWT Token:</strong></p>
-            <pre>{loginSuccess.token.substring(0, 50)}...</pre>
+            <pre>{loginSuccess.jwt.substring(0, 50)}...</pre>
             <p><strong>Refresh Token:</strong></p>
             <pre>{loginSuccess.refreshToken.substring(0, 50)}...</pre>
           </div>
