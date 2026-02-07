@@ -1,58 +1,56 @@
+namespace FractPal.API.Controllers;
+
 using FractPal.Service.Interface;
 using FractPal.Model.DTO.Auth;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FractPal.API.Controllers
+[Route("api/[controller]")]
+[ApiController]
+public class AuthController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AuthController : ControllerBase
+    private readonly IAuthService _authService;
+
+    public AuthController(IAuthService authService)
     {
-        private readonly IAuthService _authService;
+        _authService = authService;
+    }
 
-        public AuthController(IAuthService authService)
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody] LoginRequest dto)
+    {
+        if(dto == null || !ModelState.IsValid)
         {
-            _authService = authService;
+            return BadRequest(ModelState);
         }
 
-        [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginRequest dto)
+        try
         {
-            if(dto == null || !ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            LoginResponse response = await _authService.Login(HttpContext, dto);
+            return Ok(response);
+        }
+        catch (UnauthorizedAccessException)
+        {
+            return Unauthorized(new { message = "Invalid email or password" });
+        }
+    }
 
-            try
-            {
-                LoginResponse response = await _authService.Login(HttpContext, dto);
-                return Ok(response);
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return Unauthorized(new { message = "Invalid email or password" });
-            }
+    [HttpPost("register")]
+    public async Task<IActionResult> Register([FromBody] RegistrationRequest dto)
+    {
+        if(dto == null || !ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
         }
 
-        [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegistrationRequest dto)
+        try
         {
-            if(dto == null || !ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            try
-            {
-                RegistrationResponse response = await _authService.Register(dto);
-                return CreatedAtAction(nameof(Register), new { id = response.Id }, response);
-            }
-            catch (InvalidOperationException ex)
-            {
-                // User already exists or registration failed
-                return BadRequest(new { message = ex.Message });
-            }
+            RegistrationResponse response = await _authService.Register(dto);
+            return CreatedAtAction(nameof(Register), new { id = response.Id }, response);
+        }
+        catch (InvalidOperationException ex)
+        {
+            // User already exists or registration failed
+            return BadRequest(new { message = ex.Message });
         }
     }
 }

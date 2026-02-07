@@ -1,3 +1,5 @@
+namespace FractPal.Service.Implementation;
+
 using FractPal.Service.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -7,11 +9,8 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace FractPal.Service.Implementation;
 
 public class JwtService : IJwtService
 {
@@ -26,10 +25,8 @@ public class JwtService : IJwtService
 
     public async Task<string> GenerateJwt(IdentityUser user)
     {
-        // Switch to ENV vars
-        var jwtKey = _configuration.GetSection("Jwt").GetValue<string>("Key");
-        var jwtIssuer = _configuration.GetSection("Jwt").GetValue<string>("Issuer");
-        var jwtAudience = _configuration.GetSection("Jwt").GetValue<string>("Audience");
+        var jwtKey = Environment.GetEnvironmentVariable("JWT_KEY");
+        var jwtIssuer = Environment.GetEnvironmentVariable("JWT_ISSUER");
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -54,7 +51,6 @@ public class JwtService : IJwtService
 
         var token = new JwtSecurityToken(
             issuer: jwtIssuer,
-            audience: jwtAudience,
             claims: claims,
             expires: DateTime.UtcNow.AddHours(1),
             signingCredentials: creds

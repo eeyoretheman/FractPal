@@ -1,3 +1,10 @@
+using FractPal.Data;
+using FractPal.Service.Implementation;
+using FractPal.Service.Interface;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -25,20 +32,35 @@ builder.Services.AddAuthentication(
         options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     }
 )
-    .AddJwtBearer(
-        options => {
-            options.Authority = Environment.GetEnvironmentVariable("JWT_AUTHORITY");
-            options.Audience = true;
-        }
-    );
+    .AddJwtBearer();
+
+builder.Services.AddCors(
+    options => {
+        options.AddDefaultPolicy(
+            policy => {
+                policy.AllowAnyOrigin()
+                      .AllowAnyMethod()
+                      .AllowAnyHeader();
+            }
+        );
+    }
+);
 
 builder.Services.AddControllers();
 
+builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+
+// Register services
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IRefreshTokenService, RefreshTokenService>();
 builder.Services.AddTransient<IJwtService, JwtService>();
 
 var app = builder.Build();
+
+using var scope = app.Services.CreateScope();
+var serviceProvider = scope.ServiceProvider;
+
+await DatabaseSeeder.SeedAsync(serviceProvider);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -46,18 +68,8 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(policy =>
-    {
-        policy.AllowAnyOrigin()
-              .AllowAnyMethod()
-              .AllowAnyHeader();
-    });
-});
-
+// Middleware order is important
 app.UseCors();
-
 app.UseAuthentication();
 app.UseAuthorization();
 

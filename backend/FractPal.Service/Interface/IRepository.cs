@@ -1,11 +1,10 @@
+namespace FractPal.Service.Interface;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
-
-namespace FractPal.Service.Interface;
 
 /// <summary>
 /// Defines a generic repository interface for common data access operations

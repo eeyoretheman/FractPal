@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+namespace FractPal.Model.DTO.Auth;
 
-namespace Foodie.Model.DTO.Auth;
+using System.ComponentModel.DataAnnotations;
 
 /// <summary>
 /// DTO for user registration

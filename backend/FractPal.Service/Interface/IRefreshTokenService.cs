@@ -1,12 +1,8 @@
-using FractPal.Model.DTO.Auth;
+namespace FractPal.Service.Interface;
+
 using Microsoft.AspNetCore.Identity;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-
-namespace Foodie.Business.Services.Interfaces;
 
 public interface IRefreshTokenService
 {

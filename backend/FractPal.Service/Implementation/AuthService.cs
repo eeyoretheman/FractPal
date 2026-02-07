@@ -1,14 +1,13 @@
+namespace FractPal.Service.Implementation;
+
 using FractPal.Service.Interface;
 using FractPal.Model.DTO.Auth;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace FractPal.Service.Implementation;
 
 public class AuthService : IAuthService
 {
@@ -26,7 +25,7 @@ public class AuthService : IAuthService
         _jwtService = jwtService;
         _refreshTokenService = refreshTokenService;
     }
-    public async Task<LoginResponseDto> Login(HttpContext context, LoginRequestDto dto)
+    public async Task<LoginResponse> Login(HttpContext context, LoginRequest dto)
     {
         IdentityUser? user = await _userManager.FindByEmailAsync(dto.Email);
         if (user == null || !(await _userManager.CheckPasswordAsync(user, dto.Password)))
@@ -34,17 +33,17 @@ public class AuthService : IAuthService
             throw new UnauthorizedAccessException("Invalid credentials");
         }
 
-        string token = await _jwtService.GenerateTokenAsync(user);
-        string refresh = await _refreshTokenService.GenerateAndStoreRefreshTokenAsync(user);
+        string token = await _jwtService.GenerateJwt(user);
+        string refresh = await _refreshTokenService.GenerateRefreshToken(user);
 
-        return new LoginResponseDto()
+        return new LoginResponse()
         {
-            Token = token,
+            Jwt = token,
             RefreshToken = refresh
         };
     }
 
-    public async Task<UserResponseDto> Register(RegisterUserRequestDto dto)
+    public async Task<RegistrationResponse> Register(RegistrationRequest dto)
     {
         IdentityUser existing = await _userManager.FindByEmailAsync(dto.Email);
         if(existing != null)
@@ -68,7 +67,7 @@ public class AuthService : IAuthService
         await _userManager.AddToRoleAsync(user, "User");
 
         var roles = await _userManager.GetRolesAsync(user);
-        UserResponseDto userResponse = new UserResponseDto() {
+        RegistrationResponse userResponse = new RegistrationResponse() {
             Id = Guid.Parse(user.Id),
             Email = user.Email,
             Roles = roles.ToList()
