@@ -18,7 +18,7 @@ public interface IRepository<T> where T : class
     /// <param name="id">The unique identifier of the entity</param>
     /// <param name="includes">Optional navigation properties to include</param>
     /// <returns>The entity if found; otherwise, null</returns>
-    Task<T?> GetByIdAsync(Guid id, params Expression<Func<T, object>>[] includes);
+    public Task<T?> GetByIdAsync(Guid id, params Expression<Func<T, object>>[] includes);
 
     /// <summary>
     /// Retrieves all entities

@@ -1,59 +1,60 @@
 namespace FractPal.Service.Implementation;
 
-using FractPal.Service.Interface;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
+using FractPal.Model.Entities;
+using FractPal.Service.Interface;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 
 public class JwtService : IJwtService
 {
     private readonly IConfiguration _configuration;
-    private readonly UserManager<IdentityUser> _userManager;
 
-    public JwtService(IConfiguration configuration, UserManager<IdentityUser> userManager)
+    public JwtService(IConfiguration configuration)
     {
         _configuration = configuration;
-        _userManager = userManager;
     }
 
-    public async Task<string> GenerateJwt(IdentityUser user)
+    public string GenerateToken(User user)
     {
-        var jwtKey = Environment.GetEnvironmentVariable("JWT_KEY");
-        var jwtIssuer = Environment.GetEnvironmentVariable("JWT_ISSUER");
+        // Try environment variables first, then fall back to appsettings
+        var secretKey = _configuration["JWT_SECRET_KEY"]
+            ?? _configuration["JwtSettings:SecretKey"]
+            ?? throw new InvalidOperationException("JWT SecretKey not configured");
 
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
-        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+        var issuer = _configuration["JWT_ISSUER"]
+            ?? _configuration["JwtSettings:Issuer"]
+            ?? "FractPal";
 
-        IList<string> roles = await _userManager.GetRolesAsync(user);
-        string email = user.Email ?? string.Empty;
+        var audience = _configuration["JWT_AUDIENCE"]
+            ?? _configuration["JwtSettings:Audience"]
+            ?? "FractPal";
 
-        var claims = new List<Claim>()
+        var expiryMinutes = int.Parse(
+            _configuration["JWT_EXPIRY_MINUTES"]
+            ?? _configuration["JwtSettings:ExpiryMinutes"]
+            ?? "1440"
+        );
+
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
+        var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+        var claims = new[]
         {
-            new(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-            new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            new(ClaimTypes.Name, email),
-            new(ClaimTypes.NameIdentifier, user.Id.ToString())
+            new Claim(JwtRegisteredClaimNames.Sub, user.Id),
+            new Claim(JwtRegisteredClaimNames.Email, user.Email ?? ""),
+            new Claim(ClaimTypes.Name, user.UserName ?? ""),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
 
-        if(!string.IsNullOrWhiteSpace(email))
-        {
-            claims.Add(new Claim(JwtRegisteredClaimNames.Email, email));
-        }
-
-        claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
-
         var token = new JwtSecurityToken(
-            issuer: jwtIssuer,
+            issuer: issuer,
+            audience: audience,
             claims: claims,
-            expires: DateTime.UtcNow.AddHours(1),
-            signingCredentials: creds
+            expires: DateTime.UtcNow.AddMinutes(expiryMinutes),
+            signingCredentials: credentials
         );
 
         return new JwtSecurityTokenHandler().WriteToken(token);

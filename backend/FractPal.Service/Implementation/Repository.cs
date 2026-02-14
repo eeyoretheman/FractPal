@@ -1,80 +1,68 @@
-namespace FractPal.Service.Implementation;
+namespace FractPal.Data;
 
-using FractPal.Service.Interface;
-using FractPal.Data;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
-public class Repository<T> : IRepository<T>
-    where T : class
+public interface IRepository<T> where T : class
+{
+    Task<T?> GetByIdAsync(string id);
+    Task<IEnumerable<T>> GetAllAsync();
+    Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate);
+    Task<T> AddAsync(T entity);
+    Task<T> UpdateAsync(T entity);
+    Task DeleteAsync(T entity);
+    Task<int> CountAsync(Expression<Func<T, bool>>? predicate = null);
+}
+
+public class Repository<T> : IRepository<T> where T : class
 {
     protected readonly ApplicationDbContext _context;
-    protected readonly DbSet<T> _dbSet;
 
     public Repository(ApplicationDbContext context)
     {
         _context = context;
-        _dbSet = context.Set<T>();
     }
 
-    public async Task<T?> GetByIdAsync(Guid id, params Expression<Func<T, object>>[] includes)
+    public virtual async Task<T?> GetByIdAsync(string id)
     {
-        IQueryable<T> query = _dbSet;
-        foreach (var include in includes)
+        return await _context.Set<T>().FindAsync(id);
+    }
+
+    public virtual async Task<IEnumerable<T>> GetAllAsync()
+    {
+        return await Task.FromResult(_context.Set<T>().ToList());
+    }
+
+    public virtual async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
+    {
+        return await Task.FromResult(_context.Set<T>().Where(predicate).ToList());
+    }
+
+    public virtual async Task<T> AddAsync(T entity)
+    {
+        await _context.Set<T>().AddAsync(entity);
+        await _context.SaveChangesAsync();
+        return entity;
+    }
+
+    public virtual async Task<T> UpdateAsync(T entity)
+    {
+        _context.Set<T>().Update(entity);
+        await _context.SaveChangesAsync();
+        return entity;
+    }
+
+    public virtual async Task DeleteAsync(T entity)
+    {
+        _context.Set<T>().Remove(entity);
+        await _context.SaveChangesAsync();
+    }
+
+    public virtual async Task<int> CountAsync(Expression<Func<T, bool>>? predicate = null)
+    {
+        if (predicate == null)
         {
-            query = query.Include(include);
+            return await Task.FromResult(_context.Set<T>().Count());
         }
-
-        return await query.FirstOrDefaultAsync(e => EF.Property<Guid>(e, "Id") == id);
-    }
-
-    public async Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includes)
-    {
-        IQueryable<T> query = _dbSet;
-        foreach (var include in includes)
-        {
-            query = query.Include(include);
-        }
-        return await query.ToListAsync();
-    }
-
-    public async Task<IEnumerable<T>> FilterAsync(Expression<Func<T, bool>> predicate, Expression<Func<T, object>>[] includes)
-    {
-        IQueryable<T> query = _dbSet;
-        foreach (var include in includes)
-        {
-            query = query.Include(include);
-        }
-        return await query.Where(predicate)
-            .ToListAsync();
-    }
-
-    public async Task AddAsync(T entity)
-    {
-        await _dbSet.AddAsync(entity);
-    }
-
-    public void Update(T entity)
-    {
-        _dbSet.Update(entity);
-    }
-
-    public void Remove(T entity)
-    {
-        _dbSet.Remove(entity);
-    }
-
-    public async Task<int> CommitAsync()
-    {
-        return await _context.SaveChangesAsync();
-    }
-
-    public IQueryable<T> Query()
-    {
-        return _dbSet.AsQueryable();
+        return await Task.FromResult(_context.Set<T>().Count(predicate));
     }
 }

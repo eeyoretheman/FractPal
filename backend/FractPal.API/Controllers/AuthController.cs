@@ -18,39 +18,38 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginRequest dto)
     {
-        if(dto == null || !ModelState.IsValid)
+        if (dto == null || !ModelState.IsValid)
         {
-            return BadRequest(ModelState);
+            return this.BadRequest(ModelState);
         }
 
         try
         {
-            LoginResponse response = await _authService.Login(HttpContext, dto);
-            return Ok(response);
+            LoginResponse response = await this._authService.Login(HttpContext, dto);
+            return this.Ok(response);
         }
         catch (UnauthorizedAccessException)
         {
-            return Unauthorized(new { message = "Invalid email or password" });
+            return this.Unauthorized(new { message = "Invalid email or password" });
         }
     }
 
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegistrationRequest dto)
     {
-        if(dto == null || !ModelState.IsValid)
+        if (dto == null || !ModelState.IsValid)
         {
-            return BadRequest(ModelState);
+            return this.BadRequest(ModelState);
         }
 
         try
         {
             RegistrationResponse response = await _authService.Register(dto);
-            return CreatedAtAction(nameof(Register), new { id = response.Id }, response);
+            return Ok(response);
         }
         catch (InvalidOperationException ex)
         {
-            // User already exists or registration failed
-            return BadRequest(new { message = ex.Message });
+            return this.BadRequest(new { message = ex.Message });
         }
     }
 }

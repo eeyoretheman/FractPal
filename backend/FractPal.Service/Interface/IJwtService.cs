@@ -1,9 +1,8 @@
 namespace FractPal.Service.Interface;
 
-using Microsoft.AspNetCore.Identity;
-using System.Threading.Tasks;
+using FractPal.Model.Entities;
 
 public interface IJwtService
 {
-    public Task<string> GenerateJwt(IdentityUser user);
+    public string GenerateToken(User user);
 }

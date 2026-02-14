@@ -52,6 +52,11 @@ public class DatabaseSeeder
     private static async Task SeedUser(IdentityUser user, string password, string roleName,
         UserManager<IdentityUser> userManager)
     {
+        if (user.Email is null)
+        {
+            return;
+        }
+
         var userInfo = await userManager.FindByEmailAsync(user.Email);
         if (userInfo == null)
         {

@@ -1,0 +1,166 @@
+.workbench-page {
+  padding: 2rem 0;
+}
+
+.workbench-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.fractal-name-input {
+  font-size: 2rem;
+  font-weight: 300;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 0.5rem 0;
+  background: transparent;
+  flex: 1;
+  min-width: 200px;
+  transition: border-color 0.2s ease;
+}
+
+.fractal-name-input:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+  box-shadow: none;
+}
+
+.workbench-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.workbench-content {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 2rem;
+}
+
+.controls-panel {
+  background: var(--canvas-bg);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  height: fit-content;
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+
+.control-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.control-section label {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.control-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.canvas-panel {
+  background: var(--canvas-bg);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 600px;
+}
+
+.fractal-canvas {
+  width: 100%;
+  height: 600px;
+  border: 1px solid var(--border);
+  background: white;
+}
+
+input[type='range'] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--bg-secondary);
+  outline: none;
+  padding: 0;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+input[type='range']::-webkit-slider-thumb:hover {
+  background: var(--accent-dark);
+}
+
+input[type='range']::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s ease;
+}
+
+input[type='range']::-moz-range-thumb:hover {
+  background: var(--accent-dark);
+}
+
+@media (max-width: 1024px) {
+  .workbench-content {
+    grid-template-columns: 1fr;
+  }
+
+  .controls-panel {
+    max-height: none;
+  }
+
+  .canvas-panel {
+    min-height: 400px;
+  }
+
+  .fractal-canvas {
+    height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .workbench-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .fractal-name-input {
+    width: 100%;
+  }
+
+  .workbench-actions {
+    width: 100%;
+  }
+
+  .workbench-actions button {
+    flex: 1;
+  }
+}

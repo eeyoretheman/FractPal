@@ -1,0 +1,108 @@
+.profile-page {
+  padding: 2rem 0;
+}
+
+.profile-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+  padding: 2rem;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-info h1 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+}
+
+.profile-stats {
+  display: flex;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.stat strong {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.stat span {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.bio-section {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bio-text {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+.bio-edit {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bio-edit textarea {
+  max-width: 600px;
+}
+
+.bio-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.profile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.profile-fractals {
+  margin-top: 3rem;
+}
+
+.profile-fractals h2 {
+  font-size: 1.75rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .profile-banner {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .profile-actions {
+    width: 100%;
+  }
+
+  .profile-info h1 {
+    font-size: 2rem;
+  }
+
+  .profile-stats {
+    gap: 1.5rem;
+  }
+}

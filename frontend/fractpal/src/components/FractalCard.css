@@ -1,0 +1,161 @@
+.fractal-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.fractal-preview {
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  display: block;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+}
+
+.fractal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.fractal-preview:hover .fractal-image {
+  transform: scale(1.05);
+}
+
+.fractal-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.fractal-info {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.fractal-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.fractal-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.fractal-name:hover {
+  color: var(--accent);
+}
+
+.fractal-author {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.fractal-author:hover {
+  color: var(--accent);
+}
+
+.fractal-date {
+  font-size: 0.85rem;
+}
+
+.fractal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.like-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 2px;
+  font-size: 0.95rem;
+}
+
+.like-button:hover {
+  background: var(--bg-secondary);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.like-button.liked {
+  border-color: var(--error);
+  color: var(--error);
+}
+
+.heart-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.fractal-owner-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 2px;
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.95rem;
+}
+
+.button.small {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+}
+
+.button:hover {
+  background: var(--bg-secondary);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.button.secondary {
+  background: transparent;
+}
+
+.button.danger {
+  border-color: var(--error);
+  color: var(--error);
+}
+
+.button.danger:hover {
+  background: var(--error);
+  color: white;
+}

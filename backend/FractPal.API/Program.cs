@@ -1,74 +1,92 @@
+using System.Text;
 using FractPal.Data;
+using FractPal.Model.Entities;
 using FractPal.Service.Implementation;
 using FractPal.Service.Interface;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+// Add services to the container
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
 
-var connectionString = Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING");
+// Database configuration
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING");
 
 builder.Services.AddDbContext<ApplicationDbContext>(
     options => options.UseSqlServer(connectionString)
 );
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(
-    options => {
-        options.Password.RequireDigit = true;
-        options.Password.RequiredLength = 6;
-    }
-)
+// Identity configuration
+builder.Services.AddIdentity<User, IdentityRole>(options =>
+{
+    options.Password.RequireDigit = true;
+    options.Password.RequiredLength = 6;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireLowercase = false;
+})
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
-builder.Services.AddAuthentication(
-    options => {
-        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    }
-)
-    .AddJwtBearer();
+// JWT Authentication - Read from environment variables or appsettings
+var secretKey = builder.Configuration["JWT_SECRET_KEY"]
+    ?? builder.Configuration["JwtSettings:SecretKey"]
+    ?? throw new InvalidOperationException("JWT SecretKey not configured. Set JWT_SECRET_KEY environment variable.");
 
-builder.Services.AddCors(
-    options => {
-        options.AddDefaultPolicy(
-            policy => {
-                policy.AllowAnyOrigin()
-                      .AllowAnyMethod()
-                      .AllowAnyHeader();
-            }
-        );
-    }
-);
+var issuer = builder.Configuration["JWT_ISSUER"]
+    ?? builder.Configuration["JwtSettings:Issuer"]
+    ?? "FractPal";
 
-builder.Services.AddControllers();
+var audience = builder.Configuration["JWT_AUDIENCE"]
+    ?? builder.Configuration["JwtSettings:Audience"]
+    ?? "FractPal";
 
-builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = issuer,
+        ValidAudience = audience,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
+    };
+});
 
-// Register services
-builder.Services.AddTransient<IAuthService, AuthService>();
-builder.Services.AddTransient<IRefreshTokenService, RefreshTokenService>();
-builder.Services.AddTransient<IJwtService, JwtService>();
+// CORS configuration
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins("http://localhost:3000", "http://localhost:5173")
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowCredentials();
+    });
+});
+
+// Register repositories and services
+builder.Services.AddScoped(typeof(FractPal.Service.Interface.IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IJwtService, JwtService>();
+builder.Services.AddScoped<IFractalService, FractalService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 
-using var scope = app.Services.CreateScope();
-var serviceProvider = scope.ServiceProvider;
-
-await DatabaseSeeder.SeedAsync(serviceProvider);
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
-
-// Middleware order is important
 app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();

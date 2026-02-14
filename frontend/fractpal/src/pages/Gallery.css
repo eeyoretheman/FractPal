@@ -1,0 +1,21 @@
+.gallery-page {
+  padding: 2rem 0;
+}
+
+.gallery-section {
+  margin-bottom: 4rem;
+}
+
+.gallery-section h2 {
+  font-size: 1.75rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+  color: var(--text-primary);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}

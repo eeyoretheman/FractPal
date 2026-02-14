@@ -1,0 +1,168 @@
+const API_BASE_URL = 'http://localhost:5000/api';
+
+const getAuthHeader = (): Record<string, string> => {
+  const token = localStorage.getItem('token');
+  return token ? { Authorization: `Bearer ${token}` } : {};
+};
+
+// Fractal API
+export const fractalApi = {
+  getFeed: async (page = 1, pageSize = 20) => {
+    const response = await fetch(
+      `${API_BASE_URL}/fractal/feed?page=${page}&pageSize=${pageSize}`,
+      {
+        headers: {
+          ...getAuthHeader(),
+        },
+      }
+    );
+    if (!response.ok) throw new Error('Failed to fetch feed');
+    return response.json();
+  },
+
+  getMyFractals: async () => {
+    const response = await fetch(`${API_BASE_URL}/fractal/mine`, {
+      headers: {
+        ...getAuthHeader(),
+      },
+    });
+    if (!response.ok) throw new Error('Failed to fetch fractals');
+    return response.json();
+  },
+
+  getFractalById: async (id: string) => {
+    const response = await fetch(`${API_BASE_URL}/fractal/${id}`, {
+      headers: {
+        ...getAuthHeader(),
+      },
+    });
+    if (!response.ok) throw new Error('Failed to fetch fractal');
+    return response.json();
+  },
+
+  createFractal: async (data: any) => {
+    const response = await fetch(`${API_BASE_URL}/fractal`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader(),
+      },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) throw new Error('Failed to create fractal');
+    return response.json();
+  },
+
+  updateFractal: async (id: string, data: any) => {
+    const response = await fetch(`${API_BASE_URL}/fractal/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader(),
+      },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) throw new Error('Failed to update fractal');
+    return response.json();
+  },
+
+  deleteFractal: async (id: string) => {
+    const response = await fetch(`${API_BASE_URL}/fractal/${id}`, {
+      method: 'DELETE',
+      headers: {
+        ...getAuthHeader(),
+      },
+    });
+    if (!response.ok) throw new Error('Failed to delete fractal');
+  },
+
+  publishFractal: async (id: string) => {
+    const response = await fetch(`${API_BASE_URL}/fractal/${id}/publish`, {
+      method: 'POST',
+      headers: {
+        ...getAuthHeader(),
+      },
+    });
+    if (!response.ok) throw new Error('Failed to publish fractal');
+    return response.json();
+  },
+
+  unpublishFractal: async (id: string) => {
+    const response = await fetch(`${API_BASE_URL}/fractal/${id}/unpublish`, {
+      method: 'POST',
+      headers: {
+        ...getAuthHeader(),
+      },
+    });
+    if (!response.ok) throw new Error('Failed to unpublish fractal');
+    return response.json();
+  },
+
+  toggleLike: async (id: string) => {
+    const response = await fetch(`${API_BASE_URL}/fractal/${id}/like`, {
+      method: 'POST',
+      headers: {
+        ...getAuthHeader(),
+      },
+    });
+    if (!response.ok) throw new Error('Failed to toggle like');
+    return response.json();
+  },
+};
+
+// User API
+export const userApi = {
+  getProfile: async () => {
+    const response = await fetch(`${API_BASE_URL}/user/profile`, {
+      headers: {
+        ...getAuthHeader(),
+      },
+    });
+    if (!response.ok) throw new Error('Failed to fetch profile');
+    return response.json();
+  },
+
+  getUserProfile: async (id: string) => {
+    const response = await fetch(`${API_BASE_URL}/user/${id}`, {
+      headers: {
+        ...getAuthHeader(),
+      },
+    });
+    if (!response.ok) throw new Error('Failed to fetch user profile');
+    return response.json();
+  },
+
+  updateProfile: async (data: { bio?: string }) => {
+    const response = await fetch(`${API_BASE_URL}/user/profile`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader(),
+      },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) throw new Error('Failed to update profile');
+    return response.json();
+  },
+
+  toggleFollow: async (id: string) => {
+    const response = await fetch(`${API_BASE_URL}/user/${id}/follow`, {
+      method: 'POST',
+      headers: {
+        ...getAuthHeader(),
+      },
+    });
+    if (!response.ok) throw new Error('Failed to toggle follow');
+    return response.json();
+  },
+
+  searchUsers: async (query: string) => {
+    const response = await fetch(`${API_BASE_URL}/user/search?query=${encodeURIComponent(query)}`, {
+      headers: {
+        ...getAuthHeader(),
+      },
+    });
+    if (!response.ok) throw new Error('Failed to search users');
+    return response.json();
+  },
+};
