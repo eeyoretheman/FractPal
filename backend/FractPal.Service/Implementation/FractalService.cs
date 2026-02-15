@@ -6,18 +6,13 @@ using FractPal.Model.Entities;
 using FractPal.Service.Interface;
 using Microsoft.EntityFrameworkCore;
 
-public class FractalService : IFractalService
+public class FractalService(ApplicationDbContext context) : IFractalService
 {
-    private readonly ApplicationDbContext _context;
-
-    public FractalService(ApplicationDbContext context)
-    {
-        _context = context;
-    }
+    private readonly ApplicationDbContext context = context;
 
     public async Task<FractalFeedResponse> GetFeedAsync(string userId, int page = 1, int pageSize = 20)
     {
-        var query = _context.Fractals
+        var query = this.context.Fractals
             .Include(f => f.User)
             .Include(f => f.Likes)
             .Where(f => f.IsPublished)
@@ -42,31 +37,31 @@ public class FractalService : IFractalService
 
     public async Task<List<FractalDto>> GetUserFractalsAsync(string userId, string currentUserId)
     {
-        var fractals = await _context.Fractals
+        var fractals = await this.context.Fractals
             .Include(f => f.User)
             .Include(f => f.Likes)
             .Where(f => f.UserId == userId)
             .OrderByDescending(f => f.CreatedAt)
             .ToListAsync();
 
-        return fractals.Select(f => MapToDto(f, currentUserId)).ToList();
+        return [.. fractals.Select(f => MapToDto(f, currentUserId))];
     }
 
     public async Task<List<FractalDto>> GetPublishedFractalsByUserAsync(string userId, string currentUserId)
     {
-        var fractals = await _context.Fractals
+        var fractals = await this.context.Fractals
             .Include(f => f.User)
             .Include(f => f.Likes)
             .Where(f => f.UserId == userId && f.IsPublished)
             .OrderByDescending(f => f.PublishedAt)
             .ToListAsync();
 
-        return fractals.Select(f => MapToDto(f, currentUserId)).ToList();
+        return [.. fractals.Select(f => MapToDto(f, currentUserId))];
     }
 
     public async Task<FractalDto?> GetFractalByIdAsync(string fractalId, string currentUserId)
     {
-        var fractal = await _context.Fractals
+        var fractal = await this.context.Fractals
             .Include(f => f.User)
             .Include(f => f.Likes)
             .FirstOrDefaultAsync(f => f.Id == fractalId);
@@ -91,25 +86,20 @@ public class FractalService : IFractalService
             IsPublished = false
         };
 
-        _context.Fractals.Add(fractal);
-        await _context.SaveChangesAsync();
+        this.context.Fractals.Add(fractal);
+        await this.context.SaveChangesAsync();
 
-        await _context.Entry(fractal).Reference(f => f.User).LoadAsync();
+        await this.context.Entry(fractal).Reference(f => f.User).LoadAsync();
 
         return MapToDto(fractal, userId);
     }
 
     public async Task<FractalDto> UpdateFractalAsync(string fractalId, string userId, UpdateFractalRequest request)
     {
-        var fractal = await _context.Fractals
+        var fractal = await this.context.Fractals
             .Include(f => f.User)
             .Include(f => f.Likes)
-            .FirstOrDefaultAsync(f => f.Id == fractalId);
-
-        if (fractal == null)
-        {
-            throw new KeyNotFoundException("Fractal not found");
-        }
+            .FirstOrDefaultAsync(f => f.Id == fractalId) ?? throw new KeyNotFoundException("Fractal not found");
 
         // If user is not the owner, create a copy (fork) instead of updating
         if (fractal.UserId != userId)
@@ -129,9 +119,9 @@ public class FractalService : IFractalService
                 IsPublished = false // Forked fractals start as drafts
             };
 
-            _context.Fractals.Add(forkedFractal);
-            await _context.SaveChangesAsync();
-            await _context.Entry(forkedFractal).Reference(f => f.User).LoadAsync();
+            this.context.Fractals.Add(forkedFractal);
+            await this.context.SaveChangesAsync();
+            await this.context.Entry(forkedFractal).Reference(f => f.User).LoadAsync();
 
             return MapToDto(forkedFractal, userId);
         }
@@ -151,39 +141,29 @@ public class FractalService : IFractalService
             fractal.ImageUrl = request.ImageData;
         }
 
-        await _context.SaveChangesAsync();
+        await this.context.SaveChangesAsync();
 
         return MapToDto(fractal, userId);
     }
 
     public async Task DeleteFractalAsync(string fractalId, string userId)
     {
-        var fractal = await _context.Fractals.FindAsync(fractalId);
-
-        if (fractal == null)
-        {
-            throw new KeyNotFoundException("Fractal not found");
-        }
+        var fractal = await this.context.Fractals.FindAsync(fractalId) ?? throw new KeyNotFoundException("Fractal not found");
 
         if (fractal.UserId != userId)
         {
             throw new UnauthorizedAccessException("You don't have permission to delete this fractal");
         }
 
-        _context.Fractals.Remove(fractal);
-        await _context.SaveChangesAsync();
+        this.context.Fractals.Remove(fractal);
+        await this.context.SaveChangesAsync();
     }
 
     public async Task<FractalDto> ForkFractalAsync(string fractalId, string userId)
     {
-        var originalFractal = await _context.Fractals
+        var originalFractal = await this.context.Fractals
             .Include(f => f.User)
-            .FirstOrDefaultAsync(f => f.Id == fractalId);
-
-        if (originalFractal == null)
-        {
-            throw new KeyNotFoundException("Fractal not found");
-        }
+            .FirstOrDefaultAsync(f => f.Id == fractalId) ?? throw new KeyNotFoundException("Fractal not found");
 
         // Create a copy of the fractal for the new user
         var forkedFractal = new Fractal
@@ -201,24 +181,19 @@ public class FractalService : IFractalService
             IsPublished = false // Forked fractals start as drafts
         };
 
-        _context.Fractals.Add(forkedFractal);
-        await _context.SaveChangesAsync();
-        await _context.Entry(forkedFractal).Reference(f => f.User).LoadAsync();
+        this.context.Fractals.Add(forkedFractal);
+        await this.context.SaveChangesAsync();
+        await this.context.Entry(forkedFractal).Reference(f => f.User).LoadAsync();
 
         return MapToDto(forkedFractal, userId);
     }
 
     public async Task<FractalDto> PublishFractalAsync(string fractalId, string userId)
     {
-        var fractal = await _context.Fractals
+        var fractal = await this.context.Fractals
             .Include(f => f.User)
             .Include(f => f.Likes)
-            .FirstOrDefaultAsync(f => f.Id == fractalId);
-
-        if (fractal == null)
-        {
-            throw new KeyNotFoundException("Fractal not found");
-        }
+            .FirstOrDefaultAsync(f => f.Id == fractalId) ?? throw new KeyNotFoundException("Fractal not found");
 
         if (fractal.UserId != userId)
         {
@@ -228,22 +203,17 @@ public class FractalService : IFractalService
         fractal.IsPublished = true;
         fractal.PublishedAt = DateTime.UtcNow;
 
-        await _context.SaveChangesAsync();
+        await this.context.SaveChangesAsync();
 
         return MapToDto(fractal, userId);
     }
 
     public async Task<FractalDto> UnpublishFractalAsync(string fractalId, string userId)
     {
-        var fractal = await _context.Fractals
+        var fractal = await this.context.Fractals
             .Include(f => f.User)
             .Include(f => f.Likes)
-            .FirstOrDefaultAsync(f => f.Id == fractalId);
-
-        if (fractal == null)
-        {
-            throw new KeyNotFoundException("Fractal not found");
-        }
+            .FirstOrDefaultAsync(f => f.Id == fractalId) ?? throw new KeyNotFoundException("Fractal not found");
 
         if (fractal.UserId != userId)
         {
@@ -252,20 +222,20 @@ public class FractalService : IFractalService
 
         fractal.IsPublished = false;
 
-        await _context.SaveChangesAsync();
+        await this.context.SaveChangesAsync();
 
         return MapToDto(fractal, userId);
     }
 
     public async Task<bool> ToggleLikeAsync(string fractalId, string userId)
     {
-        var existingLike = await _context.Likes
+        var existingLike = await this.context.Likes
             .FirstOrDefaultAsync(l => l.FractalId == fractalId && l.UserId == userId);
 
         if (existingLike != null)
         {
-            _context.Likes.Remove(existingLike);
-            await _context.SaveChangesAsync();
+            this.context.Likes.Remove(existingLike);
+            await this.context.SaveChangesAsync();
             return false;
         }
         else
@@ -275,33 +245,30 @@ public class FractalService : IFractalService
                 FractalId = fractalId,
                 UserId = userId
             };
-            _context.Likes.Add(like);
-            await _context.SaveChangesAsync();
+            this.context.Likes.Add(like);
+            await this.context.SaveChangesAsync();
             return true;
         }
     }
 
-    private FractalDto MapToDto(Fractal fractal, string currentUserId)
+    private static FractalDto MapToDto(Fractal fractal, string currentUserId) => new()
     {
-        return new FractalDto
-        {
-            Id = fractal.Id,
-            Name = fractal.Name,
-            Username = fractal.User?.UserName ?? "",
-            UserId = fractal.UserId,
-            CreatedAt = fractal.CreatedAt,
-            PublishedAt = fractal.PublishedAt,
-            IsPublished = fractal.IsPublished,
-            ImageUrl = fractal.ImageUrl,
-            LikeCount = fractal.Likes?.Count ?? 0,
-            IsLikedByCurrentUser = fractal.Likes?.Any(l => l.UserId == currentUserId) ?? false,
-            Axiom = fractal.Axiom,
-            Rules = fractal.Rules,
-            Instructions = fractal.Instructions,
-            Generations = fractal.Generations,
-            XTranslation = fractal.XTranslation,
-            YTranslation = fractal.YTranslation,
-            Zoom = fractal.Zoom
-        };
-    }
+        Id = fractal.Id,
+        Name = fractal.Name,
+        Username = fractal.User?.UserName ?? "",
+        UserId = fractal.UserId,
+        CreatedAt = fractal.CreatedAt,
+        PublishedAt = fractal.PublishedAt,
+        IsPublished = fractal.IsPublished,
+        ImageUrl = fractal.ImageUrl,
+        LikeCount = fractal.Likes?.Count ?? 0,
+        IsLikedByCurrentUser = fractal.Likes?.Any(l => l.UserId == currentUserId) ?? false,
+        Axiom = fractal.Axiom,
+        Rules = fractal.Rules,
+        Instructions = fractal.Instructions,
+        Generations = fractal.Generations,
+        XTranslation = fractal.XTranslation,
+        YTranslation = fractal.YTranslation,
+        Zoom = fractal.Zoom
+    };
 }
