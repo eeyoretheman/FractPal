@@ -87,7 +87,7 @@ public class FractalService : IFractalService
             XTranslation = request.XTranslation,
             YTranslation = request.YTranslation,
             Zoom = request.Zoom,
-            ImageUrl = request.ImageData, // Store base64 or process separately
+            ImageUrl = request.ImageData,
             IsPublished = false
         };
 
@@ -111,11 +111,32 @@ public class FractalService : IFractalService
             throw new KeyNotFoundException("Fractal not found");
         }
 
+        // If user is not the owner, create a copy (fork) instead of updating
         if (fractal.UserId != userId)
         {
-            throw new UnauthorizedAccessException("You don't have permission to update this fractal");
+            var forkedFractal = new Fractal
+            {
+                Name = request.Name + " (Copy)",
+                UserId = userId,
+                Axiom = request.Axiom,
+                Rules = request.Rules,
+                Instructions = request.Instructions,
+                Generations = request.Generations,
+                XTranslation = request.XTranslation,
+                YTranslation = request.YTranslation,
+                Zoom = request.Zoom,
+                ImageUrl = request.ImageData,
+                IsPublished = false // Forked fractals start as drafts
+            };
+
+            _context.Fractals.Add(forkedFractal);
+            await _context.SaveChangesAsync();
+            await _context.Entry(forkedFractal).Reference(f => f.User).LoadAsync();
+
+            return MapToDto(forkedFractal, userId);
         }
 
+        // Owner can update their own fractal
         fractal.Name = request.Name;
         fractal.Axiom = request.Axiom;
         fractal.Rules = request.Rules;
@@ -151,6 +172,40 @@ public class FractalService : IFractalService
 
         _context.Fractals.Remove(fractal);
         await _context.SaveChangesAsync();
+    }
+
+    public async Task<FractalDto> ForkFractalAsync(string fractalId, string userId)
+    {
+        var originalFractal = await _context.Fractals
+            .Include(f => f.User)
+            .FirstOrDefaultAsync(f => f.Id == fractalId);
+
+        if (originalFractal == null)
+        {
+            throw new KeyNotFoundException("Fractal not found");
+        }
+
+        // Create a copy of the fractal for the new user
+        var forkedFractal = new Fractal
+        {
+            Name = originalFractal.Name + " (Copy)",
+            UserId = userId,
+            Axiom = originalFractal.Axiom,
+            Rules = originalFractal.Rules,
+            Instructions = originalFractal.Instructions,
+            Generations = originalFractal.Generations,
+            XTranslation = originalFractal.XTranslation,
+            YTranslation = originalFractal.YTranslation,
+            Zoom = originalFractal.Zoom,
+            ImageUrl = originalFractal.ImageUrl,
+            IsPublished = false // Forked fractals start as drafts
+        };
+
+        _context.Fractals.Add(forkedFractal);
+        await _context.SaveChangesAsync();
+        await _context.Entry(forkedFractal).Reference(f => f.User).LoadAsync();
+
+        return MapToDto(forkedFractal, userId);
     }
 
     public async Task<FractalDto> PublishFractalAsync(string fractalId, string userId)
@@ -209,14 +264,12 @@ public class FractalService : IFractalService
 
         if (existingLike != null)
         {
-            // Unlike
             _context.Likes.Remove(existingLike);
             await _context.SaveChangesAsync();
             return false;
         }
         else
         {
-            // Like
             var like = new Like
             {
                 FractalId = fractalId,

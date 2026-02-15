@@ -216,6 +216,26 @@ public class FractalController : ControllerBase
         }
     }
 
+    // POST: api/fractal/{id}/fork
+    [HttpPost("{id}/fork")]
+    public async Task<IActionResult> ForkFractal(string id)
+    {
+        try
+        {
+            var userId = GetCurrentUserId();
+            var fractal = await _fractalService.ForkFractalAsync(id, userId);
+            return CreatedAtAction(nameof(GetFractalById), new { id = fractal.Id }, fractal);
+        }
+        catch (KeyNotFoundException)
+        {
+            return NotFound(new { message = "Fractal not found" });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { message = ex.Message });
+        }
+    }
+
     // POST: api/fractal/{id}/like
     [HttpPost("{id}/like")]
     public async Task<IActionResult> ToggleLike(string id)
