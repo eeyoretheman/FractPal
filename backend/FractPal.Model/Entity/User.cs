@@ -9,8 +9,8 @@ public class User : IdentityUser
     public string? ProfileImageUrl { get; set; }
 
     // Navigation properties
-    public virtual ICollection<Fractal> Fractals { get; set; } = new List<Fractal>();
-    public virtual ICollection<Like> Likes { get; set; } = new List<Like>();
-    public virtual ICollection<Follow> Followers { get; set; } = new List<Follow>();
-    public virtual ICollection<Follow> Following { get; set; } = new List<Follow>();
+    public virtual ICollection<Fractal> Fractals { get; set; } = [];
+    public virtual ICollection<Like> Likes { get; set; } = [];
+    public virtual ICollection<Follow> Followers { get; set; } = [];
+    public virtual ICollection<Follow> Following { get; set; } = [];
 }
