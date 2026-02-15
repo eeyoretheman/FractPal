@@ -25,7 +25,7 @@ public interface IRepository<T> where T : class
     /// </summary>
     /// <param name="includes">Optional navigation properties to include</param>
     /// <returns>A list of all entities</returns>
-    Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includes);
+    public Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includes);
 
     /// <summary>
     /// Finds all entities matching the specified predicate
@@ -33,31 +33,31 @@ public interface IRepository<T> where T : class
     /// <param name="predicate">The filtering condition</param>
     /// <param name="includes">Optional navigation properties to include</param>
     /// <returns>A list of matching entities</returns>
-    Task<IEnumerable<T>> FilterAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes);
+    public Task<IEnumerable<T>> FilterAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes);
 
     /// <summary>
     /// Add a new entity to the repository
     /// </summary>
     /// <param name="entity">The entity to add</param>
-    Task AddAsync(T entity);
+    public Task AddAsync(T entity);
 
     /// <summary>
     /// Updates an existing entity
     /// </summary>
     /// <param name="entity">The entity to update</param>
-    void Update(T entity);
+    public void Update(T entity);
 
     /// <summary>
     /// Removes an entity from the repository
     /// </summary>
     /// <param name="entity">The entity to remove</param>
-    void Remove(T entity);
+    public void Remove(T entity);
 
     /// <summary>
     /// Commits all changes made in the current unit of work
     /// </summary>
     /// <returns>The number of affected rows</returns>
-    Task<int> CommitAsync();
+    public Task<int> CommitAsync();
 
     /// <summary>
     /// Provides a queryable interface for the repository, allowing for LINQ queries
