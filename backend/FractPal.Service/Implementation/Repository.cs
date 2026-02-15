@@ -4,65 +4,51 @@ using System.Linq.Expressions;
 
 public interface IRepository<T> where T : class
 {
-    Task<T?> GetByIdAsync(string id);
-    Task<IEnumerable<T>> GetAllAsync();
-    Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate);
-    Task<T> AddAsync(T entity);
-    Task<T> UpdateAsync(T entity);
-    Task DeleteAsync(T entity);
-    Task<int> CountAsync(Expression<Func<T, bool>>? predicate = null);
+    public Task<T?> GetByIdAsync(string id);
+    public Task<IEnumerable<T>> GetAllAsync();
+    public Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate);
+    public Task<T> AddAsync(T entity);
+    public Task<T> UpdateAsync(T entity);
+    public Task DeleteAsync(T entity);
+    public Task<int> CountAsync(Expression<Func<T, bool>>? predicate = null);
 }
 
-public class Repository<T> : IRepository<T> where T : class
+public class Repository<T>(ApplicationDbContext context) : IRepository<T> where T : class
 {
-    protected readonly ApplicationDbContext _context;
+    protected ApplicationDbContext Context => context;
 
-    public Repository(ApplicationDbContext context)
-    {
-        _context = context;
-    }
+    public virtual async Task<T?> GetByIdAsync(string id) => await this.Context.Set<T>().FindAsync(id);
 
-    public virtual async Task<T?> GetByIdAsync(string id)
-    {
-        return await _context.Set<T>().FindAsync(id);
-    }
+    public virtual async Task<IEnumerable<T>> GetAllAsync() => await Task.FromResult(this.Context.Set<T>().ToList());
 
-    public virtual async Task<IEnumerable<T>> GetAllAsync()
-    {
-        return await Task.FromResult(_context.Set<T>().ToList());
-    }
-
-    public virtual async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
-    {
-        return await Task.FromResult(_context.Set<T>().Where(predicate).ToList());
-    }
+    public virtual async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate) => await Task.FromResult(this.Context.Set<T>().Where(predicate).ToList());
 
     public virtual async Task<T> AddAsync(T entity)
     {
-        await _context.Set<T>().AddAsync(entity);
-        await _context.SaveChangesAsync();
+        await this.Context.Set<T>().AddAsync(entity);
+        await this.Context.SaveChangesAsync();
         return entity;
     }
 
     public virtual async Task<T> UpdateAsync(T entity)
     {
-        _context.Set<T>().Update(entity);
-        await _context.SaveChangesAsync();
+        this.Context.Set<T>().Update(entity);
+        await this.Context.SaveChangesAsync();
         return entity;
     }
 
     public virtual async Task DeleteAsync(T entity)
     {
-        _context.Set<T>().Remove(entity);
-        await _context.SaveChangesAsync();
+        this.Context.Set<T>().Remove(entity);
+        await this.Context.SaveChangesAsync();
     }
 
     public virtual async Task<int> CountAsync(Expression<Func<T, bool>>? predicate = null)
     {
         if (predicate == null)
         {
-            return await Task.FromResult(_context.Set<T>().Count());
+            return await Task.FromResult(this.Context.Set<T>().Count());
         }
-        return await Task.FromResult(_context.Set<T>().Count(predicate));
+        return await Task.FromResult(this.Context.Set<T>().Count(predicate));
     }
 }

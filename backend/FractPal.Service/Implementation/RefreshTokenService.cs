@@ -9,18 +9,14 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 
-public class RefreshTokenService : IRefreshTokenService
+public class RefreshTokenService(IRepository<RefreshToken> refreshTokenRepository) : IRefreshTokenService
 {
-    private IRepository<RefreshToken> _refreshTokenRepository;
-    public RefreshTokenService(IRepository<RefreshToken> refreshTokenRepository)
-    {
-        _refreshTokenRepository = refreshTokenRepository;
-    }
+    private readonly IRepository<RefreshToken> refreshTokenRepository = refreshTokenRepository;
 
     public async Task<string> GenerateRefreshToken(IdentityUser user)
     {
-        string token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64));
-        RefreshToken refreshToken = new RefreshToken()
+        var token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64));
+        var refreshToken = new RefreshToken()
         {
             Token = token,
             UserId = Guid.Parse(user.Id),
@@ -29,16 +25,16 @@ public class RefreshTokenService : IRefreshTokenService
             IsRevoked = false
         };
 
-        await _refreshTokenRepository.AddAsync(refreshToken);
-        await _refreshTokenRepository.CommitAsync();
+        await this.refreshTokenRepository.AddAsync(refreshToken);
+        await this.refreshTokenRepository.CommitAsync();
         return token;
     }
 
     public async Task<Guid?> GetUserIdByRefreshToken(string refreshToken)
     {
-        var token = await _refreshTokenRepository.Query()
-            .FirstOrDefaultAsync(rt => rt.Token == refreshToken && rt.IsRevoked == false);
-        if(token != null)
+        var token = await this.refreshTokenRepository.Query()
+            .FirstOrDefaultAsync(rt => rt.Token == refreshToken && !rt.IsRevoked);
+        if (token != null)
         {
             return token.UserId;
         }
@@ -48,18 +44,18 @@ public class RefreshTokenService : IRefreshTokenService
 
     public async Task InvalidateRefreshToken(string refreshToken)
     {
-        RefreshToken? token = await _refreshTokenRepository.Query()
+        var token = await this.refreshTokenRepository.Query()
             .FirstOrDefaultAsync(rt => rt.Token == refreshToken);
-        if(token != null)
+        if (token != null)
         {
             token.IsRevoked = true;
-            await _refreshTokenRepository.CommitAsync();
+            await this.refreshTokenRepository.CommitAsync();
         }
     }
 
     public async Task<bool> ValidateRefreshToken(Guid userId, string refreshToken)
     {
-        var token = await _refreshTokenRepository.Query()
+        var token = await this.refreshTokenRepository.Query()
             .FirstOrDefaultAsync(rt => rt.Token == refreshToken && rt.IsRevoked == false && rt.UserId == userId);
         return token != null;
     }

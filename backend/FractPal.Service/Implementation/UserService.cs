@@ -6,29 +6,19 @@ using FractPal.Model.Entities;
 using FractPal.Service.Interface;
 using Microsoft.EntityFrameworkCore;
 
-public class UserService : IUserService
+public class UserService(ApplicationDbContext context) : IUserService
 {
-    private readonly ApplicationDbContext _context;
-
-    public UserService(ApplicationDbContext context)
-    {
-        _context = context;
-    }
+    private readonly ApplicationDbContext context = context;
 
     public async Task<UserProfileDto> GetProfileAsync(string userId, string currentUserId)
     {
-        var user = await _context.Users
+        var user = await this.context.Users
             .Include(u => u.Followers)
             .Include(u => u.Following)
             .Include(u => u.Fractals)
-            .FirstOrDefaultAsync(u => u.Id == userId);
+            .FirstOrDefaultAsync(u => u.Id == userId) ?? throw new KeyNotFoundException("User not found");
 
-        if (user == null)
-        {
-            throw new KeyNotFoundException("User not found");
-        }
-
-        var isFollowed = await _context.Follows
+        var isFollowed = await this.context.Follows
             .AnyAsync(f => f.FollowerId == currentUserId && f.FollowingId == userId);
 
         return new UserProfileDto
@@ -48,19 +38,14 @@ public class UserService : IUserService
 
     public async Task<UserProfileDto> UpdateProfileAsync(string userId, UpdateProfileRequest request)
     {
-        var user = await _context.Users
+        var user = await this.context.Users
             .Include(u => u.Followers)
             .Include(u => u.Following)
             .Include(u => u.Fractals)
-            .FirstOrDefaultAsync(u => u.Id == userId);
-
-        if (user == null)
-        {
-            throw new KeyNotFoundException("User not found");
-        }
+            .FirstOrDefaultAsync(u => u.Id == userId) ?? throw new KeyNotFoundException("User not found");
 
         user.Bio = request.Bio;
-        await _context.SaveChangesAsync();
+        await this.context.SaveChangesAsync();
 
         return new UserProfileDto
         {
@@ -84,14 +69,14 @@ public class UserService : IUserService
             throw new InvalidOperationException("Cannot follow yourself");
         }
 
-        var existingFollow = await _context.Follows
+        var existingFollow = await this.context.Follows
             .FirstOrDefaultAsync(f => f.FollowerId == followerId && f.FollowingId == followingId);
 
         if (existingFollow != null)
         {
             // Unfollow
-            _context.Follows.Remove(existingFollow);
-            await _context.SaveChangesAsync();
+            this.context.Follows.Remove(existingFollow);
+            await this.context.SaveChangesAsync();
             return false;
         }
         else
@@ -102,15 +87,15 @@ public class UserService : IUserService
                 FollowerId = followerId,
                 FollowingId = followingId
             };
-            _context.Follows.Add(follow);
-            await _context.SaveChangesAsync();
+            this.context.Follows.Add(follow);
+            await this.context.SaveChangesAsync();
             return true;
         }
     }
 
     public async Task<List<UserSearchDto>> SearchUsersAsync(string query, string currentUserId)
     {
-        var users = await _context.Users
+        var users = await this.context.Users
             .Where(u => u.UserName!.Contains(query))
             .Include(u => u.Followers)
             .Take(20)
@@ -120,7 +105,7 @@ public class UserService : IUserService
 
         foreach (var user in users)
         {
-            var isFollowed = await _context.Follows
+            var isFollowed = await this.context.Follows
                 .AnyAsync(f => f.FollowerId == currentUserId && f.FollowingId == user.Id);
 
             dtos.Add(new UserSearchDto
