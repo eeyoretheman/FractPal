@@ -1,5 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { fractalApi } from '../services/api';
 import './FractalCard.css';
 
 interface FractalCardProps {
@@ -18,6 +19,7 @@ interface FractalCardProps {
   onPublish?: (id: string) => void;
   onUnpublish?: (id: string) => void;
   showActions?: boolean;
+  showFork?: boolean;
 }
 
 const FractalCard: React.FC<FractalCardProps> = ({
@@ -27,11 +29,31 @@ const FractalCard: React.FC<FractalCardProps> = ({
   onPublish,
   onUnpublish,
   showActions = false,
+  showFork = false,
 }) => {
+  const navigate = useNavigate();
+  const [forking, setForking] = useState(false);
+
   const formatDate = (dateString?: string) => {
     if (!dateString) return '';
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  };
+
+  const handleFork = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    try {
+      setForking(true);
+      const forked = await fractalApi.forkFractal(fractal.id);
+      navigate(`/workbench/${forked.id}`);
+    } catch (error) {
+      console.error('Failed to fork:', error);
+      alert('Failed to fork fractal');
+    } finally {
+      setForking(false);
+    }
   };
 
   return (
@@ -40,8 +62,8 @@ const FractalCard: React.FC<FractalCardProps> = ({
         {fractal.imageUrl ? (
           <img src={fractal.imageUrl} alt={fractal.name} className="fractal-image" />
         ) : (
-          <div className="fractal-placeholder">
-            <span>No preview</span>
+          <div className="fractal-placeholder shimmer">
+            <span className="placeholder-icon">✨</span>
           </div>
         )}
       </Link>
@@ -70,6 +92,18 @@ const FractalCard: React.FC<FractalCardProps> = ({
             >
               <span className="heart-icon">{fractal.isLikedByCurrentUser ? '❤️' : '♡'}</span>
               <span>{fractal.likeCount}</span>
+            </button>
+          )}
+
+          {showFork && (
+            <button
+              onClick={handleFork}
+              disabled={forking}
+              className="fork-button"
+              title="Fork this fractal"
+            >
+              {forking ? <span className="loading small"></span> : '🔀'}
+              <span>{forking ? 'Forking...' : 'Fork'}</span>
             </button>
           )}
 
