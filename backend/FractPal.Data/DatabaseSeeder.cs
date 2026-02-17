@@ -1,5 +1,6 @@
 namespace FractPal.Data;
 
+using FractPal.Model.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -14,8 +15,8 @@ public class DatabaseSeeder
         var scopeProvider = scope.ServiceProvider;
         var dbContext = scopeProvider.GetRequiredService<ApplicationDbContext>();
 
-        var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-        var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+        var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
+        var userManager = serviceProvider.GetRequiredService<UserManager<FractPalUser>>();
 
         if (!userManager.Users.Any())
         {
@@ -24,9 +25,9 @@ public class DatabaseSeeder
         }
     }
 
-    private static async Task SeedUsers(UserManager<IdentityUser> userManager)
+    private static async Task SeedUsers(UserManager<FractPalUser> userManager)
     {
-        var adminUser = new IdentityUser
+        var adminUser = new FractPalUser
         {
             UserName = "Lindenmayer",
             Email = "admin@admin.com",
@@ -37,7 +38,7 @@ public class DatabaseSeeder
 
         await SeedUser(adminUser, adminPassword, "Admin", userManager);
 
-        var user = new IdentityUser
+        var user = new FractPalUser
         {
             UserName = "Koch",
             Email = "user@user.com",
@@ -49,8 +50,8 @@ public class DatabaseSeeder
         await SeedUser(user, userPassword, "User", userManager);
     }
 
-    private static async Task SeedUser(IdentityUser user, string password, string roleName,
-        UserManager<IdentityUser> userManager)
+    private static async Task SeedUser(FractPalUser user, string password, string roleName,
+        UserManager<FractPalUser> userManager)
     {
         if (user.Email is null)
         {
@@ -68,7 +69,7 @@ public class DatabaseSeeder
             }
         }
     }
-    private static async Task SeedRoles(RoleManager<IdentityRole> roleManager)
+    private static async Task SeedRoles(RoleManager<IdentityRole<Guid>> roleManager)
     {
         string[] roleNames = ["Admin", "User"];
 
@@ -78,7 +79,7 @@ public class DatabaseSeeder
 
             if (!roleExist)
             {
-                await roleManager.CreateAsync(new IdentityRole(role));
+                await roleManager.CreateAsync(new IdentityRole<Guid>(role));
             }
         }
     }

@@ -4,5 +4,5 @@ using FractPal.Model.Entities;
 
 public interface IJwtService
 {
-    public string GenerateToken(User user);
+    public string GenerateToken(FractPalUser user);
 }

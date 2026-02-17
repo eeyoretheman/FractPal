@@ -1,12 +1,15 @@
 namespace FractPal.Data;
 
 using FractPal.Model.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<User>(options)
+public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<FractPalUser, IdentityRole<Guid>, Guid>(options)
 {
     public DbSet<Fractal> Fractals { get; set; }
+    public DbSet<Post> Posts { get; set; }
+    public DbSet<Comment> Comments { get; set; }
     public DbSet<Like> Likes { get; set; }
     public DbSet<Follow> Follows { get; set; }
 
@@ -18,32 +21,70 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         builder.Entity<Fractal>(entity =>
         {
             entity.HasKey(f => f.Id);
-            entity.HasOne(f => f.User)
+            entity.HasOne(f => f.Author)
                   .WithMany(u => u.Fractals)
-                  .HasForeignKey(f => f.UserId)
+                  .HasForeignKey(f => f.AuthorId)
                   .OnDelete(DeleteBehavior.Cascade);
 
-            entity.HasIndex(f => f.UserId);
-            entity.HasIndex(f => f.IsPublished);
-            entity.HasIndex(f => f.PublishedAt);
+            entity.HasIndex(f => f.AuthorId);
+            entity.HasIndex(f => f.CreatedAt);
+        });
+
+        // Post configuration
+        builder.Entity<Post>(entity =>
+        {
+            entity.HasKey(p => p.Id);
+            
+            entity.HasOne(p => p.Author)
+                  .WithMany(u => u.Posts)
+                  .HasForeignKey(p => p.AuthorId)
+                  .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(p => p.Fractal)
+                  .WithMany()
+                  .HasForeignKey(p => p.FractalId)
+                  .OnDelete(DeleteBehavior.Restrict);
+
+            entity.HasIndex(p => p.AuthorId);
+            entity.HasIndex(p => p.FractalId);
+            entity.HasIndex(p => p.CreatedAt);
+        });
+
+        // Comment configuration
+        builder.Entity<Comment>(entity =>
+        {
+            entity.HasKey(c => c.Id);
+            
+            entity.HasOne(c => c.Author)
+                  .WithMany(u => u.Comments)
+                  .HasForeignKey(c => c.AuthorId)
+                  .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(c => c.Post)
+                  .WithMany(p => p.Comments)
+                  .HasForeignKey(c => c.PostId)
+                  .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasIndex(c => c.AuthorId);
+            entity.HasIndex(c => c.PostId);
+            entity.HasIndex(c => c.CreatedAt);
         });
 
         // Like configuration
         builder.Entity<Like>(entity =>
         {
-            entity.HasKey(l => l.Id);
+            // Composite key
+            entity.HasKey(l => new { l.UserId, l.PostId });
+            
             entity.HasOne(l => l.User)
                   .WithMany(u => u.Likes)
                   .HasForeignKey(l => l.UserId)
                   .OnDelete(DeleteBehavior.Cascade);
 
-            entity.HasOne(l => l.Fractal)
-                  .WithMany(f => f.Likes)
-                  .HasForeignKey(l => l.FractalId)
+            entity.HasOne(l => l.Post)
+                  .WithMany(p => p.Likes)
+                  .HasForeignKey(l => l.PostId)
                   .OnDelete(DeleteBehavior.Restrict);
-
-            // Unique constraint: one like per user per fractal
-            entity.HasIndex(l => new { l.UserId, l.FractalId }).IsUnique();
         });
 
         // Follow configuration

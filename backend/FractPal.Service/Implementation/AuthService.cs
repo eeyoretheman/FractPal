@@ -7,12 +7,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
 public class AuthService(
-    UserManager<User> userManager,
-    SignInManager<User> signInManager,
+    UserManager<FractPalUser> userManager,
+    SignInManager<FractPalUser> signInManager,
     IJwtService jwtService) : IAuthService
 {
-    private readonly UserManager<User> userManager = userManager;
-    private readonly SignInManager<User> signInManager = signInManager;
+    private readonly UserManager<FractPalUser> userManager = userManager;
+    private readonly SignInManager<FractPalUser> signInManager = signInManager;
     private readonly IJwtService jwtService = jwtService;
 
     public async Task<LoginResponse> Login(HttpContext context, LoginRequest request)
@@ -35,7 +35,7 @@ public class AuthService(
 
         return new LoginResponse
         {
-            Id = user.Id,
+            Id = user.Id.ToString(),
             Username = user.UserName ?? "",
             Email = user.Email ?? "",
             Token = token
@@ -58,11 +58,11 @@ public class AuthService(
             throw new InvalidOperationException("Username already taken");
         }
 
-        var user = new User
+        var user = new FractPalUser
         {
             UserName = request.Username,
             Email = request.Email,
-            JoinedDate = DateTime.UtcNow
+            CreatedAt = DateTime.UtcNow
         };
 
         var result = await this.userManager.CreateAsync(user, request.Password);
@@ -75,7 +75,7 @@ public class AuthService(
 
         return new RegistrationResponse
         {
-            Id = user.Id,
+            Id = user.Id.ToString(),
             Username = user.UserName,
             Email = user.Email
         };

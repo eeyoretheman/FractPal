@@ -23,7 +23,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(
 );
 
 // Identity configuration
-builder.Services.AddIdentity<User, IdentityRole>(options =>
+builder.Services.AddIdentity<FractPalUser, IdentityRole<Guid>>(options =>
 {
     options.Password.RequireDigit = true;
     options.Password.RequiredLength = 6;

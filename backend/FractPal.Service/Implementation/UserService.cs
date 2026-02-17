@@ -12,65 +12,83 @@ public class UserService(ApplicationDbContext context) : IUserService
 
     public async Task<UserProfileDto> GetProfileAsync(string userId, string currentUserId)
     {
+        // Parse string IDs to Guid
+        if (!Guid.TryParse(userId, out var userGuid) || !Guid.TryParse(currentUserId, out var currentUserGuid))
+        {
+            throw new ArgumentException("Invalid user ID format");
+        }
+
         var user = await this.context.Users
             .Include(u => u.Followers)
             .Include(u => u.Following)
             .Include(u => u.Fractals)
-            .FirstOrDefaultAsync(u => u.Id == userId) ?? throw new KeyNotFoundException("User not found");
+            .FirstOrDefaultAsync(u => u.Id == userGuid) ?? throw new KeyNotFoundException("User not found");
 
         var isFollowed = await this.context.Follows
-            .AnyAsync(f => f.FollowerId == currentUserId && f.FollowingId == userId);
+            .AnyAsync(f => f.FollowerId == currentUserGuid && f.FollowingId == userGuid);
 
         return new UserProfileDto
         {
-            Id = user.Id,
+            Id = user.Id.ToString(),
             Username = user.UserName ?? "",
             Email = user.Email ?? "",
-            JoinedDate = user.JoinedDate,
+            JoinedDate = user.CreatedAt,
             Bio = user.Bio,
-            ProfileImageUrl = user.ProfileImageUrl,
-            FollowerCount = user.Followers.Count,
-            FollowingCount = user.Following.Count,
-            FractalCount = user.Fractals.Count(f => f.IsPublished),
+            ProfileImageUrl = user.ProfilePicturePath,
+            FollowerCount = user.Followers?.Count ?? 0,
+            FollowingCount = user.Following?.Count ?? 0,
+            FractalCount = user.Fractals?.Count ?? 0,
             IsFollowedByCurrentUser = isFollowed
         };
     }
 
     public async Task<UserProfileDto> UpdateProfileAsync(string userId, UpdateProfileRequest request)
     {
+        // Parse string ID to Guid
+        if (!Guid.TryParse(userId, out var userGuid))
+        {
+            throw new ArgumentException("Invalid user ID format");
+        }
+
         var user = await this.context.Users
             .Include(u => u.Followers)
             .Include(u => u.Following)
             .Include(u => u.Fractals)
-            .FirstOrDefaultAsync(u => u.Id == userId) ?? throw new KeyNotFoundException("User not found");
+            .FirstOrDefaultAsync(u => u.Id == userGuid) ?? throw new KeyNotFoundException("User not found");
 
         user.Bio = request.Bio;
         await this.context.SaveChangesAsync();
 
         return new UserProfileDto
         {
-            Id = user.Id,
+            Id = user.Id.ToString(),
             Username = user.UserName ?? "",
             Email = user.Email ?? "",
-            JoinedDate = user.JoinedDate,
+            JoinedDate = user.CreatedAt,
             Bio = user.Bio,
-            ProfileImageUrl = user.ProfileImageUrl,
-            FollowerCount = user.Followers.Count,
-            FollowingCount = user.Following.Count,
-            FractalCount = user.Fractals.Count(f => f.IsPublished),
+            ProfileImageUrl = user.ProfilePicturePath,
+            FollowerCount = user.Followers?.Count ?? 0,
+            FollowingCount = user.Following?.Count ?? 0,
+            FractalCount = user.Fractals?.Count ?? 0,
             IsFollowedByCurrentUser = false
         };
     }
 
     public async Task<bool> ToggleFollowAsync(string followerId, string followingId)
     {
-        if (followerId == followingId)
+        // Parse string IDs to Guid
+        if (!Guid.TryParse(followerId, out var followerGuid) || !Guid.TryParse(followingId, out var followingGuid))
+        {
+            throw new ArgumentException("Invalid user ID format");
+        }
+
+        if (followerGuid == followingGuid)
         {
             throw new InvalidOperationException("Cannot follow yourself");
         }
 
         var existingFollow = await this.context.Follows
-            .FirstOrDefaultAsync(f => f.FollowerId == followerId && f.FollowingId == followingId);
+            .FirstOrDefaultAsync(f => f.FollowerId == followerGuid && f.FollowingId == followingGuid);
 
         if (existingFollow != null)
         {
@@ -84,8 +102,8 @@ public class UserService(ApplicationDbContext context) : IUserService
             // Follow
             var follow = new Follow
             {
-                FollowerId = followerId,
-                FollowingId = followingId
+                FollowerId = followerGuid,
+                FollowingId = followingGuid
             };
             this.context.Follows.Add(follow);
             await this.context.SaveChangesAsync();
@@ -95,6 +113,12 @@ public class UserService(ApplicationDbContext context) : IUserService
 
     public async Task<List<UserSearchDto>> SearchUsersAsync(string query, string currentUserId)
     {
+        // Parse string ID to Guid
+        if (!Guid.TryParse(currentUserId, out var currentUserGuid))
+        {
+            throw new ArgumentException("Invalid user ID format");
+        }
+
         var users = await this.context.Users
             .Where(u => u.UserName!.Contains(query))
             .Include(u => u.Followers)
@@ -106,14 +130,14 @@ public class UserService(ApplicationDbContext context) : IUserService
         foreach (var user in users)
         {
             var isFollowed = await this.context.Follows
-                .AnyAsync(f => f.FollowerId == currentUserId && f.FollowingId == user.Id);
+                .AnyAsync(f => f.FollowerId == currentUserGuid && f.FollowingId == user.Id);
 
             dtos.Add(new UserSearchDto
             {
-                Id = user.Id,
+                Id = user.Id.ToString(),
                 Username = user.UserName ?? "",
-                ProfileImageUrl = user.ProfileImageUrl,
-                FollowerCount = user.Followers.Count,
+                ProfileImageUrl = user.ProfilePicturePath,
+                FollowerCount = user.Followers?.Count ?? 0,
                 IsFollowedByCurrentUser = isFollowed
             });
         }

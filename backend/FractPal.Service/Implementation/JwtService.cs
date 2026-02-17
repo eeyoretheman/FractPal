@@ -13,7 +13,7 @@ public class JwtService(IConfiguration configuration) : IJwtService
 {
     private readonly IConfiguration configuration = configuration;
 
-    public string GenerateToken(User user)
+    public string GenerateToken(FractPalUser user)
     {
         // Try environment variables first, then fall back to appsettings
         var secretKey = this.configuration["JWT_SECRET_KEY"]
@@ -40,7 +40,7 @@ public class JwtService(IConfiguration configuration) : IJwtService
 
         var claims = new[]
         {
-            new Claim(JwtRegisteredClaimNames.Sub, user.Id),
+            new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
             new Claim(JwtRegisteredClaimNames.Email, user.Email ?? ""),
             new Claim(ClaimTypes.Name, user.UserName ?? ""),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
