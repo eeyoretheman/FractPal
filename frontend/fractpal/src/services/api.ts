@@ -108,6 +108,17 @@ export const fractalApi = {
     if (!response.ok) throw new Error('Failed to toggle like');
     return response.json();
   },
+
+  forkFractal: async (id: string) => {
+    const response = await fetch(`${API_BASE_URL}/fractal/${id}/fork`, {
+      method: 'POST',
+      headers: {
+        ...getAuthHeader(),
+      },
+    });
+    if (!response.ok) throw new Error('Failed to fork fractal');
+    return response.json();
+  },
 };
 
 // User API
