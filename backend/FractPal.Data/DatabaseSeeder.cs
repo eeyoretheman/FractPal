@@ -33,7 +33,7 @@ public class DatabaseSeeder
             EmailConfirmed = true
         };
 
-        string adminPassword = "Admin#123";
+        var adminPassword = "Admin#123";
 
         await SeedUser(adminUser, adminPassword, "Admin", userManager);
 
@@ -44,7 +44,7 @@ public class DatabaseSeeder
             EmailConfirmed = true
         };
 
-        string userPassword = "User#123";
+        var userPassword = "User#123";
 
         await SeedUser(user, userPassword, "User", userManager);
     }
@@ -70,11 +70,11 @@ public class DatabaseSeeder
     }
     private static async Task SeedRoles(RoleManager<IdentityRole> roleManager)
     {
-        string[] roleNames = { "Admin", "User" };
+        string[] roleNames = ["Admin", "User"];
 
         foreach (var role in roleNames)
         {
-            bool roleExist = await roleManager.RoleExistsAsync(role);
+            var roleExist = await roleManager.RoleExistsAsync(role);
 
             if (!roleExist)
             {

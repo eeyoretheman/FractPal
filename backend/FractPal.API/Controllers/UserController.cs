@@ -9,20 +9,12 @@ using Microsoft.AspNetCore.Mvc;
 [Route("api/[controller]")]
 [ApiController]
 [Authorize]
-public class UserController : ControllerBase
+public class UserController(IUserService userService) : ControllerBase
 {
-    private readonly IUserService _userService;
+    private readonly IUserService userService = userService;
 
-    public UserController(IUserService userService)
-    {
-        _userService = userService;
-    }
-
-    private string GetCurrentUserId()
-    {
-        return User.FindFirstValue(ClaimTypes.NameIdentifier)
+    private string GetCurrentUserId() => this.User.FindFirstValue(ClaimTypes.NameIdentifier)
             ?? throw new UnauthorizedAccessException("User ID not found");
-    }
 
     // GET: api/user/profile
     [HttpGet("profile")]
@@ -30,17 +22,17 @@ public class UserController : ControllerBase
     {
         try
         {
-            var userId = GetCurrentUserId();
-            var profile = await _userService.GetProfileAsync(userId, userId);
-            return Ok(profile);
+            var userId = this.GetCurrentUserId();
+            var profile = await this.userService.GetProfileAsync(userId, userId);
+            return this.Ok(profile);
         }
         catch (KeyNotFoundException)
         {
-            return NotFound(new { message = "User not found" });
+            return this.NotFound(new { message = "User not found" });
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { message = ex.Message });
+            return this.StatusCode(500, new { message = ex.Message });
         }
     }
 
@@ -50,17 +42,17 @@ public class UserController : ControllerBase
     {
         try
         {
-            var currentUserId = GetCurrentUserId();
-            var profile = await _userService.GetProfileAsync(id, currentUserId);
-            return Ok(profile);
+            var currentUserId = this.GetCurrentUserId();
+            var profile = await this.userService.GetProfileAsync(id, currentUserId);
+            return this.Ok(profile);
         }
         catch (KeyNotFoundException)
         {
-            return NotFound(new { message = "User not found" });
+            return this.NotFound(new { message = "User not found" });
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { message = ex.Message });
+            return this.StatusCode(500, new { message = ex.Message });
         }
     }
 
@@ -68,20 +60,20 @@ public class UserController : ControllerBase
     [HttpPut("profile")]
     public async Task<IActionResult> UpdateProfile([FromBody] UpdateProfileRequest request)
     {
-        if (!ModelState.IsValid)
+        if (!this.ModelState.IsValid)
         {
-            return BadRequest(ModelState);
+            return this.BadRequest(this.ModelState);
         }
 
         try
         {
-            var userId = GetCurrentUserId();
-            var profile = await _userService.UpdateProfileAsync(userId, request);
-            return Ok(profile);
+            var userId = this.GetCurrentUserId();
+            var profile = await this.userService.UpdateProfileAsync(userId, request);
+            return this.Ok(profile);
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { message = ex.Message });
+            return this.StatusCode(500, new { message = ex.Message });
         }
     }
 
@@ -91,17 +83,17 @@ public class UserController : ControllerBase
     {
         try
         {
-            var currentUserId = GetCurrentUserId();
-            var isFollowing = await _userService.ToggleFollowAsync(currentUserId, id);
-            return Ok(new { isFollowing });
+            var currentUserId = this.GetCurrentUserId();
+            var isFollowing = await this.userService.ToggleFollowAsync(currentUserId, id);
+            return this.Ok(new { isFollowing });
         }
         catch (InvalidOperationException ex)
         {
-            return BadRequest(new { message = ex.Message });
+            return this.BadRequest(new { message = ex.Message });
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { message = ex.Message });
+            return this.StatusCode(500, new { message = ex.Message });
         }
     }
 
@@ -111,18 +103,18 @@ public class UserController : ControllerBase
     {
         if (string.IsNullOrWhiteSpace(query))
         {
-            return BadRequest(new { message = "Query parameter is required" });
+            return this.BadRequest(new { message = "Query parameter is required" });
         }
 
         try
         {
-            var currentUserId = GetCurrentUserId();
-            var users = await _userService.SearchUsersAsync(query, currentUserId);
-            return Ok(users);
+            var currentUserId = this.GetCurrentUserId();
+            var users = await this.userService.SearchUsersAsync(query, currentUserId);
+            return this.Ok(users);
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { message = ex.Message });
+            return this.StatusCode(500, new { message = ex.Message });
         }
     }
 }

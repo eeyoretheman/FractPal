@@ -4,23 +4,18 @@ using FractPal.Model.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-public class ApplicationDbContext : IdentityDbContext<User>
+public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<User>(options)
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-        : base(options)
-    {
-    }
-
     public DbSet<Fractal> Fractals { get; set; }
     public DbSet<Like> Likes { get; set; }
     public DbSet<Follow> Follows { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    protected override void OnModelCreating(ModelBuilder builder)
     {
-        base.OnModelCreating(modelBuilder);
+        base.OnModelCreating(builder);
 
         // Fractal configuration
-        modelBuilder.Entity<Fractal>(entity =>
+        builder.Entity<Fractal>(entity =>
         {
             entity.HasKey(f => f.Id);
             entity.HasOne(f => f.User)
@@ -34,7 +29,7 @@ public class ApplicationDbContext : IdentityDbContext<User>
         });
 
         // Like configuration
-        modelBuilder.Entity<Like>(entity =>
+        builder.Entity<Like>(entity =>
         {
             entity.HasKey(l => l.Id);
             entity.HasOne(l => l.User)
@@ -52,7 +47,7 @@ public class ApplicationDbContext : IdentityDbContext<User>
         });
 
         // Follow configuration
-        modelBuilder.Entity<Follow>(entity =>
+        builder.Entity<Follow>(entity =>
         {
             entity.HasKey(f => f.Id);
 

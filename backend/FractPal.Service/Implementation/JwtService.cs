@@ -1,5 +1,6 @@
 namespace FractPal.Service.Implementation;
 
+using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -8,34 +9,30 @@ using FractPal.Service.Interface;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
-public class JwtService : IJwtService
+public class JwtService(IConfiguration configuration) : IJwtService
 {
-    private readonly IConfiguration _configuration;
-
-    public JwtService(IConfiguration configuration)
-    {
-        _configuration = configuration;
-    }
+    private readonly IConfiguration configuration = configuration;
 
     public string GenerateToken(User user)
     {
         // Try environment variables first, then fall back to appsettings
-        var secretKey = _configuration["JWT_SECRET_KEY"]
-            ?? _configuration["JwtSettings:SecretKey"]
+        var secretKey = this.configuration["JWT_SECRET_KEY"]
+            ?? this.configuration["JwtSettings:SecretKey"]
             ?? throw new InvalidOperationException("JWT SecretKey not configured");
 
-        var issuer = _configuration["JWT_ISSUER"]
-            ?? _configuration["JwtSettings:Issuer"]
+        var issuer = this.configuration["JWT_ISSUER"]
+            ?? this.configuration["JwtSettings:Issuer"]
             ?? "FractPal";
 
-        var audience = _configuration["JWT_AUDIENCE"]
-            ?? _configuration["JwtSettings:Audience"]
+        var audience = this.configuration["JWT_AUDIENCE"]
+            ?? this.configuration["JwtSettings:Audience"]
             ?? "FractPal";
 
         var expiryMinutes = int.Parse(
-            _configuration["JWT_EXPIRY_MINUTES"]
-            ?? _configuration["JwtSettings:ExpiryMinutes"]
-            ?? "1440"
+            this.configuration["JWT_EXPIRY_MINUTES"]
+            ?? this.configuration["JwtSettings:ExpiryMinutes"]
+            ?? "60",
+            new CultureInfo("en-US")
         );
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
