@@ -33,6 +33,39 @@
   justify-content: center;
   color: var(--text-muted);
   font-size: 0.9rem;
+  background: var(--bg-secondary);
+}
+
+.placeholder-icon {
+  font-size: 3rem;
+}
+
+.fork-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(139, 111, 71, 0.1);
+  border: 1px solid var(--accent);
+  color: var(--accent-dark);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 2px;
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+.fork-button:hover:not(:disabled) {
+  background: var(--accent);
+  color: var(--bg-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.fork-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .fractal-info {
