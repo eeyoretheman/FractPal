@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600&family=DM+Mono:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
   --bg-primary: #faf8f6;
   --bg-secondary: #f5f2ee;
   --bg-tertiary: #eae6e0;
+  --bg-elevated: #ffffff;
   --text-primary: #2d2a26;
   --text-secondary: #6b6560;
   --text-muted: #9a9590;
@@ -11,10 +12,12 @@
   --accent-light: #b89968;
   --accent-dark: #6b5435;
   --border: #d9d4ce;
+  --border-light: #ccc5bd;
   --shadow: rgba(45, 42, 38, 0.08);
   --shadow-strong: rgba(45, 42, 38, 0.15);
   --success: #5a7a5f;
   --error: #a65a5a;
+  --warning: #d4941b;
   --canvas-bg: #ffffff;
 }
 
@@ -34,7 +37,7 @@ body {
 }
 
 code, pre {
-  font-family: 'DM Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 0.9em;
 }
 
@@ -42,17 +45,20 @@ code, pre {
 h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 h1 {
   font-size: 2.5rem;
   font-weight: 300;
   margin-bottom: 1.5rem;
+  color: var(--text-primary);
 }
 
 h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
+  font-weight: 400;
 }
 
 h3 {
@@ -64,13 +70,16 @@ h3 {
 button {
   font-family: 'Crimson Pro', serif;
   font-size: 1rem;
+  font-weight: 400;
   padding: 0.75rem 1.5rem;
   border: 1px solid var(--border);
   background: var(--bg-primary);
   color: var(--text-primary);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 2px;
+  position: relative;
+  overflow: hidden;
 }
 
 button:hover {
@@ -78,6 +87,10 @@ button:hover {
   border-color: var(--accent);
   transform: translateY(-1px);
   box-shadow: 0 2px 8px var(--shadow);
+}
+
+button:active {
+  transform: translateY(0);
 }
 
 button.primary {
@@ -96,6 +109,10 @@ button.secondary {
   border: 1px solid var(--border);
 }
 
+button.secondary:hover {
+  background: var(--bg-secondary);
+}
+
 button.danger {
   border-color: var(--error);
   color: var(--error);
@@ -106,14 +123,27 @@ button.danger:hover {
   color: white;
 }
 
+button.small {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
   transform: none;
 }
 
+button.icon-button {
+  padding: 0.5rem;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Inputs */
-input, textarea {
+input, textarea, select {
   font-family: 'Crimson Pro', serif;
   font-size: 1rem;
   padding: 0.75rem;
@@ -125,10 +155,15 @@ input, textarea {
   width: 100%;
 }
 
-input:focus, textarea:focus {
+input:focus, textarea:focus, select:focus {
   outline: none;
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(139, 111, 71, 0.1);
+  background: var(--bg-elevated);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--text-muted);
 }
 
 textarea {
@@ -152,6 +187,11 @@ textarea {
   transform: translateY(-2px);
 }
 
+.card-elevated {
+  background: var(--bg-elevated);
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
 /* Layout */
 .container {
   max-width: 1200px;
@@ -169,7 +209,7 @@ textarea {
 }
 
 .grid-3 {
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 }
 
 /* Animations */
@@ -203,6 +243,26 @@ textarea {
   animation: slideIn 0.4s ease-out;
 }
 
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(
+    to right,
+    var(--bg-secondary) 4%,
+    var(--bg-tertiary) 25%,
+    var(--bg-secondary) 36%
+  );
+  background-size: 1000px 100%;
+}
+
 /* Modal */
 .modal-overlay {
   position: fixed;
@@ -223,9 +283,11 @@ textarea {
   background: var(--bg-primary);
   border: 1px solid var(--border);
   border-radius: 2px;
-  padding: 2rem;
+  padding: 0;
   max-width: 500px;
   width: 90%;
+  max-height: 90vh;
+  overflow: auto;
   box-shadow: 0 8px 32px var(--shadow-strong);
 }
 
@@ -244,14 +306,47 @@ textarea {
   to { transform: rotate(360deg); }
 }
 
-/* Utility Classes */
-.text-center {
-  text-align: center;
+.loading-lg {
+  width: 40px;
+  height: 40px;
+  border-width: 3px;
 }
 
-.text-muted {
-  color: var(--text-muted);
+.loading.small {
+  width: 16px;
+  height: 16px;
+  border-width: 2px;
 }
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 12px;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.badge.accent {
+  background: rgba(139, 111, 71, 0.1);
+  color: var(--accent-dark);
+  border-color: var(--accent);
+}
+
+.badge.success {
+  background: rgba(90, 122, 95, 0.1);
+  color: var(--success);
+  border-color: var(--success);
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.text-muted { color: var(--text-muted); }
+.text-secondary { color: var(--text-secondary); }
 
 .mt-1 { margin-top: 0.5rem; }
 .mt-2 { margin-top: 1rem; }
@@ -263,25 +358,17 @@ textarea {
 .mb-3 { margin-bottom: 1.5rem; }
 .mb-4 { margin-bottom: 2rem; }
 
-.flex {
-  display: flex;
-}
-
-.flex-col {
-  flex-direction: column;
-}
-
-.items-center {
-  align-items: center;
-}
-
-.justify-between {
-  justify-content: space-between;
-}
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
 
 .gap-1 { gap: 0.5rem; }
 .gap-2 { gap: 1rem; }
 .gap-3 { gap: 1.5rem; }
+
+.w-full { width: 100%; }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
@@ -300,4 +387,12 @@ textarea {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent);
+}
+
+/* Transitions */
+.transition-all {
+  transition: all 0.2s ease;
+}
+.transition-colors {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
