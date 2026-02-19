@@ -13,8 +13,8 @@ public class FractalController(IFractalService fractalService) : ControllerBase
 {
     private readonly IFractalService fractalService = fractalService;
 
-    private string GetCurrentUserId() => this.User.FindFirstValue(ClaimTypes.NameIdentifier)
-            ?? throw new UnauthorizedAccessException("User ID not found");
+    private Guid GetCurrentUserId() => Guid.Parse(this.User.FindFirstValue(ClaimTypes.NameIdentifier)
+            ?? throw new UnauthorizedAccessException("User ID not found"));
 
     // GET: api/fractal/feed
     [HttpGet("feed")]
@@ -50,7 +50,7 @@ public class FractalController(IFractalService fractalService) : ControllerBase
 
     // GET: api/fractal/user/{userId}
     [HttpGet("user/{userId}")]
-    public async Task<IActionResult> GetUserFractals(string userId)
+    public async Task<IActionResult> GetUserFractals(Guid userId)
     {
         try
         {
@@ -66,7 +66,7 @@ public class FractalController(IFractalService fractalService) : ControllerBase
 
     // GET: api/fractal/{id}
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetFractalById(string id)
+    public async Task<IActionResult> GetFractalById(Guid id)
     {
         try
         {
@@ -109,7 +109,7 @@ public class FractalController(IFractalService fractalService) : ControllerBase
 
     // PUT: api/fractal/{id}
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateFractal(string id, [FromBody] UpdateFractalRequest request)
+    public async Task<IActionResult> UpdateFractal(Guid id, [FromBody] UpdateFractalRequest request)
     {
         if (!this.ModelState.IsValid)
         {
@@ -138,7 +138,7 @@ public class FractalController(IFractalService fractalService) : ControllerBase
 
     // DELETE: api/fractal/{id}
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteFractal(string id)
+    public async Task<IActionResult> DeleteFractal(Guid id)
     {
         try
         {
@@ -160,57 +160,57 @@ public class FractalController(IFractalService fractalService) : ControllerBase
         }
     }
 
-    // POST: api/fractal/{id}/publish
-    [HttpPost("{id}/publish")]
-    public async Task<IActionResult> PublishFractal(string id)
-    {
-        try
-        {
-            var userId = this.GetCurrentUserId();
-            var fractal = await this.fractalService.PublishFractalAsync(id, userId);
-            return this.Ok(fractal);
-        }
-        catch (KeyNotFoundException)
-        {
-            return this.NotFound(new { message = "Fractal not found" });
-        }
-        catch (UnauthorizedAccessException)
-        {
-            return this.Forbid();
-        }
-        catch (Exception ex)
-        {
-            return this.StatusCode(500, new { message = ex.Message });
-        }
-    }
+    //// POST: api/fractal/{id}/publish
+    //[HttpPost("{id}/publish")]
+    //public async Task<IActionResult> PublishFractal(string id)
+    //{
+    //    try
+    //    {
+    //        var userId = this.GetCurrentUserId();
+    //        var fractal = await this.fractalService.PublishFractalAsync(id, userId);
+    //        return this.Ok(fractal);
+    //    }
+    //    catch (KeyNotFoundException)
+    //    {
+    //        return this.NotFound(new { message = "Fractal not found" });
+    //    }
+    //    catch (UnauthorizedAccessException)
+    //    {
+    //        return this.Forbid();
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        return this.StatusCode(500, new { message = ex.Message });
+    //    }
+    //}
 
-    // POST: api/fractal/{id}/unpublish
-    [HttpPost("{id}/unpublish")]
-    public async Task<IActionResult> UnpublishFractal(string id)
-    {
-        try
-        {
-            var userId = this.GetCurrentUserId();
-            var fractal = await this.fractalService.UnpublishFractalAsync(id, userId);
-            return this.Ok(fractal);
-        }
-        catch (KeyNotFoundException)
-        {
-            return this.NotFound(new { message = "Fractal not found" });
-        }
-        catch (UnauthorizedAccessException)
-        {
-            return this.Forbid();
-        }
-        catch (Exception ex)
-        {
-            return this.StatusCode(500, new { message = ex.Message });
-        }
-    }
+    //// POST: api/fractal/{id}/unpublish
+    //[HttpPost("{id}/unpublish")]
+    //public async Task<IActionResult> UnpublishFractal(string id)
+    //{
+    //    try
+    //    {
+    //        var userId = this.GetCurrentUserId();
+    //        var fractal = await this.fractalService.UnpublishFractalAsync(id, userId);
+    //        return this.Ok(fractal);
+    //    }
+    //    catch (KeyNotFoundException)
+    //    {
+    //        return this.NotFound(new { message = "Fractal not found" });
+    //    }
+    //    catch (UnauthorizedAccessException)
+    //    {
+    //        return this.Forbid();
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        return this.StatusCode(500, new { message = ex.Message });
+    //    }
+    //}
 
     // POST: api/fractal/{id}/fork
     [HttpPost("{id}/fork")]
-    public async Task<IActionResult> ForkFractal(string id)
+    public async Task<IActionResult> ForkFractal(Guid id)
     {
         try
         {
@@ -228,19 +228,19 @@ public class FractalController(IFractalService fractalService) : ControllerBase
         }
     }
 
-    // POST: api/fractal/{id}/like
-    [HttpPost("{id}/like")]
-    public async Task<IActionResult> ToggleLike(string id)
-    {
-        try
-        {
-            var userId = this.GetCurrentUserId();
-            var isLiked = await this.fractalService.ToggleLikeAsync(id, userId);
-            return this.Ok(new { isLiked });
-        }
-        catch (Exception ex)
-        {
-            return this.StatusCode(500, new { message = ex.Message });
-        }
-    }
+    //// POST: api/fractal/{id}/like
+    //[HttpPost("{id}/like")]
+    //public async Task<IActionResult> ToggleLike(string id)
+    //{
+    //    try
+    //    {
+    //        var userId = this.GetCurrentUserId();
+    //        var isLiked = await this.fractalService.ToggleLikeAsync(id, userId);
+    //        return this.Ok(new { isLiked });
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        return this.StatusCode(500, new { message = ex.Message });
+    //    }
+    //}
 }

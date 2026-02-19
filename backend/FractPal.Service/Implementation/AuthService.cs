@@ -62,7 +62,7 @@ public class AuthService(
         {
             UserName = request.Username,
             Email = request.Email,
-            CreatedAt = DateTime.UtcNow
+            JoinedDate = DateTime.UtcNow
         };
 
         var result = await this.userManager.CreateAsync(user, request.Password);

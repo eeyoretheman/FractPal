@@ -24,13 +24,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(
 
 // Identity configuration
 builder.Services.AddIdentity<FractPalUser, IdentityRole<Guid>>(options =>
-{
-    options.Password.RequireDigit = true;
-    options.Password.RequiredLength = 6;
-    options.Password.RequireNonAlphanumeric = false;
-    options.Password.RequireUppercase = false;
-    options.Password.RequireLowercase = false;
-})
+    {
+        options.Password.RequireDigit = true;
+        options.Password.RequiredLength = 6;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequireUppercase = false;
+        options.Password.RequireLowercase = false;
+    })
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
@@ -79,6 +79,12 @@ builder.Services.AddScoped<IFractalService, FractalService>();
 builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
+
+using(var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    await DatabaseSeeder.SeedAsync(services);
+}
 
 app.UseCors();
 app.UseAuthentication();

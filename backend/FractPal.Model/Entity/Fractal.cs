@@ -54,7 +54,7 @@ public class Fractal : BaseEntity, IAuditable
     /// Number of L-system generations/iterations used to expand the axiom.
     /// </summary>
     [Required]
-    public int Generation { get; set; }
+    public int Generations { get; set; }
 
     /// <summary>
     /// Horizontal translation applied when rendering the fractal.

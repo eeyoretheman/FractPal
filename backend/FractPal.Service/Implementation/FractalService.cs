@@ -11,7 +11,7 @@ public class FractalService(ApplicationDbContext context) : IFractalService
 {
     private readonly ApplicationDbContext context = context;
 
-    public async Task<FractalFeedResponse> GetFeedAsync(string userId, int page = 1, int pageSize = 20)
+    public async Task<FractalFeedResponse> GetFeedAsync(Guid userId, int page = 1, int pageSize = 20)
     {
         var query = this.context.Fractals
             .Include(f => f.Author)
@@ -34,56 +34,39 @@ public class FractalService(ApplicationDbContext context) : IFractalService
         };
     }
 
-    public async Task<List<FractalDto>> GetUserFractalsAsync(string userId, string currentUserId)
+    public async Task<List<FractalDto>> GetUserFractalsAsync(Guid userId, Guid currentUserId)
     {
-        if (!Guid.TryParse(userId, out var userGuid))
-        {
-            throw new ArgumentException("Invalid user ID format");
-        }
-
         var fractals = await this.context.Fractals
             .Include(f => f.Author)
-            .Where(f => f.AuthorId == userGuid)
+            .Where(f => f.AuthorId == userId)
             .OrderByDescending(f => f.CreatedAt)
             .ToListAsync();
 
         return [.. fractals.Select(f => MapToDto(f, currentUserId))];
     }
 
-    public async Task<List<FractalDto>> GetPublishedFractalsByUserAsync(string userId, string currentUserId)
-    {
-        return await GetUserFractalsAsync(userId, currentUserId);
-    }
+    public async Task<List<FractalDto>> GetPublishedFractalsByUserAsync(Guid userId, Guid currentUserId)
+        => await this.GetUserFractalsAsync(userId, currentUserId);
 
-    public async Task<FractalDto?> GetFractalByIdAsync(string fractalId, string currentUserId)
+    public async Task<FractalDto?> GetFractalByIdAsync(Guid fractalId, Guid currentUserId)
     {
-        if (!Guid.TryParse(fractalId, out var fractalGuid))
-        {
-            throw new ArgumentException("Invalid fractal ID format");
-        }
-
         var fractal = await this.context.Fractals
             .Include(f => f.Author)
-            .FirstOrDefaultAsync(f => f.Id == fractalGuid);
+            .FirstOrDefaultAsync(f => f.Id == fractalId);
 
         return fractal == null ? null : MapToDto(fractal, currentUserId);
     }
 
-    public async Task<FractalDto> CreateFractalAsync(string userId, CreateFractalRequest request)
+    public async Task<FractalDto> CreateFractalAsync(Guid userId, CreateFractalRequest request)
     {
-        if (!Guid.TryParse(userId, out var userGuid))
-        {
-            throw new ArgumentException("Invalid user ID format");
-        }
-
         var fractal = new Fractal
         {
             Name = request.Name,
-            AuthorId = userGuid,
+            AuthorId = userId,
             Axiom = request.Axiom,
-            Rules = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(request.Rules) ?? new Dictionary<string, List<string>>(),
-            Instructions = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(request.Instructions) ?? new Dictionary<string, List<string>>(),
-            Generation = request.Generations,
+            Rules = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(request.Rules) ?? [],
+            Instructions = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(request.Instructions) ?? [],
+            Generations = request.Generations,
             XTranslation = request.XTranslation,
             YTranslation = request.YTranslation,
             Zoom = request.Zoom,
@@ -99,28 +82,23 @@ public class FractalService(ApplicationDbContext context) : IFractalService
         return MapToDto(fractal, userId);
     }
 
-    public async Task<FractalDto> UpdateFractalAsync(string fractalId, string userId, UpdateFractalRequest request)
+    public async Task<FractalDto> UpdateFractalAsync(Guid fractalId, Guid userId, UpdateFractalRequest request)
     {
-        if (!Guid.TryParse(fractalId, out var fractalGuid) || !Guid.TryParse(userId, out var userGuid))
-        {
-            throw new ArgumentException("Invalid ID format");
-        }
-
         var fractal = await this.context.Fractals
             .Include(f => f.Author)
-            .FirstOrDefaultAsync(f => f.Id == fractalGuid) ?? throw new KeyNotFoundException("Fractal not found");
+            .FirstOrDefaultAsync(f => f.Id == fractalId) ?? throw new KeyNotFoundException("Fractal not found");
 
         // If user is not the owner, create a copy (fork) instead of updating
-        if (fractal.AuthorId != userGuid)
+        if (fractal.AuthorId != userId)
         {
             var forkedFractal = new Fractal
             {
                 Name = request.Name + " (Copy)",
-                AuthorId = userGuid,
+                AuthorId = userId,
                 Axiom = request.Axiom,
-                Rules = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(request.Rules) ?? new Dictionary<string, List<string>>(),
-                Instructions = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(request.Instructions) ?? new Dictionary<string, List<string>>(),
-                Generation = request.Generations,
+                Rules = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(request.Rules) ?? [],
+                Instructions = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(request.Instructions) ?? [],
+                Generations = request.Generations,
                 XTranslation = request.XTranslation,
                 YTranslation = request.YTranslation,
                 Zoom = request.Zoom,
@@ -140,7 +118,7 @@ public class FractalService(ApplicationDbContext context) : IFractalService
         fractal.Axiom = request.Axiom;
         fractal.Rules = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(request.Rules) ?? fractal.Rules;
         fractal.Instructions = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(request.Instructions) ?? fractal.Instructions;
-        fractal.Generation = request.Generations;
+        fractal.Generations = request.Generations;
         fractal.XTranslation = request.XTranslation;
         fractal.YTranslation = request.YTranslation;
         fractal.Zoom = request.Zoom;
@@ -156,16 +134,11 @@ public class FractalService(ApplicationDbContext context) : IFractalService
         return MapToDto(fractal, userId);
     }
 
-    public async Task DeleteFractalAsync(string fractalId, string userId)
+    public async Task DeleteFractalAsync(Guid fractalId, Guid userId)
     {
-        if (!Guid.TryParse(fractalId, out var fractalGuid) || !Guid.TryParse(userId, out var userGuid))
-        {
-            throw new ArgumentException("Invalid ID format");
-        }
+        var fractal = await this.context.Fractals.FindAsync(fractalId) ?? throw new KeyNotFoundException("Fractal not found");
 
-        var fractal = await this.context.Fractals.FindAsync(fractalGuid) ?? throw new KeyNotFoundException("Fractal not found");
-
-        if (fractal.AuthorId != userGuid)
+        if (fractal.AuthorId != userId)
         {
             throw new UnauthorizedAccessException("You don't have permission to delete this fractal");
         }
@@ -174,26 +147,21 @@ public class FractalService(ApplicationDbContext context) : IFractalService
         await this.context.SaveChangesAsync();
     }
 
-    public async Task<FractalDto> ForkFractalAsync(string fractalId, string userId)
+    public async Task<FractalDto> ForkFractalAsync(Guid fractalId, Guid userId)
     {
-        if (!Guid.TryParse(fractalId, out var fractalGuid) || !Guid.TryParse(userId, out var userGuid))
-        {
-            throw new ArgumentException("Invalid ID format");
-        }
-
         var originalFractal = await this.context.Fractals
             .Include(f => f.Author)
-            .FirstOrDefaultAsync(f => f.Id == fractalGuid) ?? throw new KeyNotFoundException("Fractal not found");
+            .FirstOrDefaultAsync(f => f.Id == fractalId) ?? throw new KeyNotFoundException("Fractal not found");
 
         // Create a copy of the fractal for the new user
         var forkedFractal = new Fractal
         {
             Name = originalFractal.Name + " (Copy)",
-            AuthorId = userGuid,
+            AuthorId = userId,
             Axiom = originalFractal.Axiom,
             Rules = originalFractal.Rules,
             Instructions = originalFractal.Instructions,
-            Generation = originalFractal.Generation,
+            Generations = originalFractal.Generations,
             XTranslation = originalFractal.XTranslation,
             YTranslation = originalFractal.YTranslation,
             Zoom = originalFractal.Zoom,
@@ -208,7 +176,7 @@ public class FractalService(ApplicationDbContext context) : IFractalService
         return MapToDto(forkedFractal, userId);
     }
 
-    private static FractalDto MapToDto(Fractal fractal, string currentUserId) => new()
+    private static FractalDto MapToDto(Fractal fractal, Guid currentUserId) => new()
     {
         Id = fractal.Id.ToString(),
         Name = fractal.Name,
@@ -223,7 +191,7 @@ public class FractalService(ApplicationDbContext context) : IFractalService
         Axiom = fractal.Axiom,
         Rules = JsonSerializer.Serialize(fractal.Rules),
         Instructions = JsonSerializer.Serialize(fractal.Instructions),
-        Generations = fractal.Generation,
+        Generations = fractal.Generations,
         XTranslation = fractal.XTranslation,
         YTranslation = fractal.YTranslation,
         Zoom = fractal.Zoom

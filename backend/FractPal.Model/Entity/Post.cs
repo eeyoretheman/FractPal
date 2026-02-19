@@ -64,11 +64,11 @@ public class Post : BaseEntity, IAuditable
     /// Collection of comments made on this post.
     /// May be <c>null</c> if not loaded; use an empty collection when iterating.
     /// </summary>
-    public virtual ICollection<Comment>? Comments { get; set; }
+    public virtual ICollection<Comment> Comments { get; set; } = [];
 
     /// <summary>
     /// Collection of likes for this post.
     /// May be <c>null</c> if not loaded; use an empty collection when iterating.
     /// </summary>
-    public virtual ICollection<Like>? Likes { get; set; }
+    public virtual ICollection<Like> Likes { get; set; } = [];
 }
