@@ -2,6 +2,22 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  border-radius: 12px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
+}
+
+.fractal-card:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+
+.fractal-card:focus-within {
+  box-shadow: 0 0 0 3px rgba(139, 111, 71, 0.1), 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
 .fractal-preview {
@@ -10,19 +26,65 @@
   overflow: hidden;
   display: block;
   background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border);
   text-decoration: none;
+  position: relative;
+}
+
+.fractal-preview:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.fractal-preview-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.fractal-preview-container.loading {
+  background: var(--bg-secondary);
+}
+
+.skeleton-loader {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--bg-secondary) 0%,
+    var(--bg-tertiary, rgba(255, 255, 255, 0.1)) 50%,
+    var(--bg-secondary) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+  top: 0;
+  left: 0;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 .fractal-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
 }
 
 .fractal-preview:hover .fractal-image {
-  transform: scale(1.05);
+  transform: scale(1.08);
+}
+
+.fractal-preview:focus-visible .fractal-image {
+  outline: none;
 }
 
 .fractal-placeholder {
@@ -33,64 +95,45 @@
   justify-content: center;
   color: var(--text-muted);
   font-size: 0.9rem;
-  background: var(--bg-secondary);
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary, rgba(255, 255, 255, 0.05)) 100%);
 }
 
 .placeholder-icon {
-  font-size: 3rem;
-}
-
-.fork-button {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.75rem;
-  background: rgba(139, 111, 71, 0.1);
-  border: 1px solid var(--accent);
-  color: var(--accent-dark);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border-radius: 2px;
-  font-size: 0.85rem;
-  font-weight: 400;
-}
-
-.fork-button:hover:not(:disabled) {
-  background: var(--accent);
-  color: var(--bg-primary);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px var(--shadow);
-}
-
-.fork-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none;
+  font-size: 2.5rem;
 }
 
 .fractal-info {
-  padding: 1rem;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
+  flex-grow: 1;
 }
 
 .fractal-header {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.5rem;
 }
 
 .fractal-name {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.15rem;
+  font-weight: 700;
   color: var(--text-primary);
   text-decoration: none;
   transition: color 0.2s ease;
+  line-height: 1.3;
+  word-break: break-word;
 }
 
 .fractal-name:hover {
   color: var(--accent);
+}
+
+.fractal-name:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 .fractal-author {
@@ -104,46 +147,137 @@
   color: var(--accent);
 }
 
+.fractal-author:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 .fractal-date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.fractal-metrics {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
   font-size: 0.85rem;
+  color: var(--text-secondary);
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.metric {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: color 0.2s ease;
+}
+
+.metric:hover {
+  color: var(--accent);
+}
+
+.metric span[role="img"] {
+  font-size: 0.95rem;
 }
 
 .fractal-actions {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.fractal-action-buttons {
+  display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
-  margin-top: 0.5rem;
+}
+
+.action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem;
+  background: transparent;
+  border: 1.5px solid var(--border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  min-width: 44px;
+  min-height: 44px;
+  color: var(--text-primary);
+  outline: none;
+}
+
+.action-button:hover:not(:disabled) {
+  background: var(--bg-secondary);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(139, 111, 71, 0.15);
+}
+
+.action-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.action-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.action-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.action-button .icon {
+  font-size: 1.15rem;
+  line-height: 1;
 }
 
 .like-button {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.75rem;
-  background: transparent;
-  border: 1px solid var(--border);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border-radius: 2px;
-  font-size: 0.95rem;
-}
-
-.like-button:hover {
-  background: var(--bg-secondary);
-  border-color: var(--accent);
-  transform: translateY(-1px);
+  position: relative;
 }
 
 .like-button.liked {
   border-color: var(--error);
-  color: var(--error);
+  background: rgba(220, 38, 38, 0.08);
 }
 
-.heart-icon {
-  font-size: 1.1rem;
-  line-height: 1;
+.like-button.liked:hover {
+  background: rgba(220, 38, 38, 0.15);
+  border-color: var(--error);
+}
+
+.fork-button {
+  position: relative;
+}
+
+.fork-button:hover:not(:disabled) {
+  background: rgba(139, 111, 71, 0.1);
+  border-color: var(--accent);
+}
+
+.loading {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(139, 111, 71, 0.2);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .fractal-owner-actions {
@@ -156,31 +290,51 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1rem;
+  gap: 0.4rem;
+  padding: 0.65rem 1rem;
   text-decoration: none;
-  border: 1px solid var(--border);
+  border: 1.5px solid var(--border);
   background: var(--bg-primary);
   color: var(--text-primary);
   cursor: pointer;
   transition: all 0.2s ease;
-  border-radius: 2px;
+  border-radius: 8px;
   font-family: 'Crimson Pro', serif;
-  font-size: 0.95rem;
-}
-
-.button.small {
-  padding: 0.4rem 0.75rem;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  outline: none;
+  white-space: nowrap;
 }
 
 .button:hover {
   background: var(--bg-secondary);
   border-color: var(--accent);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(139, 111, 71, 0.15);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.button.small {
+  padding: 0.5rem 0.8rem;
+  font-size: 0.8rem;
+  gap: 0.3rem;
 }
 
 .button.secondary {
   background: transparent;
+  border-color: var(--border);
+}
+
+.button.secondary:hover {
+  background: var(--bg-secondary);
 }
 
 .button.danger {
@@ -191,4 +345,49 @@
 .button.danger:hover {
   background: var(--error);
   color: white;
+  border-color: var(--error);
+}
+
+.button.danger:focus-visible {
+  outline-color: var(--error);
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .fractal-card {
+    border-radius: 8px;
+  }
+
+  .fractal-info {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  .fractal-name {
+    font-size: 1rem;
+  }
+
+  .fractal-author {
+    font-size: 0.85rem;
+  }
+
+  .action-button {
+    min-width: 40px;
+    min-height: 40px;
+    padding: 0.55rem;
+  }
+
+  .button.small {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  .fractal-actions {
+    gap: 0.5rem;
+  }
+
+  .fractal-metrics {
+    gap: 0.75rem;
+    font-size: 0.8rem;
+  }
 }
