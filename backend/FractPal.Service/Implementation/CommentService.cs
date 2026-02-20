@@ -15,6 +15,11 @@ public class CommentService(ApplicationDbContext dbContext) : ICommentService
 
     public async Task<CommentDto> CreateComment(Guid userId, CreateCommentRequest request)
     {
+        if(await this.context.Posts.FindAsync(request.PostId) == null)
+        {
+            throw new KeyNotFoundException("Post not found");
+        }
+
         var comment = new Comment
         {
             AuthorId = userId,

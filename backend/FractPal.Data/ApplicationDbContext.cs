@@ -22,8 +22,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     {
         base.OnModelCreating(builder);
 
-        var dictComparer = CreateDictValueComparer();
-
         // Fractal configuration
         builder.Entity<Fractal>(entity =>
         {
@@ -113,108 +111,5 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             // Unique constraint: can't follow same user twice
             entity.HasIndex(f => new { f.FollowerId, f.FollowingId }).IsUnique();
         });
-    }
-
-    /// <summary>
-    /// Creates a <see cref="ValueComparer{Dictionary}"/> suitable for comparing
-    /// <see cref="Dictionary{String,List{String}}"/> instances used by EF Core value conversions.
-    /// The comparer uses deep equality, a deterministic hash and a snapshot function.
-    /// </summary>
-    /// <returns>A configured <see cref="ValueComparer{Dictionary}"/> instance.</returns>
-    private static ValueComparer<Dictionary<string, List<string>>> CreateDictValueComparer()
-    {
-        return new ValueComparer<Dictionary<string, List<string>>>(
-            (a, b) => DictEquality(a, b),
-            v => DictHash(v),
-            v => DictSnapShot(v)
-        );
-    }
-
-    /// <summary>
-    /// Deep equality check for two dictionaries mapping string keys to ordered lists of strings.
-    /// Comparison is order-sensitive for list values and uses <see cref="StringComparer.Ordinal"/> for key ordering in hashing.
-    /// </summary>
-    /// <param name="a">First dictionary (may be null).</param>
-    /// <param name="b">Second dictionary (may be null).</param>
-    /// <returns>True if both dictionaries are equal by structure and element values; otherwise false.</returns>
-    private static bool DictEquality(Dictionary<string, List<string>>? a, Dictionary<string, List<string>>? b)
-    {
-        {
-            if (ReferenceEquals(a, b))
-                return true;
-            if (a is null || b is null)
-                return false;
-            if (a.Count != b.Count)
-                return false;
-            foreach (var kvp in a)
-            {
-                if (!b.TryGetValue(kvp.Key, out var bList))
-                    return false;
-                var aList = kvp.Value;
-                if (aList is null && bList is null)
-                    continue;
-                if (aList is null || bList is null)
-                    return false;
-                if (aList.Count != bList.Count)
-                    return false;
-                for (int i = 0; i < aList.Count; i++)
-                {
-                    if (aList[i] != bList[i])
-                        return false;
-                }
-            }
-            return true;
-        }
-    }
-
-    /// <summary>
-    /// Produces a deterministic hash code for a dictionary of lists.
-    /// Keys are processed in ordinal order to ensure consistent hash independent of insertion order.
-    /// Each key, each list item and the list length contribute to the hash. Null dictionary returns 0.
-    /// </summary>
-    /// <param name="v">Dictionary to hash (may be null).</param>
-    /// <returns>An integer hash code.</returns>
-    private static int DictHash(Dictionary<string, List<string>>? v)
-    {
-        if (v is null)
-            return 0;
-        var hash = new HashCode();
-        foreach (var key in v.Keys.OrderBy(k => k, StringComparer.Ordinal))
-        {
-            hash.Add(key, StringComparer.Ordinal);
-            var list = v[key];
-            if (list != null)
-            {
-                foreach (var item in list)
-                {
-                    hash.Add(item);
-                }
-                hash.Add(list.Count);
-            }
-            else
-            {
-                // Marker to distinguish null list vs empty list (empty lists add count 0 above)
-                hash.Add(-1);
-            }
-        }
-        return hash.ToHashCode();
-    }
-
-    /// <summary>
-    /// Creates a deep snapshot copy of the provided dictionary and its inner lists.
-    /// Used by EF Core to take a snapshot of a value object so changes can be detected.
-    /// </summary>
-    /// <param name="v">The dictionary to snapshot.</param>
-    /// <returns>A new dictionary containing copies of the inner lists.</returns>
-    private static Dictionary<string, List<string>> DictSnapShot(Dictionary<string, List<string>> v)
-    {
-        if (v == null)
-            return new Dictionary<string, List<string>>();
-        var copy = new Dictionary<string, List<string>>(v.Count);
-        foreach (var kvp in v)
-        {
-            copy[kvp.Key] = kvp.Value == null ? new List<string>() : new List<string>(kvp.Value);
-        }
-        return copy;
     }
 }

@@ -25,6 +25,10 @@ public class LikeService(ApplicationDbContext dbContext) : ILikeService
             await this.context.SaveChangesAsync();
             return false;
         }
+        else if (await this.context.Posts.FindAsync(postId) == null)
+        {
+            throw new KeyNotFoundException("Post not found");
+        }
         else
         {
             var like = new Like
