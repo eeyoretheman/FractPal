@@ -106,14 +106,28 @@ const Workbench: React.FC = () => {
     }
   };
 
+  const captureThumbnail = (canvas: HTMLCanvasElement): string => {
+    // Re-render immediately before capture so the WebGL buffer is populated.
+    // WebGL clears its buffer after compositing, so toDataURL() on a
+    // "stale" canvas returns black/white.
+    renderFractal();
+
+    const thumb = document.createElement('canvas');
+    thumb.width = 400;
+    thumb.height = 300;
+    const ctx = thumb.getContext('2d');
+    if (!ctx) return '';
+    ctx.drawImage(canvas, 0, 0, 400, 300);
+    return thumb.toDataURL('image/jpeg', 0.8);
+  };
+
   const handleSave = async () => {
     try {
       setLoading(true);
       setError('');
 
-      // Capture canvas as image
       const canvas = canvasRef.current;
-      const imageData = canvas ? canvas.toDataURL('image/png') : undefined;
+      const imageData = canvas ? captureThumbnail(canvas) : undefined;
 
       const fractalData = {
         name,

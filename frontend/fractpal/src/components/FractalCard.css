@@ -391,3 +391,45 @@
     font-size: 0.8rem;
   }
 }
+
+/* ── Thumbnail ───────────────────────────────────── */
+
+.fractal-preview {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  display: block;
+  background: var(--bg-secondary);
+  text-decoration: none;
+  position: relative;
+}
+
+.fractal-preview-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.fractal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+}
+
+.fractal-preview:hover .fractal-image {
+  transform: scale(1.08);
+}
+
+.fractal-image.hidden {
+  opacity: 0;
+  position: absolute;
+  inset: 0;
+}
+
+.fractal-image.visible {
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}

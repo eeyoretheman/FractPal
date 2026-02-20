@@ -36,7 +36,8 @@ const FractalCard: React.FC<FractalCardProps> = ({
   const navigate = useNavigate();
   const [forking, setForking] = useState(false);
   const [liking, setLiking] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(!!fractal.imageUrl);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   const formatDate = (dateString?: string) => {
     if (!dateString) return '';
@@ -47,7 +48,6 @@ const FractalCard: React.FC<FractalCardProps> = ({
   const handleFork = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-
     try {
       setForking(true);
       const forked = await fractalApi.forkFractal(fractal.id);
@@ -73,26 +73,25 @@ const FractalCard: React.FC<FractalCardProps> = ({
     }
   };
 
-  const handleImageLoad = () => {
-    setImageLoaded(true);
-  };
+  const hasThumbnail = !!fractal.imageUrl && !imageError;
 
   return (
     <div className="fractal-card card">
       <Link to={`/workbench/${fractal.id}`} className="fractal-preview" aria-labelledby={`fractal-name-${fractal.id}`}>
-        <div className={`fractal-preview-container ${!imageLoaded ? 'loading' : ''}`}>
-          {fractal.imageUrl ? (
+        <div className="fractal-preview-container">
+          {hasThumbnail ? (
             <>
-              <img 
-                src={fractal.imageUrl} 
-                alt={fractal.name} 
-                className="fractal-image" 
-                onLoad={handleImageLoad}
+              {!imageLoaded && <div className="skeleton-loader" aria-hidden="true" />}
+              <img
+                src={fractal.imageUrl}
+                alt={`Preview of ${fractal.name}`}
+                className={`fractal-image ${imageLoaded ? 'visible' : 'hidden'}`}
+                onLoad={() => setImageLoaded(true)}
+                onError={() => setImageError(true)}
               />
-              {!imageLoaded && <div className="skeleton-loader"></div>}
             </>
           ) : (
-            <div className="fractal-placeholder">
+            <div className="fractal-placeholder" aria-label="No preview available">
               <span className="placeholder-icon">✨</span>
             </div>
           )}
@@ -108,9 +107,7 @@ const FractalCard: React.FC<FractalCardProps> = ({
             @{fractal.username}
           </Link>
           {fractal.publishedAt && (
-            <div className="fractal-date">
-              {formatDate(fractal.publishedAt)}
-            </div>
+            <div className="fractal-date">{formatDate(fractal.publishedAt)}</div>
           )}
         </div>
 

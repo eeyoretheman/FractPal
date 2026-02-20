@@ -149,7 +149,7 @@ export function turtle(symbols: string[], gl: WebGL2RenderingContext) {
 
 // Setup WebGL program
 export function setupWebGL(canvas: HTMLCanvasElement, xTranslation: number, yTranslation: number, zoom: number): WebGL2RenderingContext | null {
-  const gl = canvas.getContext('webgl2');
+  const gl = canvas.getContext('webgl2', { preserveDrawingBuffer: true });
   if (!gl) {
     alert('WebGL2 not supported');
     return null;
