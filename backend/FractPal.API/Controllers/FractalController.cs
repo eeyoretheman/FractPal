@@ -6,6 +6,10 @@ using FractPal.Service.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+/// <summary>
+/// Handles all fractal CRUD operations, feed retrieval, forking, and social
+/// interactions (likes). All endpoints require an authenticated user.
+/// </summary>
 [Route("api/[controller]")]
 [ApiController]
 [Authorize]
@@ -13,10 +17,24 @@ public class FractalController(IFractalService fractalService) : ControllerBase
 {
     private readonly IFractalService fractalService = fractalService;
 
+    /// <summary>
+    /// Retrieves the authenticated user's ID from the JWT claims.
+    /// </summary>
+    /// <returns>The current user's ID as a <see cref="Guid"/>.</returns>
+    /// <exception cref="UnauthorizedAccessException">Thrown when the user ID claim is missing or not a valid GUID.</exception>
     private Guid GetCurrentUserId() => Guid.Parse(this.User.FindFirstValue(ClaimTypes.NameIdentifier)
             ?? throw new UnauthorizedAccessException("User ID not found"));
 
-    // GET: api/fractal/feed
+    /// <summary>
+    /// Returns a paginated feed of all published fractals, ordered by most recently published.
+    /// </summary>
+    /// <param name="page">The 1-based page number. Defaults to 1.</param>
+    /// <param name="pageSize">The number of fractals per page. Defaults to 20.</param>
+    /// <returns>
+    /// <see cref="OkObjectResult"/> with a <see cref="FractalFeedResponse"/> containing
+    /// the fractals and pagination metadata;
+    /// 500 if an unexpected error occurs.
+    /// </returns>
     [HttpGet("feed")]
     public async Task<IActionResult> GetFeed([FromQuery] int page = 1, [FromQuery] int pageSize = 20)
     {
@@ -32,7 +50,13 @@ public class FractalController(IFractalService fractalService) : ControllerBase
         }
     }
 
-    // GET: api/fractal/mine
+    /// <summary>
+    /// Returns all fractals (published and draft) belonging to the authenticated user.
+    /// </summary>
+    /// <returns>
+    /// <see cref="OkObjectResult"/> with a list of <see cref="FractalDto"/>;
+    /// 500 if an unexpected error occurs.
+    /// </returns>
     [HttpGet("mine")]
     public async Task<IActionResult> GetMyFractals()
     {
@@ -48,7 +72,14 @@ public class FractalController(IFractalService fractalService) : ControllerBase
         }
     }
 
-    // GET: api/fractal/user/{userId}
+    /// <summary>
+    /// Returns all published fractals belonging to a specific user.
+    /// </summary>
+    /// <param name="userId">The ID of the user whose published fractals to retrieve.</param>
+    /// <returns>
+    /// <see cref="OkObjectResult"/> with a list of <see cref="FractalDto"/>;
+    /// 500 if an unexpected error occurs.
+    /// </returns>
     [HttpGet("user/{userId}")]
     public async Task<IActionResult> GetUserFractals(Guid userId)
     {
@@ -64,7 +95,15 @@ public class FractalController(IFractalService fractalService) : ControllerBase
         }
     }
 
-    // GET: api/fractal/{id}
+    /// <summary>
+    /// Retrieves a single fractal by its unique identifier.
+    /// </summary>
+    /// <param name="id">The unique identifier of the fractal.</param>
+    /// <returns>
+    /// <see cref="OkObjectResult"/> with a <see cref="FractalDto"/> on success;
+    /// <see cref="NotFoundObjectResult"/> if no fractal exists with the given ID;
+    /// 500 if an unexpected error occurs.
+    /// </returns>
     [HttpGet("{id}")]
     public async Task<IActionResult> GetFractalById(Guid id)
     {
@@ -86,7 +125,16 @@ public class FractalController(IFractalService fractalService) : ControllerBase
         }
     }
 
-    // POST: api/fractal
+    /// <summary>
+    /// Creates a new fractal owned by the authenticated user. The fractal starts as a draft
+    /// and must be explicitly published via <see cref="PublishFractal"/>.
+    /// </summary>
+    /// <param name="request">The fractal configuration data including L-system rules and optional thumbnail.</param>
+    /// <returns>
+    /// <see cref="CreatedAtActionResult"/> pointing to <see cref="GetFractalById"/> with the new <see cref="FractalDto"/>;
+    /// <see cref="BadRequestObjectResult"/> if the request body fails validation;
+    /// 500 if an unexpected error occurs.
+    /// </returns>
     [HttpPost]
     public async Task<IActionResult> CreateFractal([FromBody] CreateFractalRequest request)
     {
@@ -107,7 +155,19 @@ public class FractalController(IFractalService fractalService) : ControllerBase
         }
     }
 
-    // PUT: api/fractal/{id}
+    /// <summary>
+    /// Updates an existing fractal. If the authenticated user is not the owner, a forked
+    /// copy is created instead and the original is left unchanged.
+    /// </summary>
+    /// <param name="id">The unique identifier of the fractal to update.</param>
+    /// <param name="request">The updated fractal configuration data.</param>
+    /// <returns>
+    /// <see cref="OkObjectResult"/> with the updated or forked <see cref="FractalDto"/>;
+    /// <see cref="BadRequestObjectResult"/> if the request body fails validation;
+    /// <see cref="NotFoundObjectResult"/> if no fractal exists with the given ID;
+    /// <see cref="ForbidResult"/> if the user lacks permission (owner check is done in service);
+    /// 500 if an unexpected error occurs.
+    /// </returns>
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateFractal(Guid id, [FromBody] UpdateFractalRequest request)
     {
@@ -136,7 +196,16 @@ public class FractalController(IFractalService fractalService) : ControllerBase
         }
     }
 
-    // DELETE: api/fractal/{id}
+    /// <summary>
+    /// Permanently deletes a fractal. Only the owner may delete their own fractal.
+    /// </summary>
+    /// <param name="id">The unique identifier of the fractal to delete.</param>
+    /// <returns>
+    /// <see cref="NoContentResult"/> on successful deletion;
+    /// <see cref="NotFoundObjectResult"/> if no fractal exists with the given ID;
+    /// <see cref="ForbidResult"/> if the authenticated user is not the owner;
+    /// 500 if an unexpected error occurs.
+    /// </returns>
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteFractal(Guid id)
     {
@@ -160,55 +229,16 @@ public class FractalController(IFractalService fractalService) : ControllerBase
         }
     }
 
-    //// POST: api/fractal/{id}/publish
-    //[HttpPost("{id}/publish")]
-    //public async Task<IActionResult> PublishFractal(string id)
-    //{
-    //    try
-    //    {
-    //        var userId = this.GetCurrentUserId();
-    //        var fractal = await this.fractalService.PublishFractalAsync(id, userId);
-    //        return this.Ok(fractal);
-    //    }
-    //    catch (KeyNotFoundException)
-    //    {
-    //        return this.NotFound(new { message = "Fractal not found" });
-    //    }
-    //    catch (UnauthorizedAccessException)
-    //    {
-    //        return this.Forbid();
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        return this.StatusCode(500, new { message = ex.Message });
-    //    }
-    //}
-
-    //// POST: api/fractal/{id}/unpublish
-    //[HttpPost("{id}/unpublish")]
-    //public async Task<IActionResult> UnpublishFractal(string id)
-    //{
-    //    try
-    //    {
-    //        var userId = this.GetCurrentUserId();
-    //        var fractal = await this.fractalService.UnpublishFractalAsync(id, userId);
-    //        return this.Ok(fractal);
-    //    }
-    //    catch (KeyNotFoundException)
-    //    {
-    //        return this.NotFound(new { message = "Fractal not found" });
-    //    }
-    //    catch (UnauthorizedAccessException)
-    //    {
-    //        return this.Forbid();
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        return this.StatusCode(500, new { message = ex.Message });
-    //    }
-    //}
-
-    // POST: api/fractal/{id}/fork
+    /// <summary>
+    /// Creates a copy (fork) of an existing published fractal under the authenticated user's account.
+    /// The forked fractal starts as a draft.
+    /// </summary>
+    /// <param name="id">The unique identifier of the fractal to fork.</param>
+    /// <returns>
+    /// <see cref="CreatedAtActionResult"/> pointing to <see cref="GetFractalById"/> with the new forked <see cref="FractalDto"/>;
+    /// <see cref="NotFoundObjectResult"/> if no fractal exists with the given ID;
+    /// 500 if an unexpected error occurs.
+    /// </returns>
     [HttpPost("{id}/fork")]
     public async Task<IActionResult> ForkFractal(Guid id)
     {
@@ -227,20 +257,4 @@ public class FractalController(IFractalService fractalService) : ControllerBase
             return this.StatusCode(500, new { message = ex.Message });
         }
     }
-
-    //// POST: api/fractal/{id}/like
-    //[HttpPost("{id}/like")]
-    //public async Task<IActionResult> ToggleLike(string id)
-    //{
-    //    try
-    //    {
-    //        var userId = this.GetCurrentUserId();
-    //        var isLiked = await this.fractalService.ToggleLikeAsync(id, userId);
-    //        return this.Ok(new { isLiked });
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        return this.StatusCode(500, new { message = ex.Message });
-    //    }
-    //}
 }
