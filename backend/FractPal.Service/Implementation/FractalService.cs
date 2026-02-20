@@ -64,8 +64,8 @@ public class FractalService(ApplicationDbContext context) : IFractalService
             Name = request.Name,
             AuthorId = userId,
             Axiom = request.Axiom,
-            Rules = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(request.Rules) ?? [],
-            Instructions = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(request.Instructions) ?? [],
+            Rules = request.Rules,
+            Instructions = request.Instructions,
             Generations = request.Generations,
             XTranslation = request.XTranslation,
             YTranslation = request.YTranslation,
@@ -96,8 +96,8 @@ public class FractalService(ApplicationDbContext context) : IFractalService
                 Name = request.Name + " (Copy)",
                 AuthorId = userId,
                 Axiom = request.Axiom,
-                Rules = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(request.Rules) ?? [],
-                Instructions = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(request.Instructions) ?? [],
+                Rules = request.Rules,
+                Instructions = request.Instructions,
                 Generations = request.Generations,
                 XTranslation = request.XTranslation,
                 YTranslation = request.YTranslation,
@@ -116,8 +116,8 @@ public class FractalService(ApplicationDbContext context) : IFractalService
         // Owner can update their own fractal
         fractal.Name = request.Name;
         fractal.Axiom = request.Axiom;
-        fractal.Rules = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(request.Rules) ?? fractal.Rules;
-        fractal.Instructions = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(request.Instructions) ?? fractal.Instructions;
+        fractal.Rules = request.Rules;
+        fractal.Instructions = request.Instructions;
         fractal.Generations = request.Generations;
         fractal.XTranslation = request.XTranslation;
         fractal.YTranslation = request.YTranslation;
@@ -189,8 +189,8 @@ public class FractalService(ApplicationDbContext context) : IFractalService
         LikeCount = 0, // Likes moved to Posts
         IsLikedByCurrentUser = false, // Likes moved to Posts
         Axiom = fractal.Axiom,
-        Rules = JsonSerializer.Serialize(fractal.Rules),
-        Instructions = JsonSerializer.Serialize(fractal.Instructions),
+        Rules = fractal.Rules,
+        Instructions = fractal.Instructions,
         Generations = fractal.Generations,
         XTranslation = fractal.XTranslation,
         YTranslation = fractal.YTranslation,

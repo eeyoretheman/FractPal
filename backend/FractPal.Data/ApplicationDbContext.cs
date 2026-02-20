@@ -36,28 +36,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
             entity.HasIndex(f => f.AuthorId);
             entity.HasIndex(f => f.CreatedAt);
-
-            entity.Property(f => f.Rules)
-                  .HasColumnType("nvarchar(max)")
-                  .HasConversion(
-                      v => v == null ? "{}" : JsonSerializer.Serialize(v, JsonSerializerOptions.Default),
-                      v => string.IsNullOrWhiteSpace(v)
-                          ? new Dictionary<string, List<string>>()
-                          : JsonSerializer.Deserialize<Dictionary<string, List<string>>>(v, JsonSerializerOptions.Default)
-                                                                                  ?? new Dictionary<string, List<string>>()
-                      )
-                  .Metadata.SetValueComparer(dictComparer);
-
-            entity.Property(f => f.Instructions)
-                  .HasColumnType("nvarchar(max)")
-                  .HasConversion(
-                      v => v == null ? "{}" : JsonSerializer.Serialize(v, JsonSerializerOptions.Default),
-                      v => string.IsNullOrWhiteSpace(v)
-                          ? new Dictionary<string, List<string>>()
-                          : JsonSerializer.Deserialize<Dictionary<string, List<string>>>(v, JsonSerializerOptions.Default)
-                                                                              ?? new Dictionary<string, List<string>>()
-                      )
-                  .Metadata.SetValueComparer(dictComparer);
         });
 
         // Post configuration
