@@ -69,7 +69,7 @@ public interface IFractalService
     /// <param name="userId">The ID of the requesting user.</param>
     /// <exception cref="KeyNotFoundException">Thrown when no fractal exists with <paramref name="fractalId"/>.</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when the requesting user is not the owner.</exception>
-    public Task DeleteFractalAsync(Guid fractalId, Guid userId);
+    public Task DeleteFractalAsync(Guid fractalId, Guid userId, bool isAdmin = false);
 
     /// <summary>
     /// Creates a copy of an existing fractal under a new owner. The forked fractal
