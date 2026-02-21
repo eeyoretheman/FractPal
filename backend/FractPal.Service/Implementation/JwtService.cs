@@ -9,13 +9,18 @@ using FractPal.Service.Interface;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
+/// <summary>
+/// Generates signed JWT access tokens for authenticated FractPal users.
+/// Token settings (secret, issuer, audience, expiry) are resolved from environment
+/// variables first, falling back to <c>appsettings.json</c>.
+/// </summary>
 public class JwtService(IConfiguration configuration) : IJwtService
 {
     private readonly IConfiguration configuration = configuration;
 
+    /// <inheritdoc/>
     public string GenerateToken(FractPalUser user)
     {
-        // Try environment variables first, then fall back to appsettings
         var secretKey = this.configuration["JWT_SECRET_KEY"]
             ?? this.configuration["JwtSettings:SecretKey"]
             ?? throw new InvalidOperationException("JWT SecretKey not configured");

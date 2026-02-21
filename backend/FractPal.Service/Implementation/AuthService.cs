@@ -6,6 +6,10 @@ using FractPal.Service.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
+/// <summary>
+/// Implements authentication logic including login and new user registration
+/// using ASP.NET Core Identity.
+/// </summary>
 public class AuthService(
     UserManager<FractPalUser> userManager,
     SignInManager<FractPalUser> signInManager,
@@ -15,6 +19,7 @@ public class AuthService(
     private readonly SignInManager<FractPalUser> signInManager = signInManager;
     private readonly IJwtService jwtService = jwtService;
 
+    /// <inheritdoc/>
     public async Task<LoginResponse> Login(HttpContext context, LoginRequest request)
     {
         var user = await this.userManager.FindByEmailAsync(request.Email);
@@ -42,6 +47,7 @@ public class AuthService(
         };
     }
 
+    /// <inheritdoc/>
     public async Task<RegistrationResponse> Register(RegistrationRequest request)
     {
         var existingUser = await this.userManager.FindByEmailAsync(request.Email);
