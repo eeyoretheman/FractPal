@@ -18,6 +18,9 @@ public class LoginResponse
     public string Username { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public string Token { get; set; } = string.Empty;
+
+    /// <summary>Indicates whether the authenticated user has the Admin role.</summary>
+    public bool IsAdmin { get; set; }
 }
 
 public class RegistrationRequest
@@ -39,4 +42,7 @@ public class RegistrationResponse
     public string Id { get; set; } = string.Empty;
     public string Username { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
+
+    /// <summary>Indicates whether the newly registered user has the Admin role.</summary>
+    public bool IsAdmin { get; set; }
 }
