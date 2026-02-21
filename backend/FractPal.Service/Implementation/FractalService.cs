@@ -151,6 +151,9 @@ public class FractalService(ApplicationDbContext context) : IFractalService
         var likes = this.context.Likes.Where(l => l.FractalId == fractalId);
         this.context.Likes.RemoveRange(likes);
 
+        var posts = this.context.Posts.Where(p => p.FractalId == fractalId);
+        this.context.Posts.RemoveRange(posts);
+
         this.context.Fractals.Remove(fractal);
         await this.context.SaveChangesAsync();
     }
