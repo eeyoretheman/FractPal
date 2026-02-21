@@ -106,3 +106,20 @@
     gap: 1.5rem;
   }
 }
+
+.search-result-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.5rem;
+  text-decoration: none;
+  color: var(--text-primary);
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.search-result-link:hover,
+.search-result-link:focus {
+  background: var(--bg-secondary);
+  outline: none;
+}

@@ -177,10 +177,6 @@ namespace FractPal.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("FractalThumbnailPath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("Generations")
                         .HasColumnType("int");
 
@@ -193,6 +189,10 @@ namespace FractPal.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Rules")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Thumbnail")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -222,12 +222,12 @@ namespace FractPal.Data.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("PostId")
+                    b.Property<Guid>("FractalId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("UserId", "PostId");
+                    b.HasKey("UserId", "FractalId");
 
-                    b.HasIndex("PostId");
+                    b.HasIndex("FractalId");
 
                     b.ToTable("Likes");
                 });
@@ -477,9 +477,9 @@ namespace FractPal.Data.Migrations
 
             modelBuilder.Entity("FractPal.Model.Entities.Like", b =>
                 {
-                    b.HasOne("FractPal.Model.Entities.Post", "Post")
+                    b.HasOne("FractPal.Model.Entities.Fractal", "Fractal")
                         .WithMany("Likes")
-                        .HasForeignKey("PostId")
+                        .HasForeignKey("FractalId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -489,7 +489,7 @@ namespace FractPal.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Post");
+                    b.Navigation("Fractal");
 
                     b.Navigation("User");
                 });
@@ -579,11 +579,14 @@ namespace FractPal.Data.Migrations
                     b.Navigation("Posts");
                 });
 
+            modelBuilder.Entity("FractPal.Model.Entities.Fractal", b =>
+                {
+                    b.Navigation("Likes");
+                });
+
             modelBuilder.Entity("FractPal.Model.Entities.Post", b =>
                 {
                     b.Navigation("Comments");
-
-                    b.Navigation("Likes");
                 });
 #pragma warning restore 612, 618
         }

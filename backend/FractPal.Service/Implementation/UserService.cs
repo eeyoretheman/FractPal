@@ -34,7 +34,7 @@ public class UserService(ApplicationDbContext context) : IUserService
             Email = user.Email ?? "",
             JoinedDate = user.JoinedDate,
             Bio = user.Bio,
-            ProfileImageUrl = user.ProfilePicturePath,
+            ProfileImage = user.ProfilePicturePath,
             FollowerCount = user.Followers?.Count ?? 0,
             FollowingCount = user.Following?.Count ?? 0,
             FractalCount = user.Fractals?.Count ?? 0,
@@ -66,7 +66,7 @@ public class UserService(ApplicationDbContext context) : IUserService
             Email = user.Email ?? "",
             JoinedDate = user.JoinedDate,
             Bio = user.Bio,
-            ProfileImageUrl = user.ProfilePicturePath,
+            ProfileImage = user.ProfilePicturePath,
             FollowerCount = user.Followers?.Count ?? 0,
             FollowingCount = user.Following?.Count ?? 0,
             FractalCount = user.Fractals?.Count ?? 0,
@@ -136,7 +136,7 @@ public class UserService(ApplicationDbContext context) : IUserService
             {
                 Id = user.Id.ToString(),
                 Username = user.UserName ?? "",
-                ProfileImageUrl = user.ProfilePicturePath,
+                ProfileImage = user.ProfilePicturePath,
                 FollowerCount = user.Followers?.Count ?? 0,
                 IsFollowedByCurrentUser = isFollowed
             });

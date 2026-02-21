@@ -37,7 +37,7 @@ public class Fractal : BaseEntity, IAuditable
     /// { "F": new List&lt;string&gt; { "F+F", "F-F" } }
     /// </remarks>
     [Required]
-    public Dictionary<string, List<string>> Rules { get; set; } = default!;
+    public string Rules { get; set; } = default!;
 
     /// <summary>
     /// Drawing instructions associated with each symbol.
@@ -48,7 +48,7 @@ public class Fractal : BaseEntity, IAuditable
     /// Commands are renderer-specific (e.g., "MoveForward", "TurnLeft:90").
     /// </remarks>
     [Required]
-    public Dictionary<string, List<string>> Instructions { get; set; } = default!;
+    public string Instructions { get; set; } = default!;
 
     /// <summary>
     /// Number of L-system generations/iterations used to expand the axiom.
@@ -74,7 +74,7 @@ public class Fractal : BaseEntity, IAuditable
     /// <summary>
     /// File path or URI to a thumbnail image representing the fractal.
     /// </summary>
-    public string FractalThumbnailPath { get; set; } = default!;
+    public string Thumbnail { get; set; } = default!;
 
     /// <summary>
     /// Timestamp when the fractal entity was created.
@@ -96,4 +96,9 @@ public class Fractal : BaseEntity, IAuditable
     /// Navigation property to the author (user) who created the fractal.
     /// </summary>
     public virtual FractPalUser? Author { get; set; }
+
+    /// <summary>
+    /// Collection of likes for this fractal.
+    /// </summary>
+    public virtual ICollection<Like> Likes { get; set; } = new List<Like>();
 }

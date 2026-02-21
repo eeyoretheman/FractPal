@@ -1,62 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { userApi, fractalApi } from '../services/api';
+import { userApi, fractalApi, postApi } from '../services/api';
+import type { UserProfileDto, FractalDto, PostDto, UserSearchDto } from '../services/types';
+import { Link } from 'react-router-dom';
 import FractalCard from '../components/FractalCard';
 import './Profile.css';
 
-interface UserProfile {
-  id: string;
-  username: string;
-  email: string;
-  joinedDate: string;
-  bio?: string;
-  followerCount: number;
-  followingCount: number;
-  fractalCount: number;
-  isFollowedByCurrentUser: boolean;
-}
-
-interface Fractal {
-  id: string;
-  name: string;
-  username: string;
-  userId: string;
-  imageUrl?: string;
-  likeCount: number;
-  isLikedByCurrentUser: boolean;
-  publishedAt?: string;
-}
+type Tab = 'posts' | 'fractals';
 
 const Profile: React.FC = () => {
   const { userId } = useParams<{ userId: string }>();
   const { user: currentUser } = useAuth();
-  const [profile, setProfile] = useState<UserProfile | null>(null);
-  const [fractals, setFractals] = useState<Fractal[]>([]);
+
+  const [profile, setProfile] = useState<UserProfileDto | null>(null);
+  const [posts, setPosts] = useState<PostDto[]>([]);
+  const [fractals, setFractals] = useState<FractalDto[]>([]);
+  const [activeTab, setActiveTab] = useState<Tab>('posts');
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
   const [bio, setBio] = useState('');
 
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState<UserSearchDto[]>([]);
+  const [searching, setSearching] = useState(false);
+
   const isOwnProfile = !userId || userId === currentUser?.id;
+  const targetId = userId ?? currentUser?.id ?? '';
 
-  useEffect(() => {
-    loadProfile();
-  }, [userId]);
+  useEffect(() => { loadAll(); }, [userId]);
 
-  const loadProfile = async () => {
+  const loadAll = async () => {
     try {
       setLoading(true);
-      const profileData = userId
-        ? await userApi.getUserProfile(userId)
-        : await userApi.getProfile();
-
+      const [profileData, postsData, fractalsData] = await Promise.all([
+        isOwnProfile ? userApi.getProfile() : userApi.getUserProfile(targetId),
+        isOwnProfile ? postApi.getMyPosts() : postApi.getUserPosts(targetId),
+        isOwnProfile ? fractalApi.getMyFractals() : fractalApi.getUserFractals(targetId),
+      ]);
       setProfile(profileData);
-      setBio(profileData.bio || '');
-
-      const fractalsData = isOwnProfile
-        ? await fractalApi.getMyFractals()
-        : await fractalApi.getUserFractals(profileData.id);
-
+      setBio(profileData.bio ?? '');
+      setPosts(postsData);
       setFractals(fractalsData);
     } catch (error) {
       console.error('Failed to load profile:', error);
@@ -67,115 +51,128 @@ const Profile: React.FC = () => {
 
   const handleSaveBio = async () => {
     try {
-      await userApi.updateProfile({ bio });
-      setProfile(prev => (prev ? { ...prev, bio } : null));
+      const updated = await userApi.updateProfile({ bio });
+      setProfile(updated);
       setEditing(false);
     } catch (error) {
-      console.error('Failed to update bio:', error);
+      console.error('Failed to save bio:', error);
     }
   };
 
   const handleFollow = async () => {
     if (!profile) return;
-
     try {
       const result = await userApi.toggleFollow(profile.id);
-      setProfile(prev =>
-        prev
-          ? {
-              ...prev,
-              isFollowedByCurrentUser: result.isFollowing,
-              followerCount: result.isFollowing ? prev.followerCount + 1 : prev.followerCount - 1,
-            }
-          : null
-      );
+      setProfile(prev => prev ? {
+        ...prev,
+        isFollowedByCurrentUser: result.isFollowing,
+        followerCount: result.isFollowing ? prev.followerCount + 1 : prev.followerCount - 1,
+      } : null);
     } catch (error) {
       console.error('Failed to toggle follow:', error);
     }
   };
 
-  const handleLike = async (id: string) => {
+  const handleLikePost = async (postId: string) => {
     try {
-      const result = await fractalApi.toggleLike(id);
-      setFractals(prev =>
-        prev.map(f =>
-          f.id === id
-            ? {
-                ...f,
-                isLikedByCurrentUser: result.isLiked,
-                likeCount: result.isLiked ? f.likeCount + 1 : f.likeCount - 1,
-              }
-            : f
-        )
-      );
+      const result = await postApi.toggleLike(postId);
+      setPosts(prev => prev.map(p =>
+        p.id === postId
+          ? { ...p, isLikedByCurrentUser: result.isLiked, likeCount: result.isLiked ? p.likeCount + 1 : p.likeCount - 1 }
+          : p
+      ));
     } catch (error) {
       console.error('Failed to toggle like:', error);
     }
   };
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  const handleLikeFractal = async (fractalId: string) => {
+    try {
+      const result = await fractalApi.toggleLike(fractalId);
+      setFractals(prev => prev.map(f =>
+        f.id === fractalId
+          ? { ...f, isLikedByCurrentUser: result.isLiked, likeCount: result.isLiked ? f.likeCount + 1 : f.likeCount - 1 }
+          : f
+      ));
+    } catch (error) {
+      console.error('Failed to toggle like:', error);
+    }
   };
 
-  if (loading) {
-    return (
-      <div className="loading-container">
-        <div className="loading"></div>
-      </div>
-    );
-  }
+  const handleSearch = async (query: string) => {
+    setSearchQuery(query);
+    if (!query.trim()) {
+      setSearchResults([]);
+      return;
+    }
+    try {
+      setSearching(true);
+      const results = await userApi.searchUsers(query);
+      setSearchResults(results);
+    } catch (error) {
+      console.error('Search failed:', error);
+    } finally {
+      setSearching(false);
+    }
+  };
 
-  if (!profile) {
-    return <div className="empty-state">Profile not found</div>;
-  }
+  const formatDate = (d: string) =>
+    new Date(d).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+  if (loading) return <div className="loading-container"><div className="loading" /></div>;
+  if (!profile) return <div className="empty-state">Profile not found</div>;
 
   return (
     <div className="profile-page">
+      {/* ================= Search Bar ================= */}
+      <div className="profile-search">
+        <input
+          type="text"
+          placeholder="Search users..."
+          value={searchQuery}
+          onChange={e => handleSearch(e.target.value)}
+        />
+        {searching && <span className="searching">Searching...</span>}
+        {searchResults.length > 0 && (
+          <ul className="search-results">
+            {searchResults.map(u => (
+              <li key={u.id}>
+                <Link to={`/profile/${u.id}`} className="search-result-link">
+                  <img src={u.profileImageData ?? '/default-avatar.png'} alt="" className="avatar" />
+                  <span>{u.username}</span>
+                  <span className="followers">{u.followerCount} followers</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      {/* ================= Existing Profile ================= */}
       <div className="profile-banner card">
         <div className="profile-info">
           <h1>{profile.username}</h1>
           <p className="text-muted">Joined {formatDate(profile.joinedDate)}</p>
 
           <div className="profile-stats">
-            <div className="stat">
-              <strong>{profile.followerCount}</strong>
-              <span>Followers</span>
-            </div>
-            <div className="stat">
-              <strong>{profile.followingCount}</strong>
-              <span>Following</span>
-            </div>
-            <div className="stat">
-              <strong>{profile.fractalCount}</strong>
-              <span>Fractals</span>
-            </div>
+            <div className="stat"><strong>{profile.followerCount}</strong><span>Followers</span></div>
+            <div className="stat"><strong>{profile.followingCount}</strong><span>Following</span></div>
+            <div className="stat"><strong>{profile.fractalCount}</strong><span>Fractals</span></div>
           </div>
 
           {editing ? (
             <div className="bio-edit">
-              <textarea
-                value={bio}
-                onChange={e => setBio(e.target.value)}
-                placeholder="Tell us about yourself..."
-                maxLength={500}
-              />
+              <textarea value={bio} onChange={e => setBio(e.target.value)} placeholder="Tell us about yourself..." maxLength={500} />
               <div className="bio-actions">
-                <button onClick={() => setEditing(false)} className="secondary">
-                  Cancel
-                </button>
-                <button onClick={handleSaveBio} className="primary">
-                  Save
-                </button>
+                <button onClick={() => setEditing(false)} className="secondary">Cancel</button>
+                <button onClick={handleSaveBio} className="primary">Save</button>
               </div>
             </div>
           ) : (
             <div className="bio-section">
               <p className="bio-text">{profile.bio || 'No bio yet.'}</p>
               {isOwnProfile && (
-                <button onClick={() => setEditing(true)} className="secondary small">
-                  Edit Bio
-                </button>
+                <button onClick={() => setEditing(true)} className="secondary small">Edit Bio</button>
               )}
             </div>
           )}
@@ -183,30 +180,76 @@ const Profile: React.FC = () => {
 
         {!isOwnProfile && (
           <div className="profile-actions">
-            <button
-              onClick={handleFollow}
-              className={profile.isFollowedByCurrentUser ? 'secondary' : 'primary'}
-            >
+            <button onClick={handleFollow} className={profile.isFollowedByCurrentUser ? 'secondary' : 'primary'}>
               {profile.isFollowedByCurrentUser ? 'Unfollow' : 'Follow'}
             </button>
           </div>
         )}
       </div>
 
-      <section className="profile-fractals">
-        <h2>{isOwnProfile ? 'Your' : `${profile.username}'s`} Fractals</h2>
-        {fractals.length === 0 ? (
-          <div className="empty-state">
-            <p>No published fractals yet.</p>
-          </div>
-        ) : (
-          <div className="fractals-grid">
-            {fractals.map(fractal => (
-              <FractalCard key={fractal.id} fractal={fractal} onLike={handleLike} showFork={true}/>
-            ))}
-          </div>
-        )}
-      </section>
+      {/* ================= Tabs ================= */}
+      <div className="profile-tabs">
+        <button className={`tab-btn${activeTab === 'posts' ? ' active' : ''}`} onClick={() => setActiveTab('posts')}>
+          Posts ({posts.length})
+        </button>
+        <button className={`tab-btn${activeTab === 'fractals' ? ' active' : ''}`} onClick={() => setActiveTab('fractals')}>
+          Fractals ({fractals.length})
+        </button>
+      </div>
+
+      {/* ================= Content ================= */}
+      {activeTab === 'posts' && (
+        <section className="profile-content">
+          {posts.length === 0
+            ? <div className="empty-state"><p>No posts yet.</p></div>
+            : <div className="fractals-grid">
+                {posts.map(p => (
+                  <FractalCard
+                    key={p.id}
+                    fractal={{
+                      id: p.fractalId,
+                      postId: p.id,
+                      name: p.name,
+                      username: p.username,
+                      userId: p.authorId,
+                      thumbnail: p.thumbnail,
+                      likeCount: p.likeCount,
+                      isLikedByCurrentUser: p.isLikedByCurrentUser,
+                      createdAt: p.createdAt,
+                    }}
+                    onLike={handleLikePost}
+                  />
+                ))}
+              </div>
+          }
+        </section>
+      )}
+
+      {activeTab === 'fractals' && (
+        <section className="profile-content">
+          {fractals.length === 0
+            ? <div className="empty-state"><p>No fractals yet.</p></div>
+            : <div className="fractals-grid">
+                {fractals.map(f => (
+                  <FractalCard
+                    key={f.id}
+                    fractal={{
+                      id: f.id,
+                      name: f.name,
+                      username: f.username,
+                      userId: f.userId,
+                      thumbnail: f.thumbnail,
+                      likeCount: f.likeCount,
+                      isLikedByCurrentUser: f.isLikedByCurrentUser,
+                      createdAt: f.createdAt,
+                    }}
+                    onLike={handleLikeFractal}
+                  />
+                ))}
+              </div>
+          }
+        </section>
+      )}
     </div>
   );
 };

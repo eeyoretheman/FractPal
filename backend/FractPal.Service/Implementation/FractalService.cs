@@ -5,7 +5,6 @@ using FractPal.Model.DTO.Fractal;
 using FractPal.Model.Entities;
 using FractPal.Service.Interface;
 using Microsoft.EntityFrameworkCore;
-using System.Text.Json;
 
 public class FractalService(ApplicationDbContext context) : IFractalService
 {
@@ -15,6 +14,7 @@ public class FractalService(ApplicationDbContext context) : IFractalService
     {
         var query = this.context.Fractals
             .Include(f => f.Author)
+            .Include(f => f.Likes)
             .OrderByDescending(f => f.CreatedAt);
 
         var totalCount = await query.CountAsync();
@@ -38,6 +38,7 @@ public class FractalService(ApplicationDbContext context) : IFractalService
     {
         var fractals = await this.context.Fractals
             .Include(f => f.Author)
+            .Include(f => f.Likes)
             .Where(f => f.AuthorId == userId)
             .OrderByDescending(f => f.CreatedAt)
             .ToListAsync();
@@ -52,6 +53,7 @@ public class FractalService(ApplicationDbContext context) : IFractalService
     {
         var fractal = await this.context.Fractals
             .Include(f => f.Author)
+            .Include(f => f.Likes)
             .FirstOrDefaultAsync(f => f.Id == fractalId);
 
         return fractal == null ? null : MapToDto(fractal, currentUserId);
@@ -64,13 +66,13 @@ public class FractalService(ApplicationDbContext context) : IFractalService
             Name = request.Name,
             AuthorId = userId,
             Axiom = request.Axiom,
-            Rules = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(request.Rules) ?? [],
-            Instructions = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(request.Instructions) ?? [],
+            Rules = request.Rules,
+            Instructions = request.Instructions,
             Generations = request.Generations,
             XTranslation = request.XTranslation,
             YTranslation = request.YTranslation,
             Zoom = request.Zoom,
-            FractalThumbnailPath = request.ImageData ?? "",
+            Thumbnail = request.ImageData ?? "",
             CreatedAt = DateTime.UtcNow
         };
 
@@ -78,6 +80,7 @@ public class FractalService(ApplicationDbContext context) : IFractalService
         await this.context.SaveChangesAsync();
 
         await this.context.Entry(fractal).Reference(f => f.Author).LoadAsync();
+        await this.context.Entry(fractal).Collection(f => f.Likes).LoadAsync();
 
         return MapToDto(fractal, userId);
     }
@@ -86,6 +89,7 @@ public class FractalService(ApplicationDbContext context) : IFractalService
     {
         var fractal = await this.context.Fractals
             .Include(f => f.Author)
+            .Include(f => f.Likes)
             .FirstOrDefaultAsync(f => f.Id == fractalId) ?? throw new KeyNotFoundException("Fractal not found");
 
         // If user is not the owner, create a copy (fork) instead of updating
@@ -96,19 +100,20 @@ public class FractalService(ApplicationDbContext context) : IFractalService
                 Name = request.Name + " (Copy)",
                 AuthorId = userId,
                 Axiom = request.Axiom,
-                Rules = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(request.Rules) ?? [],
-                Instructions = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(request.Instructions) ?? [],
+                Rules = request.Rules,
+                Instructions = request.Instructions,
                 Generations = request.Generations,
                 XTranslation = request.XTranslation,
                 YTranslation = request.YTranslation,
                 Zoom = request.Zoom,
-                FractalThumbnailPath = request.ImageData ?? "",
+                Thumbnail = request.ImageData ?? "",
                 CreatedAt = DateTime.UtcNow
             };
 
             this.context.Fractals.Add(forkedFractal);
             await this.context.SaveChangesAsync();
             await this.context.Entry(forkedFractal).Reference(f => f.Author).LoadAsync();
+            await this.context.Entry(forkedFractal).Collection(f => f.Likes).LoadAsync();
 
             return MapToDto(forkedFractal, userId);
         }
@@ -116,8 +121,8 @@ public class FractalService(ApplicationDbContext context) : IFractalService
         // Owner can update their own fractal
         fractal.Name = request.Name;
         fractal.Axiom = request.Axiom;
-        fractal.Rules = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(request.Rules) ?? fractal.Rules;
-        fractal.Instructions = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(request.Instructions) ?? fractal.Instructions;
+        fractal.Rules = request.Rules;
+        fractal.Instructions = request.Instructions;
         fractal.Generations = request.Generations;
         fractal.XTranslation = request.XTranslation;
         fractal.YTranslation = request.YTranslation;
@@ -126,7 +131,7 @@ public class FractalService(ApplicationDbContext context) : IFractalService
 
         if (!string.IsNullOrEmpty(request.ImageData))
         {
-            fractal.FractalThumbnailPath = request.ImageData;
+            fractal.Thumbnail = request.ImageData;
         }
 
         await this.context.SaveChangesAsync();
@@ -151,6 +156,7 @@ public class FractalService(ApplicationDbContext context) : IFractalService
     {
         var originalFractal = await this.context.Fractals
             .Include(f => f.Author)
+            .Include(f => f.Likes)
             .FirstOrDefaultAsync(f => f.Id == fractalId) ?? throw new KeyNotFoundException("Fractal not found");
 
         // Create a copy of the fractal for the new user
@@ -165,13 +171,14 @@ public class FractalService(ApplicationDbContext context) : IFractalService
             XTranslation = originalFractal.XTranslation,
             YTranslation = originalFractal.YTranslation,
             Zoom = originalFractal.Zoom,
-            FractalThumbnailPath = originalFractal.FractalThumbnailPath,
+            Thumbnail = originalFractal.Thumbnail,
             CreatedAt = DateTime.UtcNow
         };
 
         this.context.Fractals.Add(forkedFractal);
         await this.context.SaveChangesAsync();
         await this.context.Entry(forkedFractal).Reference(f => f.Author).LoadAsync();
+        await this.context.Entry(forkedFractal).Collection(f => f.Likes).LoadAsync();
 
         return MapToDto(forkedFractal, userId);
     }
@@ -185,12 +192,12 @@ public class FractalService(ApplicationDbContext context) : IFractalService
         CreatedAt = fractal.CreatedAt,
         PublishedAt = null, // No longer supported
         IsPublished = true, // All fractals are considered "published" now
-        ImageUrl = fractal.FractalThumbnailPath,
-        LikeCount = 0, // Likes moved to Posts
-        IsLikedByCurrentUser = false, // Likes moved to Posts
+        Thumbnail = fractal.Thumbnail,
+        LikeCount = fractal.Likes?.Count ?? 0,
+        IsLikedByCurrentUser = fractal.Likes?.Any(l => l.UserId == currentUserId) ?? false,
         Axiom = fractal.Axiom,
-        Rules = JsonSerializer.Serialize(fractal.Rules),
-        Instructions = JsonSerializer.Serialize(fractal.Instructions),
+        Rules = fractal.Rules,
+        Instructions = fractal.Instructions,
         Generations = fractal.Generations,
         XTranslation = fractal.XTranslation,
         YTranslation = fractal.YTranslation,

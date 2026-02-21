@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fractalApi } from '../services/api';
-import { lindenmayer, turtle, setupWebGL, resizeCanvas } from '../services/lsystem';
+import { lindenmayer, turtle, setupWebGL } from '../services/lsystem';
 import './Workbench.css';
 
 const Workbench: React.FC = () => {
@@ -10,7 +10,7 @@ const Workbench: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const [name, setName] = useState('Untitled Fractal');
-  const [axiom, setAxiom] = useState('F');
+  const [axiom, setAxiom] = useState('F - - F - - F');
   const [rules, setRules] = useState('F = F + F - - F + F');
   const [instructions, setInstructions] = useState('F = 10 FORWARD\n+ = 60 ROTATE\n- = -60 ROTATE');
   const [generations, setGenerations] = useState(4);
@@ -20,19 +20,9 @@ const Workbench: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    if (id) {
-      loadFractal();
-    }
-  }, [id]);
-
-  useEffect(() => {
-    renderFractal();
-  }, [axiom, rules, instructions, generations, xTranslation, yTranslation, zoom]);
-
-  const loadFractal = async () => {
+  // ------------------ Load Fractal ------------------
+  const loadFractal = useCallback(async () => {
     if (!id) return;
-
     try {
       setLoading(true);
       const fractal = await fractalApi.getFractalById(id);
@@ -45,89 +35,87 @@ const Workbench: React.FC = () => {
       setYTranslation(fractal.yTranslation);
       setZoom(fractal.zoom);
     } catch (err) {
+      console.error('Failed to load fractal', err);
       setError('Failed to load fractal');
-      console.error(err);
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
 
-  const renderFractal = () => {
+  useEffect(() => { loadFractal(); }, [loadFractal]);
+
+  // ------------------ Render Fractal ------------------
+  const renderFractal = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     try {
-      resizeCanvas(canvas);
+      // Maintain 4:3 aspect ratio
+      const width = Math.min(canvas.parentElement?.clientWidth ?? 800, 800);
+      const height = Math.floor((width / 4) * 3);
+      canvas.width = width;
+      canvas.height = height;
 
       const gl = setupWebGL(canvas, xTranslation, yTranslation, zoom);
       if (!gl) return;
 
-      // Parse axiom
       const axiomSymbols = axiom.trim().replace(/\s+/g, ' ').split(' ');
-
-      // Parse rules
       const rulesMap = new Map<string, string[]>();
       rules.split('\n').forEach(line => {
         const parts = line.split('=');
         if (parts.length !== 2) return;
-        const key = parts[0].trim();
-        const value = parts[1].trim().replace(/\s+/g, ' ').split(' ');
-        rulesMap.set(key, value);
+        rulesMap.set(parts[0].trim(), parts[1].trim().replace(/\s+/g, ' ').split(' '));
       });
 
-      // Parse instructions
       const instructionMap: Record<string, string> = {};
       instructions.split('\n').forEach(line => {
         const parts = line.split('=');
         if (parts.length !== 2) return;
-        const key = parts[0].trim();
-        const value = parts[1].trim();
-        instructionMap[key] = value;
+        instructionMap[parts[0].trim()] = parts[1].trim();
       });
 
-      // Generate L-system
       const symbols = lindenmayer(axiomSymbols, rulesMap, generations);
-
-      // Process symbols with instructions
       const processedSymbols: string[] = [];
-      symbols.forEach((symbol: string) => {
+      symbols.forEach(symbol => {
         const replacement = instructionMap[symbol];
-        if (replacement) {
-          processedSymbols.push(...replacement.split(' '));
-        } else {
-          processedSymbols.push(symbol);
-        }
+        if (replacement) processedSymbols.push(...replacement.split(' '));
+        else processedSymbols.push(symbol);
       });
 
-      // Render
       turtle(processedSymbols, gl);
     } catch (err) {
       console.error('Render error:', err);
     }
-  };
+  }, [axiom, rules, instructions, generations, xTranslation, yTranslation, zoom]);
 
-  const captureThumbnail = (canvas: HTMLCanvasElement): string => {
-    // Re-render immediately before capture so the WebGL buffer is populated.
-    // WebGL clears its buffer after compositing, so toDataURL() on a
-    // "stale" canvas returns black/white.
+  useEffect(() => {
     renderFractal();
+  }, [renderFractal]);
 
+  // ------------------ Capture Thumbnail ------------------
+  const captureThumbnail = async (canvas: HTMLCanvasElement): Promise<string> => {
+    // Force re-render for WebGL before capture
+    renderFractal();
+    await new Promise(r => setTimeout(r, 50)); // allow GPU to finish
+
+    // Draw to smaller canvas for thumbnail
     const thumb = document.createElement('canvas');
-    thumb.width = 400;
-    thumb.height = 300;
+    thumb.width = 400; // fixed thumbnail size
+    thumb.height = 300; // 4:3
     const ctx = thumb.getContext('2d');
     if (!ctx) return '';
-    ctx.drawImage(canvas, 0, 0, 400, 300);
+    ctx.drawImage(canvas, 0, 0, thumb.width, thumb.height);
     return thumb.toDataURL('image/jpeg', 0.8);
   };
 
+  // ------------------ Save Fractal ------------------
   const handleSave = async () => {
     try {
       setLoading(true);
       setError('');
 
       const canvas = canvasRef.current;
-      const imageData = canvas ? captureThumbnail(canvas) : undefined;
+      const thumbnail = canvas ? await captureThumbnail(canvas) : undefined;
 
       const fractalData = {
         name,
@@ -138,7 +126,7 @@ const Workbench: React.FC = () => {
         xTranslation,
         yTranslation,
         zoom,
-        imageData,
+        thumbnail,
       };
 
       if (id) {
@@ -148,7 +136,8 @@ const Workbench: React.FC = () => {
         navigate(`/workbench/${newFractal.id}`);
       }
     } catch (err: any) {
-      setError(err.message || 'Failed to save fractal');
+      console.error(err);
+      setError(err.message ?? 'Failed to save fractal');
     } finally {
       setLoading(false);
     }
@@ -158,7 +147,6 @@ const Workbench: React.FC = () => {
     if (id) {
       navigate('/gallery');
     } else {
-      // Reset form
       setName('Untitled Fractal');
       setAxiom('F');
       setRules('F = F + F - - F + F');
@@ -185,7 +173,7 @@ const Workbench: React.FC = () => {
             Discard
           </button>
           <button onClick={handleSave} disabled={loading} className="primary">
-            {loading ? <span className="loading"></span> : 'Save'}
+            {loading ? <span className="loading" /> : 'Save'}
           </button>
         </div>
       </div>
@@ -204,7 +192,6 @@ const Workbench: React.FC = () => {
               placeholder="F"
             />
           </div>
-
           <div className="control-section">
             <label htmlFor="rules">Rules</label>
             <textarea
@@ -215,7 +202,6 @@ const Workbench: React.FC = () => {
               rows={5}
             />
           </div>
-
           <div className="control-section">
             <label htmlFor="instructions">Instructions</label>
             <textarea
@@ -226,7 +212,6 @@ const Workbench: React.FC = () => {
               rows={8}
             />
           </div>
-
           <div className="control-section">
             <label htmlFor="generations">Generations: {generations}</label>
             <input
@@ -238,7 +223,6 @@ const Workbench: React.FC = () => {
               onChange={e => setGenerations(Number(e.target.value))}
             />
           </div>
-
           <div className="control-grid">
             <div className="control-section">
               <label htmlFor="xTranslation">X Translation</label>
@@ -250,7 +234,6 @@ const Workbench: React.FC = () => {
                 step="10"
               />
             </div>
-
             <div className="control-section">
               <label htmlFor="yTranslation">Y Translation</label>
               <input
@@ -261,7 +244,6 @@ const Workbench: React.FC = () => {
                 step="10"
               />
             </div>
-
             <div className="control-section">
               <label htmlFor="zoom">Zoom</label>
               <input

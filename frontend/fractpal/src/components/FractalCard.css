@@ -1,3 +1,4 @@
+/*  Card Base  */
 .fractal-card {
   display: flex;
   flex-direction: column;
@@ -20,9 +21,10 @@
   box-shadow: 0 0 0 3px rgba(139, 111, 71, 0.1), 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
+/*  Thumbnail  */
 .fractal-preview {
   width: 100%;
-  aspect-ratio: 1;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   display: block;
   background: var(--bg-secondary);
@@ -42,10 +44,6 @@
   overflow: hidden;
 }
 
-.fractal-preview-container.loading {
-  background: var(--bg-secondary);
-}
-
 .skeleton-loader {
   position: absolute;
   width: 100%;
@@ -63,28 +61,31 @@
 }
 
 @keyframes shimmer {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
 .fractal-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: block;
 }
 
-.fractal-preview:hover .fractal-image {
-  transform: scale(1.08);
+.fractal-image.hidden {
+  opacity: 0;
+  position: absolute;
+  inset: 0;
 }
 
-.fractal-preview:focus-visible .fractal-image {
-  outline: none;
+.fractal-image.visible {
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+.fractal-preview:hover .fractal-image {
+  transform: scale(1.08);
 }
 
 .fractal-placeholder {
@@ -102,6 +103,7 @@
   font-size: 2.5rem;
 }
 
+/*  Info & Header  */
 .fractal-info {
   padding: 1.25rem;
   display: flex;
@@ -126,9 +128,7 @@
   word-break: break-word;
 }
 
-.fractal-name:hover {
-  color: var(--accent);
-}
+.fractal-name:hover { color: var(--accent); }
 
 .fractal-name:focus {
   outline: 2px solid var(--accent);
@@ -143,9 +143,7 @@
   transition: color 0.2s ease;
 }
 
-.fractal-author:hover {
-  color: var(--accent);
-}
+.fractal-author:hover { color: var(--accent); }
 
 .fractal-author:focus {
   outline: 2px solid var(--accent);
@@ -159,6 +157,7 @@
   margin-top: 0.25rem;
 }
 
+/*  Metrics  */
 .fractal-metrics {
   display: flex;
   gap: 1rem;
@@ -176,14 +175,13 @@
   transition: color 0.2s ease;
 }
 
-.metric:hover {
-  color: var(--accent);
-}
+.metric:hover { color: var(--accent); }
 
 .metric span[role="img"] {
   font-size: 0.95rem;
 }
 
+/*  Actions  */
 .fractal-actions {
   display: flex;
   align-items: center;
@@ -227,10 +225,6 @@
   outline-offset: 2px;
 }
 
-.action-button:active:not(:disabled) {
-  transform: translateY(0);
-}
-
 .action-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
@@ -241,10 +235,6 @@
   line-height: 1;
 }
 
-.like-button {
-  position: relative;
-}
-
 .like-button.liked {
   border-color: var(--error);
   background: rgba(220, 38, 38, 0.08);
@@ -253,10 +243,6 @@
 .like-button.liked:hover {
   background: rgba(220, 38, 38, 0.15);
   border-color: var(--error);
-}
-
-.fork-button {
-  position: relative;
 }
 
 .fork-button:hover:not(:disabled) {
@@ -274,12 +260,9 @@
   animation: spin 0.8s linear infinite;
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
+@keyframes spin { to { transform: rotate(360deg); } }
 
+/*  Owner Buttons  */
 .fractal-owner-actions {
   display: flex;
   gap: 0.5rem;
@@ -313,123 +296,19 @@
   box-shadow: 0 4px 12px rgba(139, 111, 71, 0.15);
 }
 
-.button:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
+.button.small { padding: 0.5rem 0.8rem; font-size: 0.8rem; gap: 0.3rem; }
+.button.secondary { background: transparent; border-color: var(--border); }
+.button.danger { border-color: var(--error); color: var(--error); }
+.button.danger:hover { background: var(--error); color: white; }
 
-.button:active {
-  transform: translateY(0);
-}
-
-.button.small {
-  padding: 0.5rem 0.8rem;
-  font-size: 0.8rem;
-  gap: 0.3rem;
-}
-
-.button.secondary {
-  background: transparent;
-  border-color: var(--border);
-}
-
-.button.secondary:hover {
-  background: var(--bg-secondary);
-}
-
-.button.danger {
-  border-color: var(--error);
-  color: var(--error);
-}
-
-.button.danger:hover {
-  background: var(--error);
-  color: white;
-  border-color: var(--error);
-}
-
-.button.danger:focus-visible {
-  outline-color: var(--error);
-}
-
-/* Responsive Design */
+/*  Responsive  */
 @media (max-width: 640px) {
-  .fractal-card {
-    border-radius: 8px;
-  }
-
-  .fractal-info {
-    padding: 1rem;
-    gap: 0.75rem;
-  }
-
-  .fractal-name {
-    font-size: 1rem;
-  }
-
-  .fractal-author {
-    font-size: 0.85rem;
-  }
-
-  .action-button {
-    min-width: 40px;
-    min-height: 40px;
-    padding: 0.55rem;
-  }
-
-  .button.small {
-    padding: 0.4rem 0.6rem;
-    font-size: 0.75rem;
-  }
-
-  .fractal-actions {
-    gap: 0.5rem;
-  }
-
-  .fractal-metrics {
-    gap: 0.75rem;
-    font-size: 0.8rem;
-  }
-}
-
-/* ── Thumbnail ───────────────────────────────────── */
-
-.fractal-preview {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  display: block;
-  background: var(--bg-secondary);
-  text-decoration: none;
-  position: relative;
-}
-
-.fractal-preview-container {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-}
-
-.fractal-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  display: block;
-}
-
-.fractal-preview:hover .fractal-image {
-  transform: scale(1.08);
-}
-
-.fractal-image.hidden {
-  opacity: 0;
-  position: absolute;
-  inset: 0;
-}
-
-.fractal-image.visible {
-  opacity: 1;
-  transition: opacity 0.25s ease;
+  .fractal-card { border-radius: 8px; }
+  .fractal-info { padding: 1rem; gap: 0.75rem; }
+  .fractal-name { font-size: 1rem; }
+  .fractal-author { font-size: 0.85rem; }
+  .action-button { min-width: 40px; min-height: 40px; padding: 0.55rem; }
+  .button.small { padding: 0.4rem 0.6rem; font-size: 0.75rem; }
+  .fractal-actions { gap: 0.5rem; }
+  .fractal-metrics { gap: 0.75rem; font-size: 0.8rem; }
 }
