@@ -53,12 +53,11 @@ const Profile: React.FC = () => {
       setProfile(profileData);
       setBio(profileData.bio || '');
 
-      // Load fractals
       const fractalsData = isOwnProfile
         ? await fractalApi.getMyFractals()
-        : await fractalApi.getFeed(1, 100); // Would need a proper endpoint
+        : await fractalApi.getUserFractals(profileData.id);
 
-      setFractals(fractalsData.filter((f: Fractal) => f.userId === profileData.id && f.publishedAt));
+      setFractals(fractalsData);
     } catch (error) {
       console.error('Failed to load profile:', error);
     } finally {
@@ -203,7 +202,7 @@ const Profile: React.FC = () => {
         ) : (
           <div className="fractals-grid">
             {fractals.map(fractal => (
-              <FractalCard key={fractal.id} fractal={fractal} onLike={handleLike} />
+              <FractalCard key={fractal.id} fractal={fractal} onLike={handleLike} showFork={true}/>
             ))}
           </div>
         )}

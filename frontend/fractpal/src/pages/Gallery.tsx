@@ -109,7 +109,7 @@ const Gallery: React.FC = () => {
                   <FractalCard
                     key={fractal.id}
                     fractal={fractal}
-                    showActions
+                    showActions={true}
                     onDelete={(id: string) => setDeleteModal({ show: true, id })}
                     onPublish={(id: string) => setPublishModal({ show: true, id })}
                   />
@@ -126,7 +126,7 @@ const Gallery: React.FC = () => {
                   <FractalCard
                     key={fractal.id}
                     fractal={fractal}
-                    showActions
+                    showActions={true}
                     onDelete={(id: string) => setDeleteModal({ show: true, id })}
                     onUnpublish={handleUnpublish}
                   />

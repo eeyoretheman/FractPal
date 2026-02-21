@@ -30,6 +30,16 @@ export const fractalApi = {
     return response.json();
   },
 
+  getUserFractals: async (userId: string) => {
+    const response = await fetch(`${API_BASE_URL}/fractal/user/${userId}`, {
+      headers: {
+        ...getAuthHeader(),
+      },
+    });
+    if (!response.ok) throw new Error('Failed to fetch user fractals');
+    return response.json();
+  },
+
   getFractalById: async (id: string) => {
     const response = await fetch(`${API_BASE_URL}/fractal/${id}`, {
       headers: {
@@ -106,6 +116,17 @@ export const fractalApi = {
       },
     });
     if (!response.ok) throw new Error('Failed to toggle like');
+    return response.json();
+  },
+
+  forkFractal: async (id: string) => {
+    const response = await fetch(`${API_BASE_URL}/fractal/${id}/fork`, {
+      method: 'POST',
+      headers: {
+        ...getAuthHeader(),
+      },
+    });
+    if (!response.ok) throw new Error('Failed to fork fractal');
     return response.json();
   },
 };
