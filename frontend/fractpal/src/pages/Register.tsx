@@ -29,14 +29,29 @@ const Register: React.FC = () => {
 
   return (
     <div className="auth-page">
+      <div className="auth-background">
+        <div className="auth-gradient auth-gradient-1"></div>
+        <div className="auth-gradient auth-gradient-2"></div>
+        <div className="auth-gradient auth-gradient-3"></div>
+      </div>
+
       <div className="auth-container fade-in">
+        <div className="auth-logo">
+          <div className="logo-fractal">🌿</div>
+        </div>
+
         <div className="auth-header">
-          <h1>FractPal</h1>
-          <p className="text-muted">Create your account</p>
+          <h1>Create account</h1>
+          <p className="text-muted">Join the fractal community</p>
         </div>
 
         <form onSubmit={handleSubmit} className="auth-form">
-          {error && <div className="error-message">{error}</div>}
+          {error && (
+            <div className="error-message fade-in">
+              <span className="error-icon">⚠️</span>
+              {error}
+            </div>
+          )}
 
           <div className="form-group">
             <label htmlFor="username">Username</label>
@@ -46,7 +61,8 @@ const Register: React.FC = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
-              placeholder="fractalist"
+              placeholder="Choose a username"
+              autoComplete="username"
             />
           </div>
 
@@ -59,6 +75,7 @@ const Register: React.FC = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="your@email.com"
+              autoComplete="email"
             />
           </div>
 
@@ -71,19 +88,27 @@ const Register: React.FC = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
               minLength={6}
-              placeholder="••••••"
+              placeholder="Must be at least 6 characters long"
+              autoComplete="new-password"
             />
           </div>
 
-          <button type="submit" className="primary full-width" disabled={loading}>
-            {loading ? <span className="loading"></span> : 'Register'}
+          <button type="submit" className="primary w-full auth-button" disabled={loading}>
+            {loading ? (
+              <>
+                <span className="loading"></span>
+                <span>Creating account...</span>
+              </>
+            ) : (
+              'Create account'
+            )}
           </button>
         </form>
 
         <div className="auth-footer">
           <p>
             Already have an account?{' '}
-            <Link to="/login" className="link">Login</Link>
+            <Link to="/login" className="auth-link">Sign in</Link>
           </p>
         </div>
       </div>
