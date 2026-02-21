@@ -142,4 +142,265 @@ public class PostsControllerTests
         Assert.Equal(500, statusCodeResult.StatusCode);
     }
 
+    
+    [Fact]
+    public async Task PublishFractal_InvalidModel_ReturnsBadRequest()
+    {
+        var fractalId = Guid.NewGuid();
+        _controller.ModelState.AddModelError("Title", "Required");
+        var result = await _controller.PublishFractal(fractalId, new CreatePostRequest());
+
+        Assert.IsType<BadRequestObjectResult>(result);
+    }
+
+    [Fact]
+    public async Task PublishFractal_ReturnsCreatedAtAction()
+    {
+        var fractalId = Guid.NewGuid();
+        var req = new CreatePostRequest();
+        var post = new PostDto { Id = Guid.NewGuid() };
+        _postServiceMock.Setup(x => x.PublishFractalAsync(fractalId, _userId, req)).ReturnsAsync(post);
+
+        var result = await _controller.PublishFractal(fractalId, req);
+
+        var createdAtResult = Assert.IsType<CreatedAtActionResult>(result);
+        Assert.Equal(nameof(_controller.GetPostById), createdAtResult.ActionName);
+        Assert.Equal(post.Id, createdAtResult.RouteValues?["id"]);
+    }
+
+    [Fact]
+    public async Task PublishFractal_NotFound_ReturnsNotFound()
+    {
+        var fractalId = Guid.NewGuid();
+        var req = new CreatePostRequest();
+        _postServiceMock.Setup(x => x.PublishFractalAsync(fractalId, _userId, req)).ThrowsAsync(new KeyNotFoundException());
+
+        var result = await _controller.PublishFractal(fractalId, req);
+
+        Assert.IsType<NotFoundObjectResult>(result);
+    }
+
+    [Fact]
+    public async Task PublishFractal_Unauthorized_ReturnsForbid()
+    {
+        var fractalId = Guid.NewGuid();
+        var req = new CreatePostRequest();
+        _postServiceMock.Setup(x => x.PublishFractalAsync(fractalId, _userId, req)).ThrowsAsync(new UnauthorizedAccessException());
+
+        var result = await _controller.PublishFractal(fractalId, req);
+
+        Assert.IsType<ForbidResult>(result);
+    }
+
+    [Fact]
+    public async Task PublishFractal_Conflict_ReturnsConflict()
+    {
+        var fractalId = Guid.NewGuid();
+        var req = new CreatePostRequest();
+        _postServiceMock.Setup(x => x.PublishFractalAsync(fractalId, _userId, req)).ThrowsAsync(new InvalidOperationException());
+
+        var result = await _controller.PublishFractal(fractalId, req);
+
+        Assert.IsType<ConflictResult>(result);
+    }
+
+    [Fact]
+    public async Task PublishFractal_Exception_Returns500()
+    {
+        var fractalId = Guid.NewGuid();
+        var req = new CreatePostRequest();
+        _postServiceMock.Setup(x => x.PublishFractalAsync(fractalId, _userId, req)).ThrowsAsync(new Exception());
+
+        var result = await _controller.PublishFractal(fractalId, req);
+
+        var statusCodeResult = Assert.IsType<ObjectResult>(result);
+        Assert.Equal(500, statusCodeResult.StatusCode);
+    }
+
+    [Fact]
+    public async Task UnpublishFractal_ReturnsNoContent()
+    {
+        var fractalId = Guid.NewGuid();
+        _postServiceMock.Setup(x => x.UnpublishFractalAsync(fractalId, _userId)).Returns(Task.CompletedTask);
+
+        var result = await _controller.UnpublishFractal(fractalId);
+
+        Assert.IsType<NoContentResult>(result);
+    }
+
+    [Fact]
+    public async Task UnpublishFractal_NotFound_ReturnsNotFound()
+    {
+        var fractalId = Guid.NewGuid();
+        _postServiceMock.Setup(x => x.UnpublishFractalAsync(fractalId, _userId)).ThrowsAsync(new KeyNotFoundException());
+
+        var result = await _controller.UnpublishFractal(fractalId);
+
+        Assert.IsType<NotFoundObjectResult>(result);
+    }
+
+    [Fact]
+    public async Task UnpublishFractal_Unauthorized_ReturnsForbid()
+    {
+        var fractalId = Guid.NewGuid();
+        _postServiceMock.Setup(x => x.UnpublishFractalAsync(fractalId, _userId)).ThrowsAsync(new UnauthorizedAccessException());
+
+        var result = await _controller.UnpublishFractal(fractalId);
+
+        Assert.IsType<ForbidResult>(result);
+    }
+
+    [Fact]
+    public async Task UnpublishFractal_Exception_Returns500()
+    {
+        var fractalId = Guid.NewGuid();
+        _postServiceMock.Setup(x => x.UnpublishFractalAsync(fractalId, _userId)).ThrowsAsync(new Exception());
+
+        var result = await _controller.UnpublishFractal(fractalId);
+
+        var statusCodeResult = Assert.IsType<ObjectResult>(result);
+        Assert.Equal(500, statusCodeResult.StatusCode);
+    }
+
+    [Fact]
+    public async Task UpdatePost_InvalidModel_ReturnsBadRequest()
+    {
+        var postId = Guid.NewGuid();
+        _controller.ModelState.AddModelError("Content", "Required");
+        var result = await _controller.UpdatePost(postId, new UpdatePostRequest());
+
+        Assert.IsType<BadRequestObjectResult>(result);
+    }
+
+    [Fact]
+    public async Task UpdatePost_ReturnsOk()
+    {
+        var postId = Guid.NewGuid();
+        var req = new UpdatePostRequest();
+        var post = new PostDto { Id = postId };
+        _postServiceMock.Setup(x => x.UpdatePostAsync(postId, _userId, req)).ReturnsAsync(post);
+
+        var result = await _controller.UpdatePost(postId, req);
+
+        var okResult = Assert.IsType<OkObjectResult>(result);
+        Assert.Equal(post, okResult.Value);
+    }
+
+    [Fact]
+    public async Task UpdatePost_NotFound_ReturnsNotFound()
+    {
+        var postId = Guid.NewGuid();
+        var req = new UpdatePostRequest();
+        _postServiceMock.Setup(x => x.UpdatePostAsync(postId, _userId, req)).ThrowsAsync(new KeyNotFoundException());
+
+        var result = await _controller.UpdatePost(postId, req);
+
+        Assert.IsType<NotFoundObjectResult>(result);
+    }
+
+    [Fact]
+    public async Task UpdatePost_Unauthorized_ReturnsForbid()
+    {
+        var postId = Guid.NewGuid();
+        var req = new UpdatePostRequest();
+        _postServiceMock.Setup(x => x.UpdatePostAsync(postId, _userId, req)).ThrowsAsync(new UnauthorizedAccessException());
+
+        var result = await _controller.UpdatePost(postId, req);
+
+        Assert.IsType<ForbidResult>(result);
+    }
+
+    [Fact]
+    public async Task UpdatePost_Exception_Returns500()
+    {
+        var postId = Guid.NewGuid();
+        var req = new UpdatePostRequest();
+        _postServiceMock.Setup(x => x.UpdatePostAsync(postId, _userId, req)).ThrowsAsync(new Exception());
+
+        var result = await _controller.UpdatePost(postId, req);
+
+        var statusCodeResult = Assert.IsType<ObjectResult>(result);
+        Assert.Equal(500, statusCodeResult.StatusCode);
+    }
+
+    [Fact]
+    public async Task DeletePost_ReturnsNoContent()
+    {
+        var postId = Guid.NewGuid();
+        _postServiceMock.Setup(x => x.DeletePostAsync(postId, _userId, true)).Returns(Task.CompletedTask);
+
+        var result = await _controller.DeletePost(postId);
+
+        Assert.IsType<NoContentResult>(result);
+    }
+
+    [Fact]
+    public async Task DeletePost_NotFound_ReturnsNotFound()
+    {
+        var postId = Guid.NewGuid();
+        _postServiceMock.Setup(x => x.DeletePostAsync(postId, _userId, true)).ThrowsAsync(new KeyNotFoundException());
+
+        var result = await _controller.DeletePost(postId);
+
+        Assert.IsType<NotFoundObjectResult>(result);
+    }
+
+    [Fact]
+    public async Task DeletePost_Unauthorized_ReturnsForbid()
+    {
+        var postId = Guid.NewGuid();
+        _postServiceMock.Setup(x => x.DeletePostAsync(postId, _userId, true)).ThrowsAsync(new UnauthorizedAccessException());
+
+        var result = await _controller.DeletePost(postId);
+
+        Assert.IsType<ForbidResult>(result);
+    }
+
+    [Fact]
+    public async Task DeletePost_Exception_Returns500()
+    {
+        var postId = Guid.NewGuid();
+        _postServiceMock.Setup(x => x.DeletePostAsync(postId, _userId, true)).ThrowsAsync(new Exception());
+
+        var result = await _controller.DeletePost(postId);
+
+        var statusCodeResult = Assert.IsType<ObjectResult>(result);
+        Assert.Equal(500, statusCodeResult.StatusCode);
+    }
+
+    [Fact]
+    public async Task ToggleLikePost_ReturnsOk()
+    {
+        var postId = Guid.NewGuid();
+        _likeServiceMock.Setup(x => x.ToggleLikePostAsync(postId, _userId)).ReturnsAsync(true);
+
+        var result = await _controller.ToggleLikePost(postId);
+
+        var okResult = Assert.IsType<OkObjectResult>(result);
+        Assert.NotNull(okResult.Value);
+    }
+
+    [Fact]
+    public async Task ToggleLikePost_NotFound_ReturnsNotFound()
+    {
+        var postId = Guid.NewGuid();
+        _likeServiceMock.Setup(x => x.ToggleLikePostAsync(postId, _userId)).ThrowsAsync(new KeyNotFoundException());
+
+        var result = await _controller.ToggleLikePost(postId);
+
+        Assert.IsType<NotFoundObjectResult>(result);
+    }
+
+    [Fact]
+    public async Task ToggleLikePost_Exception_Returns500()
+    {
+        var postId = Guid.NewGuid();
+        _likeServiceMock.Setup(x => x.ToggleLikePostAsync(postId, _userId)).ThrowsAsync(new Exception());
+
+        var result = await _controller.ToggleLikePost(postId);
+
+        var statusCodeResult = Assert.IsType<ObjectResult>(result);
+        Assert.Equal(500, statusCodeResult.StatusCode);
+    }
+
 }
