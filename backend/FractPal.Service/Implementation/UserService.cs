@@ -6,13 +6,17 @@ using FractPal.Model.Entities;
 using FractPal.Service.Interface;
 using Microsoft.EntityFrameworkCore;
 
+/// <summary>
+/// Implements user profile and social features for FractPal, including profile
+/// retrieval and updates, follow/unfollow toggling, and username search.
+/// </summary>
 public class UserService(ApplicationDbContext context) : IUserService
 {
     private readonly ApplicationDbContext context = context;
 
+    /// <inheritdoc/>
     public async Task<UserProfileDto> GetProfileAsync(string userId, string currentUserId)
     {
-        // Parse string IDs to Guid
         if (!Guid.TryParse(userId, out var userGuid) || !Guid.TryParse(currentUserId, out var currentUserGuid))
         {
             throw new ArgumentException("Invalid user ID format");
@@ -42,9 +46,9 @@ public class UserService(ApplicationDbContext context) : IUserService
         };
     }
 
+    /// <inheritdoc/>
     public async Task<UserProfileDto> UpdateProfileAsync(string userId, UpdateProfileRequest request)
     {
-        // Parse string ID to Guid
         if (!Guid.TryParse(userId, out var userGuid))
         {
             throw new ArgumentException("Invalid user ID format");
@@ -74,9 +78,9 @@ public class UserService(ApplicationDbContext context) : IUserService
         };
     }
 
+    /// <inheritdoc/>
     public async Task<bool> ToggleFollowAsync(string followerId, string followingId)
     {
-        // Parse string IDs to Guid
         if (!Guid.TryParse(followerId, out var followerGuid) || !Guid.TryParse(followingId, out var followingGuid))
         {
             throw new ArgumentException("Invalid user ID format");
@@ -92,14 +96,12 @@ public class UserService(ApplicationDbContext context) : IUserService
 
         if (existingFollow != null)
         {
-            // Unfollow
             this.context.Follows.Remove(existingFollow);
             await this.context.SaveChangesAsync();
             return false;
         }
         else
         {
-            // Follow
             var follow = new Follow
             {
                 FollowerId = followerGuid,
@@ -111,9 +113,9 @@ public class UserService(ApplicationDbContext context) : IUserService
         }
     }
 
+    /// <inheritdoc/>
     public async Task<List<UserSearchDto>> SearchUsersAsync(string query, string currentUserId)
     {
-        // Parse string ID to Guid
         if (!Guid.TryParse(currentUserId, out var currentUserGuid))
         {
             throw new ArgumentException("Invalid user ID format");
