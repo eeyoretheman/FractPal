@@ -1,7 +1,9 @@
 using System.IdentityModel.Tokens.Jwt;
+using System.Collections.Generic;
 using FractPal.Model.Entities;
 using FractPal.Service.Implementation;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Identity;
 using Moq;
 using Xunit;
 
@@ -10,20 +12,24 @@ namespace FractPal.Tests.Services;
 public class JwtServiceTests
 {
     [Fact]
-    public void GenerateToken_MissingSecretKey_ThrowsInvalidOperationException()
+    public async Task GenerateToken_MissingSecretKey_ThrowsInvalidOperationException()
     {
         var configMock = new Mock<IConfiguration>();
-        configMock.Setup(x => x["JWT_SECRET_KEY"]).Returns((string)null!);
-        configMock.Setup(x => x["JwtSettings:SecretKey"]).Returns((string)null!);
+        configMock.Setup(x => x["JWT_SECRET_KEY"]).Returns((string?)null);
+        configMock.Setup(x => x["JwtSettings:SecretKey"]).Returns((string?)null);
 
-        var service = new JwtService(configMock.Object);
+        var store = new Mock<IUserStore<FractPalUser>>();
+        var userManagerMock = new Mock<UserManager<FractPalUser>>(
+            store.Object, null!, null!, null!, null!, null!, null!, null!, null!);
+
+        var service = new JwtService(configMock.Object, userManagerMock.Object);
         var user = new FractPalUser { Id = Guid.NewGuid(), Email = "test@test.com", UserName = "test" };
 
-        Assert.Throws<InvalidOperationException>(() => service.GenerateToken(user));
+        await Assert.ThrowsAsync<InvalidOperationException>(() => service.GenerateToken(user));
     }
 
     [Fact]
-    public void GenerateToken_Success_ReturnsToken()
+    public async Task GenerateToken_Success_ReturnsToken()
     {
         var configMock = new Mock<IConfiguration>();
         configMock.Setup(x => x["JWT_SECRET_KEY"]).Returns("this_is_a_very_long_secret_key_for_testing");
@@ -31,10 +37,16 @@ public class JwtServiceTests
         configMock.Setup(x => x["JWT_AUDIENCE"]).Returns("audience");
         configMock.Setup(x => x["JWT_EXPIRY_MINUTES"]).Returns("60");
 
-        var service = new JwtService(configMock.Object);
+        var store = new Mock<IUserStore<FractPalUser>>();
+        var userManagerMock = new Mock<UserManager<FractPalUser>>(
+            store.Object, null!, null!, null!, null!, null!, null!, null!, null!);
+
+        var service = new JwtService(configMock.Object, userManagerMock.Object);
         var user = new FractPalUser { Id = Guid.NewGuid(), Email = "test@test.com", UserName = "test" };
 
-        var token = service.GenerateToken(user);
+        userManagerMock.Setup(x => x.GetRolesAsync(user)).ReturnsAsync(new List<string>());
+
+        var token = await service.GenerateToken(user);
 
         Assert.NotNull(token);
 
