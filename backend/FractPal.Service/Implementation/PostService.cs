@@ -6,10 +6,15 @@ using FractPal.Model.Entities;
 using FractPal.Service.Interface;
 using Microsoft.EntityFrameworkCore;
 
+/// <summary>
+/// Implements post business logic for FractPal, including publishing fractals as posts,
+/// feed retrieval, and post lifecycle management.
+/// </summary>
 public class PostService(ApplicationDbContext dbContext) : IPostService
 {
     private readonly ApplicationDbContext context = dbContext;
 
+    /// <inheritdoc/>
     public async Task<PostFeedResponse> GetFeedAsync(Guid userId, int page = 1, int pageSize = 20)
     {
         var query = this.context.Posts
@@ -35,6 +40,7 @@ public class PostService(ApplicationDbContext dbContext) : IPostService
         };
     }
 
+    /// <inheritdoc/>
     public async Task<PostDto?> GetPostByIdAsync(Guid postId, Guid currentUserId)
     {
         var post = await this.context.Posts
@@ -49,6 +55,7 @@ public class PostService(ApplicationDbContext dbContext) : IPostService
         return post == null ? null : MapToDto(post, currentUserId);
     }
 
+    /// <inheritdoc/>
     public async Task<List<PostDto>> GetUserPostsAsync(Guid userId, Guid currentUserId)
     {
         var posts = await this.context.Posts
@@ -64,6 +71,7 @@ public class PostService(ApplicationDbContext dbContext) : IPostService
         return posts.Select(p => MapToDto(p, currentUserId)).ToList();
     }
 
+    /// <inheritdoc/>
     public async Task<PostDto> PublishFractalAsync(Guid fractalId, Guid userId, CreatePostRequest request)
     {
         var fractal = await this.context.Fractals.FirstOrDefaultAsync(f => f.Id == fractalId)
@@ -95,6 +103,7 @@ public class PostService(ApplicationDbContext dbContext) : IPostService
         return MapToDto(post, userId);
     }
 
+    /// <inheritdoc/>
     public async Task UnpublishFractalAsync(Guid fractalId, Guid userId)
     {
         var post = await this.context.Posts
@@ -108,6 +117,7 @@ public class PostService(ApplicationDbContext dbContext) : IPostService
         await this.context.SaveChangesAsync();
     }
 
+    /// <inheritdoc/>
     public async Task<PostDto> UpdatePostAsync(Guid postId, Guid userId, UpdatePostRequest request)
     {
         var post = await this.context.Posts.FirstOrDefaultAsync(p => p.Id == postId)
@@ -130,6 +140,7 @@ public class PostService(ApplicationDbContext dbContext) : IPostService
         return MapToDto(post, userId);
     }
 
+    /// <inheritdoc/>
     public async Task DeletePostAsync(Guid postId, Guid userId, bool isAdmin = false)
     {
         var post = await this.context.Posts.FirstOrDefaultAsync(p => p.Id == postId)
