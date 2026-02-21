@@ -123,3 +123,9 @@
   background: var(--bg-secondary);
   outline: none;
 }
+
+.search-results {
+  list-style: none;      /* removes the dot */
+  margin: 0;             /* removes default spacing */
+  padding: 0;            /* removes default indent */
+}

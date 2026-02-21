@@ -72,7 +72,7 @@ public class FractalService(ApplicationDbContext context) : IFractalService
             XTranslation = request.XTranslation,
             YTranslation = request.YTranslation,
             Zoom = request.Zoom,
-            Thumbnail = request.ImageData ?? "",
+            Thumbnail = request.Thumbnail ?? "",
             CreatedAt = DateTime.UtcNow
         };
 
@@ -106,7 +106,7 @@ public class FractalService(ApplicationDbContext context) : IFractalService
                 XTranslation = request.XTranslation,
                 YTranslation = request.YTranslation,
                 Zoom = request.Zoom,
-                Thumbnail = request.ImageData ?? "",
+                Thumbnail = request.Thumbnail ?? "",
                 CreatedAt = DateTime.UtcNow
             };
 
@@ -129,9 +129,9 @@ public class FractalService(ApplicationDbContext context) : IFractalService
         fractal.Zoom = request.Zoom;
         fractal.UpdatedAt = DateTime.UtcNow;
 
-        if (!string.IsNullOrEmpty(request.ImageData))
+        if (!string.IsNullOrEmpty(request.Thumbnail))
         {
-            fractal.Thumbnail = request.ImageData;
+            fractal.Thumbnail = request.Thumbnail;
         }
 
         await this.context.SaveChangesAsync();

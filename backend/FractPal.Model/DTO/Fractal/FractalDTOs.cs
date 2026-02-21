@@ -49,7 +49,7 @@ public class CreateFractalRequest
     public double Zoom { get; set; } = 1.0;
 
     // Optional base64 image
-    public string? ImageData { get; set; }
+    public string? Thumbnail { get; set; }
 }
 
 public class UpdateFractalRequest
@@ -75,7 +75,7 @@ public class UpdateFractalRequest
     public double YTranslation { get; set; }
     public double Zoom { get; set; }
 
-    public string? ImageData { get; set; }
+    public string? Thumbnail { get; set; }
 }
 
 public class FractalFeedResponse
