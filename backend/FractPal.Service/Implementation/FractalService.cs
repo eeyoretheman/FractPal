@@ -150,11 +150,11 @@ public class FractalService(ApplicationDbContext context) : IFractalService
     }
 
     /// <inheritdoc/>
-    public async Task DeleteFractalAsync(Guid fractalId, Guid userId)
+    public async Task DeleteFractalAsync(Guid fractalId, Guid userId, bool isAdmin = false)
     {
         var fractal = await this.context.Fractals.FindAsync(fractalId) ?? throw new KeyNotFoundException("Fractal not found");
 
-        if (fractal.AuthorId != userId)
+        if (!isAdmin && fractal.AuthorId != userId)
         {
             throw new UnauthorizedAccessException("You don't have permission to delete this fractal");
         }
