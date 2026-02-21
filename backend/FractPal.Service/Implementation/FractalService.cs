@@ -148,6 +148,9 @@ public class FractalService(ApplicationDbContext context) : IFractalService
             throw new UnauthorizedAccessException("You don't have permission to delete this fractal");
         }
 
+        var likes = this.context.Likes.Where(l => l.FractalId == fractalId);
+        this.context.Likes.RemoveRange(likes);
+
         this.context.Fractals.Remove(fractal);
         await this.context.SaveChangesAsync();
     }
