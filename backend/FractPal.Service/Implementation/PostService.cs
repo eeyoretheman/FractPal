@@ -1,5 +1,8 @@
 namespace FractPal.Service.Implementation;
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using FractPal.Data;
 using FractPal.Model.DTO.Post;
 using FractPal.Model.Entities;
@@ -49,6 +52,7 @@ public class PostService(ApplicationDbContext dbContext) : IPostService
     public async Task<List<PostDto>> GetUserPostsAsync(Guid userId, Guid currentUserId)
     {
         var posts = await this.context.Posts
+            .Include(p => p.Author)
             .Include(p => p.Fractal)
                 .ThenInclude(f => f.Likes)
             .Where(p => p.AuthorId == userId)
@@ -83,7 +87,8 @@ public class PostService(ApplicationDbContext dbContext) : IPostService
 
         await this.context.Entry(post).Reference(p => p.Author).LoadAsync();
         await this.context.Entry(post).Reference(p => p.Fractal).LoadAsync();
-        await this.context.Entry(post.Fractal!).Collection(f => f.Likes).LoadAsync();
+        if (post.Fractal != null)
+            await this.context.Entry(post.Fractal).Collection(f => f.Likes).LoadAsync();
 
         return MapToDto(post, userId);
     }
@@ -152,6 +157,7 @@ public class PostService(ApplicationDbContext dbContext) : IPostService
         LikeCount = post.Fractal?.Likes?.Count ?? 0,
         IsLikedByCurrentUser = post.Fractal?.Likes?.Any(l => l.UserId == currentUserId) ?? false,
         CreatedAt = post.CreatedAt,
-        UpdatedAt = post.UpdatedAt
+        UpdatedAt = post.UpdatedAt,
+        Username = post.Author?.UserName ?? string.Empty
     };
 }

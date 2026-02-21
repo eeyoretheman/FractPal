@@ -2,10 +2,13 @@ namespace FractPal.Model.DTO.Comment;
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 public class CreateCommentRequest
 {
-    public Guid PostId { get; set; }
+    [Required]
+    [MinLength(1)]
+    [MaxLength(250)]
     public string Content { get; set; } = default!;
 }

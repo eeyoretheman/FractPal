@@ -2,7 +2,8 @@ namespace FractPal.Service.Implementation;
 
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 using FractPal.Data;
 using FractPal.Model.DTO.Comment;
 using FractPal.Model.Entities;
@@ -13,9 +14,9 @@ public class CommentService(ApplicationDbContext dbContext) : ICommentService
 {
     private readonly ApplicationDbContext context = dbContext;
 
-    public async Task<CommentDto> CreateComment(Guid userId, CreateCommentRequest request)
+    public async Task<CommentDto> CreateComment(Guid userId, Guid postId, CreateCommentRequest request)
     {
-        if(await this.context.Posts.FindAsync(request.PostId) == null)
+        if(await this.context.Posts.FindAsync(postId) == null)
         {
             throw new KeyNotFoundException("Post not found");
         }
@@ -24,7 +25,7 @@ public class CommentService(ApplicationDbContext dbContext) : ICommentService
         {
             AuthorId = userId,
             Content = request.Content,
-            PostId = request.PostId,
+            PostId = postId,
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = null
         };
@@ -32,8 +33,12 @@ public class CommentService(ApplicationDbContext dbContext) : ICommentService
         this.context.Comments.Add(comment);
         await this.context.SaveChangesAsync();
 
+        // Load author for DTO username
+        await this.context.Entry(comment).Reference(c => c.Author).LoadAsync();
+
         return MapToDto(comment);
     }
+
     public async Task DeleteComment(Guid userId, Guid commentId)
     {
         var comment = await this.context.Comments
@@ -47,14 +52,28 @@ public class CommentService(ApplicationDbContext dbContext) : ICommentService
         this.context.Comments.Remove(comment);
         await this.context.SaveChangesAsync();
     }
-    public async Task<CommentDto> GetCommentById(Guid commentId) =>
-        MapToDto(await this.context.Comments
-            .FindAsync(commentId) ?? throw new KeyNotFoundException("Comment not found"));
-    public async Task<List<CommentDto>> GetPostComments(Guid postId) =>
-        await this.context.Comments
-                          .Where(c => c.PostId == postId)
-                          .Select(c => MapToDto(c))
-                          .ToListAsync();
+
+    public async Task<CommentDto> GetCommentById(Guid commentId)
+    {
+        var comment = await this.context.Comments
+            .Include(c => c.Author)
+            .FirstOrDefaultAsync(c => c.Id == commentId)
+            ?? throw new KeyNotFoundException("Comment not found");
+
+        return MapToDto(comment);
+    }
+
+    public async Task<List<CommentDto>> GetPostComments(Guid postId)
+    {
+        var comments = await this.context.Comments
+            .Include(c => c.Author)
+            .Where(c => c.PostId == postId)
+            .OrderBy(c => c.CreatedAt)
+            .ToListAsync();
+
+        return comments.Select(MapToDto).ToList();
+    }
+
     public async Task<CommentDto> UpdateComment(Guid userId, Guid commentId, UpdateCommentRequest request)
     {
         var comment = await this.context.Comments
@@ -70,9 +89,11 @@ public class CommentService(ApplicationDbContext dbContext) : ICommentService
 
         await this.context.SaveChangesAsync();
 
+        // Ensure author is loaded for mapping
+        await this.context.Entry(comment).Reference(c => c.Author).LoadAsync();
+
         return MapToDto(comment);
     }
-
 
     private static CommentDto MapToDto(Comment comment) => new()
     {
@@ -81,6 +102,7 @@ public class CommentService(ApplicationDbContext dbContext) : ICommentService
         CreatedAt = comment.CreatedAt,
         UpdatedAt = comment.UpdatedAt,
         AuthorId = comment.AuthorId,
-        PostId = comment.PostId
+        PostId = comment.PostId,
+        Username = comment.Author?.UserName ?? string.Empty
     };
 }
