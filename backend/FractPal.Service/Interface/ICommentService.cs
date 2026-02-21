@@ -34,4 +34,22 @@ public interface ICommentService
     public Task<CommentDto> CreateComment(Guid userId, Guid postId, CreateCommentRequest request);
 
     /// <summary>
-    /// Updates the content of an existin
+    /// Updates the content of an existing comment. Only the comment's author may edit it.
+    /// </summary>
+    /// <param name="userId">The ID of the requesting user.</param>
+    /// <param name="commentId">The ID of the comment to update.</param>
+    /// <param name="request">The updated comment content.</param>
+    /// <returns>The updated <see cref="CommentDto"/>.</returns>
+    /// <exception cref="KeyNotFoundException">Thrown when no comment exists with <paramref name="commentId"/>.</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when the requesting user is not the comment's author.</exception>
+    public Task<CommentDto> UpdateComment(Guid userId, Guid commentId, UpdateCommentRequest request);
+
+    /// <summary>
+    /// Permanently deletes a comment. Only the comment's author may perform this operation.
+    /// </summary>
+    /// <param name="userId">The ID of the requesting user.</param>
+    /// <param name="commentId">The ID of the comment to delete.</param>
+    /// <exception cref="KeyNotFoundException">Thrown when no comment exists with <paramref name="commentId"/>.</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when the requesting user is not the comment's author.</exception>
+    public Task DeleteComment(Guid userId, Guid commentId);
+}
