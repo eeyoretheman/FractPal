@@ -8,9 +8,9 @@ using FractPal.Model.Entities;
 public interface IJwtService
 {
     /// <summary>
-    /// Generates a signed JWT access token for the given user.
+    /// Generates a signed JWT access token for the given user, including their role claims.
     /// </summary>
-    /// <param name="user">The user for whom the token will be issued.</param>
+    /// <param name="user">The authenticated <see cref="FractPalUser"/> for whom the token is issued.</param>
     /// <returns>A signed JWT string.</returns>
-    public string GenerateToken(FractPalUser user);
+    public Task<string> GenerateToken(FractPalUser user);
 }
