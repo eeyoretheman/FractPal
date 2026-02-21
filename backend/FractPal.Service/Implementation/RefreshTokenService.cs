@@ -1,18 +1,20 @@
 namespace FractPal.Service.Implementation;
 
-using FractPal.Service.Interface;
 using FractPal.Model.Entity;
+using FractPal.Service.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Threading.Tasks;
 
+/// <summary>
+/// Manages refresh token lifecycle: generation, validation, lookup, and revocation.
+/// Tokens are cryptographically random, stored in the repository, and expire after 7 days.
+/// </summary>
 public class RefreshTokenService(IRepository<RefreshToken> refreshTokenRepository) : IRefreshTokenService
 {
     private readonly IRepository<RefreshToken> refreshTokenRepository = refreshTokenRepository;
 
+    /// <inheritdoc/>
     public async Task<string> GenerateRefreshToken(IdentityUser user)
     {
         var token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64));
@@ -30,6 +32,7 @@ public class RefreshTokenService(IRepository<RefreshToken> refreshTokenRepositor
         return token;
     }
 
+    /// <inheritdoc/>
     public async Task<Guid?> GetUserIdByRefreshToken(string refreshToken)
     {
         var token = await this.refreshTokenRepository.Query()
@@ -42,6 +45,7 @@ public class RefreshTokenService(IRepository<RefreshToken> refreshTokenRepositor
         return null;
     }
 
+    /// <inheritdoc/>
     public async Task InvalidateRefreshToken(string refreshToken)
     {
         var token = await this.refreshTokenRepository.Query()
@@ -53,6 +57,7 @@ public class RefreshTokenService(IRepository<RefreshToken> refreshTokenRepositor
         }
     }
 
+    /// <inheritdoc/>
     public async Task<bool> ValidateRefreshToken(Guid userId, string refreshToken)
     {
         var token = await this.refreshTokenRepository.Query()

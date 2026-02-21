@@ -1,20 +1,22 @@
 namespace FractPal.Service.Implementation;
 
-using System;
-using System.Collections.Generic;
-using System.Text;
 using FractPal.Data;
 using FractPal.Model.Entities;
 using FractPal.Service.Interface;
 using Microsoft.EntityFrameworkCore;
 
+/// <summary>
+/// Implements like/unlike toggle logic for fractals and posts.
+/// Likes are stored at the fractal level; post likes resolve to the
+/// underlying fractal.
+/// </summary>
 public class LikeService(ApplicationDbContext dbContext) : ILikeService
 {
     private readonly ApplicationDbContext context = dbContext;
 
+    /// <inheritdoc/>
     public async Task<bool> ToggleLikeAsync(Guid fractalId, Guid userId)
     {
-        // Validate fractal exists
         var fractalExists = await this.context.Fractals.AnyAsync(f => f.Id == fractalId);
         if (!fractalExists)
         {
@@ -45,7 +47,7 @@ public class LikeService(ApplicationDbContext dbContext) : ILikeService
             }
             catch (DbUpdateException)
             {
-                // Possible race — treat as already liked; alternatively rethrow/log
+                // Concurrent like from another request - treat as already liked.
                 return true;
             }
 
@@ -53,19 +55,12 @@ public class LikeService(ApplicationDbContext dbContext) : ILikeService
         }
     }
 
+    /// <inheritdoc/>
     public async Task<bool> ToggleLikePostAsync(Guid postId, Guid userId)
     {
         var post = await this.context.Posts
-            .FindAsync(postId) ?? throw new KeyNotFoundException("Post Not found");
+            .FindAsync(postId) ?? throw new KeyNotFoundException("Post not found");
 
-        var fractalId = post.FractalId;
-        try
-        {
-            return await this.ToggleLikeAsync(fractalId, userId);
-        }
-        catch
-        {
-            throw;
-        }
+        return await this.ToggleLikeAsync(post.FractalId, userId);
     }
 }

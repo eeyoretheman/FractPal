@@ -6,10 +6,15 @@ using FractPal.Model.Entities;
 using FractPal.Service.Interface;
 using Microsoft.EntityFrameworkCore;
 
+/// <summary>
+/// Implements fractal business logic for FractPal, including creation, retrieval,
+/// modification, forking, and deletion of fractals.
+/// </summary>
 public class FractalService(ApplicationDbContext context) : IFractalService
 {
     private readonly ApplicationDbContext context = context;
 
+    /// <inheritdoc/>
     public async Task<FractalFeedResponse> GetFeedAsync(Guid userId, int page = 1, int pageSize = 20)
     {
         var query = this.context.Fractals
@@ -34,6 +39,7 @@ public class FractalService(ApplicationDbContext context) : IFractalService
         };
     }
 
+    /// <inheritdoc/>
     public async Task<List<FractalDto>> GetUserFractalsAsync(Guid userId, Guid currentUserId)
     {
         var fractals = await this.context.Fractals
@@ -46,9 +52,11 @@ public class FractalService(ApplicationDbContext context) : IFractalService
         return [.. fractals.Select(f => MapToDto(f, currentUserId))];
     }
 
+    /// <inheritdoc/>
     public async Task<List<FractalDto>> GetPublishedFractalsByUserAsync(Guid userId, Guid currentUserId)
         => await this.GetUserFractalsAsync(userId, currentUserId);
 
+    /// <inheritdoc/>
     public async Task<FractalDto?> GetFractalByIdAsync(Guid fractalId, Guid currentUserId)
     {
         var fractal = await this.context.Fractals
@@ -59,6 +67,7 @@ public class FractalService(ApplicationDbContext context) : IFractalService
         return fractal == null ? null : MapToDto(fractal, currentUserId);
     }
 
+    /// <inheritdoc/>
     public async Task<FractalDto> CreateFractalAsync(Guid userId, CreateFractalRequest request)
     {
         var fractal = new Fractal
@@ -85,6 +94,7 @@ public class FractalService(ApplicationDbContext context) : IFractalService
         return MapToDto(fractal, userId);
     }
 
+    /// <inheritdoc/>
     public async Task<FractalDto> UpdateFractalAsync(Guid fractalId, Guid userId, UpdateFractalRequest request)
     {
         var fractal = await this.context.Fractals
@@ -139,6 +149,7 @@ public class FractalService(ApplicationDbContext context) : IFractalService
         return MapToDto(fractal, userId);
     }
 
+    /// <inheritdoc/>
     public async Task DeleteFractalAsync(Guid fractalId, Guid userId)
     {
         var fractal = await this.context.Fractals.FindAsync(fractalId) ?? throw new KeyNotFoundException("Fractal not found");
@@ -158,6 +169,7 @@ public class FractalService(ApplicationDbContext context) : IFractalService
         await this.context.SaveChangesAsync();
     }
 
+    /// <inheritdoc/>
     public async Task<FractalDto> ForkFractalAsync(Guid fractalId, Guid userId)
     {
         var originalFractal = await this.context.Fractals

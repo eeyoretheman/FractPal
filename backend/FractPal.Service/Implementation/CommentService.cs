@@ -1,22 +1,23 @@
 namespace FractPal.Service.Implementation;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using FractPal.Data;
 using FractPal.Model.DTO.Comment;
 using FractPal.Model.Entities;
 using FractPal.Service.Interface;
 using Microsoft.EntityFrameworkCore;
 
+/// <summary>
+/// Implements comment business logic, including creation, retrieval, editing,
+/// and deletion of comments on FractPal posts.
+/// </summary>
 public class CommentService(ApplicationDbContext dbContext) : ICommentService
 {
     private readonly ApplicationDbContext context = dbContext;
 
+    /// <inheritdoc/>
     public async Task<CommentDto> CreateComment(Guid userId, Guid postId, CreateCommentRequest request)
     {
-        if(await this.context.Posts.FindAsync(postId) == null)
+        if (await this.context.Posts.FindAsync(postId) == null)
         {
             throw new KeyNotFoundException("Post not found");
         }
@@ -33,12 +34,12 @@ public class CommentService(ApplicationDbContext dbContext) : ICommentService
         this.context.Comments.Add(comment);
         await this.context.SaveChangesAsync();
 
-        // Load author for DTO username
         await this.context.Entry(comment).Reference(c => c.Author).LoadAsync();
 
         return MapToDto(comment);
     }
 
+    /// <inheritdoc/>
     public async Task DeleteComment(Guid userId, Guid commentId)
     {
         var comment = await this.context.Comments
@@ -53,6 +54,7 @@ public class CommentService(ApplicationDbContext dbContext) : ICommentService
         await this.context.SaveChangesAsync();
     }
 
+    /// <inheritdoc/>
     public async Task<CommentDto> GetCommentById(Guid commentId)
     {
         var comment = await this.context.Comments
@@ -63,6 +65,7 @@ public class CommentService(ApplicationDbContext dbContext) : ICommentService
         return MapToDto(comment);
     }
 
+    /// <inheritdoc/>
     public async Task<List<CommentDto>> GetPostComments(Guid postId)
     {
         var comments = await this.context.Comments
@@ -74,6 +77,7 @@ public class CommentService(ApplicationDbContext dbContext) : ICommentService
         return comments.Select(MapToDto).ToList();
     }
 
+    /// <inheritdoc/>
     public async Task<CommentDto> UpdateComment(Guid userId, Guid commentId, UpdateCommentRequest request)
     {
         var comment = await this.context.Comments
@@ -89,7 +93,6 @@ public class CommentService(ApplicationDbContext dbContext) : ICommentService
 
         await this.context.SaveChangesAsync();
 
-        // Ensure author is loaded for mapping
         await this.context.Entry(comment).Reference(c => c.Author).LoadAsync();
 
         return MapToDto(comment);

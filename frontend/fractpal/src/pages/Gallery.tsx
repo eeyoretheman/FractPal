@@ -7,7 +7,7 @@ import './Gallery.css';
 
 const Gallery: React.FC = () => {
   const [fractals, setFractals] = useState<FractalDto[]>([]);
-  // fractalId -> postId — source of truth for whether a fractal has an active post
+  // fractalId -> postId - source of truth for whether a fractal has an active post
   const [postedMap, setPostedMap] = useState<Map<string, string>>(new Map());
   const [loading, setLoading] = useState(true);
 
