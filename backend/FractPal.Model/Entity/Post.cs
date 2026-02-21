@@ -44,7 +44,6 @@ public class Post : BaseEntity, IAuditable
 
     /// <summary>
     /// Navigation property for the post's author.
-    /// May be <c>null</c> if the author is not loaded.
     /// </summary>
     public virtual FractPalUser? Author { get; set; }
 
@@ -56,19 +55,11 @@ public class Post : BaseEntity, IAuditable
 
     /// <summary>
     /// Navigation property for the associated fractal.
-    /// May be <c>null</c> if the fractal is not loaded.
     /// </summary>
     public virtual Fractal? Fractal { get; set; }
 
     /// <summary>
     /// Collection of comments made on this post.
-    /// May be <c>null</c> if not loaded; use an empty collection when iterating.
     /// </summary>
     public virtual ICollection<Comment> Comments { get; set; } = [];
-
-    /// <summary>
-    /// Collection of likes for this post.
-    /// May be <c>null</c> if not loaded; use an empty collection when iterating.
-    /// </summary>
-    public virtual ICollection<Like> Likes { get; set; } = [];
 }

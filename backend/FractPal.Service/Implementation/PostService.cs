@@ -1,10 +1,6 @@
 namespace FractPal.Service.Implementation;
 
-using System;
-using System.Collections.Generic;
-using System.Text;
 using FractPal.Data;
-using FractPal.Model.DTO.Fractal;
 using FractPal.Model.DTO.Post;
 using FractPal.Model.Entities;
 using FractPal.Service.Interface;
@@ -17,6 +13,9 @@ public class PostService(ApplicationDbContext dbContext) : IPostService
     public async Task<PostFeedResponse> GetFeedAsync(Guid userId, int page = 1, int pageSize = 20)
     {
         var query = this.context.Posts
+            .Include(p => p.Author)
+            .Include(p => p.Fractal)
+                .ThenInclude(f => f.Likes)
             .OrderByDescending(p => p.CreatedAt);
 
         var totalCount = await query.CountAsync();
@@ -25,7 +24,7 @@ public class PostService(ApplicationDbContext dbContext) : IPostService
             .Take(pageSize)
             .ToListAsync();
 
-        var dtos = posts.Select(MapToDto).ToList();
+        var dtos = posts.Select(p => MapToDto(p, userId)).ToList();
 
         return new PostFeedResponse
         {
@@ -35,21 +34,30 @@ public class PostService(ApplicationDbContext dbContext) : IPostService
             PageSize = pageSize
         };
     }
-    public async Task<PostDto?> GetPostByIdAsync(Guid postId, Guid currentUserId) =>
-        MapToDto(await this.context.Posts
+
+    public async Task<PostDto?> GetPostByIdAsync(Guid postId, Guid currentUserId)
+    {
+        var post = await this.context.Posts
             .Include(p => p.Author)
             .Include(p => p.Fractal)
-            .FirstOrDefaultAsync(p => p.Id == postId) ?? throw new KeyNotFoundException("Post not found"));
-    public async Task<List<PostDto>> GetUserPostsAsync(Guid userId)
+                .ThenInclude(f => f.Likes)
+            .FirstOrDefaultAsync(p => p.Id == postId);
+
+        return post == null ? null : MapToDto(post, currentUserId);
+    }
+
+    public async Task<List<PostDto>> GetUserPostsAsync(Guid userId, Guid currentUserId)
     {
         var posts = await this.context.Posts
-                          .Where(p => p.AuthorId == userId)
-                          .OrderByDescending(p => p.CreatedAt)
-                          .ToListAsync();
+            .Include(p => p.Fractal)
+                .ThenInclude(f => f.Likes)
+            .Where(p => p.AuthorId == userId)
+            .OrderByDescending(p => p.CreatedAt)
+            .ToListAsync();
 
-        return [.. posts.Select(MapToDto)];
+        return posts.Select(p => MapToDto(p, currentUserId)).ToList();
     }
-    
+
     public async Task<PostDto> PublishFractalAsync(Guid fractalId, Guid userId, CreatePostRequest request)
     {
         var fractal = await this.context.Fractals
@@ -67,15 +75,19 @@ public class PostService(ApplicationDbContext dbContext) : IPostService
             AuthorId = userId,
             Name = request.Name,
             Description = request.Description,
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = null
+            CreatedAt = DateTime.UtcNow
         };
 
         this.context.Posts.Add(post);
         await this.context.SaveChangesAsync();
 
-        return MapToDto(post);
+        await this.context.Entry(post).Reference(p => p.Author).LoadAsync();
+        await this.context.Entry(post).Reference(p => p.Fractal).LoadAsync();
+        await this.context.Entry(post.Fractal!).Collection(f => f.Likes).LoadAsync();
+
+        return MapToDto(post, userId);
     }
+
     public async Task UnpublishFractalAsync(Guid fractalId, Guid userId)
     {
         var post = await this.context.Posts
@@ -87,9 +99,10 @@ public class PostService(ApplicationDbContext dbContext) : IPostService
             throw new UnauthorizedAccessException("You don't have permission to unpublish this fractal");
         }
 
-        this.context.Remove(post);
+        this.context.Posts.Remove(post);
         await this.context.SaveChangesAsync();
     }
+
     public async Task<PostDto> UpdatePostAsync(Guid postId, Guid userId, UpdatePostRequest request)
     {
         var post = await this.context.Posts
@@ -106,7 +119,12 @@ public class PostService(ApplicationDbContext dbContext) : IPostService
 
         await this.context.SaveChangesAsync();
 
-        return MapToDto(post);
+        await this.context.Entry(post).Reference(p => p.Author).LoadAsync();
+        await this.context.Entry(post).Reference(p => p.Fractal).LoadAsync();
+        if (post.Fractal != null)
+            await this.context.Entry(post.Fractal).Collection(f => f.Likes).LoadAsync();
+
+        return MapToDto(post, userId);
     }
 
     public async Task DeletePostAsync(Guid postId, Guid userId)
@@ -123,16 +141,17 @@ public class PostService(ApplicationDbContext dbContext) : IPostService
         await this.context.SaveChangesAsync();
     }
 
-
-    private static PostDto MapToDto(Post post) => new()
+    private static PostDto MapToDto(Post post, Guid currentUserId) => new()
     {
         Id = post.Id,
         FractalId = post.FractalId,
         AuthorId = post.AuthorId,
         Name = post.Name,
         Description = post.Description,
+        ImageUrl = post.Fractal?.FractalThumbnailPath,
+        LikeCount = post.Fractal?.Likes?.Count ?? 0,
+        IsLikedByCurrentUser = post.Fractal?.Likes?.Any(l => l.UserId == currentUserId) ?? false,
         CreatedAt = post.CreatedAt,
-        UpdatedAt = post.UpdatedAt,
-        LikeCount = post.Likes.Count,
+        UpdatedAt = post.UpdatedAt
     };
 }

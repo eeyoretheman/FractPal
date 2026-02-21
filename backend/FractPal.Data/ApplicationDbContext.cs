@@ -79,18 +79,20 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         // Like configuration
         builder.Entity<Like>(entity =>
         {
-            // Composite key
-            entity.HasKey(l => new { l.UserId, l.PostId });
-            
+            // Composite key: (UserId, FractalId)
+            entity.HasKey(l => new { l.UserId, l.FractalId });
+
             entity.HasOne(l => l.User)
                   .WithMany(u => u.Likes)
                   .HasForeignKey(l => l.UserId)
                   .OnDelete(DeleteBehavior.Cascade);
 
-            entity.HasOne(l => l.Post)
-                  .WithMany(p => p.Likes)
-                  .HasForeignKey(l => l.PostId)
+            entity.HasOne(l => l.Fractal)
+                  .WithMany(f => f.Likes)
+                  .HasForeignKey(l => l.FractalId)
                   .OnDelete(DeleteBehavior.Restrict);
+
+            entity.HasIndex(l => l.FractalId);
         });
 
         // Follow configuration

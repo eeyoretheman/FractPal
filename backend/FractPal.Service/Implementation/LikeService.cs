@@ -12,12 +12,17 @@ public class LikeService(ApplicationDbContext dbContext) : ILikeService
 {
     private readonly ApplicationDbContext context = dbContext;
 
-    public async Task<bool> ToggleLikeAsync(Guid postId, Guid userId)
+    public async Task<bool> ToggleLikeAsync(Guid fractalId, Guid userId)
     {
+        // Validate fractal exists
+        var fractalExists = await this.context.Fractals.AnyAsync(f => f.Id == fractalId);
+        if (!fractalExists)
+        {
+            throw new KeyNotFoundException("Fractal not found");
+        }
+
         var existingLike = await this.context.Likes
-            .Include(l => l.User)
-            .Include(l => l.Post)
-            .FirstOrDefaultAsync(l => l.PostId == postId && l.UserId == userId);
+            .FirstOrDefaultAsync(l => l.FractalId == fractalId && l.UserId == userId);
 
         if (existingLike != null)
         {
@@ -25,19 +30,25 @@ public class LikeService(ApplicationDbContext dbContext) : ILikeService
             await this.context.SaveChangesAsync();
             return false;
         }
-        else if (await this.context.Posts.FindAsync(postId) == null)
-        {
-            throw new KeyNotFoundException("Post not found");
-        }
         else
         {
             var like = new Like
             {
-                PostId = postId,
+                FractalId = fractalId,
                 UserId = userId
             };
+
             this.context.Likes.Add(like);
-            await this.context.SaveChangesAsync();
+            try
+            {
+                await this.context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                // Possible race — treat as already liked; alternatively rethrow/log
+                return true;
+            }
+
             return true;
         }
     }

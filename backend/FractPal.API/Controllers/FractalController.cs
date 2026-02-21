@@ -9,9 +9,10 @@ using Microsoft.AspNetCore.Mvc;
 [Route("api/[controller]")]
 [ApiController]
 [Authorize]
-public class FractalController(IFractalService fractalService) : ControllerBase
+public class FractalController(IFractalService fractalService, ILikeService likeService) : ControllerBase
 {
     private readonly IFractalService fractalService = fractalService;
+    private readonly ILikeService likeService = likeService;
 
     private Guid GetCurrentUserId() => Guid.Parse(this.User.FindFirstValue(ClaimTypes.NameIdentifier)
             ?? throw new UnauthorizedAccessException("User ID not found"));
@@ -228,19 +229,23 @@ public class FractalController(IFractalService fractalService) : ControllerBase
         }
     }
 
-    //// POST: api/fractal/{id}/like
-    //[HttpPost("{id}/like")]
-    //public async Task<IActionResult> ToggleLike(string id)
-    //{
-    //    try
-    //    {
-    //        var userId = this.GetCurrentUserId();
-    //        var isLiked = await this.fractalService.ToggleLikeAsync(id, userId);
-    //        return this.Ok(new { isLiked });
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        return this.StatusCode(500, new { message = ex.Message });
-    //    }
-    //}
+    // POST: api/fractal/{id}/like
+    [HttpPost("{id}/like")]
+    public async Task<IActionResult> ToggleLike(Guid id)
+    {
+        try
+        {
+            var userId = this.GetCurrentUserId();
+            var isLiked = await this.likeService.ToggleLikeAsync(id, userId);
+            return this.Ok(new { isLiked });
+        }
+        catch (KeyNotFoundException)
+        {
+            return this.NotFound(new { message = "Fractal not found" });
+        }
+        catch (Exception)
+        {
+            return this.StatusCode(500, new { message = "An unexpected error occurred" });
+        }
+    }
 }

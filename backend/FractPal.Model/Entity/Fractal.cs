@@ -96,4 +96,9 @@ public class Fractal : BaseEntity, IAuditable
     /// Navigation property to the author (user) who created the fractal.
     /// </summary>
     public virtual FractPalUser? Author { get; set; }
+
+    /// <summary>
+    /// Collection of likes for this fractal.
+    /// </summary>
+    public virtual ICollection<Like> Likes { get; set; } = new List<Like>();
 }

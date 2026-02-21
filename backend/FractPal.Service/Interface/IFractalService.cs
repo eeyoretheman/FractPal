@@ -11,8 +11,5 @@ public interface IFractalService
     public Task<FractalDto> CreateFractalAsync(Guid userId, CreateFractalRequest request);
     public Task<FractalDto> UpdateFractalAsync(Guid fractalId, Guid userId, UpdateFractalRequest request);
     public Task DeleteFractalAsync(Guid fractalId, Guid userId);
-    // public Task<FractalDto> PublishFractalAsync(string fractalId, string userId);
-    // public Task<FractalDto> UnpublishFractalAsync(string fractalId, string userId);
     public Task<FractalDto> ForkFractalAsync(Guid fractalId, Guid userId);
-    // public Task<bool> ToggleLikeAsync(string fractalId, string userId);
 }
