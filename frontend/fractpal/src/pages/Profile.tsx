@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { userApi, fractalApi, postApi } from '../services/api';
 import type { UserProfileDto, FractalDto, PostDto, UserSearchDto } from '../services/types';
-import { Link } from 'react-router-dom';
 import FractalCard from '../components/FractalCard';
 import './Profile.css';
 
@@ -26,6 +25,7 @@ const Profile: React.FC = () => {
   const [searching, setSearching] = useState(false);
 
   const isOwnProfile = !userId || userId === currentUser?.id;
+  const isAdmin = currentUser?.isAdmin ?? false;
   const targetId = userId ?? currentUser?.id ?? '';
 
   useEffect(() => { loadAll(); }, [userId]);
@@ -99,6 +99,29 @@ const Profile: React.FC = () => {
     }
   };
 
+  // Admin: unpost any post
+  const handleAdminUnpost = async (postId: string) => {
+    if (!confirm('Are you sure you want to unpost this?')) return;
+    try {
+      await postApi.deletePost(postId); // DELETE /api/posts/{id}
+      setPosts(prev => prev.filter(p => p.id !== postId));
+    } catch (error) {
+      console.error('Failed to unpost:', error);
+      alert('Failed to unpost.');
+    }
+  };
+
+  const handleAdminDeleteFractal = async (fractalId: string) => {
+    if (!confirm('Are you sure you want to permanently delete this fractal?')) return;
+    try {
+      await fractalApi.deleteFractal(fractalId);
+      setFractals(prev => prev.filter(f => f.id !== fractalId));
+    } catch (error) {
+      console.error('Failed to delete fractal:', error);
+      alert('Failed to delete fractal.');
+    }
+  };
+
   const handleSearch = async (query: string) => {
     setSearchQuery(query);
     if (!query.trim()) {
@@ -148,10 +171,12 @@ const Profile: React.FC = () => {
         )}
       </div>
 
-      {/* ================= Existing Profile ================= */}
+      {/* ================= Profile Banner ================= */}
       <div className="profile-banner card">
         <div className="profile-info">
-          <h1>{profile.username}</h1>
+          <h1>
+            {profile.username}
+          </h1>
           <p className="text-muted">Joined {formatDate(profile.joinedDate)}</p>
 
           <div className="profile-stats">
@@ -186,65 +211,88 @@ const Profile: React.FC = () => {
           </div>
         )}
       </div>
-
       {/* ================= Tabs ================= */}
       <div className="profile-tabs">
         <button className={`tab-btn${activeTab === 'posts' ? ' active' : ''}`} onClick={() => setActiveTab('posts')}>
           Posts ({posts.length})
         </button>
-        <button className={`tab-btn${activeTab === 'fractals' ? ' active' : ''}`} onClick={() => setActiveTab('fractals')}>
-          Fractals ({fractals.length})
-        </button>
+        {/* Fractals tab: always visible for own profile, or if admin */}
+        {(isOwnProfile || isAdmin) && (
+          <button className={`tab-btn${activeTab === 'fractals' ? ' active' : ''}`} onClick={() => setActiveTab('fractals')}>
+            Fractals ({fractals.length})
+          </button>
+        )}
       </div>
 
-      {/* ================= Content ================= */}
+      {/* ================= Posts Tab ================= */}
       {activeTab === 'posts' && (
         <section className="profile-content">
           {posts.length === 0
             ? <div className="empty-state"><p>No posts yet.</p></div>
             : <div className="fractals-grid">
                 {posts.map(p => (
-                  <FractalCard
-                    key={p.id}
-                    fractal={{
-                      id: p.fractalId,
-                      postId: p.id,
-                      name: p.name,
-                      username: p.username,
-                      userId: p.authorId,
-                      thumbnail: p.thumbnail,
-                      likeCount: p.likeCount,
-                      isLikedByCurrentUser: p.isLikedByCurrentUser,
-                      createdAt: p.createdAt,
-                    }}
-                    onLike={handleLikePost}
-                  />
+                  <div key={p.id} className="card-with-actions">
+                    <FractalCard
+                      fractal={{
+                        id: p.fractalId,
+                        postId: p.id,
+                        name: p.name,
+                        username: p.username,
+                        userId: p.authorId,
+                        thumbnail: p.thumbnail,
+                        likeCount: p.likeCount,
+                        isLikedByCurrentUser: p.isLikedByCurrentUser,
+                        createdAt: p.createdAt,
+                      }}
+                      onLike={handleLikePost}
+                    />
+                    {isAdmin && (
+                      <button
+                        onClick={() => handleAdminUnpost(p.id)}
+                        className="danger small admin-action"
+                        title="Admin: remove this post"
+                      >
+                        🛡️ Unpost
+                      </button>
+                    )}
+                  </div>
                 ))}
               </div>
           }
         </section>
       )}
 
-      {activeTab === 'fractals' && (
+      {/* ================= Fractals Tab ================= */}
+      {(isOwnProfile || isAdmin) && activeTab === 'fractals' && (
         <section className="profile-content">
           {fractals.length === 0
             ? <div className="empty-state"><p>No fractals yet.</p></div>
             : <div className="fractals-grid">
                 {fractals.map(f => (
-                  <FractalCard
-                    key={f.id}
-                    fractal={{
-                      id: f.id,
-                      name: f.name,
-                      username: f.username,
-                      userId: f.userId,
-                      thumbnail: f.thumbnail,
-                      likeCount: f.likeCount,
-                      isLikedByCurrentUser: f.isLikedByCurrentUser,
-                      createdAt: f.createdAt,
-                    }}
-                    onLike={handleLikeFractal}
-                  />
+                  <div key={f.id} className="card-with-actions">
+                    <FractalCard
+                      fractal={{
+                        id: f.id,
+                        name: f.name,
+                        username: f.username,
+                        userId: f.userId,
+                        thumbnail: f.thumbnail,
+                        likeCount: f.likeCount,
+                        isLikedByCurrentUser: f.isLikedByCurrentUser,
+                        createdAt: f.createdAt,
+                      }}
+                      onLike={handleLikeFractal}
+                    />
+                    {isAdmin && (
+                      <button
+                        onClick={() => handleAdminDeleteFractal(f.id)}
+                        className="danger small admin-action"
+                        title="Admin: permanently delete this fractal"
+                      >
+                        🛡️ Delete
+                      </button>
+                    )}
+                  </div>
                 ))}
               </div>
           }
