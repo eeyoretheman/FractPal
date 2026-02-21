@@ -111,7 +111,7 @@ const Workbench: React.FC = () => {
       setLoading(true);
       setError('');
 
-      // Capture canvas as image
+      // Capture canvas as thumbnail (base64 PNG image)
       const canvas = canvasRef.current;
       const imageData = canvas ? canvas.toDataURL('image/png') : undefined;
 
@@ -124,7 +124,7 @@ const Workbench: React.FC = () => {
         xTranslation,
         yTranslation,
         zoom,
-        imageData,
+        imageData, // This becomes the thumbnail!
       };
 
       if (id) {
