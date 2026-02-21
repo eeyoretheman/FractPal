@@ -124,3 +124,42 @@ export interface ToggleLikeResponse {
 export interface ToggleFollowResponse {
   isFollowing: boolean;
 }
+
+export interface AuthUser {
+  id: string;
+  username: string;
+  email: string;
+  token: string;
+  isAdmin: boolean;
+}
+
+export interface User {
+  id: string;
+  email: string;
+  roles: string[];
+  isAdmin: boolean;
+}
+
+export interface AuthResponse {
+  jwt: string;
+  refreshToken: string;
+  user?: User;
+}
+
+export interface Fractal {
+  id: string;
+  name: string;
+  thumbnail?: string;
+  isPosted: boolean;
+  likes: number;
+  createdAt: string;
+}
+
+export interface UserProfile {
+  username: string;
+  joinedDate: string;
+  followerCount: string;
+  followingCount: number;
+  bio: string;
+  favoriteMathematician: string;
+}
