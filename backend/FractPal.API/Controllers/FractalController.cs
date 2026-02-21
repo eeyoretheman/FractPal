@@ -229,23 +229,23 @@ public class FractalController(IFractalService fractalService, ILikeService like
         }
     }
 
-    // POST: api/fractal/{id}/like
-    [HttpPost("{id}/like")]
-    public async Task<IActionResult> ToggleLike(Guid id)
-    {
-        try
-        {
-            var userId = this.GetCurrentUserId();
-            var isLiked = await this.likeService.ToggleLikeAsync(id, userId);
-            return this.Ok(new { isLiked });
-        }
-        catch (KeyNotFoundException)
-        {
-            return this.NotFound(new { message = "Fractal not found" });
-        }
-        catch (Exception)
-        {
-            return this.StatusCode(500, new { message = "An unexpected error occurred" });
-        }
-    }
+    //// POST: api/fractal/{id}/like
+    //[HttpPost("{id}/like")]
+    //public async Task<IActionResult> ToggleLike(Guid id)
+    //{
+    //    try
+    //    {
+    //        var userId = this.GetCurrentUserId();
+    //        var isLiked = await this.likeService.ToggleLikeAsync(id, userId);
+    //        return this.Ok(new { isLiked });
+    //    }
+    //    catch (KeyNotFoundException)
+    //    {
+    //        return this.NotFound(new { message = "Fractal not found" });
+    //    }
+    //    catch (Exception)
+    //    {
+    //        return this.StatusCode(500, new { message = "An unexpected error occurred" });
+    //    }
+    //}
 }
