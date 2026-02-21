@@ -10,7 +10,7 @@ public class PostDto
     public string Username { get; set; } = string.Empty;
     public string Name { get; set; } = default!;
     public string? Description { get; set; } = string.Empty;
-    public string? ImageUrl { get; set; }
+    public string? Thumbnail { get; set; }
     public int LikeCount { get; set; }
     public bool IsLikedByCurrentUser { get; set; }
     public DateTime CreatedAt { get; set; }

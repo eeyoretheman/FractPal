@@ -1,103 +1,95 @@
-import React, { useState, useEffect } from 'react';
-import { fractalApi } from '../services/api';
+import React, { useState, useEffect, useCallback } from 'react';
+import { postApi } from '../services/api';
+import type { PostDto } from '../services/types';
 import FractalCard from '../components/FractalCard';
 import './Home.css';
 
-interface Fractal {
-  id: string;
-  name: string;
-  username: string;
-  userId: string;
-  createdAt: string;
-  publishedAt: string;
-  imageUrl: string;
-  likeCount: number;
-  isLikedByCurrentUser: boolean;
-}
-
 const Home: React.FC = () => {
-  const [fractals, setFractals] = useState<Fractal[]>([]);
+  const [posts, setPosts] = useState<PostDto[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const [totalCount, setTotalCount] = useState(0);
 
-  useEffect(() => {
-    loadFeed();
-  }, [page]);
-
-  const loadFeed = async () => {
+  const loadFeed = useCallback(async (pageNum: number, append: boolean) => {
     try {
-      setLoading(true);
-      const response = await fractalApi.getFeed(page, 20);
-
-      if (page === 1) {
-        setFractals(response.fractals);
-      } else {
-        setFractals(prev => [...prev, ...response.fractals]);
-      }
-
-      setHasMore(response.fractals.length === 20);
+      append ? setLoadingMore(true) : setLoading(true);
+      const response = await postApi.getFeed(pageNum, 20);
+      setPosts(prev => append ? [...prev, ...response.posts] : response.posts);
+      setTotalCount(response.totalCount);
+      setHasMore(pageNum * 20 < response.totalCount);
     } catch (error) {
       console.error('Failed to load feed:', error);
     } finally {
       setLoading(false);
+      setLoadingMore(false);
     }
-  };
+  }, []);
 
-  const handleLike = async (id: string) => {
+  useEffect(() => { loadFeed(1, false); }, [loadFeed]);
+
+  const handleLike = async (postId: string) => {
     try {
-      const result = await fractalApi.toggleLike(id);
-      setFractals(prev =>
-        prev.map(f =>
-          f.id === id
-            ? {
-                ...f,
-                isLikedByCurrentUser: result.isLiked,
-                likeCount: result.isLiked ? f.likeCount + 1 : f.likeCount - 1,
-              }
-            : f
-        )
-      );
+      const result = await postApi.toggleLike(postId);
+      setPosts(prev => prev.map(p =>
+        p.id === postId
+          ? { ...p, isLikedByCurrentUser: result.isLiked, likeCount: result.isLiked ? p.likeCount + 1 : p.likeCount - 1 }
+          : p
+      ));
     } catch (error) {
       console.error('Failed to toggle like:', error);
     }
   };
 
   const loadMore = () => {
-    if (!loading && hasMore) {
-      setPage(prev => prev + 1);
+    if (!loadingMore && hasMore) {
+      const next = page + 1;
+      setPage(next);
+      loadFeed(next, true);
     }
   };
+
+  if (loading) return <div className="loading-container"><div className="loading" /></div>;
 
   return (
     <div className="home-page">
       <header className="page-header">
         <h1>Home</h1>
-        <p className="text-muted">Discover fractals from the community</p>
+        <p className="text-muted">
+          {totalCount > 0 ? `${totalCount} posts from the community` : 'Discover posts from the community'}
+        </p>
       </header>
 
-      {loading && page === 1 ? (
-        <div className="loading-container">
-          <div className="loading"></div>
-        </div>
-      ) : fractals.length === 0 ? (
-        <div className="empty-state">
-          <p>No fractals yet. Be the first to share!</p>
-        </div>
+      {posts.length === 0 ? (
+        <div className="empty-state"><p>No posts yet. Be the first to share a fractal!</p></div>
       ) : (
         <>
           <div className="fractals-grid">
-            {fractals.map((fractal, index) => (
-              <div key={fractal.id} className="fade-in" style={{ animationDelay: `${index * 0.05}s` }}>
-                <FractalCard fractal={fractal} onLike={handleLike} />
+            {posts.map((post, index) => (
+              <div key={post.id} className="fade-in" style={{ animationDelay: `${index * 0.05}s` }}>
+                <FractalCard
+                  fractal={{
+                    id: post.fractalId,
+                    postId: post.id,
+                    name: post.name,
+                    username: post.username,
+                    userId: post.authorId,
+                    imageUrl: post.imageUrl,
+                    likeCount: post.likeCount,
+                    isLikedByCurrentUser: post.isLikedByCurrentUser,
+                    createdAt: post.createdAt,
+                  }}
+                  onLike={handleLike}
+                />
               </div>
             ))}
           </div>
 
           {hasMore && (
             <div className="load-more-container">
-              <button onClick={loadMore} disabled={loading} className="secondary">
-                {loading ? <span className="loading"></span> : 'Load More'}
+              <button onClick={loadMore} disabled={loadingMore} className="secondary">
+                {loadingMore ? <span className="loading" /> : 'Load More'}
               </button>
             </div>
           )}

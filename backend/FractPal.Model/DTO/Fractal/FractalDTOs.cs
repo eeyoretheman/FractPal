@@ -11,7 +11,7 @@ public class FractalDto
     public DateTime CreatedAt { get; set; }
     public DateTime? PublishedAt { get; set; }
     public bool IsPublished { get; set; }
-    public string? ImageUrl { get; set; }
+    public string? Thumbnail { get; set; }
     public int LikeCount { get; set; }
     public bool IsLikedByCurrentUser { get; set; }
 

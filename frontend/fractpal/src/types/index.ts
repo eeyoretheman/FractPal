@@ -15,7 +15,7 @@ export interface AuthResponse {
 export interface Fractal {
   id: string;
   name: string;
-  imageUrl?: string;
+  thumbnail?: string;
   isPosted: boolean;
   likes: number;
   createdAt: string;

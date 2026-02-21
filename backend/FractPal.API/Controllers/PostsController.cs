@@ -1,13 +1,12 @@
 namespace FractPal.API.Controllers;
 
 using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using FractPal.Model.DTO.Post;
 using FractPal.Service.Interface;
-using Microsoft.AspNetCore.Authorization;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -20,6 +19,8 @@ public class PostsController(IPostService postService, ILikeService likeService)
     private Guid GetCurrentUserId() =>
         Guid.Parse(this.User.FindFirstValue(ClaimTypes.NameIdentifier)
             ?? throw new UnauthorizedAccessException("User ID not found"));
+
+    private bool IsAdmin() => this.User.IsInRole("Admin");
 
     // GET: api/posts/feed
     [HttpGet("feed")]
@@ -47,9 +48,7 @@ public class PostsController(IPostService postService, ILikeService likeService)
             var post = await this.postService.GetPostByIdAsync(id, currentUserId);
 
             if (post == null)
-            {
                 return this.NotFound(new { message = "Post not found" });
-            }
 
             return this.Ok(post);
         }
@@ -170,13 +169,15 @@ public class PostsController(IPostService postService, ILikeService likeService)
     }
 
     // DELETE: api/posts/{id}
+    // Admins can delete any post; regular users can only delete their own.
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> DeletePost(Guid id)
     {
         try
         {
             var userId = this.GetCurrentUserId();
-            await this.postService.DeletePostAsync(id, userId);
+            var isAdmin = this.IsAdmin();
+            await this.postService.DeletePostAsync(id, userId, isAdmin);
             return this.NoContent();
         }
         catch (KeyNotFoundException)
@@ -193,6 +194,7 @@ public class PostsController(IPostService postService, ILikeService likeService)
         }
     }
 
+    // POST: api/posts/{id}/like
     [HttpPost("{id:guid}/like")]
     public async Task<IActionResult> ToggleLikePost(Guid id)
     {

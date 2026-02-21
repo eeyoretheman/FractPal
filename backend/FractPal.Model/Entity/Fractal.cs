@@ -74,7 +74,7 @@ public class Fractal : BaseEntity, IAuditable
     /// <summary>
     /// File path or URI to a thumbnail image representing the fractal.
     /// </summary>
-    public string FractalThumbnailPath { get; set; } = default!;
+    public string Thumbnail { get; set; } = default!;
 
     /// <summary>
     /// Timestamp when the fractal entity was created.

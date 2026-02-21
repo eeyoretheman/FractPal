@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fractalApi } from '../services/api';
+import type { CreateFractalRequest, UpdateFractalRequest } from '../services/types';
 import { lindenmayer, turtle, setupWebGL, resizeCanvas } from '../services/lsystem';
 import './Workbench.css';
 
@@ -21,9 +22,7 @@ const Workbench: React.FC = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    if (id) {
-      loadFractal();
-    }
+    if (id) loadFractal();
   }, [id]);
 
   useEffect(() => {
@@ -32,7 +31,6 @@ const Workbench: React.FC = () => {
 
   const loadFractal = async () => {
     if (!id) return;
-
     try {
       setLoading(true);
       const fractal = await fractalApi.getFractalById(id);
@@ -55,51 +53,35 @@ const Workbench: React.FC = () => {
   const renderFractal = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     try {
       resizeCanvas(canvas);
-
       const gl = setupWebGL(canvas, xTranslation, yTranslation, zoom);
       if (!gl) return;
 
-      // Parse axiom
       const axiomSymbols = axiom.trim().replace(/\s+/g, ' ').split(' ');
 
-      // Parse rules
       const rulesMap = new Map<string, string[]>();
       rules.split('\n').forEach(line => {
         const parts = line.split('=');
         if (parts.length !== 2) return;
-        const key = parts[0].trim();
-        const value = parts[1].trim().replace(/\s+/g, ' ').split(' ');
-        rulesMap.set(key, value);
+        rulesMap.set(parts[0].trim(), parts[1].trim().replace(/\s+/g, ' ').split(' '));
       });
 
-      // Parse instructions
       const instructionMap: Record<string, string> = {};
       instructions.split('\n').forEach(line => {
         const parts = line.split('=');
         if (parts.length !== 2) return;
-        const key = parts[0].trim();
-        const value = parts[1].trim();
-        instructionMap[key] = value;
+        instructionMap[parts[0].trim()] = parts[1].trim();
       });
 
-      // Generate L-system
       const symbols = lindenmayer(axiomSymbols, rulesMap, generations);
-
-      // Process symbols with instructions
       const processedSymbols: string[] = [];
       symbols.forEach((symbol: string) => {
         const replacement = instructionMap[symbol];
-        if (replacement) {
-          processedSymbols.push(...replacement.split(' '));
-        } else {
-          processedSymbols.push(symbol);
-        }
+        if (replacement) processedSymbols.push(...replacement.split(' '));
+        else processedSymbols.push(symbol);
       });
 
-      // Render
       turtle(processedSymbols, gl);
     } catch (err) {
       console.error('Render error:', err);
@@ -110,31 +92,23 @@ const Workbench: React.FC = () => {
     try {
       setLoading(true);
       setError('');
-
-      // Capture canvas as image
       const canvas = canvasRef.current;
       const imageData = canvas ? canvas.toDataURL('image/png') : undefined;
 
-      const fractalData = {
-        name,
-        axiom,
-        rules,
-        instructions,
-        generations,
-        xTranslation,
-        yTranslation,
-        zoom,
-        imageData,
-      };
-
       if (id) {
-        await fractalApi.updateFractal(id, fractalData);
+        const request: UpdateFractalRequest = { name, axiom, rules, instructions, generations, xTranslation, yTranslation, zoom, imageData };
+        const saved = await fractalApi.updateFractal(id, request);
+        // Backend auto-forks when a non-owner saves; navigate to the new id
+        if (saved.id !== id) {
+          navigate(`/workbench/${saved.id}`, { replace: true });
+        }
       } else {
-        const newFractal = await fractalApi.createFractal(fractalData);
-        navigate(`/workbench/${newFractal.id}`);
+        const request: CreateFractalRequest = { name, axiom, rules, instructions, generations, xTranslation, yTranslation, zoom, imageData };
+        const created = await fractalApi.createFractal(request);
+        navigate(`/workbench/${created.id}`);
       }
     } catch (err: any) {
-      setError(err.message || 'Failed to save fractal');
+      setError(err.message ?? 'Failed to save fractal');
     } finally {
       setLoading(false);
     }
@@ -144,7 +118,6 @@ const Workbench: React.FC = () => {
     if (id) {
       navigate('/gallery');
     } else {
-      // Reset form
       setName('Untitled Fractal');
       setAxiom('F');
       setRules('F = F + F - - F + F');
@@ -159,19 +132,11 @@ const Workbench: React.FC = () => {
   return (
     <div className="workbench-page">
       <div className="workbench-header">
-        <input
-          type="text"
-          value={name}
-          onChange={e => setName(e.target.value)}
-          className="fractal-name-input"
-          placeholder="Fractal Name"
-        />
+        <input type="text" value={name} onChange={e => setName(e.target.value)} className="fractal-name-input" placeholder="Fractal Name" />
         <div className="workbench-actions">
-          <button onClick={handleDiscard} className="secondary">
-            Discard
-          </button>
+          <button onClick={handleDiscard} className="secondary">Discard</button>
           <button onClick={handleSave} disabled={loading} className="primary">
-            {loading ? <span className="loading"></span> : 'Save'}
+            {loading ? <span className="loading" /> : 'Save'}
           </button>
         </div>
       </div>
@@ -182,82 +147,32 @@ const Workbench: React.FC = () => {
         <div className="controls-panel">
           <div className="control-section">
             <label htmlFor="axiom">Axiom</label>
-            <input
-              id="axiom"
-              type="text"
-              value={axiom}
-              onChange={e => setAxiom(e.target.value)}
-              placeholder="F"
-            />
+            <input id="axiom" type="text" value={axiom} onChange={e => setAxiom(e.target.value)} placeholder="F" />
           </div>
-
           <div className="control-section">
             <label htmlFor="rules">Rules</label>
-            <textarea
-              id="rules"
-              value={rules}
-              onChange={e => setRules(e.target.value)}
-              placeholder="F = F + F - - F + F"
-              rows={5}
-            />
+            <textarea id="rules" value={rules} onChange={e => setRules(e.target.value)} placeholder="F = F + F - - F + F" rows={5} />
           </div>
-
           <div className="control-section">
             <label htmlFor="instructions">Instructions</label>
-            <textarea
-              id="instructions"
-              value={instructions}
-              onChange={e => setInstructions(e.target.value)}
-              placeholder="F = 10 FORWARD"
-              rows={8}
-            />
+            <textarea id="instructions" value={instructions} onChange={e => setInstructions(e.target.value)} placeholder="F = 10 FORWARD" rows={8} />
           </div>
-
           <div className="control-section">
             <label htmlFor="generations">Generations: {generations}</label>
-            <input
-              id="generations"
-              type="range"
-              min="1"
-              max="10"
-              value={generations}
-              onChange={e => setGenerations(Number(e.target.value))}
-            />
+            <input id="generations" type="range" min="1" max="10" value={generations} onChange={e => setGenerations(Number(e.target.value))} />
           </div>
-
           <div className="control-grid">
             <div className="control-section">
               <label htmlFor="xTranslation">X Translation</label>
-              <input
-                id="xTranslation"
-                type="number"
-                value={xTranslation}
-                onChange={e => setXTranslation(Number(e.target.value))}
-                step="10"
-              />
+              <input id="xTranslation" type="number" value={xTranslation} onChange={e => setXTranslation(Number(e.target.value))} step="10" />
             </div>
-
             <div className="control-section">
               <label htmlFor="yTranslation">Y Translation</label>
-              <input
-                id="yTranslation"
-                type="number"
-                value={yTranslation}
-                onChange={e => setYTranslation(Number(e.target.value))}
-                step="10"
-              />
+              <input id="yTranslation" type="number" value={yTranslation} onChange={e => setYTranslation(Number(e.target.value))} step="10" />
             </div>
-
             <div className="control-section">
               <label htmlFor="zoom">Zoom</label>
-              <input
-                id="zoom"
-                type="number"
-                value={zoom}
-                onChange={e => setZoom(Number(e.target.value))}
-                step="0.1"
-                min="0.1"
-              />
+              <input id="zoom" type="number" value={zoom} onChange={e => setZoom(Number(e.target.value))} step="0.1" min="0.1" />
             </div>
           </div>
         </div>

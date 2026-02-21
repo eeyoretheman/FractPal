@@ -2,17 +2,23 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './FractalCard.css';
 
+export interface FractalCardFractal {
+  id: string;
+  name: string;
+  username: string;
+  userId: string;
+  imageUrl?: string | null;
+  likeCount: number;
+  isLikedByCurrentUser: boolean;
+  createdAt?: string | null;
+  // postId is set when this card represents a post, so likes go to the right endpoint
+  postId?: string;
+}
+
 interface FractalCardProps {
-  fractal: {
-    id: string;
-    name: string;
-    username: string;
-    userId: string;
-    imageUrl?: string;
-    likeCount: number;
-    isLikedByCurrentUser: boolean;
-    publishedAt?: string;
-  };
+  fractal: FractalCardFractal;
+  /** True when this fractal has an active post (set by Gallery from postApi data) */
+  isPosted?: boolean;
   onLike?: (id: string) => void;
   onDelete?: (id: string) => void;
   onPublish?: (id: string) => void;
@@ -22,23 +28,27 @@ interface FractalCardProps {
 
 const FractalCard: React.FC<FractalCardProps> = ({
   fractal,
+  isPosted = false,
   onLike,
   onDelete,
   onPublish,
   onUnpublish,
   showActions = false,
 }) => {
-  const formatDate = (dateString?: string) => {
+  const formatDate = (dateString?: string | null) => {
     if (!dateString) return '';
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    return new Date(dateString).toLocaleDateString('en-US', {
+      month: 'short', day: 'numeric', year: 'numeric',
+    });
   };
+
+  const imageUrl = fractal.imageUrl ?? undefined;
 
   return (
     <div className="fractal-card card">
       <Link to={`/workbench/${fractal.id}`} className="fractal-preview">
-        {fractal.imageUrl ? (
-          <img src={fractal.imageUrl} alt={fractal.name} className="fractal-image" />
+        {imageUrl ? (
+          <img src={imageUrl} alt={fractal.name} className="fractal-image" />
         ) : (
           <div className="fractal-placeholder">
             <span>No preview</span>
@@ -56,16 +66,16 @@ const FractalCard: React.FC<FractalCardProps> = ({
           </Link>
         </div>
 
-        {fractal.publishedAt && (
+        {fractal.createdAt && (
           <div className="fractal-date text-muted">
-            {formatDate(fractal.publishedAt)}
+            {formatDate(fractal.createdAt)}
           </div>
         )}
 
         <div className="fractal-actions">
           {onLike && (
             <button
-              onClick={() => onLike(fractal.id)}
+              onClick={() => onLike(fractal.postId ?? fractal.id)}
               className={`like-button ${fractal.isLikedByCurrentUser ? 'liked' : ''}`}
             >
               <span className="heart-icon">{fractal.isLikedByCurrentUser ? '❤️' : '♡'}</span>
@@ -75,12 +85,12 @@ const FractalCard: React.FC<FractalCardProps> = ({
 
           {showActions && (
             <div className="fractal-owner-actions">
-              {onPublish && !fractal.publishedAt && (
+              {onPublish && !isPosted && (
                 <button onClick={() => onPublish(fractal.id)} className="secondary small">
                   Post
                 </button>
               )}
-              {onUnpublish && fractal.publishedAt && (
+              {onUnpublish && isPosted && (
                 <button onClick={() => onUnpublish(fractal.id)} className="secondary small">
                   Unpost
                 </button>
