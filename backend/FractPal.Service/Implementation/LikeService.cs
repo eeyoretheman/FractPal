@@ -52,4 +52,20 @@ public class LikeService(ApplicationDbContext dbContext) : ILikeService
             return true;
         }
     }
+
+    public async Task<bool> ToggleLikePostAsync(Guid postId, Guid userId)
+    {
+        var post = await this.context.Posts
+            .FindAsync(postId) ?? throw new KeyNotFoundException("Post Not found");
+
+        var fractalId = post.FractalId;
+        try
+        {
+            return await this.ToggleLikeAsync(fractalId, userId);
+        }
+        catch
+        {
+            throw;
+        }
+    }
 }

@@ -7,4 +7,5 @@ using System.Text;
 public interface ILikeService
 {
     public Task<bool> ToggleLikeAsync(Guid fractalId, Guid userId);
+    public Task<bool> ToggleLikePostAsync(Guid postId, Guid userId);
 }
