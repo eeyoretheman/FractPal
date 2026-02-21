@@ -54,7 +54,7 @@ export interface FractalFeedResponse {
 }
 
 //  Post DTOs
-// Matches PostDto.cs exactly — note: no embedded fractal, has username
+// Matches PostDto.cs exactly - note: no embedded fractal, has username
 
 export interface PostDto {
   id: string;           // Guid serialised as string
