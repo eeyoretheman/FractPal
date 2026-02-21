@@ -52,7 +52,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                   .OnDelete(DeleteBehavior.Restrict);
 
             entity.HasIndex(p => p.AuthorId);
-            entity.HasIndex(p => p.FractalId);
+            entity.HasIndex(p => p.FractalId)
+                  .IsUnique();
             entity.HasIndex(p => p.CreatedAt);
         });
 

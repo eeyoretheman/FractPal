@@ -111,6 +111,10 @@ public class PostsController(IPostService postService, ILikeService likeService)
         {
             return this.Forbid();
         }
+        catch (InvalidOperationException)
+        {
+            return this.Conflict();
+        }
         catch (Exception)
         {
             return this.StatusCode(500, new { message = "An unexpected error occurred" });

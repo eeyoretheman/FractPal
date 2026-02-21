@@ -72,6 +72,9 @@ public class PostService(ApplicationDbContext dbContext) : IPostService
         if (fractal.AuthorId != userId)
             throw new UnauthorizedAccessException("You don't have permission to publish this fractal");
 
+        if (await this.context.Posts.FirstOrDefaultAsync(p => p.FractalId == fractalId) != null)
+            throw new InvalidOperationException("Cannot publish a fractal more than once");
+
         var post = new Post
         {
             Id = Guid.NewGuid(),
