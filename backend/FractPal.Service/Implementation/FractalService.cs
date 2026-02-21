@@ -72,7 +72,7 @@ public class FractalService(ApplicationDbContext context) : IFractalService
             XTranslation = request.XTranslation,
             YTranslation = request.YTranslation,
             Zoom = request.Zoom,
-            FractalThumbnailPath = request.ImageData ?? "",
+            Thumbnail = request.ImageData ?? "",
             CreatedAt = DateTime.UtcNow
         };
 
@@ -106,7 +106,7 @@ public class FractalService(ApplicationDbContext context) : IFractalService
                 XTranslation = request.XTranslation,
                 YTranslation = request.YTranslation,
                 Zoom = request.Zoom,
-                FractalThumbnailPath = request.ImageData ?? "",
+                Thumbnail = request.ImageData ?? "",
                 CreatedAt = DateTime.UtcNow
             };
 
@@ -131,7 +131,7 @@ public class FractalService(ApplicationDbContext context) : IFractalService
 
         if (!string.IsNullOrEmpty(request.ImageData))
         {
-            fractal.FractalThumbnailPath = request.ImageData;
+            fractal.Thumbnail = request.ImageData;
         }
 
         await this.context.SaveChangesAsync();
@@ -174,7 +174,7 @@ public class FractalService(ApplicationDbContext context) : IFractalService
             XTranslation = originalFractal.XTranslation,
             YTranslation = originalFractal.YTranslation,
             Zoom = originalFractal.Zoom,
-            FractalThumbnailPath = originalFractal.FractalThumbnailPath,
+            Thumbnail = originalFractal.Thumbnail,
             CreatedAt = DateTime.UtcNow
         };
 
@@ -195,7 +195,7 @@ public class FractalService(ApplicationDbContext context) : IFractalService
         CreatedAt = fractal.CreatedAt,
         PublishedAt = null, // No longer supported
         IsPublished = true, // All fractals are considered "published" now
-        ImageUrl = fractal.FractalThumbnailPath,
+        Thumbnail = fractal.Thumbnail,
         LikeCount = fractal.Likes?.Count ?? 0,
         IsLikedByCurrentUser = fractal.Likes?.Any(l => l.UserId == currentUserId) ?? false,
         Axiom = fractal.Axiom,
