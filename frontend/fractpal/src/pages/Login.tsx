@@ -28,14 +28,29 @@ const Login: React.FC = () => {
 
   return (
     <div className="auth-page">
+      <div className="auth-background">
+        <div className="auth-gradient auth-gradient-1"></div>
+        <div className="auth-gradient auth-gradient-2"></div>
+        <div className="auth-gradient auth-gradient-3"></div>
+      </div>
+
       <div className="auth-container fade-in">
+        <div className="auth-logo">
+          <div className="logo-fractal">🌿</div>
+        </div>
+
         <div className="auth-header">
-          <h1>FractPal</h1>
-          <p className="text-muted">Welcome back</p>
+          <h1>Welcome back</h1>
+          <p className="text-muted">Sign in to continue creating fractals</p>
         </div>
 
         <form onSubmit={handleSubmit} className="auth-form">
-          {error && <div className="error-message">{error}</div>}
+          {error && (
+            <div className="error-message fade-in">
+              <span className="error-icon">⚠️</span>
+              {error}
+            </div>
+          )}
 
           <div className="form-group">
             <label htmlFor="email">Email</label>
@@ -46,6 +61,7 @@ const Login: React.FC = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="your@email.com"
+              autoComplete="email"
             />
           </div>
 
@@ -57,19 +73,27 @@ const Login: React.FC = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              placeholder="••••••"
+              placeholder="Enter your password"
+              autoComplete="current-password"
             />
           </div>
 
-          <button type="submit" className="primary full-width" disabled={loading}>
-            {loading ? <span className="loading"></span> : 'Login'}
+          <button type="submit" className="primary w-full auth-button" disabled={loading}>
+            {loading ? (
+              <>
+                <span className="loading"></span>
+                <span>Signing in...</span>
+              </>
+            ) : (
+              'Sign in'
+            )}
           </button>
         </form>
 
         <div className="auth-footer">
           <p>
             Don't have an account?{' '}
-            <Link to="/register" className="link">Register</Link>
+            <Link to="/register" className="auth-link">Create one</Link>
           </p>
         </div>
       </div>
