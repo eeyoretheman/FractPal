@@ -89,7 +89,7 @@ const Home: React.FC = () => {
           <div className="fractals-grid">
             {fractals.map((fractal, index) => (
               <div key={fractal.id} className="fade-in" style={{ animationDelay: `${index * 0.05}s` }}>
-                <FractalCard fractal={fractal} onLike={handleLike} />
+                <FractalCard fractal={fractal} onLike={handleLike} showFork={true}/>
               </div>
             ))}
           </div>
