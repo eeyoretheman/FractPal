@@ -22,12 +22,7 @@ public class AuthService(
     /// <inheritdoc/>
     public async Task<LoginResponse> Login(HttpContext context, LoginRequest request)
     {
-        var user = await this.userManager.FindByEmailAsync(request.Email);
-
-        if (user == null)
-        {
-            throw new UnauthorizedAccessException("Invalid credentials");
-        }
+        var user = await this.userManager.FindByEmailAsync(request.Email) ?? throw new UnauthorizedAccessException("Invalid credentials");
 
         var result = await this.signInManager.CheckPasswordSignInAsync(user, request.Password, false);
 
@@ -36,14 +31,16 @@ public class AuthService(
             throw new UnauthorizedAccessException("Invalid credentials");
         }
 
-        var token = this.jwtService.GenerateToken(user);
+        var roles = await this.userManager.GetRolesAsync(user);
+        var token = await this.jwtService.GenerateToken(user);
 
         return new LoginResponse
         {
             Id = user.Id.ToString(),
             Username = user.UserName ?? "",
             Email = user.Email ?? "",
-            Token = token
+            Token = token,
+            IsAdmin = roles.Contains("Admin")
         };
     }
 
@@ -51,18 +48,12 @@ public class AuthService(
     public async Task<RegistrationResponse> Register(RegistrationRequest request)
     {
         var existingUser = await this.userManager.FindByEmailAsync(request.Email);
-
         if (existingUser != null)
-        {
             throw new InvalidOperationException("User with this email already exists");
-        }
 
         var existingUsername = await this.userManager.FindByNameAsync(request.Username);
-
         if (existingUsername != null)
-        {
             throw new InvalidOperationException("Username already taken");
-        }
 
         var user = new FractPalUser
         {
@@ -79,11 +70,14 @@ public class AuthService(
             throw new InvalidOperationException($"Registration failed: {errors}");
         }
 
+        var roles = await this.userManager.GetRolesAsync(user);
+
         return new RegistrationResponse
         {
             Id = user.Id.ToString(),
             Username = user.UserName,
-            Email = user.Email
+            Email = user.Email,
+            IsAdmin = roles.Contains("Admin")
         };
     }
 }
