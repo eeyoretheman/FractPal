@@ -213,7 +213,8 @@ public class FractalController(IFractalService fractalService, ILikeService like
         try
         {
             var userId = this.GetCurrentUserId();
-            await this.fractalService.DeleteFractalAsync(id, userId);
+            var isAdmin = this.User.IsInRole("Admin");
+            await this.fractalService.DeleteFractalAsync(id, userId, isAdmin);
             return this.NoContent();
         }
         catch (KeyNotFoundException)
