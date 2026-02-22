@@ -5,6 +5,7 @@ interface User {
   id: string;
   username: string;
   email: string;
+  isAdmin: boolean; // added
 }
 
 interface AuthContextType {
@@ -36,10 +37,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    // Check for stored token on mount
     const storedToken = localStorage.getItem('token');
     const storedUser = localStorage.getItem('user');
-
     if (storedToken && storedUser) {
       setToken(storedToken);
       setUser(JSON.parse(storedUser));
@@ -51,9 +50,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       const response = await fetch('http://localhost:8042/api/auth/login', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
 
@@ -63,17 +60,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       }
 
       const data = await response.json();
-
       const userData: User = {
         id: data.id,
         username: data.username,
         email: data.email,
+        isAdmin: data.isAdmin ?? false, // added
       };
 
       setUser(userData);
       setToken(data.token);
       setIsAuthenticated(true);
-
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(userData));
     } catch (error) {
@@ -86,9 +82,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       const response = await fetch('http://localhost:8042/api/auth/register', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, email, password }),
       });
 
@@ -97,7 +91,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         throw new Error(error.message || 'Registration failed');
       }
 
-      // After registration, automatically log in
+      // After registration, automatically log in to populate isAdmin correctly
       await login(email, password);
     } catch (error) {
       console.error('Registration error:', error);
