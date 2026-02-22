@@ -30,6 +30,8 @@ const PostDetail: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
 
+  console.log('PostDetail component mounted/rendered with id:', id);
+
   const [fractal, setFractal] = useState<Fractal | null>(null);
   const [comments, setComments] = useState<Comment[]>([]);
   const [loading, setLoading] = useState(true);

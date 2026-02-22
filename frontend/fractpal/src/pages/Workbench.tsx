@@ -9,6 +9,8 @@ const Workbench: React.FC = () => {
   const navigate = useNavigate();
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
+  console.log('Workbench component mounted/rendered with id:', id);
+
   const [name, setName] = useState('Untitled Fractal');
   const [axiom, setAxiom] = useState('F - - F - - F');
   const [rules, setRules] = useState('F = F + F - - F + F');

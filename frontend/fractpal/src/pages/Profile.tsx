@@ -235,14 +235,13 @@ const Profile: React.FC = () => {
                     <FractalCard
                       fractal={{
                         id: p.fractalId,
-                        postId: p.id,
                         name: p.name,
                         username: p.username,
                         userId: p.authorId,
-                        thumbnail: p.thumbnail,
+                        imageUrl: p.thumbnail,
                         likeCount: p.likeCount,
                         isLikedByCurrentUser: p.isLikedByCurrentUser,
-                        createdAt: p.createdAt,
+                        publishedAt: p.createdAt,
                       }}
                       onLike={handleLikePost}
                     />
@@ -276,10 +275,10 @@ const Profile: React.FC = () => {
                         name: f.name,
                         username: f.username,
                         userId: f.userId,
-                        thumbnail: f.thumbnail,
+                        imageUrl: f.thumbnail,
                         likeCount: f.likeCount,
                         isLikedByCurrentUser: f.isLikedByCurrentUser,
-                        createdAt: f.createdAt,
+                        publishedAt: undefined,
                       }}
                       onLike={handleLikeFractal}
                     />

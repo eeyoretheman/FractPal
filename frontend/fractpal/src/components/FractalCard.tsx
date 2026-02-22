@@ -3,24 +3,19 @@ import { Link, useNavigate } from 'react-router-dom';
 import { fractalApi } from '../services/api';
 import './FractalCard.css';
 
-export interface FractalCardFractal {
-  id: string;
-  name: string;
-  username: string;
-  userId: string;
-  thumbnail?: string | null;
-  likeCount: number;
-  forkCount?: number;
-  viewCount?: number;
-  isLikedByCurrentUser: boolean;
-  createdAt?: string | null;
-  publishedAt?: string | null;
-  postId?: string;
-}
-
 interface FractalCardProps {
-  fractal: FractalCardFractal;
-  isPosted?: boolean;
+  fractal: {
+    id: string;
+    name: string;
+    username: string;
+    userId: string;
+    imageUrl?: string;
+    likeCount: number;
+    isLikedByCurrentUser: boolean;
+    publishedAt?: string;
+    forkCount?: number;
+    viewCount?: number;
+  };
   onLike?: (id: string) => void;
   onDelete?: (id: string) => void;
   onPublish?: (id: string) => void;
@@ -31,7 +26,6 @@ interface FractalCardProps {
 
 const FractalCard: React.FC<FractalCardProps> = ({
   fractal,
-  isPosted = false,
   onLike,
   onDelete,
   onPublish,
@@ -40,26 +34,25 @@ const FractalCard: React.FC<FractalCardProps> = ({
   showFork = false,
 }) => {
   const navigate = useNavigate();
+  const [forking, setForking] = useState(false);
+  const [liking, setLiking] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
-  const [liking, setLiking] = useState(false);
-  const [forking, setForking] = useState(false);
 
-  const formatDate = (dateString?: string | null) => {
+  const formatDate = (dateString?: string) => {
     if (!dateString) return '';
-    return new Date(dateString).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-    });
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   };
 
   const handleFork = async (e: React.MouseEvent) => {
+    console.log('Fork button clicked for fractal:', fractal.id);
     e.preventDefault();
     e.stopPropagation();
     try {
       setForking(true);
       const forked = await fractalApi.forkFractal(fractal.id);
+      console.log('Forked fractal, navigating to:', `/workbench/${forked.id}`);
       navigate(`/workbench/${forked.id}`);
     } catch (error) {
       console.error('Failed to fork:', error);
@@ -75,33 +68,28 @@ const FractalCard: React.FC<FractalCardProps> = ({
     if (onLike) {
       setLiking(true);
       try {
-        await Promise.resolve(onLike(fractal.postId ?? fractal.id));
+        await Promise.resolve(onLike(fractal.id));
       } finally {
         setLiking(false);
       }
     }
   };
 
-  const hasThumbnail = !!fractal.thumbnail && !imageError;
+  const hasThumbnail = !!fractal.imageUrl && !imageError;
 
   return (
     <div className="fractal-card card">
-      <Link
-        to={`/workbench/${fractal.id}`}
-        className="fractal-preview"
-        aria-labelledby={`fractal-name-${fractal.id}`}
-      >
+      <Link to={`/post/${fractal.id}`} className="fractal-preview" aria-labelledby={`fractal-name-${fractal.id}`} onClick={() => console.log('Clicked preview link, navigating to:', `/post/${fractal.id}`)}>
         <div className="fractal-preview-container">
           {hasThumbnail ? (
             <>
               {!imageLoaded && <div className="skeleton-loader" aria-hidden="true" />}
               <img
-                src={fractal.thumbnail!}
+                src={fractal.imageUrl}
                 alt={`Preview of ${fractal.name}`}
                 className={`fractal-image ${imageLoaded ? 'visible' : 'hidden'}`}
                 onLoad={() => setImageLoaded(true)}
                 onError={() => setImageError(true)}
-                style={{ objectFit: 'contain', width: '100%', height: '100%' }}
               />
             </>
           ) : (
@@ -114,18 +102,10 @@ const FractalCard: React.FC<FractalCardProps> = ({
 
       <div className="fractal-info">
         <div className="fractal-header">
-          <Link
-            to={`/workbench/${fractal.id}`}
-            className="fractal-name"
-            id={`fractal-name-${fractal.id}`}
-          >
+          <Link to={`/post/${fractal.id}`} className="fractal-name" id={`fractal-name-${fractal.id}`} onClick={() => console.log('Clicked name link, navigating to:', `/post/${fractal.id}`)}>
             {fractal.name}
           </Link>
-          <Link
-            to={`/profile/${fractal.userId}`}
-            className="fractal-author"
-            title={`View ${fractal.username}'s profile`}
-          >
+          <Link to={`/profile/${fractal.userId}`} className="fractal-author" title={`View ${fractal.username}'s profile`}>
             @{fractal.username}
           </Link>
           {fractal.publishedAt && (
@@ -135,36 +115,18 @@ const FractalCard: React.FC<FractalCardProps> = ({
 
         <div className="fractal-metrics">
           {fractal.likeCount > 0 && (
-            <span
-              className="metric"
-              title={`${fractal.likeCount} like${fractal.likeCount !== 1 ? 's' : ''}`}
-            >
-              <span role="img" aria-label="likes">
-                ❤️
-              </span>{' '}
-              {fractal.likeCount}
+            <span className="metric" title={`${fractal.likeCount} like${fractal.likeCount !== 1 ? 's' : ''}`}>
+              <span role="img" aria-label="likes">❤️</span> {fractal.likeCount}
             </span>
           )}
           {fractal.forkCount && fractal.forkCount > 0 && (
-            <span
-              className="metric"
-              title={`${fractal.forkCount} fork${fractal.forkCount !== 1 ? 's' : ''}`}
-            >
-              <span role="img" aria-label="forks">
-                🔀
-              </span>{' '}
-              {fractal.forkCount}
+            <span className="metric" title={`${fractal.forkCount} fork${fractal.forkCount !== 1 ? 's' : ''}`}>
+              <span role="img" aria-label="forks">🔀</span> {fractal.forkCount}
             </span>
           )}
           {fractal.viewCount && fractal.viewCount > 0 && (
-            <span
-              className="metric"
-              title={`${fractal.viewCount} view${fractal.viewCount !== 1 ? 's' : ''}`}
-            >
-              <span role="img" aria-label="views">
-                👁️
-              </span>{' '}
-              {fractal.viewCount}
+            <span className="metric" title={`${fractal.viewCount} view${fractal.viewCount !== 1 ? 's' : ''}`}>
+              <span role="img" aria-label="views">👁️</span> {fractal.viewCount}
             </span>
           )}
         </div>
@@ -175,13 +137,9 @@ const FractalCard: React.FC<FractalCardProps> = ({
               <button
                 onClick={handleLike}
                 disabled={liking}
-                className={`action-button like-button ${
-                  fractal.isLikedByCurrentUser ? 'liked' : ''
-                }`}
+                className={`action-button like-button ${fractal.isLikedByCurrentUser ? 'liked' : ''}`}
                 title={fractal.isLikedByCurrentUser ? 'Unlike' : 'Like'}
-                aria-label={`Like this fractal. Currently ${
-                  fractal.isLikedByCurrentUser ? 'liked' : 'not liked'
-                }.`}
+                aria-label={`Like this fractal. Currently ${fractal.isLikedByCurrentUser ? 'liked' : 'not liked'}.`}
                 aria-pressed={fractal.isLikedByCurrentUser}
               >
                 <span className="icon">{fractal.isLikedByCurrentUser ? '❤️' : '♡'}</span>
@@ -203,21 +161,21 @@ const FractalCard: React.FC<FractalCardProps> = ({
 
           {showActions && (
             <div className="fractal-owner-actions">
-              {!fractal.publishedAt && onPublish && (
-                <button onClick={() => onPublish(fractal.id)} className="secondary small">
+              {onPublish && !fractal.publishedAt && (
+                <button onClick={() => onPublish(fractal.id)} className="button small secondary">
                   Publish
                 </button>
               )}
-              {isPosted && onUnpublish && (
-                <button onClick={() => onUnpublish(fractal.id)} className="secondary small">
-                  Unpost
+              {onUnpublish && fractal.publishedAt && (
+                <button onClick={() => onUnpublish(fractal.id)} className="button small secondary">
+                  Unpublish
                 </button>
               )}
-              <Link to={`/workbench/${fractal.id}`} className="button secondary small">
+              <Link to={`/workbench/${fractal.id}`} className="button small secondary">
                 ✏️ Edit
               </Link>
               {onDelete && (
-                <button onClick={() => onDelete(fractal.id)} className="danger small">
+                <button onClick={() => onDelete(fractal.id)} className="button small danger">
                   🗑️ Delete
                 </button>
               )}
@@ -230,3 +188,4 @@ const FractalCard: React.FC<FractalCardProps> = ({
 };
 
 export default FractalCard;
+
