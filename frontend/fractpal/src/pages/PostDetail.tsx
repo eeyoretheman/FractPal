@@ -21,7 +21,7 @@ interface Fractal {
   imageUrl?: string;
   likeCount: number;
   isLikedByCurrentUser: boolean;
-  publishedAt?: string;
+  publishedAt?: string | null;
   createdAt: string;
 }
 
