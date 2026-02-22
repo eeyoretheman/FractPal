@@ -90,7 +90,7 @@ const PostDetail: React.FC = () => {
     if (!editingText.trim()) return;
     try {
       const updated = await commentApi.updateComment(commentId, editingText);
-      setComments(comments.map(c => c.id === commentId ? updated : c));
+      setComments(comments.map((c: Comment) => c.id === commentId ? updated : c));
       setEditingCommentId(null);
       setEditingText('');
     } catch (err) {
@@ -102,7 +102,7 @@ const PostDetail: React.FC = () => {
   const handleDeleteComment = async (commentId: string) => {
     try {
       await commentApi.deleteComment(commentId);
-      setComments(comments.filter(c => c.id !== commentId));
+      setComments(comments.filter((c: Comment) => c.id !== commentId));
     } catch (err) {
       setError('Failed to delete comment');
       console.error(err);
