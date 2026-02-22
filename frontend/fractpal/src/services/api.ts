@@ -187,3 +187,62 @@ export const userApi = {
     return response.json();
   },
 };
+
+// Comment API
+export const commentApi = {
+  getCommentsByFractal: async (fractalId: string) => {
+    const response = await fetch(`${API_BASE_URL}/comment/fractal/${fractalId}`, {
+      headers: {
+        ...getAuthHeader(),
+      },
+    });
+    if (!response.ok) throw new Error('Failed to fetch comments');
+    return response.json();
+  },
+
+  getCommentById: async (id: string) => {
+    const response = await fetch(`${API_BASE_URL}/comment/${id}`, {
+      headers: {
+        ...getAuthHeader(),
+      },
+    });
+    if (!response.ok) throw new Error('Failed to fetch comment');
+    return response.json();
+  },
+
+  createComment: async (fractalId: string, content: string) => {
+    const response = await fetch(`${API_BASE_URL}/comment/${fractalId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader(),
+      },
+      body: JSON.stringify({ content }),
+    });
+    if (!response.ok) throw new Error('Failed to create comment');
+    return response.json();
+  },
+
+  updateComment: async (id: string, content: string) => {
+    const response = await fetch(`${API_BASE_URL}/comment/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader(),
+      },
+      body: JSON.stringify({ content }),
+    });
+    if (!response.ok) throw new Error('Failed to update comment');
+    return response.json();
+  },
+
+  deleteComment: async (id: string) => {
+    const response = await fetch(`${API_BASE_URL}/comment/${id}`, {
+      method: 'DELETE',
+      headers: {
+        ...getAuthHeader(),
+      },
+    });
+    if (!response.ok) throw new Error('Failed to delete comment');
+  },
+};
