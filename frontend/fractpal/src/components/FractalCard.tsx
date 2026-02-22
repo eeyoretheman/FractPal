@@ -77,7 +77,7 @@ const FractalCard: React.FC<FractalCardProps> = ({
 
   return (
     <div className="fractal-card card">
-      <Link to={`/workbench/${fractal.id}`} className="fractal-preview" aria-labelledby={`fractal-name-${fractal.id}`}>
+      <Link to={`/post/${fractal.id}`} className="fractal-preview" aria-labelledby={`fractal-name-${fractal.id}`}>
         <div className="fractal-preview-container">
           {hasThumbnail ? (
             <>
@@ -100,7 +100,7 @@ const FractalCard: React.FC<FractalCardProps> = ({
 
       <div className="fractal-info">
         <div className="fractal-header">
-          <Link to={`/workbench/${fractal.id}`} className="fractal-name" id={`fractal-name-${fractal.id}`}>
+          <Link to={`/post/${fractal.id}`} className="fractal-name" id={`fractal-name-${fractal.id}`}>
             {fractal.name}
           </Link>
           <Link to={`/profile/${fractal.userId}`} className="fractal-author" title={`View ${fractal.username}'s profile`}>
