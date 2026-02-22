@@ -1,0 +1,534 @@
+### YamlMime:ManagedReference
+items:
+- uid: FractPal.Service.Interface.ICommentService
+  commentId: T:FractPal.Service.Interface.ICommentService
+  id: ICommentService
+  parent: FractPal.Service.Interface
+  children:
+  - FractPal.Service.Interface.ICommentService.CreateComment(System.Guid,System.Guid,FractPal.Model.DTO.Comment.CreateCommentRequest)
+  - FractPal.Service.Interface.ICommentService.DeleteComment(System.Guid,System.Guid)
+  - FractPal.Service.Interface.ICommentService.GetCommentById(System.Guid)
+  - FractPal.Service.Interface.ICommentService.GetPostComments(System.Guid)
+  - FractPal.Service.Interface.ICommentService.UpdateComment(System.Guid,System.Guid,FractPal.Model.DTO.Comment.UpdateCommentRequest)
+  langs:
+  - csharp
+  - vb
+  name: ICommentService
+  nameWithType: ICommentService
+  fullName: FractPal.Service.Interface.ICommentService
+  type: Interface
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/ICommentService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: ICommentService
+    path: ../backend/FractPal.Service/Interface/ICommentService.cs
+    startLine: 8
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: >-
+    Provides business logic for creating, retrieving, updating, and deleting
+
+    comments on FractPal posts.
+  example: []
+  syntax:
+    content: public interface ICommentService
+    content.vb: Public Interface ICommentService
+- uid: FractPal.Service.Interface.ICommentService.GetCommentById(System.Guid)
+  commentId: M:FractPal.Service.Interface.ICommentService.GetCommentById(System.Guid)
+  id: GetCommentById(System.Guid)
+  parent: FractPal.Service.Interface.ICommentService
+  langs:
+  - csharp
+  - vb
+  name: GetCommentById(Guid)
+  nameWithType: ICommentService.GetCommentById(Guid)
+  fullName: FractPal.Service.Interface.ICommentService.GetCommentById(System.Guid)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/ICommentService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: GetCommentById
+    path: ../backend/FractPal.Service/Interface/ICommentService.cs
+    startLine: 16
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: Retrieves a single comment by its unique identifier.
+  example: []
+  syntax:
+    content: Task<CommentDto> GetCommentById(Guid commentId)
+    parameters:
+    - id: commentId
+      type: System.Guid
+      description: The unique identifier of the comment.
+    return:
+      type: System.Threading.Tasks.Task{FractPal.Model.DTO.Comment.CommentDto}
+      description: The matching <xref href="FractPal.Model.DTO.Comment.CommentDto" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Function GetCommentById(commentId As Guid) As Task(Of CommentDto)
+  overload: FractPal.Service.Interface.ICommentService.GetCommentById*
+  exceptions:
+  - type: System.Collections.Generic.KeyNotFoundException
+    commentId: T:System.Collections.Generic.KeyNotFoundException
+    description: Thrown when no comment exists with <code class="paramref">commentId</code>.
+- uid: FractPal.Service.Interface.ICommentService.GetPostComments(System.Guid)
+  commentId: M:FractPal.Service.Interface.ICommentService.GetPostComments(System.Guid)
+  id: GetPostComments(System.Guid)
+  parent: FractPal.Service.Interface.ICommentService
+  langs:
+  - csharp
+  - vb
+  name: GetPostComments(Guid)
+  nameWithType: ICommentService.GetPostComments(Guid)
+  fullName: FractPal.Service.Interface.ICommentService.GetPostComments(System.Guid)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/ICommentService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: GetPostComments
+    path: ../backend/FractPal.Service/Interface/ICommentService.cs
+    startLine: 23
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: Retrieves all comments on a given post, ordered chronologically.
+  example: []
+  syntax:
+    content: Task<List<CommentDto>> GetPostComments(Guid postId)
+    parameters:
+    - id: postId
+      type: System.Guid
+      description: The unique identifier of the post.
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.List{FractPal.Model.DTO.Comment.CommentDto}}
+      description: A list of <xref href="FractPal.Model.DTO.Comment.CommentDto" data-throw-if-not-resolved="false"></xref> for the post.
+    content.vb: Function GetPostComments(postId As Guid) As Task(Of List(Of CommentDto))
+  overload: FractPal.Service.Interface.ICommentService.GetPostComments*
+- uid: FractPal.Service.Interface.ICommentService.CreateComment(System.Guid,System.Guid,FractPal.Model.DTO.Comment.CreateCommentRequest)
+  commentId: M:FractPal.Service.Interface.ICommentService.CreateComment(System.Guid,System.Guid,FractPal.Model.DTO.Comment.CreateCommentRequest)
+  id: CreateComment(System.Guid,System.Guid,FractPal.Model.DTO.Comment.CreateCommentRequest)
+  parent: FractPal.Service.Interface.ICommentService
+  langs:
+  - csharp
+  - vb
+  name: CreateComment(Guid, Guid, CreateCommentRequest)
+  nameWithType: ICommentService.CreateComment(Guid, Guid, CreateCommentRequest)
+  fullName: FractPal.Service.Interface.ICommentService.CreateComment(System.Guid, System.Guid, FractPal.Model.DTO.Comment.CreateCommentRequest)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/ICommentService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: CreateComment
+    path: ../backend/FractPal.Service/Interface/ICommentService.cs
+    startLine: 33
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: Creates a new comment on the specified post.
+  example: []
+  syntax:
+    content: Task<CommentDto> CreateComment(Guid userId, Guid postId, CreateCommentRequest request)
+    parameters:
+    - id: userId
+      type: System.Guid
+      description: The ID of the user creating the comment.
+    - id: postId
+      type: System.Guid
+      description: The ID of the post being commented on.
+    - id: request
+      type: FractPal.Model.DTO.Comment.CreateCommentRequest
+      description: The comment content.
+    return:
+      type: System.Threading.Tasks.Task{FractPal.Model.DTO.Comment.CommentDto}
+      description: The newly created <xref href="FractPal.Model.DTO.Comment.CommentDto" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Function CreateComment(userId As Guid, postId As Guid, request As CreateCommentRequest) As Task(Of CommentDto)
+  overload: FractPal.Service.Interface.ICommentService.CreateComment*
+  exceptions:
+  - type: System.Collections.Generic.KeyNotFoundException
+    commentId: T:System.Collections.Generic.KeyNotFoundException
+    description: Thrown when no post exists with <code class="paramref">postId</code>.
+- uid: FractPal.Service.Interface.ICommentService.UpdateComment(System.Guid,System.Guid,FractPal.Model.DTO.Comment.UpdateCommentRequest)
+  commentId: M:FractPal.Service.Interface.ICommentService.UpdateComment(System.Guid,System.Guid,FractPal.Model.DTO.Comment.UpdateCommentRequest)
+  id: UpdateComment(System.Guid,System.Guid,FractPal.Model.DTO.Comment.UpdateCommentRequest)
+  parent: FractPal.Service.Interface.ICommentService
+  langs:
+  - csharp
+  - vb
+  name: UpdateComment(Guid, Guid, UpdateCommentRequest)
+  nameWithType: ICommentService.UpdateComment(Guid, Guid, UpdateCommentRequest)
+  fullName: FractPal.Service.Interface.ICommentService.UpdateComment(System.Guid, System.Guid, FractPal.Model.DTO.Comment.UpdateCommentRequest)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/ICommentService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: UpdateComment
+    path: ../backend/FractPal.Service/Interface/ICommentService.cs
+    startLine: 44
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: Updates the content of an existing comment. Only the comment's author may edit it.
+  example: []
+  syntax:
+    content: Task<CommentDto> UpdateComment(Guid userId, Guid commentId, UpdateCommentRequest request)
+    parameters:
+    - id: userId
+      type: System.Guid
+      description: The ID of the requesting user.
+    - id: commentId
+      type: System.Guid
+      description: The ID of the comment to update.
+    - id: request
+      type: FractPal.Model.DTO.Comment.UpdateCommentRequest
+      description: The updated comment content.
+    return:
+      type: System.Threading.Tasks.Task{FractPal.Model.DTO.Comment.CommentDto}
+      description: The updated <xref href="FractPal.Model.DTO.Comment.CommentDto" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Function UpdateComment(userId As Guid, commentId As Guid, request As UpdateCommentRequest) As Task(Of CommentDto)
+  overload: FractPal.Service.Interface.ICommentService.UpdateComment*
+  exceptions:
+  - type: System.Collections.Generic.KeyNotFoundException
+    commentId: T:System.Collections.Generic.KeyNotFoundException
+    description: Thrown when no comment exists with <code class="paramref">commentId</code>.
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: Thrown when the requesting user is not the comment's author.
+- uid: FractPal.Service.Interface.ICommentService.DeleteComment(System.Guid,System.Guid)
+  commentId: M:FractPal.Service.Interface.ICommentService.DeleteComment(System.Guid,System.Guid)
+  id: DeleteComment(System.Guid,System.Guid)
+  parent: FractPal.Service.Interface.ICommentService
+  langs:
+  - csharp
+  - vb
+  name: DeleteComment(Guid, Guid)
+  nameWithType: ICommentService.DeleteComment(Guid, Guid)
+  fullName: FractPal.Service.Interface.ICommentService.DeleteComment(System.Guid, System.Guid)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/ICommentService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: DeleteComment
+    path: ../backend/FractPal.Service/Interface/ICommentService.cs
+    startLine: 53
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: Permanently deletes a comment. Only the comment's author may perform this operation.
+  example: []
+  syntax:
+    content: Task DeleteComment(Guid userId, Guid commentId)
+    parameters:
+    - id: userId
+      type: System.Guid
+      description: The ID of the requesting user.
+    - id: commentId
+      type: System.Guid
+      description: The ID of the comment to delete.
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Function DeleteComment(userId As Guid, commentId As Guid) As Task
+  overload: FractPal.Service.Interface.ICommentService.DeleteComment*
+  exceptions:
+  - type: System.Collections.Generic.KeyNotFoundException
+    commentId: T:System.Collections.Generic.KeyNotFoundException
+    description: Thrown when no comment exists with <code class="paramref">commentId</code>.
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: Thrown when the requesting user is not the comment's author.
+references:
+- uid: FractPal.Service.Interface
+  commentId: N:FractPal.Service.Interface
+  href: FractPal.html
+  name: FractPal.Service.Interface
+  nameWithType: FractPal.Service.Interface
+  fullName: FractPal.Service.Interface
+  spec.csharp:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Service
+    name: Service
+    href: FractPal.Service.html
+  - name: .
+  - uid: FractPal.Service.Interface
+    name: Interface
+    href: FractPal.Service.Interface.html
+  spec.vb:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Service
+    name: Service
+    href: FractPal.Service.html
+  - name: .
+  - uid: FractPal.Service.Interface
+    name: Interface
+    href: FractPal.Service.Interface.html
+- uid: FractPal.Model.DTO.Comment.CommentDto
+  commentId: T:FractPal.Model.DTO.Comment.CommentDto
+  name: CommentDto
+  nameWithType: CommentDto
+  fullName: FractPal.Model.DTO.Comment.CommentDto
+- uid: System.Collections.Generic.KeyNotFoundException
+  commentId: T:System.Collections.Generic.KeyNotFoundException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keynotfoundexception
+  name: KeyNotFoundException
+  nameWithType: KeyNotFoundException
+  fullName: System.Collections.Generic.KeyNotFoundException
+- uid: FractPal.Service.Interface.ICommentService.GetCommentById*
+  commentId: Overload:FractPal.Service.Interface.ICommentService.GetCommentById
+  href: FractPal.Service.Interface.ICommentService.html#FractPal_Service_Interface_ICommentService_GetCommentById_System_Guid_
+  name: GetCommentById
+  nameWithType: ICommentService.GetCommentById
+  fullName: FractPal.Service.Interface.ICommentService.GetCommentById
+- uid: System.Guid
+  commentId: T:System.Guid
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.guid
+  name: Guid
+  nameWithType: Guid
+  fullName: System.Guid
+- uid: System.Threading.Tasks.Task{FractPal.Model.DTO.Comment.CommentDto}
+  commentId: T:System.Threading.Tasks.Task{FractPal.Model.DTO.Comment.CommentDto}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<CommentDto>
+  nameWithType: Task<CommentDto>
+  fullName: System.Threading.Tasks.Task<FractPal.Model.DTO.Comment.CommentDto>
+  nameWithType.vb: Task(Of CommentDto)
+  fullName.vb: System.Threading.Tasks.Task(Of FractPal.Model.DTO.Comment.CommentDto)
+  name.vb: Task(Of CommentDto)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: FractPal.Model.DTO.Comment.CommentDto
+    name: CommentDto
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FractPal.Model.DTO.Comment.CommentDto
+    name: CommentDto
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: FractPal.Service.Interface.ICommentService.GetPostComments*
+  commentId: Overload:FractPal.Service.Interface.ICommentService.GetPostComments
+  href: FractPal.Service.Interface.ICommentService.html#FractPal_Service_Interface_ICommentService_GetPostComments_System_Guid_
+  name: GetPostComments
+  nameWithType: ICommentService.GetPostComments
+  fullName: FractPal.Service.Interface.ICommentService.GetPostComments
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.List{FractPal.Model.DTO.Comment.CommentDto}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.List{FractPal.Model.DTO.Comment.CommentDto}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<List<CommentDto>>
+  nameWithType: Task<List<CommentDto>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.List<FractPal.Model.DTO.Comment.CommentDto>>
+  nameWithType.vb: Task(Of List(Of CommentDto))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.List(Of FractPal.Model.DTO.Comment.CommentDto))
+  name.vb: Task(Of List(Of CommentDto))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: FractPal.Model.DTO.Comment.CommentDto
+    name: CommentDto
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FractPal.Model.DTO.Comment.CommentDto
+    name: CommentDto
+  - name: )
+  - name: )
+- uid: FractPal.Service.Interface.ICommentService.CreateComment*
+  commentId: Overload:FractPal.Service.Interface.ICommentService.CreateComment
+  href: FractPal.Service.Interface.ICommentService.html#FractPal_Service_Interface_ICommentService_CreateComment_System_Guid_System_Guid_FractPal_Model_DTO_Comment_CreateCommentRequest_
+  name: CreateComment
+  nameWithType: ICommentService.CreateComment
+  fullName: FractPal.Service.Interface.ICommentService.CreateComment
+- uid: FractPal.Model.DTO.Comment.CreateCommentRequest
+  commentId: T:FractPal.Model.DTO.Comment.CreateCommentRequest
+  parent: FractPal.Model.DTO.Comment
+  name: CreateCommentRequest
+  nameWithType: CreateCommentRequest
+  fullName: FractPal.Model.DTO.Comment.CreateCommentRequest
+- uid: FractPal.Model.DTO.Comment
+  commentId: N:FractPal.Model.DTO.Comment
+  name: FractPal.Model.DTO.Comment
+  nameWithType: FractPal.Model.DTO.Comment
+  fullName: FractPal.Model.DTO.Comment
+  spec.csharp:
+  - uid: FractPal
+    name: FractPal
+  - name: .
+  - uid: FractPal.Model
+    name: Model
+  - name: .
+  - uid: FractPal.Model.DTO
+    name: DTO
+  - name: .
+  - uid: FractPal.Model.DTO.Comment
+    name: Comment
+  spec.vb:
+  - uid: FractPal
+    name: FractPal
+  - name: .
+  - uid: FractPal.Model
+    name: Model
+  - name: .
+  - uid: FractPal.Model.DTO
+    name: DTO
+  - name: .
+  - uid: FractPal.Model.DTO.Comment
+    name: Comment
+- uid: System.UnauthorizedAccessException
+  commentId: T:System.UnauthorizedAccessException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception
+  name: UnauthorizedAccessException
+  nameWithType: UnauthorizedAccessException
+  fullName: System.UnauthorizedAccessException
+- uid: FractPal.Service.Interface.ICommentService.UpdateComment*
+  commentId: Overload:FractPal.Service.Interface.ICommentService.UpdateComment
+  href: FractPal.Service.Interface.ICommentService.html#FractPal_Service_Interface_ICommentService_UpdateComment_System_Guid_System_Guid_FractPal_Model_DTO_Comment_UpdateCommentRequest_
+  name: UpdateComment
+  nameWithType: ICommentService.UpdateComment
+  fullName: FractPal.Service.Interface.ICommentService.UpdateComment
+- uid: FractPal.Model.DTO.Comment.UpdateCommentRequest
+  commentId: T:FractPal.Model.DTO.Comment.UpdateCommentRequest
+  parent: FractPal.Model.DTO.Comment
+  name: UpdateCommentRequest
+  nameWithType: UpdateCommentRequest
+  fullName: FractPal.Model.DTO.Comment.UpdateCommentRequest
+- uid: FractPal.Service.Interface.ICommentService.DeleteComment*
+  commentId: Overload:FractPal.Service.Interface.ICommentService.DeleteComment
+  href: FractPal.Service.Interface.ICommentService.html#FractPal_Service_Interface_ICommentService_DeleteComment_System_Guid_System_Guid_
+  name: DeleteComment
+  nameWithType: ICommentService.DeleteComment
+  fullName: FractPal.Service.Interface.ICommentService.DeleteComment
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task

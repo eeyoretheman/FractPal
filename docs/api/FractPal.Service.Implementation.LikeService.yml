@@ -1,0 +1,726 @@
+### YamlMime:ManagedReference
+items:
+- uid: FractPal.Service.Implementation.LikeService
+  commentId: T:FractPal.Service.Implementation.LikeService
+  id: LikeService
+  parent: FractPal.Service.Implementation
+  children:
+  - FractPal.Service.Implementation.LikeService.#ctor(FractPal.Data.ApplicationDbContext)
+  - FractPal.Service.Implementation.LikeService.ToggleLikeAsync(System.Guid,System.Guid)
+  - FractPal.Service.Implementation.LikeService.ToggleLikePostAsync(System.Guid,System.Guid)
+  langs:
+  - csharp
+  - vb
+  name: LikeService
+  nameWithType: LikeService
+  fullName: FractPal.Service.Implementation.LikeService
+  type: Class
+  source:
+    remote:
+      path: backend/FractPal.Service/Implementation/LikeService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: LikeService
+    path: ../backend/FractPal.Service/Implementation/LikeService.cs
+    startLine: 12
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Implementation
+  summary: >-
+    Implements like/unlike toggle logic for fractals and posts.
+
+    Likes are stored at the fractal level; post likes resolve to the
+
+    underlying fractal.
+  example: []
+  syntax:
+    content: 'public class LikeService : ILikeService'
+    content.vb: Public Class LikeService Implements ILikeService
+  inheritance:
+  - System.Object
+  implements:
+  - FractPal.Service.Interface.ILikeService
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: FractPal.Service.Implementation.LikeService.#ctor(FractPal.Data.ApplicationDbContext)
+  commentId: M:FractPal.Service.Implementation.LikeService.#ctor(FractPal.Data.ApplicationDbContext)
+  id: '#ctor(FractPal.Data.ApplicationDbContext)'
+  parent: FractPal.Service.Implementation.LikeService
+  langs:
+  - csharp
+  - vb
+  name: LikeService(ApplicationDbContext)
+  nameWithType: LikeService.LikeService(ApplicationDbContext)
+  fullName: FractPal.Service.Implementation.LikeService.LikeService(FractPal.Data.ApplicationDbContext)
+  type: Constructor
+  source:
+    remote:
+      path: backend/FractPal.Service/Implementation/LikeService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: .ctor
+    path: ../backend/FractPal.Service/Implementation/LikeService.cs
+    startLine: 12
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Implementation
+  summary: >-
+    Implements like/unlike toggle logic for fractals and posts.
+
+    Likes are stored at the fractal level; post likes resolve to the
+
+    underlying fractal.
+  example: []
+  syntax:
+    content: public LikeService(ApplicationDbContext dbContext)
+    parameters:
+    - id: dbContext
+      type: FractPal.Data.ApplicationDbContext
+    content.vb: Public Sub New(dbContext As ApplicationDbContext)
+  overload: FractPal.Service.Implementation.LikeService.#ctor*
+  nameWithType.vb: LikeService.New(ApplicationDbContext)
+  fullName.vb: FractPal.Service.Implementation.LikeService.New(FractPal.Data.ApplicationDbContext)
+  name.vb: New(ApplicationDbContext)
+- uid: FractPal.Service.Implementation.LikeService.ToggleLikeAsync(System.Guid,System.Guid)
+  commentId: M:FractPal.Service.Implementation.LikeService.ToggleLikeAsync(System.Guid,System.Guid)
+  id: ToggleLikeAsync(System.Guid,System.Guid)
+  parent: FractPal.Service.Implementation.LikeService
+  langs:
+  - csharp
+  - vb
+  name: ToggleLikeAsync(Guid, Guid)
+  nameWithType: LikeService.ToggleLikeAsync(Guid, Guid)
+  fullName: FractPal.Service.Implementation.LikeService.ToggleLikeAsync(System.Guid, System.Guid)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Implementation/LikeService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: ToggleLikeAsync
+    path: ../backend/FractPal.Service/Implementation/LikeService.cs
+    startLine: 17
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Implementation
+  summary: Toggles the like state for a fractal by the specified user.
+  example: []
+  syntax:
+    content: public Task<bool> ToggleLikeAsync(Guid fractalId, Guid userId)
+    parameters:
+    - id: fractalId
+      type: System.Guid
+      description: The unique identifier of the fractal.
+    - id: userId
+      type: System.Guid
+      description: The ID of the user performing the action.
+    return:
+      type: System.Threading.Tasks.Task{System.Boolean}
+      description: <code>true</code> if the fractal is now liked; <code>false</code> if the like was removed.
+    content.vb: Public Function ToggleLikeAsync(fractalId As Guid, userId As Guid) As Task(Of Boolean)
+  overload: FractPal.Service.Implementation.LikeService.ToggleLikeAsync*
+  exceptions:
+  - type: System.Collections.Generic.KeyNotFoundException
+    commentId: T:System.Collections.Generic.KeyNotFoundException
+    description: Thrown when no fractal exists with <code class="paramref">fractalId</code>.
+  implements:
+  - FractPal.Service.Interface.ILikeService.ToggleLikeAsync(System.Guid,System.Guid)
+- uid: FractPal.Service.Implementation.LikeService.ToggleLikePostAsync(System.Guid,System.Guid)
+  commentId: M:FractPal.Service.Implementation.LikeService.ToggleLikePostAsync(System.Guid,System.Guid)
+  id: ToggleLikePostAsync(System.Guid,System.Guid)
+  parent: FractPal.Service.Implementation.LikeService
+  langs:
+  - csharp
+  - vb
+  name: ToggleLikePostAsync(Guid, Guid)
+  nameWithType: LikeService.ToggleLikePostAsync(Guid, Guid)
+  fullName: FractPal.Service.Implementation.LikeService.ToggleLikePostAsync(System.Guid, System.Guid)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Implementation/LikeService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: ToggleLikePostAsync
+    path: ../backend/FractPal.Service/Implementation/LikeService.cs
+    startLine: 58
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Implementation
+  summary: Toggles the like state for a post by resolving it to its underlying fractal.
+  example: []
+  syntax:
+    content: public Task<bool> ToggleLikePostAsync(Guid postId, Guid userId)
+    parameters:
+    - id: postId
+      type: System.Guid
+      description: The unique identifier of the post.
+    - id: userId
+      type: System.Guid
+      description: The ID of the user performing the action.
+    return:
+      type: System.Threading.Tasks.Task{System.Boolean}
+      description: <code>true</code> if the post's fractal is now liked; <code>false</code> if the like was removed.
+    content.vb: Public Function ToggleLikePostAsync(postId As Guid, userId As Guid) As Task(Of Boolean)
+  overload: FractPal.Service.Implementation.LikeService.ToggleLikePostAsync*
+  exceptions:
+  - type: System.Collections.Generic.KeyNotFoundException
+    commentId: T:System.Collections.Generic.KeyNotFoundException
+    description: Thrown when no post exists with <code class="paramref">postId</code>.
+  implements:
+  - FractPal.Service.Interface.ILikeService.ToggleLikePostAsync(System.Guid,System.Guid)
+references:
+- uid: FractPal.Service.Implementation
+  commentId: N:FractPal.Service.Implementation
+  href: FractPal.html
+  name: FractPal.Service.Implementation
+  nameWithType: FractPal.Service.Implementation
+  fullName: FractPal.Service.Implementation
+  spec.csharp:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Service
+    name: Service
+    href: FractPal.Service.html
+  - name: .
+  - uid: FractPal.Service.Implementation
+    name: Implementation
+    href: FractPal.Service.Implementation.html
+  spec.vb:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Service
+    name: Service
+    href: FractPal.Service.html
+  - name: .
+  - uid: FractPal.Service.Implementation
+    name: Implementation
+    href: FractPal.Service.Implementation.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: FractPal.Service.Interface.ILikeService
+  commentId: T:FractPal.Service.Interface.ILikeService
+  parent: FractPal.Service.Interface
+  href: FractPal.Service.Interface.ILikeService.html
+  name: ILikeService
+  nameWithType: ILikeService
+  fullName: FractPal.Service.Interface.ILikeService
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FractPal.Service.Interface
+  commentId: N:FractPal.Service.Interface
+  href: FractPal.html
+  name: FractPal.Service.Interface
+  nameWithType: FractPal.Service.Interface
+  fullName: FractPal.Service.Interface
+  spec.csharp:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Service
+    name: Service
+    href: FractPal.Service.html
+  - name: .
+  - uid: FractPal.Service.Interface
+    name: Interface
+    href: FractPal.Service.Interface.html
+  spec.vb:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Service
+    name: Service
+    href: FractPal.Service.html
+  - name: .
+  - uid: FractPal.Service.Interface
+    name: Interface
+    href: FractPal.Service.Interface.html
+- uid: FractPal.Service.Implementation.LikeService.#ctor*
+  commentId: Overload:FractPal.Service.Implementation.LikeService.#ctor
+  href: FractPal.Service.Implementation.LikeService.html#FractPal_Service_Implementation_LikeService__ctor_FractPal_Data_ApplicationDbContext_
+  name: LikeService
+  nameWithType: LikeService.LikeService
+  fullName: FractPal.Service.Implementation.LikeService.LikeService
+  nameWithType.vb: LikeService.New
+  fullName.vb: FractPal.Service.Implementation.LikeService.New
+  name.vb: New
+- uid: FractPal.Data.ApplicationDbContext
+  commentId: T:FractPal.Data.ApplicationDbContext
+  parent: FractPal.Data
+  name: ApplicationDbContext
+  nameWithType: ApplicationDbContext
+  fullName: FractPal.Data.ApplicationDbContext
+- uid: FractPal.Data
+  commentId: N:FractPal.Data
+  href: FractPal.html
+  name: FractPal.Data
+  nameWithType: FractPal.Data
+  fullName: FractPal.Data
+  spec.csharp:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Data
+    name: Data
+    href: FractPal.Data.html
+  spec.vb:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Data
+    name: Data
+    href: FractPal.Data.html
+- uid: System.Collections.Generic.KeyNotFoundException
+  commentId: T:System.Collections.Generic.KeyNotFoundException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keynotfoundexception
+  name: KeyNotFoundException
+  nameWithType: KeyNotFoundException
+  fullName: System.Collections.Generic.KeyNotFoundException
+- uid: FractPal.Service.Implementation.LikeService.ToggleLikeAsync*
+  commentId: Overload:FractPal.Service.Implementation.LikeService.ToggleLikeAsync
+  href: FractPal.Service.Implementation.LikeService.html#FractPal_Service_Implementation_LikeService_ToggleLikeAsync_System_Guid_System_Guid_
+  name: ToggleLikeAsync
+  nameWithType: LikeService.ToggleLikeAsync
+  fullName: FractPal.Service.Implementation.LikeService.ToggleLikeAsync
+- uid: FractPal.Service.Interface.ILikeService.ToggleLikeAsync(System.Guid,System.Guid)
+  commentId: M:FractPal.Service.Interface.ILikeService.ToggleLikeAsync(System.Guid,System.Guid)
+  parent: FractPal.Service.Interface.ILikeService
+  isExternal: true
+  href: FractPal.Service.Interface.ILikeService.html#FractPal_Service_Interface_ILikeService_ToggleLikeAsync_System_Guid_System_Guid_
+  name: ToggleLikeAsync(Guid, Guid)
+  nameWithType: ILikeService.ToggleLikeAsync(Guid, Guid)
+  fullName: FractPal.Service.Interface.ILikeService.ToggleLikeAsync(System.Guid, System.Guid)
+  spec.csharp:
+  - uid: FractPal.Service.Interface.ILikeService.ToggleLikeAsync(System.Guid,System.Guid)
+    name: ToggleLikeAsync
+    href: FractPal.Service.Interface.ILikeService.html#FractPal_Service_Interface_ILikeService_ToggleLikeAsync_System_Guid_System_Guid_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+  spec.vb:
+  - uid: FractPal.Service.Interface.ILikeService.ToggleLikeAsync(System.Guid,System.Guid)
+    name: ToggleLikeAsync
+    href: FractPal.Service.Interface.ILikeService.html#FractPal_Service_Interface_ILikeService_ToggleLikeAsync_System_Guid_System_Guid_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+- uid: System.Guid
+  commentId: T:System.Guid
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.guid
+  name: Guid
+  nameWithType: Guid
+  fullName: System.Guid
+- uid: System.Threading.Tasks.Task{System.Boolean}
+  commentId: T:System.Threading.Tasks.Task{System.Boolean}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<bool>
+  nameWithType: Task<bool>
+  fullName: System.Threading.Tasks.Task<bool>
+  nameWithType.vb: Task(Of Boolean)
+  fullName.vb: System.Threading.Tasks.Task(Of Boolean)
+  name.vb: Task(Of Boolean)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: FractPal.Service.Implementation.LikeService.ToggleLikePostAsync*
+  commentId: Overload:FractPal.Service.Implementation.LikeService.ToggleLikePostAsync
+  href: FractPal.Service.Implementation.LikeService.html#FractPal_Service_Implementation_LikeService_ToggleLikePostAsync_System_Guid_System_Guid_
+  name: ToggleLikePostAsync
+  nameWithType: LikeService.ToggleLikePostAsync
+  fullName: FractPal.Service.Implementation.LikeService.ToggleLikePostAsync
+- uid: FractPal.Service.Interface.ILikeService.ToggleLikePostAsync(System.Guid,System.Guid)
+  commentId: M:FractPal.Service.Interface.ILikeService.ToggleLikePostAsync(System.Guid,System.Guid)
+  parent: FractPal.Service.Interface.ILikeService
+  isExternal: true
+  href: FractPal.Service.Interface.ILikeService.html#FractPal_Service_Interface_ILikeService_ToggleLikePostAsync_System_Guid_System_Guid_
+  name: ToggleLikePostAsync(Guid, Guid)
+  nameWithType: ILikeService.ToggleLikePostAsync(Guid, Guid)
+  fullName: FractPal.Service.Interface.ILikeService.ToggleLikePostAsync(System.Guid, System.Guid)
+  spec.csharp:
+  - uid: FractPal.Service.Interface.ILikeService.ToggleLikePostAsync(System.Guid,System.Guid)
+    name: ToggleLikePostAsync
+    href: FractPal.Service.Interface.ILikeService.html#FractPal_Service_Interface_ILikeService_ToggleLikePostAsync_System_Guid_System_Guid_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+  spec.vb:
+  - uid: FractPal.Service.Interface.ILikeService.ToggleLikePostAsync(System.Guid,System.Guid)
+    name: ToggleLikePostAsync
+    href: FractPal.Service.Interface.ILikeService.html#FractPal_Service_Interface_ILikeService_ToggleLikePostAsync_System_Guid_System_Guid_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )

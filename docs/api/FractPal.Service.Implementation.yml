@@ -1,0 +1,72 @@
+### YamlMime:ManagedReference
+items:
+- uid: FractPal.Service.Implementation
+  commentId: N:FractPal.Service.Implementation
+  id: FractPal.Service.Implementation
+  children:
+  - FractPal.Service.Implementation.AuthService
+  - FractPal.Service.Implementation.CommentService
+  - FractPal.Service.Implementation.FractalService
+  - FractPal.Service.Implementation.JwtService
+  - FractPal.Service.Implementation.LikeService
+  - FractPal.Service.Implementation.PostService
+  - FractPal.Service.Implementation.RefreshTokenService
+  - FractPal.Service.Implementation.UserService
+  langs:
+  - csharp
+  - vb
+  name: FractPal.Service.Implementation
+  nameWithType: FractPal.Service.Implementation
+  fullName: FractPal.Service.Implementation
+  type: Namespace
+  assemblies:
+  - FractPal.Service
+references:
+- uid: FractPal.Service.Implementation.AuthService
+  commentId: T:FractPal.Service.Implementation.AuthService
+  href: FractPal.Service.Implementation.AuthService.html
+  name: AuthService
+  nameWithType: AuthService
+  fullName: FractPal.Service.Implementation.AuthService
+- uid: FractPal.Service.Implementation.CommentService
+  commentId: T:FractPal.Service.Implementation.CommentService
+  href: FractPal.Service.Implementation.CommentService.html
+  name: CommentService
+  nameWithType: CommentService
+  fullName: FractPal.Service.Implementation.CommentService
+- uid: FractPal.Service.Implementation.FractalService
+  commentId: T:FractPal.Service.Implementation.FractalService
+  href: FractPal.Service.Implementation.FractalService.html
+  name: FractalService
+  nameWithType: FractalService
+  fullName: FractPal.Service.Implementation.FractalService
+- uid: FractPal.Service.Implementation.JwtService
+  commentId: T:FractPal.Service.Implementation.JwtService
+  href: FractPal.Service.Implementation.JwtService.html
+  name: JwtService
+  nameWithType: JwtService
+  fullName: FractPal.Service.Implementation.JwtService
+- uid: FractPal.Service.Implementation.LikeService
+  commentId: T:FractPal.Service.Implementation.LikeService
+  href: FractPal.Service.Implementation.LikeService.html
+  name: LikeService
+  nameWithType: LikeService
+  fullName: FractPal.Service.Implementation.LikeService
+- uid: FractPal.Service.Implementation.PostService
+  commentId: T:FractPal.Service.Implementation.PostService
+  href: FractPal.Service.Implementation.PostService.html
+  name: PostService
+  nameWithType: PostService
+  fullName: FractPal.Service.Implementation.PostService
+- uid: FractPal.Service.Implementation.RefreshTokenService
+  commentId: T:FractPal.Service.Implementation.RefreshTokenService
+  href: FractPal.Service.Implementation.RefreshTokenService.html
+  name: RefreshTokenService
+  nameWithType: RefreshTokenService
+  fullName: FractPal.Service.Implementation.RefreshTokenService
+- uid: FractPal.Service.Implementation.UserService
+  commentId: T:FractPal.Service.Implementation.UserService
+  href: FractPal.Service.Implementation.UserService.html
+  name: UserService
+  nameWithType: UserService
+  fullName: FractPal.Service.Implementation.UserService

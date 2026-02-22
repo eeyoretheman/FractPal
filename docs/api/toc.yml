@@ -1,0 +1,91 @@
+### YamlMime:TableOfContent
+items:
+- uid: FractPal.API.Controllers
+  name: FractPal.API.Controllers
+  type: Namespace
+  items:
+  - uid: FractPal.API.Controllers.AuthController
+    name: AuthController
+    type: Class
+  - uid: FractPal.API.Controllers.CommentsController
+    name: CommentsController
+    type: Class
+  - uid: FractPal.API.Controllers.FractalController
+    name: FractalController
+    type: Class
+  - uid: FractPal.API.Controllers.PostsController
+    name: PostsController
+    type: Class
+  - uid: FractPal.API.Controllers.UserController
+    name: UserController
+    type: Class
+- uid: FractPal.Data
+  name: FractPal.Data
+  type: Namespace
+  items:
+  - uid: FractPal.Data.IRepository`1
+    name: IRepository<T>
+    type: Interface
+  - uid: FractPal.Data.Repository`1
+    name: Repository<T>
+    type: Class
+- uid: FractPal.Service.Implementation
+  name: FractPal.Service.Implementation
+  type: Namespace
+  items:
+  - uid: FractPal.Service.Implementation.AuthService
+    name: AuthService
+    type: Class
+  - uid: FractPal.Service.Implementation.CommentService
+    name: CommentService
+    type: Class
+  - uid: FractPal.Service.Implementation.FractalService
+    name: FractalService
+    type: Class
+  - uid: FractPal.Service.Implementation.JwtService
+    name: JwtService
+    type: Class
+  - uid: FractPal.Service.Implementation.LikeService
+    name: LikeService
+    type: Class
+  - uid: FractPal.Service.Implementation.PostService
+    name: PostService
+    type: Class
+  - uid: FractPal.Service.Implementation.RefreshTokenService
+    name: RefreshTokenService
+    type: Class
+  - uid: FractPal.Service.Implementation.UserService
+    name: UserService
+    type: Class
+- uid: FractPal.Service.Interface
+  name: FractPal.Service.Interface
+  type: Namespace
+  items:
+  - uid: FractPal.Service.Interface.IAuthService
+    name: IAuthService
+    type: Interface
+  - uid: FractPal.Service.Interface.ICommentService
+    name: ICommentService
+    type: Interface
+  - uid: FractPal.Service.Interface.IFractalService
+    name: IFractalService
+    type: Interface
+  - uid: FractPal.Service.Interface.IJwtService
+    name: IJwtService
+    type: Interface
+  - uid: FractPal.Service.Interface.ILikeService
+    name: ILikeService
+    type: Interface
+  - uid: FractPal.Service.Interface.IPostService
+    name: IPostService
+    type: Interface
+  - uid: FractPal.Service.Interface.IRefreshTokenService
+    name: IRefreshTokenService
+    type: Interface
+  - uid: FractPal.Service.Interface.IRepository`1
+    name: IRepository<T>
+    type: Interface
+  - uid: FractPal.Service.Interface.IUserService
+    name: IUserService
+    type: Interface
+memberLayout: SamePage

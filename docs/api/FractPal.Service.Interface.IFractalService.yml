@@ -1,0 +1,740 @@
+### YamlMime:ManagedReference
+items:
+- uid: FractPal.Service.Interface.IFractalService
+  commentId: T:FractPal.Service.Interface.IFractalService
+  id: IFractalService
+  parent: FractPal.Service.Interface
+  children:
+  - FractPal.Service.Interface.IFractalService.CreateFractalAsync(System.Guid,FractPal.Model.DTO.Fractal.CreateFractalRequest)
+  - FractPal.Service.Interface.IFractalService.DeleteFractalAsync(System.Guid,System.Guid,System.Boolean)
+  - FractPal.Service.Interface.IFractalService.ForkFractalAsync(System.Guid,System.Guid)
+  - FractPal.Service.Interface.IFractalService.GetFeedAsync(System.Guid,System.Int32,System.Int32)
+  - FractPal.Service.Interface.IFractalService.GetFractalByIdAsync(System.Guid,System.Guid)
+  - FractPal.Service.Interface.IFractalService.GetPublishedFractalsByUserAsync(System.Guid,System.Guid)
+  - FractPal.Service.Interface.IFractalService.GetUserFractalsAsync(System.Guid,System.Guid)
+  - FractPal.Service.Interface.IFractalService.UpdateFractalAsync(System.Guid,System.Guid,FractPal.Model.DTO.Fractal.UpdateFractalRequest)
+  langs:
+  - csharp
+  - vb
+  name: IFractalService
+  nameWithType: IFractalService
+  fullName: FractPal.Service.Interface.IFractalService
+  type: Interface
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/IFractalService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: IFractalService
+    path: ../backend/FractPal.Service/Interface/IFractalService.cs
+    startLine: 7
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: Provides business logic for fractal creation, retrieval, modification, and social features.
+  example: []
+  syntax:
+    content: public interface IFractalService
+    content.vb: Public Interface IFractalService
+- uid: FractPal.Service.Interface.IFractalService.GetFeedAsync(System.Guid,System.Int32,System.Int32)
+  commentId: M:FractPal.Service.Interface.IFractalService.GetFeedAsync(System.Guid,System.Int32,System.Int32)
+  id: GetFeedAsync(System.Guid,System.Int32,System.Int32)
+  parent: FractPal.Service.Interface.IFractalService
+  langs:
+  - csharp
+  - vb
+  name: GetFeedAsync(Guid, int, int)
+  nameWithType: IFractalService.GetFeedAsync(Guid, int, int)
+  fullName: FractPal.Service.Interface.IFractalService.GetFeedAsync(System.Guid, int, int)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/IFractalService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: GetFeedAsync
+    path: ../backend/FractPal.Service/Interface/IFractalService.cs
+    startLine: 16
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: Retrieves a paginated feed of all published fractals ordered by most recently published.
+  example: []
+  syntax:
+    content: Task<FractalFeedResponse> GetFeedAsync(Guid userId, int page = 1, int pageSize = 20)
+    parameters:
+    - id: userId
+      type: System.Guid
+      description: The ID of the requesting user, used to compute <code>IsLikedByCurrentUser</code>.
+    - id: page
+      type: System.Int32
+      description: The 1-based page number.
+    - id: pageSize
+      type: System.Int32
+      description: The maximum number of fractals to return per page.
+    return:
+      type: System.Threading.Tasks.Task{FractPal.Model.DTO.Fractal.FractalFeedResponse}
+      description: A <xref href="FractPal.Model.DTO.Fractal.FractalFeedResponse" data-throw-if-not-resolved="false"></xref> containing fractals and pagination metadata.
+    content.vb: Function GetFeedAsync(userId As Guid, page As Integer = 1, pageSize As Integer = 20) As Task(Of FractalFeedResponse)
+  overload: FractPal.Service.Interface.IFractalService.GetFeedAsync*
+  nameWithType.vb: IFractalService.GetFeedAsync(Guid, Integer, Integer)
+  fullName.vb: FractPal.Service.Interface.IFractalService.GetFeedAsync(System.Guid, Integer, Integer)
+  name.vb: GetFeedAsync(Guid, Integer, Integer)
+- uid: FractPal.Service.Interface.IFractalService.GetUserFractalsAsync(System.Guid,System.Guid)
+  commentId: M:FractPal.Service.Interface.IFractalService.GetUserFractalsAsync(System.Guid,System.Guid)
+  id: GetUserFractalsAsync(System.Guid,System.Guid)
+  parent: FractPal.Service.Interface.IFractalService
+  langs:
+  - csharp
+  - vb
+  name: GetUserFractalsAsync(Guid, Guid)
+  nameWithType: IFractalService.GetUserFractalsAsync(Guid, Guid)
+  fullName: FractPal.Service.Interface.IFractalService.GetUserFractalsAsync(System.Guid, System.Guid)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/IFractalService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: GetUserFractalsAsync
+    path: ../backend/FractPal.Service/Interface/IFractalService.cs
+    startLine: 24
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: Retrieves all fractals (published and draft) belonging to a specific user.
+  example: []
+  syntax:
+    content: Task<List<FractalDto>> GetUserFractalsAsync(Guid userId, Guid currentUserId)
+    parameters:
+    - id: userId
+      type: System.Guid
+      description: The ID of the user whose fractals to retrieve.
+    - id: currentUserId
+      type: System.Guid
+      description: The ID of the requesting user, used to compute <code>IsLikedByCurrentUser</code>.
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.List{FractPal.Model.DTO.Fractal.FractalDto}}
+      description: A list of <xref href="FractPal.Model.DTO.Fractal.FractalDto" data-throw-if-not-resolved="false"></xref> for the specified user.
+    content.vb: Function GetUserFractalsAsync(userId As Guid, currentUserId As Guid) As Task(Of List(Of FractalDto))
+  overload: FractPal.Service.Interface.IFractalService.GetUserFractalsAsync*
+- uid: FractPal.Service.Interface.IFractalService.GetPublishedFractalsByUserAsync(System.Guid,System.Guid)
+  commentId: M:FractPal.Service.Interface.IFractalService.GetPublishedFractalsByUserAsync(System.Guid,System.Guid)
+  id: GetPublishedFractalsByUserAsync(System.Guid,System.Guid)
+  parent: FractPal.Service.Interface.IFractalService
+  langs:
+  - csharp
+  - vb
+  name: GetPublishedFractalsByUserAsync(Guid, Guid)
+  nameWithType: IFractalService.GetPublishedFractalsByUserAsync(Guid, Guid)
+  fullName: FractPal.Service.Interface.IFractalService.GetPublishedFractalsByUserAsync(System.Guid, System.Guid)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/IFractalService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: GetPublishedFractalsByUserAsync
+    path: ../backend/FractPal.Service/Interface/IFractalService.cs
+    startLine: 32
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: Retrieves only the published fractals belonging to a specific user.
+  example: []
+  syntax:
+    content: Task<List<FractalDto>> GetPublishedFractalsByUserAsync(Guid userId, Guid currentUserId)
+    parameters:
+    - id: userId
+      type: System.Guid
+      description: The ID of the user whose published fractals to retrieve.
+    - id: currentUserId
+      type: System.Guid
+      description: The ID of the requesting user, used to compute <code>IsLikedByCurrentUser</code>.
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.List{FractPal.Model.DTO.Fractal.FractalDto}}
+      description: A list of published <xref href="FractPal.Model.DTO.Fractal.FractalDto" data-throw-if-not-resolved="false"></xref> for the specified user.
+    content.vb: Function GetPublishedFractalsByUserAsync(userId As Guid, currentUserId As Guid) As Task(Of List(Of FractalDto))
+  overload: FractPal.Service.Interface.IFractalService.GetPublishedFractalsByUserAsync*
+- uid: FractPal.Service.Interface.IFractalService.GetFractalByIdAsync(System.Guid,System.Guid)
+  commentId: M:FractPal.Service.Interface.IFractalService.GetFractalByIdAsync(System.Guid,System.Guid)
+  id: GetFractalByIdAsync(System.Guid,System.Guid)
+  parent: FractPal.Service.Interface.IFractalService
+  langs:
+  - csharp
+  - vb
+  name: GetFractalByIdAsync(Guid, Guid)
+  nameWithType: IFractalService.GetFractalByIdAsync(Guid, Guid)
+  fullName: FractPal.Service.Interface.IFractalService.GetFractalByIdAsync(System.Guid, System.Guid)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/IFractalService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: GetFractalByIdAsync
+    path: ../backend/FractPal.Service/Interface/IFractalService.cs
+    startLine: 40
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: Retrieves a single fractal by its unique identifier.
+  example: []
+  syntax:
+    content: Task<FractalDto?> GetFractalByIdAsync(Guid fractalId, Guid currentUserId)
+    parameters:
+    - id: fractalId
+      type: System.Guid
+      description: The unique identifier of the fractal.
+    - id: currentUserId
+      type: System.Guid
+      description: The ID of the requesting user, used to compute <code>IsLikedByCurrentUser</code>.
+    return:
+      type: System.Threading.Tasks.Task{FractPal.Model.DTO.Fractal.FractalDto}
+      description: The matching <xref href="FractPal.Model.DTO.Fractal.FractalDto" data-throw-if-not-resolved="false"></xref>, or <code>null</code> if not found.
+    content.vb: Function GetFractalByIdAsync(fractalId As Guid, currentUserId As Guid) As Task(Of FractalDto)
+  overload: FractPal.Service.Interface.IFractalService.GetFractalByIdAsync*
+- uid: FractPal.Service.Interface.IFractalService.CreateFractalAsync(System.Guid,FractPal.Model.DTO.Fractal.CreateFractalRequest)
+  commentId: M:FractPal.Service.Interface.IFractalService.CreateFractalAsync(System.Guid,FractPal.Model.DTO.Fractal.CreateFractalRequest)
+  id: CreateFractalAsync(System.Guid,FractPal.Model.DTO.Fractal.CreateFractalRequest)
+  parent: FractPal.Service.Interface.IFractalService
+  langs:
+  - csharp
+  - vb
+  name: CreateFractalAsync(Guid, CreateFractalRequest)
+  nameWithType: IFractalService.CreateFractalAsync(Guid, CreateFractalRequest)
+  fullName: FractPal.Service.Interface.IFractalService.CreateFractalAsync(System.Guid, FractPal.Model.DTO.Fractal.CreateFractalRequest)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/IFractalService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: CreateFractalAsync
+    path: ../backend/FractPal.Service/Interface/IFractalService.cs
+    startLine: 48
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: Creates a new fractal as a draft owned by the specified user.
+  example: []
+  syntax:
+    content: Task<FractalDto> CreateFractalAsync(Guid userId, CreateFractalRequest request)
+    parameters:
+    - id: userId
+      type: System.Guid
+      description: The ID of the user creating the fractal.
+    - id: request
+      type: FractPal.Model.DTO.Fractal.CreateFractalRequest
+      description: The fractal configuration data.
+    return:
+      type: System.Threading.Tasks.Task{FractPal.Model.DTO.Fractal.FractalDto}
+      description: The newly created <xref href="FractPal.Model.DTO.Fractal.FractalDto" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Function CreateFractalAsync(userId As Guid, request As CreateFractalRequest) As Task(Of FractalDto)
+  overload: FractPal.Service.Interface.IFractalService.CreateFractalAsync*
+- uid: FractPal.Service.Interface.IFractalService.UpdateFractalAsync(System.Guid,System.Guid,FractPal.Model.DTO.Fractal.UpdateFractalRequest)
+  commentId: M:FractPal.Service.Interface.IFractalService.UpdateFractalAsync(System.Guid,System.Guid,FractPal.Model.DTO.Fractal.UpdateFractalRequest)
+  id: UpdateFractalAsync(System.Guid,System.Guid,FractPal.Model.DTO.Fractal.UpdateFractalRequest)
+  parent: FractPal.Service.Interface.IFractalService
+  langs:
+  - csharp
+  - vb
+  name: UpdateFractalAsync(Guid, Guid, UpdateFractalRequest)
+  nameWithType: IFractalService.UpdateFractalAsync(Guid, Guid, UpdateFractalRequest)
+  fullName: FractPal.Service.Interface.IFractalService.UpdateFractalAsync(System.Guid, System.Guid, FractPal.Model.DTO.Fractal.UpdateFractalRequest)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/IFractalService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: UpdateFractalAsync
+    path: ../backend/FractPal.Service/Interface/IFractalService.cs
+    startLine: 62
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: >-
+    Updates an existing fractal. If the requesting user is not the owner, a forked copy
+
+    is created instead and the original remains unchanged.
+  example: []
+  syntax:
+    content: Task<FractalDto> UpdateFractalAsync(Guid fractalId, Guid userId, UpdateFractalRequest request)
+    parameters:
+    - id: fractalId
+      type: System.Guid
+      description: The unique identifier of the fractal to update.
+    - id: userId
+      type: System.Guid
+      description: The ID of the requesting user.
+    - id: request
+      type: FractPal.Model.DTO.Fractal.UpdateFractalRequest
+      description: The updated fractal configuration data.
+    return:
+      type: System.Threading.Tasks.Task{FractPal.Model.DTO.Fractal.FractalDto}
+      description: >-
+        The updated <xref href="FractPal.Model.DTO.Fractal.FractalDto" data-throw-if-not-resolved="false"></xref> if the user is the owner,
+
+        or a new forked <xref href="FractPal.Model.DTO.Fractal.FractalDto" data-throw-if-not-resolved="false"></xref> otherwise.
+    content.vb: Function UpdateFractalAsync(fractalId As Guid, userId As Guid, request As UpdateFractalRequest) As Task(Of FractalDto)
+  overload: FractPal.Service.Interface.IFractalService.UpdateFractalAsync*
+  exceptions:
+  - type: System.Collections.Generic.KeyNotFoundException
+    commentId: T:System.Collections.Generic.KeyNotFoundException
+    description: Thrown when no fractal exists with <code class="paramref">fractalId</code>.
+- uid: FractPal.Service.Interface.IFractalService.DeleteFractalAsync(System.Guid,System.Guid,System.Boolean)
+  commentId: M:FractPal.Service.Interface.IFractalService.DeleteFractalAsync(System.Guid,System.Guid,System.Boolean)
+  id: DeleteFractalAsync(System.Guid,System.Guid,System.Boolean)
+  parent: FractPal.Service.Interface.IFractalService
+  langs:
+  - csharp
+  - vb
+  name: DeleteFractalAsync(Guid, Guid, bool)
+  nameWithType: IFractalService.DeleteFractalAsync(Guid, Guid, bool)
+  fullName: FractPal.Service.Interface.IFractalService.DeleteFractalAsync(System.Guid, System.Guid, bool)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/IFractalService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: DeleteFractalAsync
+    path: ../backend/FractPal.Service/Interface/IFractalService.cs
+    startLine: 71
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: Permanently deletes a fractal. Only the owner may perform this operation.
+  example: []
+  syntax:
+    content: Task DeleteFractalAsync(Guid fractalId, Guid userId, bool isAdmin = false)
+    parameters:
+    - id: fractalId
+      type: System.Guid
+      description: The unique identifier of the fractal to delete.
+    - id: userId
+      type: System.Guid
+      description: The ID of the requesting user.
+    - id: isAdmin
+      type: System.Boolean
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Function DeleteFractalAsync(fractalId As Guid, userId As Guid, isAdmin As Boolean = False) As Task
+  overload: FractPal.Service.Interface.IFractalService.DeleteFractalAsync*
+  exceptions:
+  - type: System.Collections.Generic.KeyNotFoundException
+    commentId: T:System.Collections.Generic.KeyNotFoundException
+    description: Thrown when no fractal exists with <code class="paramref">fractalId</code>.
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: Thrown when the requesting user is not the owner.
+  nameWithType.vb: IFractalService.DeleteFractalAsync(Guid, Guid, Boolean)
+  fullName.vb: FractPal.Service.Interface.IFractalService.DeleteFractalAsync(System.Guid, System.Guid, Boolean)
+  name.vb: DeleteFractalAsync(Guid, Guid, Boolean)
+- uid: FractPal.Service.Interface.IFractalService.ForkFractalAsync(System.Guid,System.Guid)
+  commentId: M:FractPal.Service.Interface.IFractalService.ForkFractalAsync(System.Guid,System.Guid)
+  id: ForkFractalAsync(System.Guid,System.Guid)
+  parent: FractPal.Service.Interface.IFractalService
+  langs:
+  - csharp
+  - vb
+  name: ForkFractalAsync(Guid, Guid)
+  nameWithType: IFractalService.ForkFractalAsync(Guid, Guid)
+  fullName: FractPal.Service.Interface.IFractalService.ForkFractalAsync(System.Guid, System.Guid)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/IFractalService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: ForkFractalAsync
+    path: ../backend/FractPal.Service/Interface/IFractalService.cs
+    startLine: 81
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: >-
+    Creates a copy of an existing fractal under a new owner. The forked fractal
+
+    starts as a draft regardless of the original's publish state.
+  example: []
+  syntax:
+    content: Task<FractalDto> ForkFractalAsync(Guid fractalId, Guid userId)
+    parameters:
+    - id: fractalId
+      type: System.Guid
+      description: The unique identifier of the fractal to fork.
+    - id: userId
+      type: System.Guid
+      description: The ID of the user who will own the fork.
+    return:
+      type: System.Threading.Tasks.Task{FractPal.Model.DTO.Fractal.FractalDto}
+      description: The newly created forked <xref href="FractPal.Model.DTO.Fractal.FractalDto" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Function ForkFractalAsync(fractalId As Guid, userId As Guid) As Task(Of FractalDto)
+  overload: FractPal.Service.Interface.IFractalService.ForkFractalAsync*
+  exceptions:
+  - type: System.Collections.Generic.KeyNotFoundException
+    commentId: T:System.Collections.Generic.KeyNotFoundException
+    description: Thrown when no fractal exists with <code class="paramref">fractalId</code>.
+references:
+- uid: FractPal.Service.Interface
+  commentId: N:FractPal.Service.Interface
+  href: FractPal.html
+  name: FractPal.Service.Interface
+  nameWithType: FractPal.Service.Interface
+  fullName: FractPal.Service.Interface
+  spec.csharp:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Service
+    name: Service
+    href: FractPal.Service.html
+  - name: .
+  - uid: FractPal.Service.Interface
+    name: Interface
+    href: FractPal.Service.Interface.html
+  spec.vb:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Service
+    name: Service
+    href: FractPal.Service.html
+  - name: .
+  - uid: FractPal.Service.Interface
+    name: Interface
+    href: FractPal.Service.Interface.html
+- uid: FractPal.Model.DTO.Fractal.FractalFeedResponse
+  commentId: T:FractPal.Model.DTO.Fractal.FractalFeedResponse
+  name: FractalFeedResponse
+  nameWithType: FractalFeedResponse
+  fullName: FractPal.Model.DTO.Fractal.FractalFeedResponse
+- uid: FractPal.Service.Interface.IFractalService.GetFeedAsync*
+  commentId: Overload:FractPal.Service.Interface.IFractalService.GetFeedAsync
+  href: FractPal.Service.Interface.IFractalService.html#FractPal_Service_Interface_IFractalService_GetFeedAsync_System_Guid_System_Int32_System_Int32_
+  name: GetFeedAsync
+  nameWithType: IFractalService.GetFeedAsync
+  fullName: FractPal.Service.Interface.IFractalService.GetFeedAsync
+- uid: System.Guid
+  commentId: T:System.Guid
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.guid
+  name: Guid
+  nameWithType: Guid
+  fullName: System.Guid
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Threading.Tasks.Task{FractPal.Model.DTO.Fractal.FractalFeedResponse}
+  commentId: T:System.Threading.Tasks.Task{FractPal.Model.DTO.Fractal.FractalFeedResponse}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<FractalFeedResponse>
+  nameWithType: Task<FractalFeedResponse>
+  fullName: System.Threading.Tasks.Task<FractPal.Model.DTO.Fractal.FractalFeedResponse>
+  nameWithType.vb: Task(Of FractalFeedResponse)
+  fullName.vb: System.Threading.Tasks.Task(Of FractPal.Model.DTO.Fractal.FractalFeedResponse)
+  name.vb: Task(Of FractalFeedResponse)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: FractPal.Model.DTO.Fractal.FractalFeedResponse
+    name: FractalFeedResponse
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FractPal.Model.DTO.Fractal.FractalFeedResponse
+    name: FractalFeedResponse
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: FractPal.Model.DTO.Fractal.FractalDto
+  commentId: T:FractPal.Model.DTO.Fractal.FractalDto
+  name: FractalDto
+  nameWithType: FractalDto
+  fullName: FractPal.Model.DTO.Fractal.FractalDto
+- uid: FractPal.Service.Interface.IFractalService.GetUserFractalsAsync*
+  commentId: Overload:FractPal.Service.Interface.IFractalService.GetUserFractalsAsync
+  href: FractPal.Service.Interface.IFractalService.html#FractPal_Service_Interface_IFractalService_GetUserFractalsAsync_System_Guid_System_Guid_
+  name: GetUserFractalsAsync
+  nameWithType: IFractalService.GetUserFractalsAsync
+  fullName: FractPal.Service.Interface.IFractalService.GetUserFractalsAsync
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.List{FractPal.Model.DTO.Fractal.FractalDto}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.List{FractPal.Model.DTO.Fractal.FractalDto}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<List<FractalDto>>
+  nameWithType: Task<List<FractalDto>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.List<FractPal.Model.DTO.Fractal.FractalDto>>
+  nameWithType.vb: Task(Of List(Of FractalDto))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.List(Of FractPal.Model.DTO.Fractal.FractalDto))
+  name.vb: Task(Of List(Of FractalDto))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: FractPal.Model.DTO.Fractal.FractalDto
+    name: FractalDto
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FractPal.Model.DTO.Fractal.FractalDto
+    name: FractalDto
+  - name: )
+  - name: )
+- uid: FractPal.Service.Interface.IFractalService.GetPublishedFractalsByUserAsync*
+  commentId: Overload:FractPal.Service.Interface.IFractalService.GetPublishedFractalsByUserAsync
+  href: FractPal.Service.Interface.IFractalService.html#FractPal_Service_Interface_IFractalService_GetPublishedFractalsByUserAsync_System_Guid_System_Guid_
+  name: GetPublishedFractalsByUserAsync
+  nameWithType: IFractalService.GetPublishedFractalsByUserAsync
+  fullName: FractPal.Service.Interface.IFractalService.GetPublishedFractalsByUserAsync
+- uid: FractPal.Service.Interface.IFractalService.GetFractalByIdAsync*
+  commentId: Overload:FractPal.Service.Interface.IFractalService.GetFractalByIdAsync
+  href: FractPal.Service.Interface.IFractalService.html#FractPal_Service_Interface_IFractalService_GetFractalByIdAsync_System_Guid_System_Guid_
+  name: GetFractalByIdAsync
+  nameWithType: IFractalService.GetFractalByIdAsync
+  fullName: FractPal.Service.Interface.IFractalService.GetFractalByIdAsync
+- uid: System.Threading.Tasks.Task{FractPal.Model.DTO.Fractal.FractalDto}
+  commentId: T:System.Threading.Tasks.Task{FractPal.Model.DTO.Fractal.FractalDto}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<FractalDto>
+  nameWithType: Task<FractalDto>
+  fullName: System.Threading.Tasks.Task<FractPal.Model.DTO.Fractal.FractalDto>
+  nameWithType.vb: Task(Of FractalDto)
+  fullName.vb: System.Threading.Tasks.Task(Of FractPal.Model.DTO.Fractal.FractalDto)
+  name.vb: Task(Of FractalDto)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: FractPal.Model.DTO.Fractal.FractalDto
+    name: FractalDto
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FractPal.Model.DTO.Fractal.FractalDto
+    name: FractalDto
+  - name: )
+- uid: FractPal.Service.Interface.IFractalService.CreateFractalAsync*
+  commentId: Overload:FractPal.Service.Interface.IFractalService.CreateFractalAsync
+  href: FractPal.Service.Interface.IFractalService.html#FractPal_Service_Interface_IFractalService_CreateFractalAsync_System_Guid_FractPal_Model_DTO_Fractal_CreateFractalRequest_
+  name: CreateFractalAsync
+  nameWithType: IFractalService.CreateFractalAsync
+  fullName: FractPal.Service.Interface.IFractalService.CreateFractalAsync
+- uid: FractPal.Model.DTO.Fractal.CreateFractalRequest
+  commentId: T:FractPal.Model.DTO.Fractal.CreateFractalRequest
+  parent: FractPal.Model.DTO.Fractal
+  name: CreateFractalRequest
+  nameWithType: CreateFractalRequest
+  fullName: FractPal.Model.DTO.Fractal.CreateFractalRequest
+- uid: FractPal.Model.DTO.Fractal
+  commentId: N:FractPal.Model.DTO.Fractal
+  name: FractPal.Model.DTO.Fractal
+  nameWithType: FractPal.Model.DTO.Fractal
+  fullName: FractPal.Model.DTO.Fractal
+  spec.csharp:
+  - uid: FractPal
+    name: FractPal
+  - name: .
+  - uid: FractPal.Model
+    name: Model
+  - name: .
+  - uid: FractPal.Model.DTO
+    name: DTO
+  - name: .
+  - uid: FractPal.Model.DTO.Fractal
+    name: Fractal
+  spec.vb:
+  - uid: FractPal
+    name: FractPal
+  - name: .
+  - uid: FractPal.Model
+    name: Model
+  - name: .
+  - uid: FractPal.Model.DTO
+    name: DTO
+  - name: .
+  - uid: FractPal.Model.DTO.Fractal
+    name: Fractal
+- uid: System.Collections.Generic.KeyNotFoundException
+  commentId: T:System.Collections.Generic.KeyNotFoundException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keynotfoundexception
+  name: KeyNotFoundException
+  nameWithType: KeyNotFoundException
+  fullName: System.Collections.Generic.KeyNotFoundException
+- uid: FractPal.Service.Interface.IFractalService.UpdateFractalAsync*
+  commentId: Overload:FractPal.Service.Interface.IFractalService.UpdateFractalAsync
+  href: FractPal.Service.Interface.IFractalService.html#FractPal_Service_Interface_IFractalService_UpdateFractalAsync_System_Guid_System_Guid_FractPal_Model_DTO_Fractal_UpdateFractalRequest_
+  name: UpdateFractalAsync
+  nameWithType: IFractalService.UpdateFractalAsync
+  fullName: FractPal.Service.Interface.IFractalService.UpdateFractalAsync
+- uid: FractPal.Model.DTO.Fractal.UpdateFractalRequest
+  commentId: T:FractPal.Model.DTO.Fractal.UpdateFractalRequest
+  parent: FractPal.Model.DTO.Fractal
+  name: UpdateFractalRequest
+  nameWithType: UpdateFractalRequest
+  fullName: FractPal.Model.DTO.Fractal.UpdateFractalRequest
+- uid: System.UnauthorizedAccessException
+  commentId: T:System.UnauthorizedAccessException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception
+  name: UnauthorizedAccessException
+  nameWithType: UnauthorizedAccessException
+  fullName: System.UnauthorizedAccessException
+- uid: FractPal.Service.Interface.IFractalService.DeleteFractalAsync*
+  commentId: Overload:FractPal.Service.Interface.IFractalService.DeleteFractalAsync
+  href: FractPal.Service.Interface.IFractalService.html#FractPal_Service_Interface_IFractalService_DeleteFractalAsync_System_Guid_System_Guid_System_Boolean_
+  name: DeleteFractalAsync
+  nameWithType: IFractalService.DeleteFractalAsync
+  fullName: FractPal.Service.Interface.IFractalService.DeleteFractalAsync
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: FractPal.Service.Interface.IFractalService.ForkFractalAsync*
+  commentId: Overload:FractPal.Service.Interface.IFractalService.ForkFractalAsync
+  href: FractPal.Service.Interface.IFractalService.html#FractPal_Service_Interface_IFractalService_ForkFractalAsync_System_Guid_System_Guid_
+  name: ForkFractalAsync
+  nameWithType: IFractalService.ForkFractalAsync
+  fullName: FractPal.Service.Interface.IFractalService.ForkFractalAsync

@@ -1,0 +1,961 @@
+### YamlMime:ManagedReference
+items:
+- uid: FractPal.Service.Implementation.AuthService
+  commentId: T:FractPal.Service.Implementation.AuthService
+  id: AuthService
+  parent: FractPal.Service.Implementation
+  children:
+  - FractPal.Service.Implementation.AuthService.#ctor(Microsoft.AspNetCore.Identity.UserManager{FractPal.Model.Entities.FractPalUser},Microsoft.AspNetCore.Identity.SignInManager{FractPal.Model.Entities.FractPalUser},FractPal.Service.Interface.IJwtService)
+  - FractPal.Service.Implementation.AuthService.Login(Microsoft.AspNetCore.Http.HttpContext,FractPal.Model.DTO.Auth.LoginRequest)
+  - FractPal.Service.Implementation.AuthService.Register(FractPal.Model.DTO.Auth.RegistrationRequest)
+  langs:
+  - csharp
+  - vb
+  name: AuthService
+  nameWithType: AuthService
+  fullName: FractPal.Service.Implementation.AuthService
+  type: Class
+  source:
+    remote:
+      path: backend/FractPal.Service/Implementation/AuthService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: AuthService
+    path: ../backend/FractPal.Service/Implementation/AuthService.cs
+    startLine: 12
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Implementation
+  summary: >-
+    Implements authentication logic including login and new user registration
+
+    using ASP.NET Core Identity.
+  example: []
+  syntax:
+    content: 'public class AuthService : IAuthService'
+    content.vb: Public Class AuthService Implements IAuthService
+  inheritance:
+  - System.Object
+  implements:
+  - FractPal.Service.Interface.IAuthService
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: FractPal.Service.Implementation.AuthService.#ctor(Microsoft.AspNetCore.Identity.UserManager{FractPal.Model.Entities.FractPalUser},Microsoft.AspNetCore.Identity.SignInManager{FractPal.Model.Entities.FractPalUser},FractPal.Service.Interface.IJwtService)
+  commentId: M:FractPal.Service.Implementation.AuthService.#ctor(Microsoft.AspNetCore.Identity.UserManager{FractPal.Model.Entities.FractPalUser},Microsoft.AspNetCore.Identity.SignInManager{FractPal.Model.Entities.FractPalUser},FractPal.Service.Interface.IJwtService)
+  id: '#ctor(Microsoft.AspNetCore.Identity.UserManager{FractPal.Model.Entities.FractPalUser},Microsoft.AspNetCore.Identity.SignInManager{FractPal.Model.Entities.FractPalUser},FractPal.Service.Interface.IJwtService)'
+  parent: FractPal.Service.Implementation.AuthService
+  langs:
+  - csharp
+  - vb
+  name: AuthService(UserManager<FractPalUser>, SignInManager<FractPalUser>, IJwtService)
+  nameWithType: AuthService.AuthService(UserManager<FractPalUser>, SignInManager<FractPalUser>, IJwtService)
+  fullName: FractPal.Service.Implementation.AuthService.AuthService(Microsoft.AspNetCore.Identity.UserManager<FractPal.Model.Entities.FractPalUser>, Microsoft.AspNetCore.Identity.SignInManager<FractPal.Model.Entities.FractPalUser>, FractPal.Service.Interface.IJwtService)
+  type: Constructor
+  source:
+    remote:
+      path: backend/FractPal.Service/Implementation/AuthService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: .ctor
+    path: ../backend/FractPal.Service/Implementation/AuthService.cs
+    startLine: 12
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Implementation
+  summary: >-
+    Implements authentication logic including login and new user registration
+
+    using ASP.NET Core Identity.
+  example: []
+  syntax:
+    content: public AuthService(UserManager<FractPalUser> userManager, SignInManager<FractPalUser> signInManager, IJwtService jwtService)
+    parameters:
+    - id: userManager
+      type: Microsoft.AspNetCore.Identity.UserManager{FractPal.Model.Entities.FractPalUser}
+    - id: signInManager
+      type: Microsoft.AspNetCore.Identity.SignInManager{FractPal.Model.Entities.FractPalUser}
+    - id: jwtService
+      type: FractPal.Service.Interface.IJwtService
+    content.vb: Public Sub New(userManager As UserManager(Of FractPalUser), signInManager As SignInManager(Of FractPalUser), jwtService As IJwtService)
+  overload: FractPal.Service.Implementation.AuthService.#ctor*
+  nameWithType.vb: AuthService.New(UserManager(Of FractPalUser), SignInManager(Of FractPalUser), IJwtService)
+  fullName.vb: FractPal.Service.Implementation.AuthService.New(Microsoft.AspNetCore.Identity.UserManager(Of FractPal.Model.Entities.FractPalUser), Microsoft.AspNetCore.Identity.SignInManager(Of FractPal.Model.Entities.FractPalUser), FractPal.Service.Interface.IJwtService)
+  name.vb: New(UserManager(Of FractPalUser), SignInManager(Of FractPalUser), IJwtService)
+- uid: FractPal.Service.Implementation.AuthService.Login(Microsoft.AspNetCore.Http.HttpContext,FractPal.Model.DTO.Auth.LoginRequest)
+  commentId: M:FractPal.Service.Implementation.AuthService.Login(Microsoft.AspNetCore.Http.HttpContext,FractPal.Model.DTO.Auth.LoginRequest)
+  id: Login(Microsoft.AspNetCore.Http.HttpContext,FractPal.Model.DTO.Auth.LoginRequest)
+  parent: FractPal.Service.Implementation.AuthService
+  langs:
+  - csharp
+  - vb
+  name: Login(HttpContext, LoginRequest)
+  nameWithType: AuthService.Login(HttpContext, LoginRequest)
+  fullName: FractPal.Service.Implementation.AuthService.Login(Microsoft.AspNetCore.Http.HttpContext, FractPal.Model.DTO.Auth.LoginRequest)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Implementation/AuthService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: Login
+    path: ../backend/FractPal.Service/Implementation/AuthService.cs
+    startLine: 22
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Implementation
+  summary: >-
+    Authenticates a user with the provided credentials and issues an access token.
+
+    Sets any necessary cookies or session state via <code class="paramref">context</code>.
+  example: []
+  syntax:
+    content: public Task<LoginResponse> Login(HttpContext context, LoginRequest request)
+    parameters:
+    - id: context
+      type: Microsoft.AspNetCore.Http.HttpContext
+      description: The current HTTP context, used to set authentication cookies if applicable.
+    - id: request
+      type: FractPal.Model.DTO.Auth.LoginRequest
+      description: The login credentials containing email and password.
+    return:
+      type: System.Threading.Tasks.Task{FractPal.Model.DTO.Auth.LoginResponse}
+      description: A <xref href="FractPal.Model.DTO.Auth.LoginResponse" data-throw-if-not-resolved="false"></xref> containing the access token and user information.
+    content.vb: Public Function Login(context As HttpContext, request As LoginRequest) As Task(Of LoginResponse)
+  overload: FractPal.Service.Implementation.AuthService.Login*
+  exceptions:
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: Thrown when the email/password combination is invalid.
+  implements:
+  - FractPal.Service.Interface.IAuthService.Login(Microsoft.AspNetCore.Http.HttpContext,FractPal.Model.DTO.Auth.LoginRequest)
+- uid: FractPal.Service.Implementation.AuthService.Register(FractPal.Model.DTO.Auth.RegistrationRequest)
+  commentId: M:FractPal.Service.Implementation.AuthService.Register(FractPal.Model.DTO.Auth.RegistrationRequest)
+  id: Register(FractPal.Model.DTO.Auth.RegistrationRequest)
+  parent: FractPal.Service.Implementation.AuthService
+  langs:
+  - csharp
+  - vb
+  name: Register(RegistrationRequest)
+  nameWithType: AuthService.Register(RegistrationRequest)
+  fullName: FractPal.Service.Implementation.AuthService.Register(FractPal.Model.DTO.Auth.RegistrationRequest)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Implementation/AuthService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: Register
+    path: ../backend/FractPal.Service/Implementation/AuthService.cs
+    startLine: 47
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Implementation
+  summary: Registers a new user account with the provided details.
+  example: []
+  syntax:
+    content: public Task<RegistrationResponse> Register(RegistrationRequest request)
+    parameters:
+    - id: request
+      type: FractPal.Model.DTO.Auth.RegistrationRequest
+      description: The registration data including username, email and password.
+    return:
+      type: System.Threading.Tasks.Task{FractPal.Model.DTO.Auth.RegistrationResponse}
+      description: A <xref href="FractPal.Model.DTO.Auth.RegistrationResponse" data-throw-if-not-resolved="false"></xref> confirming the created account.
+    content.vb: Public Function Register(request As RegistrationRequest) As Task(Of RegistrationResponse)
+  overload: FractPal.Service.Implementation.AuthService.Register*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown when the email or username is already in use.
+  implements:
+  - FractPal.Service.Interface.IAuthService.Register(FractPal.Model.DTO.Auth.RegistrationRequest)
+references:
+- uid: FractPal.Service.Implementation
+  commentId: N:FractPal.Service.Implementation
+  href: FractPal.html
+  name: FractPal.Service.Implementation
+  nameWithType: FractPal.Service.Implementation
+  fullName: FractPal.Service.Implementation
+  spec.csharp:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Service
+    name: Service
+    href: FractPal.Service.html
+  - name: .
+  - uid: FractPal.Service.Implementation
+    name: Implementation
+    href: FractPal.Service.Implementation.html
+  spec.vb:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Service
+    name: Service
+    href: FractPal.Service.html
+  - name: .
+  - uid: FractPal.Service.Implementation
+    name: Implementation
+    href: FractPal.Service.Implementation.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: FractPal.Service.Interface.IAuthService
+  commentId: T:FractPal.Service.Interface.IAuthService
+  parent: FractPal.Service.Interface
+  href: FractPal.Service.Interface.IAuthService.html
+  name: IAuthService
+  nameWithType: IAuthService
+  fullName: FractPal.Service.Interface.IAuthService
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FractPal.Service.Interface
+  commentId: N:FractPal.Service.Interface
+  href: FractPal.html
+  name: FractPal.Service.Interface
+  nameWithType: FractPal.Service.Interface
+  fullName: FractPal.Service.Interface
+  spec.csharp:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Service
+    name: Service
+    href: FractPal.Service.html
+  - name: .
+  - uid: FractPal.Service.Interface
+    name: Interface
+    href: FractPal.Service.Interface.html
+  spec.vb:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Service
+    name: Service
+    href: FractPal.Service.html
+  - name: .
+  - uid: FractPal.Service.Interface
+    name: Interface
+    href: FractPal.Service.Interface.html
+- uid: FractPal.Service.Implementation.AuthService.#ctor*
+  commentId: Overload:FractPal.Service.Implementation.AuthService.#ctor
+  href: FractPal.Service.Implementation.AuthService.html#FractPal_Service_Implementation_AuthService__ctor_Microsoft_AspNetCore_Identity_UserManager_FractPal_Model_Entities_FractPalUser__Microsoft_AspNetCore_Identity_SignInManager_FractPal_Model_Entities_FractPalUser__FractPal_Service_Interface_IJwtService_
+  name: AuthService
+  nameWithType: AuthService.AuthService
+  fullName: FractPal.Service.Implementation.AuthService.AuthService
+  nameWithType.vb: AuthService.New
+  fullName.vb: FractPal.Service.Implementation.AuthService.New
+  name.vb: New
+- uid: Microsoft.AspNetCore.Identity.UserManager{FractPal.Model.Entities.FractPalUser}
+  commentId: T:Microsoft.AspNetCore.Identity.UserManager{FractPal.Model.Entities.FractPalUser}
+  parent: Microsoft.AspNetCore.Identity
+  definition: Microsoft.AspNetCore.Identity.UserManager`1
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.usermanager-1
+  name: UserManager<FractPalUser>
+  nameWithType: UserManager<FractPalUser>
+  fullName: Microsoft.AspNetCore.Identity.UserManager<FractPal.Model.Entities.FractPalUser>
+  nameWithType.vb: UserManager(Of FractPalUser)
+  fullName.vb: Microsoft.AspNetCore.Identity.UserManager(Of FractPal.Model.Entities.FractPalUser)
+  name.vb: UserManager(Of FractPalUser)
+  spec.csharp:
+  - uid: Microsoft.AspNetCore.Identity.UserManager`1
+    name: UserManager
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.usermanager-1
+  - name: <
+  - uid: FractPal.Model.Entities.FractPalUser
+    name: FractPalUser
+  - name: '>'
+  spec.vb:
+  - uid: Microsoft.AspNetCore.Identity.UserManager`1
+    name: UserManager
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.usermanager-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FractPal.Model.Entities.FractPalUser
+    name: FractPalUser
+  - name: )
+- uid: Microsoft.AspNetCore.Identity.SignInManager{FractPal.Model.Entities.FractPalUser}
+  commentId: T:Microsoft.AspNetCore.Identity.SignInManager{FractPal.Model.Entities.FractPalUser}
+  parent: Microsoft.AspNetCore.Identity
+  definition: Microsoft.AspNetCore.Identity.SignInManager`1
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1
+  name: SignInManager<FractPalUser>
+  nameWithType: SignInManager<FractPalUser>
+  fullName: Microsoft.AspNetCore.Identity.SignInManager<FractPal.Model.Entities.FractPalUser>
+  nameWithType.vb: SignInManager(Of FractPalUser)
+  fullName.vb: Microsoft.AspNetCore.Identity.SignInManager(Of FractPal.Model.Entities.FractPalUser)
+  name.vb: SignInManager(Of FractPalUser)
+  spec.csharp:
+  - uid: Microsoft.AspNetCore.Identity.SignInManager`1
+    name: SignInManager
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1
+  - name: <
+  - uid: FractPal.Model.Entities.FractPalUser
+    name: FractPalUser
+  - name: '>'
+  spec.vb:
+  - uid: Microsoft.AspNetCore.Identity.SignInManager`1
+    name: SignInManager
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FractPal.Model.Entities.FractPalUser
+    name: FractPalUser
+  - name: )
+- uid: FractPal.Service.Interface.IJwtService
+  commentId: T:FractPal.Service.Interface.IJwtService
+  parent: FractPal.Service.Interface
+  href: FractPal.Service.Interface.IJwtService.html
+  name: IJwtService
+  nameWithType: IJwtService
+  fullName: FractPal.Service.Interface.IJwtService
+- uid: Microsoft.AspNetCore.Identity.UserManager`1
+  commentId: T:Microsoft.AspNetCore.Identity.UserManager`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.usermanager-1
+  name: UserManager<TUser>
+  nameWithType: UserManager<TUser>
+  fullName: Microsoft.AspNetCore.Identity.UserManager<TUser>
+  nameWithType.vb: UserManager(Of TUser)
+  fullName.vb: Microsoft.AspNetCore.Identity.UserManager(Of TUser)
+  name.vb: UserManager(Of TUser)
+  spec.csharp:
+  - uid: Microsoft.AspNetCore.Identity.UserManager`1
+    name: UserManager
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.usermanager-1
+  - name: <
+  - name: TUser
+  - name: '>'
+  spec.vb:
+  - uid: Microsoft.AspNetCore.Identity.UserManager`1
+    name: UserManager
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.usermanager-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TUser
+  - name: )
+- uid: Microsoft.AspNetCore.Identity
+  commentId: N:Microsoft.AspNetCore.Identity
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
+  name: Microsoft.AspNetCore.Identity
+  nameWithType: Microsoft.AspNetCore.Identity
+  fullName: Microsoft.AspNetCore.Identity
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Identity
+    name: Identity
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Identity
+    name: Identity
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity
+- uid: Microsoft.AspNetCore.Identity.SignInManager`1
+  commentId: T:Microsoft.AspNetCore.Identity.SignInManager`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1
+  name: SignInManager<TUser>
+  nameWithType: SignInManager<TUser>
+  fullName: Microsoft.AspNetCore.Identity.SignInManager<TUser>
+  nameWithType.vb: SignInManager(Of TUser)
+  fullName.vb: Microsoft.AspNetCore.Identity.SignInManager(Of TUser)
+  name.vb: SignInManager(Of TUser)
+  spec.csharp:
+  - uid: Microsoft.AspNetCore.Identity.SignInManager`1
+    name: SignInManager
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1
+  - name: <
+  - name: TUser
+  - name: '>'
+  spec.vb:
+  - uid: Microsoft.AspNetCore.Identity.SignInManager`1
+    name: SignInManager
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TUser
+  - name: )
+- uid: FractPal.Model.DTO.Auth.LoginResponse
+  commentId: T:FractPal.Model.DTO.Auth.LoginResponse
+  name: LoginResponse
+  nameWithType: LoginResponse
+  fullName: FractPal.Model.DTO.Auth.LoginResponse
+- uid: System.UnauthorizedAccessException
+  commentId: T:System.UnauthorizedAccessException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception
+  name: UnauthorizedAccessException
+  nameWithType: UnauthorizedAccessException
+  fullName: System.UnauthorizedAccessException
+- uid: FractPal.Service.Implementation.AuthService.Login*
+  commentId: Overload:FractPal.Service.Implementation.AuthService.Login
+  href: FractPal.Service.Implementation.AuthService.html#FractPal_Service_Implementation_AuthService_Login_Microsoft_AspNetCore_Http_HttpContext_FractPal_Model_DTO_Auth_LoginRequest_
+  name: Login
+  nameWithType: AuthService.Login
+  fullName: FractPal.Service.Implementation.AuthService.Login
+- uid: FractPal.Service.Interface.IAuthService.Login(Microsoft.AspNetCore.Http.HttpContext,FractPal.Model.DTO.Auth.LoginRequest)
+  commentId: M:FractPal.Service.Interface.IAuthService.Login(Microsoft.AspNetCore.Http.HttpContext,FractPal.Model.DTO.Auth.LoginRequest)
+  parent: FractPal.Service.Interface.IAuthService
+  isExternal: true
+  href: FractPal.Service.Interface.IAuthService.html#FractPal_Service_Interface_IAuthService_Login_Microsoft_AspNetCore_Http_HttpContext_FractPal_Model_DTO_Auth_LoginRequest_
+  name: Login(HttpContext, LoginRequest)
+  nameWithType: IAuthService.Login(HttpContext, LoginRequest)
+  fullName: FractPal.Service.Interface.IAuthService.Login(Microsoft.AspNetCore.Http.HttpContext, FractPal.Model.DTO.Auth.LoginRequest)
+  spec.csharp:
+  - uid: FractPal.Service.Interface.IAuthService.Login(Microsoft.AspNetCore.Http.HttpContext,FractPal.Model.DTO.Auth.LoginRequest)
+    name: Login
+    href: FractPal.Service.Interface.IAuthService.html#FractPal_Service_Interface_IAuthService_Login_Microsoft_AspNetCore_Http_HttpContext_FractPal_Model_DTO_Auth_LoginRequest_
+  - name: (
+  - uid: Microsoft.AspNetCore.Http.HttpContext
+    name: HttpContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext
+  - name: ','
+  - name: " "
+  - uid: FractPal.Model.DTO.Auth.LoginRequest
+    name: LoginRequest
+  - name: )
+  spec.vb:
+  - uid: FractPal.Service.Interface.IAuthService.Login(Microsoft.AspNetCore.Http.HttpContext,FractPal.Model.DTO.Auth.LoginRequest)
+    name: Login
+    href: FractPal.Service.Interface.IAuthService.html#FractPal_Service_Interface_IAuthService_Login_Microsoft_AspNetCore_Http_HttpContext_FractPal_Model_DTO_Auth_LoginRequest_
+  - name: (
+  - uid: Microsoft.AspNetCore.Http.HttpContext
+    name: HttpContext
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext
+  - name: ','
+  - name: " "
+  - uid: FractPal.Model.DTO.Auth.LoginRequest
+    name: LoginRequest
+  - name: )
+- uid: Microsoft.AspNetCore.Http.HttpContext
+  commentId: T:Microsoft.AspNetCore.Http.HttpContext
+  parent: Microsoft.AspNetCore.Http
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext
+  name: HttpContext
+  nameWithType: HttpContext
+  fullName: Microsoft.AspNetCore.Http.HttpContext
+- uid: FractPal.Model.DTO.Auth.LoginRequest
+  commentId: T:FractPal.Model.DTO.Auth.LoginRequest
+  parent: FractPal.Model.DTO.Auth
+  name: LoginRequest
+  nameWithType: LoginRequest
+  fullName: FractPal.Model.DTO.Auth.LoginRequest
+- uid: System.Threading.Tasks.Task{FractPal.Model.DTO.Auth.LoginResponse}
+  commentId: T:System.Threading.Tasks.Task{FractPal.Model.DTO.Auth.LoginResponse}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<LoginResponse>
+  nameWithType: Task<LoginResponse>
+  fullName: System.Threading.Tasks.Task<FractPal.Model.DTO.Auth.LoginResponse>
+  nameWithType.vb: Task(Of LoginResponse)
+  fullName.vb: System.Threading.Tasks.Task(Of FractPal.Model.DTO.Auth.LoginResponse)
+  name.vb: Task(Of LoginResponse)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: FractPal.Model.DTO.Auth.LoginResponse
+    name: LoginResponse
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FractPal.Model.DTO.Auth.LoginResponse
+    name: LoginResponse
+  - name: )
+- uid: Microsoft.AspNetCore.Http
+  commentId: N:Microsoft.AspNetCore.Http
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
+  name: Microsoft.AspNetCore.Http
+  nameWithType: Microsoft.AspNetCore.Http
+  fullName: Microsoft.AspNetCore.Http
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Http
+    name: Http
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Http
+    name: Http
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http
+- uid: FractPal.Model.DTO.Auth
+  commentId: N:FractPal.Model.DTO.Auth
+  name: FractPal.Model.DTO.Auth
+  nameWithType: FractPal.Model.DTO.Auth
+  fullName: FractPal.Model.DTO.Auth
+  spec.csharp:
+  - uid: FractPal
+    name: FractPal
+  - name: .
+  - uid: FractPal.Model
+    name: Model
+  - name: .
+  - uid: FractPal.Model.DTO
+    name: DTO
+  - name: .
+  - uid: FractPal.Model.DTO.Auth
+    name: Auth
+  spec.vb:
+  - uid: FractPal
+    name: FractPal
+  - name: .
+  - uid: FractPal.Model
+    name: Model
+  - name: .
+  - uid: FractPal.Model.DTO
+    name: DTO
+  - name: .
+  - uid: FractPal.Model.DTO.Auth
+    name: Auth
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: FractPal.Model.DTO.Auth.RegistrationResponse
+  commentId: T:FractPal.Model.DTO.Auth.RegistrationResponse
+  name: RegistrationResponse
+  nameWithType: RegistrationResponse
+  fullName: FractPal.Model.DTO.Auth.RegistrationResponse
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: FractPal.Service.Implementation.AuthService.Register*
+  commentId: Overload:FractPal.Service.Implementation.AuthService.Register
+  href: FractPal.Service.Implementation.AuthService.html#FractPal_Service_Implementation_AuthService_Register_FractPal_Model_DTO_Auth_RegistrationRequest_
+  name: Register
+  nameWithType: AuthService.Register
+  fullName: FractPal.Service.Implementation.AuthService.Register
+- uid: FractPal.Service.Interface.IAuthService.Register(FractPal.Model.DTO.Auth.RegistrationRequest)
+  commentId: M:FractPal.Service.Interface.IAuthService.Register(FractPal.Model.DTO.Auth.RegistrationRequest)
+  parent: FractPal.Service.Interface.IAuthService
+  href: FractPal.Service.Interface.IAuthService.html#FractPal_Service_Interface_IAuthService_Register_FractPal_Model_DTO_Auth_RegistrationRequest_
+  name: Register(RegistrationRequest)
+  nameWithType: IAuthService.Register(RegistrationRequest)
+  fullName: FractPal.Service.Interface.IAuthService.Register(FractPal.Model.DTO.Auth.RegistrationRequest)
+  spec.csharp:
+  - uid: FractPal.Service.Interface.IAuthService.Register(FractPal.Model.DTO.Auth.RegistrationRequest)
+    name: Register
+    href: FractPal.Service.Interface.IAuthService.html#FractPal_Service_Interface_IAuthService_Register_FractPal_Model_DTO_Auth_RegistrationRequest_
+  - name: (
+  - uid: FractPal.Model.DTO.Auth.RegistrationRequest
+    name: RegistrationRequest
+  - name: )
+  spec.vb:
+  - uid: FractPal.Service.Interface.IAuthService.Register(FractPal.Model.DTO.Auth.RegistrationRequest)
+    name: Register
+    href: FractPal.Service.Interface.IAuthService.html#FractPal_Service_Interface_IAuthService_Register_FractPal_Model_DTO_Auth_RegistrationRequest_
+  - name: (
+  - uid: FractPal.Model.DTO.Auth.RegistrationRequest
+    name: RegistrationRequest
+  - name: )
+- uid: FractPal.Model.DTO.Auth.RegistrationRequest
+  commentId: T:FractPal.Model.DTO.Auth.RegistrationRequest
+  parent: FractPal.Model.DTO.Auth
+  name: RegistrationRequest
+  nameWithType: RegistrationRequest
+  fullName: FractPal.Model.DTO.Auth.RegistrationRequest
+- uid: System.Threading.Tasks.Task{FractPal.Model.DTO.Auth.RegistrationResponse}
+  commentId: T:System.Threading.Tasks.Task{FractPal.Model.DTO.Auth.RegistrationResponse}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<RegistrationResponse>
+  nameWithType: Task<RegistrationResponse>
+  fullName: System.Threading.Tasks.Task<FractPal.Model.DTO.Auth.RegistrationResponse>
+  nameWithType.vb: Task(Of RegistrationResponse)
+  fullName.vb: System.Threading.Tasks.Task(Of FractPal.Model.DTO.Auth.RegistrationResponse)
+  name.vb: Task(Of RegistrationResponse)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: FractPal.Model.DTO.Auth.RegistrationResponse
+    name: RegistrationResponse
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FractPal.Model.DTO.Auth.RegistrationResponse
+    name: RegistrationResponse
+  - name: )

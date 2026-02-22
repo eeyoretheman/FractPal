@@ -1,0 +1,136 @@
+### YamlMime:ManagedReference
+items:
+- uid: FractPal.Service.Interface
+  commentId: N:FractPal.Service.Interface
+  id: FractPal.Service.Interface
+  children:
+  - FractPal.Service.Interface.IAuthService
+  - FractPal.Service.Interface.ICommentService
+  - FractPal.Service.Interface.IFractalService
+  - FractPal.Service.Interface.IJwtService
+  - FractPal.Service.Interface.ILikeService
+  - FractPal.Service.Interface.IPostService
+  - FractPal.Service.Interface.IRefreshTokenService
+  - FractPal.Service.Interface.IRepository`1
+  - FractPal.Service.Interface.IUserService
+  langs:
+  - csharp
+  - vb
+  name: FractPal.Service.Interface
+  nameWithType: FractPal.Service.Interface
+  fullName: FractPal.Service.Interface
+  type: Namespace
+  assemblies:
+  - FractPal.Service
+references:
+- uid: FractPal.Service.Interface.IAuthService
+  commentId: T:FractPal.Service.Interface.IAuthService
+  parent: FractPal.Service.Interface
+  href: FractPal.Service.Interface.IAuthService.html
+  name: IAuthService
+  nameWithType: IAuthService
+  fullName: FractPal.Service.Interface.IAuthService
+- uid: FractPal.Service.Interface.ICommentService
+  commentId: T:FractPal.Service.Interface.ICommentService
+  parent: FractPal.Service.Interface
+  href: FractPal.Service.Interface.ICommentService.html
+  name: ICommentService
+  nameWithType: ICommentService
+  fullName: FractPal.Service.Interface.ICommentService
+- uid: FractPal.Service.Interface.IFractalService
+  commentId: T:FractPal.Service.Interface.IFractalService
+  parent: FractPal.Service.Interface
+  href: FractPal.Service.Interface.IFractalService.html
+  name: IFractalService
+  nameWithType: IFractalService
+  fullName: FractPal.Service.Interface.IFractalService
+- uid: FractPal.Service.Interface.IJwtService
+  commentId: T:FractPal.Service.Interface.IJwtService
+  parent: FractPal.Service.Interface
+  href: FractPal.Service.Interface.IJwtService.html
+  name: IJwtService
+  nameWithType: IJwtService
+  fullName: FractPal.Service.Interface.IJwtService
+- uid: FractPal.Service.Interface.ILikeService
+  commentId: T:FractPal.Service.Interface.ILikeService
+  parent: FractPal.Service.Interface
+  href: FractPal.Service.Interface.ILikeService.html
+  name: ILikeService
+  nameWithType: ILikeService
+  fullName: FractPal.Service.Interface.ILikeService
+- uid: FractPal.Service.Interface.IPostService
+  commentId: T:FractPal.Service.Interface.IPostService
+  parent: FractPal.Service.Interface
+  href: FractPal.Service.Interface.IPostService.html
+  name: IPostService
+  nameWithType: IPostService
+  fullName: FractPal.Service.Interface.IPostService
+- uid: FractPal.Service.Interface.IRefreshTokenService
+  commentId: T:FractPal.Service.Interface.IRefreshTokenService
+  parent: FractPal.Service.Interface
+  href: FractPal.Service.Interface.IRefreshTokenService.html
+  name: IRefreshTokenService
+  nameWithType: IRefreshTokenService
+  fullName: FractPal.Service.Interface.IRefreshTokenService
+- uid: FractPal.Service.Interface.IRepository`1
+  commentId: T:FractPal.Service.Interface.IRepository`1
+  href: FractPal.Service.Interface.IRepository-1.html
+  name: IRepository<T>
+  nameWithType: IRepository<T>
+  fullName: FractPal.Service.Interface.IRepository<T>
+  nameWithType.vb: IRepository(Of T)
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T)
+  name.vb: IRepository(Of T)
+  spec.csharp:
+  - uid: FractPal.Service.Interface.IRepository`1
+    name: IRepository
+    href: FractPal.Service.Interface.IRepository-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FractPal.Service.Interface.IRepository`1
+    name: IRepository
+    href: FractPal.Service.Interface.IRepository-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FractPal.Service.Interface.IUserService
+  commentId: T:FractPal.Service.Interface.IUserService
+  parent: FractPal.Service.Interface
+  href: FractPal.Service.Interface.IUserService.html
+  name: IUserService
+  nameWithType: IUserService
+  fullName: FractPal.Service.Interface.IUserService
+- uid: FractPal.Service.Interface
+  commentId: N:FractPal.Service.Interface
+  href: FractPal.html
+  name: FractPal.Service.Interface
+  nameWithType: FractPal.Service.Interface
+  fullName: FractPal.Service.Interface
+  spec.csharp:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Service
+    name: Service
+    href: FractPal.Service.html
+  - name: .
+  - uid: FractPal.Service.Interface
+    name: Interface
+    href: FractPal.Service.Interface.html
+  spec.vb:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Service
+    name: Service
+    href: FractPal.Service.html
+  - name: .
+  - uid: FractPal.Service.Interface
+    name: Interface
+    href: FractPal.Service.Interface.html

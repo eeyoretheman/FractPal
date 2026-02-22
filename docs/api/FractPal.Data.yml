@@ -1,0 +1,68 @@
+### YamlMime:ManagedReference
+items:
+- uid: FractPal.Data
+  commentId: N:FractPal.Data
+  id: FractPal.Data
+  children:
+  - FractPal.Data.IRepository`1
+  - FractPal.Data.Repository`1
+  langs:
+  - csharp
+  - vb
+  name: FractPal.Data
+  nameWithType: FractPal.Data
+  fullName: FractPal.Data
+  type: Namespace
+  assemblies:
+  - FractPal.Service
+references:
+- uid: FractPal.Data.IRepository`1
+  commentId: T:FractPal.Data.IRepository`1
+  href: FractPal.Data.IRepository-1.html
+  name: IRepository<T>
+  nameWithType: IRepository<T>
+  fullName: FractPal.Data.IRepository<T>
+  nameWithType.vb: IRepository(Of T)
+  fullName.vb: FractPal.Data.IRepository(Of T)
+  name.vb: IRepository(Of T)
+  spec.csharp:
+  - uid: FractPal.Data.IRepository`1
+    name: IRepository
+    href: FractPal.Data.IRepository-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FractPal.Data.IRepository`1
+    name: IRepository
+    href: FractPal.Data.IRepository-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FractPal.Data.Repository`1
+  commentId: T:FractPal.Data.Repository`1
+  href: FractPal.Data.Repository-1.html
+  name: Repository<T>
+  nameWithType: Repository<T>
+  fullName: FractPal.Data.Repository<T>
+  nameWithType.vb: Repository(Of T)
+  fullName.vb: FractPal.Data.Repository(Of T)
+  name.vb: Repository(Of T)
+  spec.csharp:
+  - uid: FractPal.Data.Repository`1
+    name: Repository
+    href: FractPal.Data.Repository-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FractPal.Data.Repository`1
+    name: Repository
+    href: FractPal.Data.Repository-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )

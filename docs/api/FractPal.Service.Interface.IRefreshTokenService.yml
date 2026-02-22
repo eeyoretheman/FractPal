@@ -1,0 +1,494 @@
+### YamlMime:ManagedReference
+items:
+- uid: FractPal.Service.Interface.IRefreshTokenService
+  commentId: T:FractPal.Service.Interface.IRefreshTokenService
+  id: IRefreshTokenService
+  parent: FractPal.Service.Interface
+  children:
+  - FractPal.Service.Interface.IRefreshTokenService.GenerateRefreshToken(Microsoft.AspNetCore.Identity.IdentityUser)
+  - FractPal.Service.Interface.IRefreshTokenService.GetUserIdByRefreshToken(System.String)
+  - FractPal.Service.Interface.IRefreshTokenService.InvalidateRefreshToken(System.String)
+  - FractPal.Service.Interface.IRefreshTokenService.ValidateRefreshToken(System.Guid,System.String)
+  langs:
+  - csharp
+  - vb
+  name: IRefreshTokenService
+  nameWithType: IRefreshTokenService
+  fullName: FractPal.Service.Interface.IRefreshTokenService
+  type: Interface
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/IRefreshTokenService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: IRefreshTokenService
+    path: ../backend/FractPal.Service/Interface/IRefreshTokenService.cs
+    startLine: 7
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: 'Manages refresh token lifecycle: generation, validation, and invalidation.'
+  example: []
+  syntax:
+    content: public interface IRefreshTokenService
+    content.vb: Public Interface IRefreshTokenService
+- uid: FractPal.Service.Interface.IRefreshTokenService.GenerateRefreshToken(Microsoft.AspNetCore.Identity.IdentityUser)
+  commentId: M:FractPal.Service.Interface.IRefreshTokenService.GenerateRefreshToken(Microsoft.AspNetCore.Identity.IdentityUser)
+  id: GenerateRefreshToken(Microsoft.AspNetCore.Identity.IdentityUser)
+  parent: FractPal.Service.Interface.IRefreshTokenService
+  langs:
+  - csharp
+  - vb
+  name: GenerateRefreshToken(IdentityUser)
+  nameWithType: IRefreshTokenService.GenerateRefreshToken(IdentityUser)
+  fullName: FractPal.Service.Interface.IRefreshTokenService.GenerateRefreshToken(Microsoft.AspNetCore.Identity.IdentityUser)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/IRefreshTokenService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: GenerateRefreshToken
+    path: ../backend/FractPal.Service/Interface/IRefreshTokenService.cs
+    startLine: 15
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: >-
+    Generates a new cryptographically secure refresh token for the specified user
+
+    and persists it for future validation.
+  example: []
+  syntax:
+    content: Task<string> GenerateRefreshToken(IdentityUser user)
+    parameters:
+    - id: user
+      type: Microsoft.AspNetCore.Identity.IdentityUser
+      description: The user to generate a refresh token for.
+    return:
+      type: System.Threading.Tasks.Task{System.String}
+      description: The generated refresh token string.
+    content.vb: Function GenerateRefreshToken(user As IdentityUser) As Task(Of String)
+  overload: FractPal.Service.Interface.IRefreshTokenService.GenerateRefreshToken*
+- uid: FractPal.Service.Interface.IRefreshTokenService.ValidateRefreshToken(System.Guid,System.String)
+  commentId: M:FractPal.Service.Interface.IRefreshTokenService.ValidateRefreshToken(System.Guid,System.String)
+  id: ValidateRefreshToken(System.Guid,System.String)
+  parent: FractPal.Service.Interface.IRefreshTokenService
+  langs:
+  - csharp
+  - vb
+  name: ValidateRefreshToken(Guid, string)
+  nameWithType: IRefreshTokenService.ValidateRefreshToken(Guid, string)
+  fullName: FractPal.Service.Interface.IRefreshTokenService.ValidateRefreshToken(System.Guid, string)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/IRefreshTokenService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: ValidateRefreshToken
+    path: ../backend/FractPal.Service/Interface/IRefreshTokenService.cs
+    startLine: 23
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: Validates whether the given refresh token is active and belongs to the specified user.
+  example: []
+  syntax:
+    content: Task<bool> ValidateRefreshToken(Guid userId, string refreshToken)
+    parameters:
+    - id: userId
+      type: System.Guid
+      description: The ID of the user claiming the token.
+    - id: refreshToken
+      type: System.String
+      description: The refresh token to validate.
+    return:
+      type: System.Threading.Tasks.Task{System.Boolean}
+      description: <code>true</code> if the token is valid; otherwise <code>false</code>.
+    content.vb: Function ValidateRefreshToken(userId As Guid, refreshToken As String) As Task(Of Boolean)
+  overload: FractPal.Service.Interface.IRefreshTokenService.ValidateRefreshToken*
+  nameWithType.vb: IRefreshTokenService.ValidateRefreshToken(Guid, String)
+  fullName.vb: FractPal.Service.Interface.IRefreshTokenService.ValidateRefreshToken(System.Guid, String)
+  name.vb: ValidateRefreshToken(Guid, String)
+- uid: FractPal.Service.Interface.IRefreshTokenService.InvalidateRefreshToken(System.String)
+  commentId: M:FractPal.Service.Interface.IRefreshTokenService.InvalidateRefreshToken(System.String)
+  id: InvalidateRefreshToken(System.String)
+  parent: FractPal.Service.Interface.IRefreshTokenService
+  langs:
+  - csharp
+  - vb
+  name: InvalidateRefreshToken(string)
+  nameWithType: IRefreshTokenService.InvalidateRefreshToken(string)
+  fullName: FractPal.Service.Interface.IRefreshTokenService.InvalidateRefreshToken(string)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/IRefreshTokenService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: InvalidateRefreshToken
+    path: ../backend/FractPal.Service/Interface/IRefreshTokenService.cs
+    startLine: 29
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: Revokes a refresh token so it can no longer be used to obtain new access tokens.
+  example: []
+  syntax:
+    content: Task InvalidateRefreshToken(string refreshToken)
+    parameters:
+    - id: refreshToken
+      type: System.String
+      description: The refresh token to invalidate.
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Function InvalidateRefreshToken(refreshToken As String) As Task
+  overload: FractPal.Service.Interface.IRefreshTokenService.InvalidateRefreshToken*
+  nameWithType.vb: IRefreshTokenService.InvalidateRefreshToken(String)
+  fullName.vb: FractPal.Service.Interface.IRefreshTokenService.InvalidateRefreshToken(String)
+  name.vb: InvalidateRefreshToken(String)
+- uid: FractPal.Service.Interface.IRefreshTokenService.GetUserIdByRefreshToken(System.String)
+  commentId: M:FractPal.Service.Interface.IRefreshTokenService.GetUserIdByRefreshToken(System.String)
+  id: GetUserIdByRefreshToken(System.String)
+  parent: FractPal.Service.Interface.IRefreshTokenService
+  langs:
+  - csharp
+  - vb
+  name: GetUserIdByRefreshToken(string)
+  nameWithType: IRefreshTokenService.GetUserIdByRefreshToken(string)
+  fullName: FractPal.Service.Interface.IRefreshTokenService.GetUserIdByRefreshToken(string)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/IRefreshTokenService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: GetUserIdByRefreshToken
+    path: ../backend/FractPal.Service/Interface/IRefreshTokenService.cs
+    startLine: 36
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: Looks up the user ID associated with the given refresh token.
+  example: []
+  syntax:
+    content: Task<Guid?> GetUserIdByRefreshToken(string refreshToken)
+    parameters:
+    - id: refreshToken
+      type: System.String
+      description: The refresh token to look up.
+    return:
+      type: System.Threading.Tasks.Task{System.Nullable{System.Guid}}
+      description: The associated user's <xref href="System.Guid" data-throw-if-not-resolved="false"></xref>, or <code>null</code> if the token is not found or expired.
+    content.vb: Function GetUserIdByRefreshToken(refreshToken As String) As Task(Of Guid?)
+  overload: FractPal.Service.Interface.IRefreshTokenService.GetUserIdByRefreshToken*
+  nameWithType.vb: IRefreshTokenService.GetUserIdByRefreshToken(String)
+  fullName.vb: FractPal.Service.Interface.IRefreshTokenService.GetUserIdByRefreshToken(String)
+  name.vb: GetUserIdByRefreshToken(String)
+references:
+- uid: FractPal.Service.Interface
+  commentId: N:FractPal.Service.Interface
+  href: FractPal.html
+  name: FractPal.Service.Interface
+  nameWithType: FractPal.Service.Interface
+  fullName: FractPal.Service.Interface
+  spec.csharp:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Service
+    name: Service
+    href: FractPal.Service.html
+  - name: .
+  - uid: FractPal.Service.Interface
+    name: Interface
+    href: FractPal.Service.Interface.html
+  spec.vb:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Service
+    name: Service
+    href: FractPal.Service.html
+  - name: .
+  - uid: FractPal.Service.Interface
+    name: Interface
+    href: FractPal.Service.Interface.html
+- uid: FractPal.Service.Interface.IRefreshTokenService.GenerateRefreshToken*
+  commentId: Overload:FractPal.Service.Interface.IRefreshTokenService.GenerateRefreshToken
+  href: FractPal.Service.Interface.IRefreshTokenService.html#FractPal_Service_Interface_IRefreshTokenService_GenerateRefreshToken_Microsoft_AspNetCore_Identity_IdentityUser_
+  name: GenerateRefreshToken
+  nameWithType: IRefreshTokenService.GenerateRefreshToken
+  fullName: FractPal.Service.Interface.IRefreshTokenService.GenerateRefreshToken
+- uid: Microsoft.AspNetCore.Identity.IdentityUser
+  commentId: T:Microsoft.AspNetCore.Identity.IdentityUser
+  parent: Microsoft.AspNetCore.Identity
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityuser
+  name: IdentityUser
+  nameWithType: IdentityUser
+  fullName: Microsoft.AspNetCore.Identity.IdentityUser
+- uid: System.Threading.Tasks.Task{System.String}
+  commentId: T:System.Threading.Tasks.Task{System.String}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<string>
+  nameWithType: Task<string>
+  fullName: System.Threading.Tasks.Task<string>
+  nameWithType.vb: Task(Of String)
+  fullName.vb: System.Threading.Tasks.Task(Of String)
+  name.vb: Task(Of String)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: Microsoft.AspNetCore.Identity
+  commentId: N:Microsoft.AspNetCore.Identity
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
+  name: Microsoft.AspNetCore.Identity
+  nameWithType: Microsoft.AspNetCore.Identity
+  fullName: Microsoft.AspNetCore.Identity
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Identity
+    name: Identity
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Identity
+    name: Identity
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: FractPal.Service.Interface.IRefreshTokenService.ValidateRefreshToken*
+  commentId: Overload:FractPal.Service.Interface.IRefreshTokenService.ValidateRefreshToken
+  href: FractPal.Service.Interface.IRefreshTokenService.html#FractPal_Service_Interface_IRefreshTokenService_ValidateRefreshToken_System_Guid_System_String_
+  name: ValidateRefreshToken
+  nameWithType: IRefreshTokenService.ValidateRefreshToken
+  fullName: FractPal.Service.Interface.IRefreshTokenService.ValidateRefreshToken
+- uid: System.Guid
+  commentId: T:System.Guid
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.guid
+  name: Guid
+  nameWithType: Guid
+  fullName: System.Guid
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Threading.Tasks.Task{System.Boolean}
+  commentId: T:System.Threading.Tasks.Task{System.Boolean}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<bool>
+  nameWithType: Task<bool>
+  fullName: System.Threading.Tasks.Task<bool>
+  nameWithType.vb: Task(Of Boolean)
+  fullName.vb: System.Threading.Tasks.Task(Of Boolean)
+  name.vb: Task(Of Boolean)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FractPal.Service.Interface.IRefreshTokenService.InvalidateRefreshToken*
+  commentId: Overload:FractPal.Service.Interface.IRefreshTokenService.InvalidateRefreshToken
+  href: FractPal.Service.Interface.IRefreshTokenService.html#FractPal_Service_Interface_IRefreshTokenService_InvalidateRefreshToken_System_String_
+  name: InvalidateRefreshToken
+  nameWithType: IRefreshTokenService.InvalidateRefreshToken
+  fullName: FractPal.Service.Interface.IRefreshTokenService.InvalidateRefreshToken
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: FractPal.Service.Interface.IRefreshTokenService.GetUserIdByRefreshToken*
+  commentId: Overload:FractPal.Service.Interface.IRefreshTokenService.GetUserIdByRefreshToken
+  href: FractPal.Service.Interface.IRefreshTokenService.html#FractPal_Service_Interface_IRefreshTokenService_GetUserIdByRefreshToken_System_String_
+  name: GetUserIdByRefreshToken
+  nameWithType: IRefreshTokenService.GetUserIdByRefreshToken
+  fullName: FractPal.Service.Interface.IRefreshTokenService.GetUserIdByRefreshToken
+- uid: System.Threading.Tasks.Task{System.Nullable{System.Guid}}
+  commentId: T:System.Threading.Tasks.Task{System.Nullable{System.Guid}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<Guid?>
+  nameWithType: Task<Guid?>
+  fullName: System.Threading.Tasks.Task<System.Guid?>
+  nameWithType.vb: Task(Of Guid?)
+  fullName.vb: System.Threading.Tasks.Task(Of System.Guid?)
+  name.vb: Task(Of Guid?)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: '?'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: '?'
+  - name: )

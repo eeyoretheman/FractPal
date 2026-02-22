@@ -1,0 +1,232 @@
+### YamlMime:ManagedReference
+items:
+- uid: FractPal.Service.Interface.IJwtService
+  commentId: T:FractPal.Service.Interface.IJwtService
+  id: IJwtService
+  parent: FractPal.Service.Interface
+  children:
+  - FractPal.Service.Interface.IJwtService.GenerateToken(FractPal.Model.Entities.FractPalUser)
+  langs:
+  - csharp
+  - vb
+  name: IJwtService
+  nameWithType: IJwtService
+  fullName: FractPal.Service.Interface.IJwtService
+  type: Interface
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/IJwtService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: IJwtService
+    path: ../backend/FractPal.Service/Interface/IJwtService.cs
+    startLine: 7
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: Provides JWT token generation for authenticated users.
+  example: []
+  syntax:
+    content: public interface IJwtService
+    content.vb: Public Interface IJwtService
+- uid: FractPal.Service.Interface.IJwtService.GenerateToken(FractPal.Model.Entities.FractPalUser)
+  commentId: M:FractPal.Service.Interface.IJwtService.GenerateToken(FractPal.Model.Entities.FractPalUser)
+  id: GenerateToken(FractPal.Model.Entities.FractPalUser)
+  parent: FractPal.Service.Interface.IJwtService
+  langs:
+  - csharp
+  - vb
+  name: GenerateToken(FractPalUser)
+  nameWithType: IJwtService.GenerateToken(FractPalUser)
+  fullName: FractPal.Service.Interface.IJwtService.GenerateToken(FractPal.Model.Entities.FractPalUser)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/IJwtService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: GenerateToken
+    path: ../backend/FractPal.Service/Interface/IJwtService.cs
+    startLine: 14
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: Generates a signed JWT access token for the given user, including their role claims.
+  example: []
+  syntax:
+    content: Task<string> GenerateToken(FractPalUser user)
+    parameters:
+    - id: user
+      type: FractPal.Model.Entities.FractPalUser
+      description: The authenticated <xref href="FractPal.Model.Entities.FractPalUser" data-throw-if-not-resolved="false"></xref> for whom the token is issued.
+    return:
+      type: System.Threading.Tasks.Task{System.String}
+      description: A signed JWT string.
+    content.vb: Function GenerateToken(user As FractPalUser) As Task(Of String)
+  overload: FractPal.Service.Interface.IJwtService.GenerateToken*
+references:
+- uid: FractPal.Service.Interface
+  commentId: N:FractPal.Service.Interface
+  href: FractPal.html
+  name: FractPal.Service.Interface
+  nameWithType: FractPal.Service.Interface
+  fullName: FractPal.Service.Interface
+  spec.csharp:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Service
+    name: Service
+    href: FractPal.Service.html
+  - name: .
+  - uid: FractPal.Service.Interface
+    name: Interface
+    href: FractPal.Service.Interface.html
+  spec.vb:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Service
+    name: Service
+    href: FractPal.Service.html
+  - name: .
+  - uid: FractPal.Service.Interface
+    name: Interface
+    href: FractPal.Service.Interface.html
+- uid: FractPal.Model.Entities.FractPalUser
+  commentId: T:FractPal.Model.Entities.FractPalUser
+  parent: FractPal.Model.Entities
+  name: FractPalUser
+  nameWithType: FractPalUser
+  fullName: FractPal.Model.Entities.FractPalUser
+- uid: FractPal.Service.Interface.IJwtService.GenerateToken*
+  commentId: Overload:FractPal.Service.Interface.IJwtService.GenerateToken
+  href: FractPal.Service.Interface.IJwtService.html#FractPal_Service_Interface_IJwtService_GenerateToken_FractPal_Model_Entities_FractPalUser_
+  name: GenerateToken
+  nameWithType: IJwtService.GenerateToken
+  fullName: FractPal.Service.Interface.IJwtService.GenerateToken
+- uid: System.Threading.Tasks.Task{System.String}
+  commentId: T:System.Threading.Tasks.Task{System.String}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<string>
+  nameWithType: Task<string>
+  fullName: System.Threading.Tasks.Task<string>
+  nameWithType.vb: Task(Of String)
+  fullName.vb: System.Threading.Tasks.Task(Of String)
+  name.vb: Task(Of String)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: FractPal.Model.Entities
+  commentId: N:FractPal.Model.Entities
+  name: FractPal.Model.Entities
+  nameWithType: FractPal.Model.Entities
+  fullName: FractPal.Model.Entities
+  spec.csharp:
+  - uid: FractPal
+    name: FractPal
+  - name: .
+  - uid: FractPal.Model
+    name: Model
+  - name: .
+  - uid: FractPal.Model.Entities
+    name: Entities
+  spec.vb:
+  - uid: FractPal
+    name: FractPal
+  - name: .
+  - uid: FractPal.Model
+    name: Model
+  - name: .
+  - uid: FractPal.Model.Entities
+    name: Entities
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
