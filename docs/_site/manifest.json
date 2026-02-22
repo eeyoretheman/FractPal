@@ -1,0 +1,480 @@
+{
+  "source_base_path": "/home/yori/Development/FractPalAbridged/FractPalServices/docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.API.Controllers.AuthController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.API.Controllers.AuthController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.API.Controllers.AuthController",
+      "Summary": "<p sourcefile=\"api/FractPal.API.Controllers.AuthController.yml\" sourcestartlinenumber=\"1\">Handles authentication operations including user login and registration.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.API.Controllers.CommentsController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.API.Controllers.CommentsController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.API.Controllers.CommentsController",
+      "Summary": "<p sourcefile=\"api/FractPal.API.Controllers.CommentsController.yml\" sourcestartlinenumber=\"1\">Handles comment CRUD operations on posts. All endpoints require an authenticated user.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.API.Controllers.FractalController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.API.Controllers.FractalController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.API.Controllers.FractalController",
+      "Summary": "<p sourcefile=\"api/FractPal.API.Controllers.FractalController.yml\" sourcestartlinenumber=\"1\">Handles all fractal CRUD operations, feed retrieval, forking, and social\ninteractions (likes). All endpoints require an authenticated user.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.API.Controllers.PostsController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.API.Controllers.PostsController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.API.Controllers.PostsController",
+      "Summary": "<p sourcefile=\"api/FractPal.API.Controllers.PostsController.yml\" sourcestartlinenumber=\"1\">Handles post lifecycle operations including feed retrieval, publishing and unpublishing\nfractals as posts, and social interactions (likes). All endpoints require an authenticated user.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.API.Controllers.UserController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.API.Controllers.UserController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.API.Controllers.UserController",
+      "Summary": "<p sourcefile=\"api/FractPal.API.Controllers.UserController.yml\" sourcestartlinenumber=\"1\">Handles user profile and social operations such as viewing profiles,\nupdating bio, following/unfollowing users, and searching for users.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.API.Controllers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.API.Controllers.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.API.Controllers",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.Data.IRepository-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.Data.IRepository-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.Data.IRepository<T>",
+      "Summary": "<p sourcefile=\"api/FractPal.Data.IRepository-1.yml\" sourcestartlinenumber=\"1\">Generic repository abstraction providing standard data access operations\nfor any entity type <code class=\"typeparamref\">T</code>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.Data.Repository-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.Data.Repository-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.Data.Repository<T>",
+      "Summary": "<p sourcefile=\"api/FractPal.Data.Repository-1.yml\" sourcestartlinenumber=\"1\">Entity Framework Core implementation of <xref href=\"FractPal.Data.IRepository%601\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.Data.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.Data.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.Data",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.Service.Implementation.AuthService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.Service.Implementation.AuthService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.Service.Implementation.AuthService",
+      "Summary": "<p sourcefile=\"api/FractPal.Service.Implementation.AuthService.yml\" sourcestartlinenumber=\"1\">Implements authentication logic including login and new user registration\nusing ASP.NET Core Identity.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.Service.Implementation.CommentService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.Service.Implementation.CommentService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.Service.Implementation.CommentService",
+      "Summary": "<p sourcefile=\"api/FractPal.Service.Implementation.CommentService.yml\" sourcestartlinenumber=\"1\">Implements comment business logic, including creation, retrieval, editing,\nand deletion of comments on FractPal posts.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.Service.Implementation.FractalService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.Service.Implementation.FractalService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.Service.Implementation.FractalService",
+      "Summary": "<p sourcefile=\"api/FractPal.Service.Implementation.FractalService.yml\" sourcestartlinenumber=\"1\">Implements fractal business logic for FractPal, including creation, retrieval,\nmodification, forking, and deletion of fractals.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.Service.Implementation.JwtService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.Service.Implementation.JwtService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.Service.Implementation.JwtService",
+      "Summary": "<p sourcefile=\"api/FractPal.Service.Implementation.JwtService.yml\" sourcestartlinenumber=\"1\">Generates signed JWT access tokens for authenticated FractPal users,\nincluding role claims. Token settings (secret, issuer, audience, expiry)\nare resolved from environment variables first, falling back to <code>appsettings.json</code>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.Service.Implementation.LikeService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.Service.Implementation.LikeService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.Service.Implementation.LikeService",
+      "Summary": "<p sourcefile=\"api/FractPal.Service.Implementation.LikeService.yml\" sourcestartlinenumber=\"1\">Implements like/unlike toggle logic for fractals and posts.\nLikes are stored at the fractal level; post likes resolve to the\nunderlying fractal.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.Service.Implementation.PostService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.Service.Implementation.PostService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.Service.Implementation.PostService",
+      "Summary": "<p sourcefile=\"api/FractPal.Service.Implementation.PostService.yml\" sourcestartlinenumber=\"1\">Implements post business logic for FractPal, including publishing fractals as posts,\nfeed retrieval, and post lifecycle management.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.Service.Implementation.RefreshTokenService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.Service.Implementation.RefreshTokenService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.Service.Implementation.RefreshTokenService",
+      "Summary": "<p sourcefile=\"api/FractPal.Service.Implementation.RefreshTokenService.yml\" sourcestartlinenumber=\"1\">Manages refresh token lifecycle: generation, validation, lookup, and revocation.\nTokens are cryptographically random, stored in the repository, and expire after 7 days.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.Service.Implementation.UserService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.Service.Implementation.UserService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.Service.Implementation.UserService",
+      "Summary": "<p sourcefile=\"api/FractPal.Service.Implementation.UserService.yml\" sourcestartlinenumber=\"1\">Implements user profile and social features for FractPal, including profile\nretrieval and updates, follow/unfollow toggling, and username search.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.Service.Implementation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.Service.Implementation.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.Service.Implementation",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.Service.Interface.IAuthService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.Service.Interface.IAuthService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.Service.Interface.IAuthService",
+      "Summary": "<p sourcefile=\"api/FractPal.Service.Interface.IAuthService.yml\" sourcestartlinenumber=\"1\">Provides authentication operations for user login and registration.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.Service.Interface.ICommentService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.Service.Interface.ICommentService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.Service.Interface.ICommentService",
+      "Summary": "<p sourcefile=\"api/FractPal.Service.Interface.ICommentService.yml\" sourcestartlinenumber=\"1\">Provides business logic for creating, retrieving, updating, and deleting\ncomments on FractPal posts.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.Service.Interface.IFractalService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.Service.Interface.IFractalService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.Service.Interface.IFractalService",
+      "Summary": "<p sourcefile=\"api/FractPal.Service.Interface.IFractalService.yml\" sourcestartlinenumber=\"1\">Provides business logic for fractal creation, retrieval, modification, and social features.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.Service.Interface.IJwtService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.Service.Interface.IJwtService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.Service.Interface.IJwtService",
+      "Summary": "<p sourcefile=\"api/FractPal.Service.Interface.IJwtService.yml\" sourcestartlinenumber=\"1\">Provides JWT token generation for authenticated users.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.Service.Interface.ILikeService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.Service.Interface.ILikeService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.Service.Interface.ILikeService",
+      "Summary": "<p sourcefile=\"api/FractPal.Service.Interface.ILikeService.yml\" sourcestartlinenumber=\"1\">Provides like/unlike toggle operations for fractals and posts.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.Service.Interface.IPostService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.Service.Interface.IPostService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.Service.Interface.IPostService",
+      "Summary": "<p sourcefile=\"api/FractPal.Service.Interface.IPostService.yml\" sourcestartlinenumber=\"1\">Provides business logic for publishing fractals as posts, retrieving feeds,\nand managing post lifecycle on FractPal.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.Service.Interface.IRefreshTokenService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.Service.Interface.IRefreshTokenService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.Service.Interface.IRefreshTokenService",
+      "Summary": "<p sourcefile=\"api/FractPal.Service.Interface.IRefreshTokenService.yml\" sourcestartlinenumber=\"1\">Manages refresh token lifecycle: generation, validation, and invalidation.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.Service.Interface.IRepository-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.Service.Interface.IRepository-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.Service.Interface.IRepository<T>",
+      "Summary": "<p sourcefile=\"api/FractPal.Service.Interface.IRepository-1.yml\" sourcestartlinenumber=\"1\">Defines a generic repository interface for common data access operations</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.Service.Interface.IUserService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.Service.Interface.IUserService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.Service.Interface.IUserService",
+      "Summary": "<p sourcefile=\"api/FractPal.Service.Interface.IUserService.yml\" sourcestartlinenumber=\"1\">Provides user profile management and social features such as following and search.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FractPal.Service.Interface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FractPal.Service.Interface.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FractPal.Service.Interface",
+      "Summary": null
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "md/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "md/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "md/introduction.md",
+      "output": {
+        ".html": {
+          "relative_path": "md/introduction.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "md/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "md/toc.html"
+        },
+        ".json": {
+          "relative_path": "md/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

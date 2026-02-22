@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface ICommentService | FractPal </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface ICommentService | FractPal ">
+      
+      <meta name="description" content="Provides business logic for creating, retrieving, updating, and deleting comments on FractPal posts.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/eeyoretheman/FractPal/new/main/apiSpec/new?filename=FractPal_Service_Interface_ICommentService.md&amp;value=---%0Auid%3A%20FractPal.Service.Interface.ICommentService%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="FractPal">
+            FractPal
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FractPal.Service.Interface.ICommentService">
+
+
+
+  <h1 id="FractPal_Service_Interface_ICommentService" data-uid="FractPal.Service.Interface.ICommentService" class="text-break">
+Interface ICommentService  <a class="header-action link-secondary" title="View source" href="https://github.com/eeyoretheman/FractPal/blob/main/backend/FractPal.Service/Interface/ICommentService.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="FractPal.html">FractPal</a>.<a class="xref" href="FractPal.Service.html">Service</a>.<a class="xref" href="FractPal.Service.Interface.html">Interface</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FractPal.Service.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Provides business logic for creating, retrieving, updating, and deleting
+comments on FractPal posts.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface ICommentService</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FractPal_Service_Interface_ICommentService_CreateComment_" data-uid="FractPal.Service.Interface.ICommentService.CreateComment*"></a>
+
+  <h3 id="FractPal_Service_Interface_ICommentService_CreateComment_System_Guid_System_Guid_FractPal_Model_DTO_Comment_CreateCommentRequest_" data-uid="FractPal.Service.Interface.ICommentService.CreateComment(System.Guid,System.Guid,FractPal.Model.DTO.Comment.CreateCommentRequest)">
+  CreateComment(Guid, Guid, CreateCommentRequest)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/eeyoretheman/FractPal/blob/main/backend/FractPal.Service/Interface/ICommentService.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new comment on the specified post.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;CommentDto&gt; CreateComment(Guid userId, Guid postId, CreateCommentRequest request)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>userId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd><p>The ID of the user creating the comment.</p>
+</dd>
+    <dt><code>postId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd><p>The ID of the post being commented on.</p>
+</dd>
+    <dt><code>request</code> <span class="xref">CreateCommentRequest</span></dt>
+    <dd><p>The comment content.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<span class="xref">CommentDto</span>&gt;</dt>
+    <dd><p>The newly created <span class="xref">FractPal.Model.DTO.Comment.CommentDto</span>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keynotfoundexception">KeyNotFoundException</a></dt>
+    <dd><p>Thrown when no post exists with <code class="paramref">postId</code>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FractPal_Service_Interface_ICommentService_DeleteComment_" data-uid="FractPal.Service.Interface.ICommentService.DeleteComment*"></a>
+
+  <h3 id="FractPal_Service_Interface_ICommentService_DeleteComment_System_Guid_System_Guid_" data-uid="FractPal.Service.Interface.ICommentService.DeleteComment(System.Guid,System.Guid)">
+  DeleteComment(Guid, Guid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/eeyoretheman/FractPal/blob/main/backend/FractPal.Service/Interface/ICommentService.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Permanently deletes a comment. Only the comment's author may perform this operation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task DeleteComment(Guid userId, Guid commentId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>userId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd><p>The ID of the requesting user.</p>
+</dd>
+    <dt><code>commentId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd><p>The ID of the comment to delete.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keynotfoundexception">KeyNotFoundException</a></dt>
+    <dd><p>Thrown when no comment exists with <code class="paramref">commentId</code>.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></dt>
+    <dd><p>Thrown when the requesting user is not the comment's author.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FractPal_Service_Interface_ICommentService_GetCommentById_" data-uid="FractPal.Service.Interface.ICommentService.GetCommentById*"></a>
+
+  <h3 id="FractPal_Service_Interface_ICommentService_GetCommentById_System_Guid_" data-uid="FractPal.Service.Interface.ICommentService.GetCommentById(System.Guid)">
+  GetCommentById(Guid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/eeyoretheman/FractPal/blob/main/backend/FractPal.Service/Interface/ICommentService.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves a single comment by its unique identifier.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;CommentDto&gt; GetCommentById(Guid commentId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>commentId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd><p>The unique identifier of the comment.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<span class="xref">CommentDto</span>&gt;</dt>
+    <dd><p>The matching <span class="xref">FractPal.Model.DTO.Comment.CommentDto</span>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keynotfoundexception">KeyNotFoundException</a></dt>
+    <dd><p>Thrown when no comment exists with <code class="paramref">commentId</code>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FractPal_Service_Interface_ICommentService_GetPostComments_" data-uid="FractPal.Service.Interface.ICommentService.GetPostComments*"></a>
+
+  <h3 id="FractPal_Service_Interface_ICommentService_GetPostComments_System_Guid_" data-uid="FractPal.Service.Interface.ICommentService.GetPostComments(System.Guid)">
+  GetPostComments(Guid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/eeyoretheman/FractPal/blob/main/backend/FractPal.Service/Interface/ICommentService.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves all comments on a given post, ordered chronologically.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;List&lt;CommentDto&gt;&gt; GetPostComments(Guid postId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>postId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd><p>The unique identifier of the post.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">CommentDto</span>&gt;&gt;</dt>
+    <dd><p>A list of <span class="xref">FractPal.Model.DTO.Comment.CommentDto</span> for the post.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FractPal_Service_Interface_ICommentService_UpdateComment_" data-uid="FractPal.Service.Interface.ICommentService.UpdateComment*"></a>
+
+  <h3 id="FractPal_Service_Interface_ICommentService_UpdateComment_System_Guid_System_Guid_FractPal_Model_DTO_Comment_UpdateCommentRequest_" data-uid="FractPal.Service.Interface.ICommentService.UpdateComment(System.Guid,System.Guid,FractPal.Model.DTO.Comment.UpdateCommentRequest)">
+  UpdateComment(Guid, Guid, UpdateCommentRequest)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/eeyoretheman/FractPal/blob/main/backend/FractPal.Service/Interface/ICommentService.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Updates the content of an existing comment. Only the comment's author may edit it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;CommentDto&gt; UpdateComment(Guid userId, Guid commentId, UpdateCommentRequest request)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>userId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd><p>The ID of the requesting user.</p>
+</dd>
+    <dt><code>commentId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd><p>The ID of the comment to update.</p>
+</dd>
+    <dt><code>request</code> <span class="xref">UpdateCommentRequest</span></dt>
+    <dd><p>The updated comment content.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<span class="xref">CommentDto</span>&gt;</dt>
+    <dd><p>The updated <span class="xref">FractPal.Model.DTO.Comment.CommentDto</span>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keynotfoundexception">KeyNotFoundException</a></dt>
+    <dd><p>Thrown when no comment exists with <code class="paramref">commentId</code>.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></dt>
+    <dd><p>Thrown when the requesting user is not the comment's author.</p>
+</dd>
+  </dl>
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/eeyoretheman/FractPal/blob/main/backend/FractPal.Service/Interface/ICommentService.cs/#L9" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

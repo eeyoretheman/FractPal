@@ -1,0 +1,2162 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: FractPal.API.Controllers
+  name: FractPal.API.Controllers
+  href: api/FractPal.API.Controllers.html
+  commentId: N:FractPal.API.Controllers
+  fullName: FractPal.API.Controllers
+  nameWithType: FractPal.API.Controllers
+- uid: FractPal.API.Controllers.AuthController
+  name: AuthController
+  href: api/FractPal.API.Controllers.AuthController.html
+  commentId: T:FractPal.API.Controllers.AuthController
+  fullName: FractPal.API.Controllers.AuthController
+  nameWithType: AuthController
+- uid: FractPal.API.Controllers.AuthController.#ctor(FractPal.Service.Interface.IAuthService)
+  name: AuthController(IAuthService)
+  href: api/FractPal.API.Controllers.AuthController.html#FractPal_API_Controllers_AuthController__ctor_FractPal_Service_Interface_IAuthService_
+  commentId: M:FractPal.API.Controllers.AuthController.#ctor(FractPal.Service.Interface.IAuthService)
+  name.vb: New(IAuthService)
+  fullName: FractPal.API.Controllers.AuthController.AuthController(FractPal.Service.Interface.IAuthService)
+  fullName.vb: FractPal.API.Controllers.AuthController.New(FractPal.Service.Interface.IAuthService)
+  nameWithType: AuthController.AuthController(IAuthService)
+  nameWithType.vb: AuthController.New(IAuthService)
+- uid: FractPal.API.Controllers.AuthController.#ctor*
+  name: AuthController
+  href: api/FractPal.API.Controllers.AuthController.html#FractPal_API_Controllers_AuthController__ctor_
+  commentId: Overload:FractPal.API.Controllers.AuthController.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: FractPal.API.Controllers.AuthController.AuthController
+  fullName.vb: FractPal.API.Controllers.AuthController.New
+  nameWithType: AuthController.AuthController
+  nameWithType.vb: AuthController.New
+- uid: FractPal.API.Controllers.AuthController.Login(FractPal.Model.DTO.Auth.LoginRequest)
+  name: Login(LoginRequest)
+  href: api/FractPal.API.Controllers.AuthController.html#FractPal_API_Controllers_AuthController_Login_FractPal_Model_DTO_Auth_LoginRequest_
+  commentId: M:FractPal.API.Controllers.AuthController.Login(FractPal.Model.DTO.Auth.LoginRequest)
+  fullName: FractPal.API.Controllers.AuthController.Login(FractPal.Model.DTO.Auth.LoginRequest)
+  nameWithType: AuthController.Login(LoginRequest)
+- uid: FractPal.API.Controllers.AuthController.Login*
+  name: Login
+  href: api/FractPal.API.Controllers.AuthController.html#FractPal_API_Controllers_AuthController_Login_
+  commentId: Overload:FractPal.API.Controllers.AuthController.Login
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.AuthController.Login
+  nameWithType: AuthController.Login
+- uid: FractPal.API.Controllers.AuthController.Register(FractPal.Model.DTO.Auth.RegistrationRequest)
+  name: Register(RegistrationRequest)
+  href: api/FractPal.API.Controllers.AuthController.html#FractPal_API_Controllers_AuthController_Register_FractPal_Model_DTO_Auth_RegistrationRequest_
+  commentId: M:FractPal.API.Controllers.AuthController.Register(FractPal.Model.DTO.Auth.RegistrationRequest)
+  fullName: FractPal.API.Controllers.AuthController.Register(FractPal.Model.DTO.Auth.RegistrationRequest)
+  nameWithType: AuthController.Register(RegistrationRequest)
+- uid: FractPal.API.Controllers.AuthController.Register*
+  name: Register
+  href: api/FractPal.API.Controllers.AuthController.html#FractPal_API_Controllers_AuthController_Register_
+  commentId: Overload:FractPal.API.Controllers.AuthController.Register
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.AuthController.Register
+  nameWithType: AuthController.Register
+- uid: FractPal.API.Controllers.CommentsController
+  name: CommentsController
+  href: api/FractPal.API.Controllers.CommentsController.html
+  commentId: T:FractPal.API.Controllers.CommentsController
+  fullName: FractPal.API.Controllers.CommentsController
+  nameWithType: CommentsController
+- uid: FractPal.API.Controllers.CommentsController.#ctor(FractPal.Service.Interface.ICommentService)
+  name: CommentsController(ICommentService)
+  href: api/FractPal.API.Controllers.CommentsController.html#FractPal_API_Controllers_CommentsController__ctor_FractPal_Service_Interface_ICommentService_
+  commentId: M:FractPal.API.Controllers.CommentsController.#ctor(FractPal.Service.Interface.ICommentService)
+  name.vb: New(ICommentService)
+  fullName: FractPal.API.Controllers.CommentsController.CommentsController(FractPal.Service.Interface.ICommentService)
+  fullName.vb: FractPal.API.Controllers.CommentsController.New(FractPal.Service.Interface.ICommentService)
+  nameWithType: CommentsController.CommentsController(ICommentService)
+  nameWithType.vb: CommentsController.New(ICommentService)
+- uid: FractPal.API.Controllers.CommentsController.#ctor*
+  name: CommentsController
+  href: api/FractPal.API.Controllers.CommentsController.html#FractPal_API_Controllers_CommentsController__ctor_
+  commentId: Overload:FractPal.API.Controllers.CommentsController.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: FractPal.API.Controllers.CommentsController.CommentsController
+  fullName.vb: FractPal.API.Controllers.CommentsController.New
+  nameWithType: CommentsController.CommentsController
+  nameWithType.vb: CommentsController.New
+- uid: FractPal.API.Controllers.CommentsController.CreateComment(System.Guid,FractPal.Model.DTO.Comment.CreateCommentRequest)
+  name: CreateComment(Guid, CreateCommentRequest)
+  href: api/FractPal.API.Controllers.CommentsController.html#FractPal_API_Controllers_CommentsController_CreateComment_System_Guid_FractPal_Model_DTO_Comment_CreateCommentRequest_
+  commentId: M:FractPal.API.Controllers.CommentsController.CreateComment(System.Guid,FractPal.Model.DTO.Comment.CreateCommentRequest)
+  fullName: FractPal.API.Controllers.CommentsController.CreateComment(System.Guid, FractPal.Model.DTO.Comment.CreateCommentRequest)
+  nameWithType: CommentsController.CreateComment(Guid, CreateCommentRequest)
+- uid: FractPal.API.Controllers.CommentsController.CreateComment*
+  name: CreateComment
+  href: api/FractPal.API.Controllers.CommentsController.html#FractPal_API_Controllers_CommentsController_CreateComment_
+  commentId: Overload:FractPal.API.Controllers.CommentsController.CreateComment
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.CommentsController.CreateComment
+  nameWithType: CommentsController.CreateComment
+- uid: FractPal.API.Controllers.CommentsController.DeleteComment(System.Guid)
+  name: DeleteComment(Guid)
+  href: api/FractPal.API.Controllers.CommentsController.html#FractPal_API_Controllers_CommentsController_DeleteComment_System_Guid_
+  commentId: M:FractPal.API.Controllers.CommentsController.DeleteComment(System.Guid)
+  fullName: FractPal.API.Controllers.CommentsController.DeleteComment(System.Guid)
+  nameWithType: CommentsController.DeleteComment(Guid)
+- uid: FractPal.API.Controllers.CommentsController.DeleteComment*
+  name: DeleteComment
+  href: api/FractPal.API.Controllers.CommentsController.html#FractPal_API_Controllers_CommentsController_DeleteComment_
+  commentId: Overload:FractPal.API.Controllers.CommentsController.DeleteComment
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.CommentsController.DeleteComment
+  nameWithType: CommentsController.DeleteComment
+- uid: FractPal.API.Controllers.CommentsController.GetCommentById(System.Guid)
+  name: GetCommentById(Guid)
+  href: api/FractPal.API.Controllers.CommentsController.html#FractPal_API_Controllers_CommentsController_GetCommentById_System_Guid_
+  commentId: M:FractPal.API.Controllers.CommentsController.GetCommentById(System.Guid)
+  fullName: FractPal.API.Controllers.CommentsController.GetCommentById(System.Guid)
+  nameWithType: CommentsController.GetCommentById(Guid)
+- uid: FractPal.API.Controllers.CommentsController.GetCommentById*
+  name: GetCommentById
+  href: api/FractPal.API.Controllers.CommentsController.html#FractPal_API_Controllers_CommentsController_GetCommentById_
+  commentId: Overload:FractPal.API.Controllers.CommentsController.GetCommentById
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.CommentsController.GetCommentById
+  nameWithType: CommentsController.GetCommentById
+- uid: FractPal.API.Controllers.CommentsController.GetPostComments(System.Guid)
+  name: GetPostComments(Guid)
+  href: api/FractPal.API.Controllers.CommentsController.html#FractPal_API_Controllers_CommentsController_GetPostComments_System_Guid_
+  commentId: M:FractPal.API.Controllers.CommentsController.GetPostComments(System.Guid)
+  fullName: FractPal.API.Controllers.CommentsController.GetPostComments(System.Guid)
+  nameWithType: CommentsController.GetPostComments(Guid)
+- uid: FractPal.API.Controllers.CommentsController.GetPostComments*
+  name: GetPostComments
+  href: api/FractPal.API.Controllers.CommentsController.html#FractPal_API_Controllers_CommentsController_GetPostComments_
+  commentId: Overload:FractPal.API.Controllers.CommentsController.GetPostComments
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.CommentsController.GetPostComments
+  nameWithType: CommentsController.GetPostComments
+- uid: FractPal.API.Controllers.CommentsController.UpdateComment(System.Guid,FractPal.Model.DTO.Comment.UpdateCommentRequest)
+  name: UpdateComment(Guid, UpdateCommentRequest)
+  href: api/FractPal.API.Controllers.CommentsController.html#FractPal_API_Controllers_CommentsController_UpdateComment_System_Guid_FractPal_Model_DTO_Comment_UpdateCommentRequest_
+  commentId: M:FractPal.API.Controllers.CommentsController.UpdateComment(System.Guid,FractPal.Model.DTO.Comment.UpdateCommentRequest)
+  fullName: FractPal.API.Controllers.CommentsController.UpdateComment(System.Guid, FractPal.Model.DTO.Comment.UpdateCommentRequest)
+  nameWithType: CommentsController.UpdateComment(Guid, UpdateCommentRequest)
+- uid: FractPal.API.Controllers.CommentsController.UpdateComment*
+  name: UpdateComment
+  href: api/FractPal.API.Controllers.CommentsController.html#FractPal_API_Controllers_CommentsController_UpdateComment_
+  commentId: Overload:FractPal.API.Controllers.CommentsController.UpdateComment
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.CommentsController.UpdateComment
+  nameWithType: CommentsController.UpdateComment
+- uid: FractPal.API.Controllers.FractalController
+  name: FractalController
+  href: api/FractPal.API.Controllers.FractalController.html
+  commentId: T:FractPal.API.Controllers.FractalController
+  fullName: FractPal.API.Controllers.FractalController
+  nameWithType: FractalController
+- uid: FractPal.API.Controllers.FractalController.#ctor(FractPal.Service.Interface.IFractalService,FractPal.Service.Interface.ILikeService)
+  name: FractalController(IFractalService, ILikeService)
+  href: api/FractPal.API.Controllers.FractalController.html#FractPal_API_Controllers_FractalController__ctor_FractPal_Service_Interface_IFractalService_FractPal_Service_Interface_ILikeService_
+  commentId: M:FractPal.API.Controllers.FractalController.#ctor(FractPal.Service.Interface.IFractalService,FractPal.Service.Interface.ILikeService)
+  name.vb: New(IFractalService, ILikeService)
+  fullName: FractPal.API.Controllers.FractalController.FractalController(FractPal.Service.Interface.IFractalService, FractPal.Service.Interface.ILikeService)
+  fullName.vb: FractPal.API.Controllers.FractalController.New(FractPal.Service.Interface.IFractalService, FractPal.Service.Interface.ILikeService)
+  nameWithType: FractalController.FractalController(IFractalService, ILikeService)
+  nameWithType.vb: FractalController.New(IFractalService, ILikeService)
+- uid: FractPal.API.Controllers.FractalController.#ctor*
+  name: FractalController
+  href: api/FractPal.API.Controllers.FractalController.html#FractPal_API_Controllers_FractalController__ctor_
+  commentId: Overload:FractPal.API.Controllers.FractalController.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: FractPal.API.Controllers.FractalController.FractalController
+  fullName.vb: FractPal.API.Controllers.FractalController.New
+  nameWithType: FractalController.FractalController
+  nameWithType.vb: FractalController.New
+- uid: FractPal.API.Controllers.FractalController.CreateFractal(FractPal.Model.DTO.Fractal.CreateFractalRequest)
+  name: CreateFractal(CreateFractalRequest)
+  href: api/FractPal.API.Controllers.FractalController.html#FractPal_API_Controllers_FractalController_CreateFractal_FractPal_Model_DTO_Fractal_CreateFractalRequest_
+  commentId: M:FractPal.API.Controllers.FractalController.CreateFractal(FractPal.Model.DTO.Fractal.CreateFractalRequest)
+  fullName: FractPal.API.Controllers.FractalController.CreateFractal(FractPal.Model.DTO.Fractal.CreateFractalRequest)
+  nameWithType: FractalController.CreateFractal(CreateFractalRequest)
+- uid: FractPal.API.Controllers.FractalController.CreateFractal*
+  name: CreateFractal
+  href: api/FractPal.API.Controllers.FractalController.html#FractPal_API_Controllers_FractalController_CreateFractal_
+  commentId: Overload:FractPal.API.Controllers.FractalController.CreateFractal
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.FractalController.CreateFractal
+  nameWithType: FractalController.CreateFractal
+- uid: FractPal.API.Controllers.FractalController.DeleteFractal(System.Guid)
+  name: DeleteFractal(Guid)
+  href: api/FractPal.API.Controllers.FractalController.html#FractPal_API_Controllers_FractalController_DeleteFractal_System_Guid_
+  commentId: M:FractPal.API.Controllers.FractalController.DeleteFractal(System.Guid)
+  fullName: FractPal.API.Controllers.FractalController.DeleteFractal(System.Guid)
+  nameWithType: FractalController.DeleteFractal(Guid)
+- uid: FractPal.API.Controllers.FractalController.DeleteFractal*
+  name: DeleteFractal
+  href: api/FractPal.API.Controllers.FractalController.html#FractPal_API_Controllers_FractalController_DeleteFractal_
+  commentId: Overload:FractPal.API.Controllers.FractalController.DeleteFractal
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.FractalController.DeleteFractal
+  nameWithType: FractalController.DeleteFractal
+- uid: FractPal.API.Controllers.FractalController.ForkFractal(System.Guid)
+  name: ForkFractal(Guid)
+  href: api/FractPal.API.Controllers.FractalController.html#FractPal_API_Controllers_FractalController_ForkFractal_System_Guid_
+  commentId: M:FractPal.API.Controllers.FractalController.ForkFractal(System.Guid)
+  fullName: FractPal.API.Controllers.FractalController.ForkFractal(System.Guid)
+  nameWithType: FractalController.ForkFractal(Guid)
+- uid: FractPal.API.Controllers.FractalController.ForkFractal*
+  name: ForkFractal
+  href: api/FractPal.API.Controllers.FractalController.html#FractPal_API_Controllers_FractalController_ForkFractal_
+  commentId: Overload:FractPal.API.Controllers.FractalController.ForkFractal
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.FractalController.ForkFractal
+  nameWithType: FractalController.ForkFractal
+- uid: FractPal.API.Controllers.FractalController.GetFeed(System.Int32,System.Int32)
+  name: GetFeed(int, int)
+  href: api/FractPal.API.Controllers.FractalController.html#FractPal_API_Controllers_FractalController_GetFeed_System_Int32_System_Int32_
+  commentId: M:FractPal.API.Controllers.FractalController.GetFeed(System.Int32,System.Int32)
+  name.vb: GetFeed(Integer, Integer)
+  fullName: FractPal.API.Controllers.FractalController.GetFeed(int, int)
+  fullName.vb: FractPal.API.Controllers.FractalController.GetFeed(Integer, Integer)
+  nameWithType: FractalController.GetFeed(int, int)
+  nameWithType.vb: FractalController.GetFeed(Integer, Integer)
+- uid: FractPal.API.Controllers.FractalController.GetFeed*
+  name: GetFeed
+  href: api/FractPal.API.Controllers.FractalController.html#FractPal_API_Controllers_FractalController_GetFeed_
+  commentId: Overload:FractPal.API.Controllers.FractalController.GetFeed
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.FractalController.GetFeed
+  nameWithType: FractalController.GetFeed
+- uid: FractPal.API.Controllers.FractalController.GetFractalById(System.Guid)
+  name: GetFractalById(Guid)
+  href: api/FractPal.API.Controllers.FractalController.html#FractPal_API_Controllers_FractalController_GetFractalById_System_Guid_
+  commentId: M:FractPal.API.Controllers.FractalController.GetFractalById(System.Guid)
+  fullName: FractPal.API.Controllers.FractalController.GetFractalById(System.Guid)
+  nameWithType: FractalController.GetFractalById(Guid)
+- uid: FractPal.API.Controllers.FractalController.GetFractalById*
+  name: GetFractalById
+  href: api/FractPal.API.Controllers.FractalController.html#FractPal_API_Controllers_FractalController_GetFractalById_
+  commentId: Overload:FractPal.API.Controllers.FractalController.GetFractalById
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.FractalController.GetFractalById
+  nameWithType: FractalController.GetFractalById
+- uid: FractPal.API.Controllers.FractalController.GetMyFractals
+  name: GetMyFractals()
+  href: api/FractPal.API.Controllers.FractalController.html#FractPal_API_Controllers_FractalController_GetMyFractals
+  commentId: M:FractPal.API.Controllers.FractalController.GetMyFractals
+  fullName: FractPal.API.Controllers.FractalController.GetMyFractals()
+  nameWithType: FractalController.GetMyFractals()
+- uid: FractPal.API.Controllers.FractalController.GetMyFractals*
+  name: GetMyFractals
+  href: api/FractPal.API.Controllers.FractalController.html#FractPal_API_Controllers_FractalController_GetMyFractals_
+  commentId: Overload:FractPal.API.Controllers.FractalController.GetMyFractals
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.FractalController.GetMyFractals
+  nameWithType: FractalController.GetMyFractals
+- uid: FractPal.API.Controllers.FractalController.GetUserFractals(System.Guid)
+  name: GetUserFractals(Guid)
+  href: api/FractPal.API.Controllers.FractalController.html#FractPal_API_Controllers_FractalController_GetUserFractals_System_Guid_
+  commentId: M:FractPal.API.Controllers.FractalController.GetUserFractals(System.Guid)
+  fullName: FractPal.API.Controllers.FractalController.GetUserFractals(System.Guid)
+  nameWithType: FractalController.GetUserFractals(Guid)
+- uid: FractPal.API.Controllers.FractalController.GetUserFractals*
+  name: GetUserFractals
+  href: api/FractPal.API.Controllers.FractalController.html#FractPal_API_Controllers_FractalController_GetUserFractals_
+  commentId: Overload:FractPal.API.Controllers.FractalController.GetUserFractals
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.FractalController.GetUserFractals
+  nameWithType: FractalController.GetUserFractals
+- uid: FractPal.API.Controllers.FractalController.UpdateFractal(System.Guid,FractPal.Model.DTO.Fractal.UpdateFractalRequest)
+  name: UpdateFractal(Guid, UpdateFractalRequest)
+  href: api/FractPal.API.Controllers.FractalController.html#FractPal_API_Controllers_FractalController_UpdateFractal_System_Guid_FractPal_Model_DTO_Fractal_UpdateFractalRequest_
+  commentId: M:FractPal.API.Controllers.FractalController.UpdateFractal(System.Guid,FractPal.Model.DTO.Fractal.UpdateFractalRequest)
+  fullName: FractPal.API.Controllers.FractalController.UpdateFractal(System.Guid, FractPal.Model.DTO.Fractal.UpdateFractalRequest)
+  nameWithType: FractalController.UpdateFractal(Guid, UpdateFractalRequest)
+- uid: FractPal.API.Controllers.FractalController.UpdateFractal*
+  name: UpdateFractal
+  href: api/FractPal.API.Controllers.FractalController.html#FractPal_API_Controllers_FractalController_UpdateFractal_
+  commentId: Overload:FractPal.API.Controllers.FractalController.UpdateFractal
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.FractalController.UpdateFractal
+  nameWithType: FractalController.UpdateFractal
+- uid: FractPal.API.Controllers.PostsController
+  name: PostsController
+  href: api/FractPal.API.Controllers.PostsController.html
+  commentId: T:FractPal.API.Controllers.PostsController
+  fullName: FractPal.API.Controllers.PostsController
+  nameWithType: PostsController
+- uid: FractPal.API.Controllers.PostsController.#ctor(FractPal.Service.Interface.IPostService,FractPal.Service.Interface.ILikeService)
+  name: PostsController(IPostService, ILikeService)
+  href: api/FractPal.API.Controllers.PostsController.html#FractPal_API_Controllers_PostsController__ctor_FractPal_Service_Interface_IPostService_FractPal_Service_Interface_ILikeService_
+  commentId: M:FractPal.API.Controllers.PostsController.#ctor(FractPal.Service.Interface.IPostService,FractPal.Service.Interface.ILikeService)
+  name.vb: New(IPostService, ILikeService)
+  fullName: FractPal.API.Controllers.PostsController.PostsController(FractPal.Service.Interface.IPostService, FractPal.Service.Interface.ILikeService)
+  fullName.vb: FractPal.API.Controllers.PostsController.New(FractPal.Service.Interface.IPostService, FractPal.Service.Interface.ILikeService)
+  nameWithType: PostsController.PostsController(IPostService, ILikeService)
+  nameWithType.vb: PostsController.New(IPostService, ILikeService)
+- uid: FractPal.API.Controllers.PostsController.#ctor*
+  name: PostsController
+  href: api/FractPal.API.Controllers.PostsController.html#FractPal_API_Controllers_PostsController__ctor_
+  commentId: Overload:FractPal.API.Controllers.PostsController.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: FractPal.API.Controllers.PostsController.PostsController
+  fullName.vb: FractPal.API.Controllers.PostsController.New
+  nameWithType: PostsController.PostsController
+  nameWithType.vb: PostsController.New
+- uid: FractPal.API.Controllers.PostsController.DeletePost(System.Guid)
+  name: DeletePost(Guid)
+  href: api/FractPal.API.Controllers.PostsController.html#FractPal_API_Controllers_PostsController_DeletePost_System_Guid_
+  commentId: M:FractPal.API.Controllers.PostsController.DeletePost(System.Guid)
+  fullName: FractPal.API.Controllers.PostsController.DeletePost(System.Guid)
+  nameWithType: PostsController.DeletePost(Guid)
+- uid: FractPal.API.Controllers.PostsController.DeletePost*
+  name: DeletePost
+  href: api/FractPal.API.Controllers.PostsController.html#FractPal_API_Controllers_PostsController_DeletePost_
+  commentId: Overload:FractPal.API.Controllers.PostsController.DeletePost
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.PostsController.DeletePost
+  nameWithType: PostsController.DeletePost
+- uid: FractPal.API.Controllers.PostsController.GetFeed(System.Int32,System.Int32)
+  name: GetFeed(int, int)
+  href: api/FractPal.API.Controllers.PostsController.html#FractPal_API_Controllers_PostsController_GetFeed_System_Int32_System_Int32_
+  commentId: M:FractPal.API.Controllers.PostsController.GetFeed(System.Int32,System.Int32)
+  name.vb: GetFeed(Integer, Integer)
+  fullName: FractPal.API.Controllers.PostsController.GetFeed(int, int)
+  fullName.vb: FractPal.API.Controllers.PostsController.GetFeed(Integer, Integer)
+  nameWithType: PostsController.GetFeed(int, int)
+  nameWithType.vb: PostsController.GetFeed(Integer, Integer)
+- uid: FractPal.API.Controllers.PostsController.GetFeed*
+  name: GetFeed
+  href: api/FractPal.API.Controllers.PostsController.html#FractPal_API_Controllers_PostsController_GetFeed_
+  commentId: Overload:FractPal.API.Controllers.PostsController.GetFeed
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.PostsController.GetFeed
+  nameWithType: PostsController.GetFeed
+- uid: FractPal.API.Controllers.PostsController.GetMyPosts
+  name: GetMyPosts()
+  href: api/FractPal.API.Controllers.PostsController.html#FractPal_API_Controllers_PostsController_GetMyPosts
+  commentId: M:FractPal.API.Controllers.PostsController.GetMyPosts
+  fullName: FractPal.API.Controllers.PostsController.GetMyPosts()
+  nameWithType: PostsController.GetMyPosts()
+- uid: FractPal.API.Controllers.PostsController.GetMyPosts*
+  name: GetMyPosts
+  href: api/FractPal.API.Controllers.PostsController.html#FractPal_API_Controllers_PostsController_GetMyPosts_
+  commentId: Overload:FractPal.API.Controllers.PostsController.GetMyPosts
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.PostsController.GetMyPosts
+  nameWithType: PostsController.GetMyPosts
+- uid: FractPal.API.Controllers.PostsController.GetPostById(System.Guid)
+  name: GetPostById(Guid)
+  href: api/FractPal.API.Controllers.PostsController.html#FractPal_API_Controllers_PostsController_GetPostById_System_Guid_
+  commentId: M:FractPal.API.Controllers.PostsController.GetPostById(System.Guid)
+  fullName: FractPal.API.Controllers.PostsController.GetPostById(System.Guid)
+  nameWithType: PostsController.GetPostById(Guid)
+- uid: FractPal.API.Controllers.PostsController.GetPostById*
+  name: GetPostById
+  href: api/FractPal.API.Controllers.PostsController.html#FractPal_API_Controllers_PostsController_GetPostById_
+  commentId: Overload:FractPal.API.Controllers.PostsController.GetPostById
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.PostsController.GetPostById
+  nameWithType: PostsController.GetPostById
+- uid: FractPal.API.Controllers.PostsController.GetUserPosts(System.Guid)
+  name: GetUserPosts(Guid)
+  href: api/FractPal.API.Controllers.PostsController.html#FractPal_API_Controllers_PostsController_GetUserPosts_System_Guid_
+  commentId: M:FractPal.API.Controllers.PostsController.GetUserPosts(System.Guid)
+  fullName: FractPal.API.Controllers.PostsController.GetUserPosts(System.Guid)
+  nameWithType: PostsController.GetUserPosts(Guid)
+- uid: FractPal.API.Controllers.PostsController.GetUserPosts*
+  name: GetUserPosts
+  href: api/FractPal.API.Controllers.PostsController.html#FractPal_API_Controllers_PostsController_GetUserPosts_
+  commentId: Overload:FractPal.API.Controllers.PostsController.GetUserPosts
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.PostsController.GetUserPosts
+  nameWithType: PostsController.GetUserPosts
+- uid: FractPal.API.Controllers.PostsController.PublishFractal(System.Guid,FractPal.Model.DTO.Post.CreatePostRequest)
+  name: PublishFractal(Guid, CreatePostRequest)
+  href: api/FractPal.API.Controllers.PostsController.html#FractPal_API_Controllers_PostsController_PublishFractal_System_Guid_FractPal_Model_DTO_Post_CreatePostRequest_
+  commentId: M:FractPal.API.Controllers.PostsController.PublishFractal(System.Guid,FractPal.Model.DTO.Post.CreatePostRequest)
+  fullName: FractPal.API.Controllers.PostsController.PublishFractal(System.Guid, FractPal.Model.DTO.Post.CreatePostRequest)
+  nameWithType: PostsController.PublishFractal(Guid, CreatePostRequest)
+- uid: FractPal.API.Controllers.PostsController.PublishFractal*
+  name: PublishFractal
+  href: api/FractPal.API.Controllers.PostsController.html#FractPal_API_Controllers_PostsController_PublishFractal_
+  commentId: Overload:FractPal.API.Controllers.PostsController.PublishFractal
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.PostsController.PublishFractal
+  nameWithType: PostsController.PublishFractal
+- uid: FractPal.API.Controllers.PostsController.ToggleLikePost(System.Guid)
+  name: ToggleLikePost(Guid)
+  href: api/FractPal.API.Controllers.PostsController.html#FractPal_API_Controllers_PostsController_ToggleLikePost_System_Guid_
+  commentId: M:FractPal.API.Controllers.PostsController.ToggleLikePost(System.Guid)
+  fullName: FractPal.API.Controllers.PostsController.ToggleLikePost(System.Guid)
+  nameWithType: PostsController.ToggleLikePost(Guid)
+- uid: FractPal.API.Controllers.PostsController.ToggleLikePost*
+  name: ToggleLikePost
+  href: api/FractPal.API.Controllers.PostsController.html#FractPal_API_Controllers_PostsController_ToggleLikePost_
+  commentId: Overload:FractPal.API.Controllers.PostsController.ToggleLikePost
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.PostsController.ToggleLikePost
+  nameWithType: PostsController.ToggleLikePost
+- uid: FractPal.API.Controllers.PostsController.UnpublishFractal(System.Guid)
+  name: UnpublishFractal(Guid)
+  href: api/FractPal.API.Controllers.PostsController.html#FractPal_API_Controllers_PostsController_UnpublishFractal_System_Guid_
+  commentId: M:FractPal.API.Controllers.PostsController.UnpublishFractal(System.Guid)
+  fullName: FractPal.API.Controllers.PostsController.UnpublishFractal(System.Guid)
+  nameWithType: PostsController.UnpublishFractal(Guid)
+- uid: FractPal.API.Controllers.PostsController.UnpublishFractal*
+  name: UnpublishFractal
+  href: api/FractPal.API.Controllers.PostsController.html#FractPal_API_Controllers_PostsController_UnpublishFractal_
+  commentId: Overload:FractPal.API.Controllers.PostsController.UnpublishFractal
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.PostsController.UnpublishFractal
+  nameWithType: PostsController.UnpublishFractal
+- uid: FractPal.API.Controllers.PostsController.UpdatePost(System.Guid,FractPal.Model.DTO.Post.UpdatePostRequest)
+  name: UpdatePost(Guid, UpdatePostRequest)
+  href: api/FractPal.API.Controllers.PostsController.html#FractPal_API_Controllers_PostsController_UpdatePost_System_Guid_FractPal_Model_DTO_Post_UpdatePostRequest_
+  commentId: M:FractPal.API.Controllers.PostsController.UpdatePost(System.Guid,FractPal.Model.DTO.Post.UpdatePostRequest)
+  fullName: FractPal.API.Controllers.PostsController.UpdatePost(System.Guid, FractPal.Model.DTO.Post.UpdatePostRequest)
+  nameWithType: PostsController.UpdatePost(Guid, UpdatePostRequest)
+- uid: FractPal.API.Controllers.PostsController.UpdatePost*
+  name: UpdatePost
+  href: api/FractPal.API.Controllers.PostsController.html#FractPal_API_Controllers_PostsController_UpdatePost_
+  commentId: Overload:FractPal.API.Controllers.PostsController.UpdatePost
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.PostsController.UpdatePost
+  nameWithType: PostsController.UpdatePost
+- uid: FractPal.API.Controllers.UserController
+  name: UserController
+  href: api/FractPal.API.Controllers.UserController.html
+  commentId: T:FractPal.API.Controllers.UserController
+  fullName: FractPal.API.Controllers.UserController
+  nameWithType: UserController
+- uid: FractPal.API.Controllers.UserController.#ctor(FractPal.Service.Interface.IUserService)
+  name: UserController(IUserService)
+  href: api/FractPal.API.Controllers.UserController.html#FractPal_API_Controllers_UserController__ctor_FractPal_Service_Interface_IUserService_
+  commentId: M:FractPal.API.Controllers.UserController.#ctor(FractPal.Service.Interface.IUserService)
+  name.vb: New(IUserService)
+  fullName: FractPal.API.Controllers.UserController.UserController(FractPal.Service.Interface.IUserService)
+  fullName.vb: FractPal.API.Controllers.UserController.New(FractPal.Service.Interface.IUserService)
+  nameWithType: UserController.UserController(IUserService)
+  nameWithType.vb: UserController.New(IUserService)
+- uid: FractPal.API.Controllers.UserController.#ctor*
+  name: UserController
+  href: api/FractPal.API.Controllers.UserController.html#FractPal_API_Controllers_UserController__ctor_
+  commentId: Overload:FractPal.API.Controllers.UserController.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: FractPal.API.Controllers.UserController.UserController
+  fullName.vb: FractPal.API.Controllers.UserController.New
+  nameWithType: UserController.UserController
+  nameWithType.vb: UserController.New
+- uid: FractPal.API.Controllers.UserController.GetMyProfile
+  name: GetMyProfile()
+  href: api/FractPal.API.Controllers.UserController.html#FractPal_API_Controllers_UserController_GetMyProfile
+  commentId: M:FractPal.API.Controllers.UserController.GetMyProfile
+  fullName: FractPal.API.Controllers.UserController.GetMyProfile()
+  nameWithType: UserController.GetMyProfile()
+- uid: FractPal.API.Controllers.UserController.GetMyProfile*
+  name: GetMyProfile
+  href: api/FractPal.API.Controllers.UserController.html#FractPal_API_Controllers_UserController_GetMyProfile_
+  commentId: Overload:FractPal.API.Controllers.UserController.GetMyProfile
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.UserController.GetMyProfile
+  nameWithType: UserController.GetMyProfile
+- uid: FractPal.API.Controllers.UserController.GetUserProfile(System.String)
+  name: GetUserProfile(string)
+  href: api/FractPal.API.Controllers.UserController.html#FractPal_API_Controllers_UserController_GetUserProfile_System_String_
+  commentId: M:FractPal.API.Controllers.UserController.GetUserProfile(System.String)
+  name.vb: GetUserProfile(String)
+  fullName: FractPal.API.Controllers.UserController.GetUserProfile(string)
+  fullName.vb: FractPal.API.Controllers.UserController.GetUserProfile(String)
+  nameWithType: UserController.GetUserProfile(string)
+  nameWithType.vb: UserController.GetUserProfile(String)
+- uid: FractPal.API.Controllers.UserController.GetUserProfile*
+  name: GetUserProfile
+  href: api/FractPal.API.Controllers.UserController.html#FractPal_API_Controllers_UserController_GetUserProfile_
+  commentId: Overload:FractPal.API.Controllers.UserController.GetUserProfile
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.UserController.GetUserProfile
+  nameWithType: UserController.GetUserProfile
+- uid: FractPal.API.Controllers.UserController.SearchUsers(System.String)
+  name: SearchUsers(string)
+  href: api/FractPal.API.Controllers.UserController.html#FractPal_API_Controllers_UserController_SearchUsers_System_String_
+  commentId: M:FractPal.API.Controllers.UserController.SearchUsers(System.String)
+  name.vb: SearchUsers(String)
+  fullName: FractPal.API.Controllers.UserController.SearchUsers(string)
+  fullName.vb: FractPal.API.Controllers.UserController.SearchUsers(String)
+  nameWithType: UserController.SearchUsers(string)
+  nameWithType.vb: UserController.SearchUsers(String)
+- uid: FractPal.API.Controllers.UserController.SearchUsers*
+  name: SearchUsers
+  href: api/FractPal.API.Controllers.UserController.html#FractPal_API_Controllers_UserController_SearchUsers_
+  commentId: Overload:FractPal.API.Controllers.UserController.SearchUsers
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.UserController.SearchUsers
+  nameWithType: UserController.SearchUsers
+- uid: FractPal.API.Controllers.UserController.ToggleFollow(System.String)
+  name: ToggleFollow(string)
+  href: api/FractPal.API.Controllers.UserController.html#FractPal_API_Controllers_UserController_ToggleFollow_System_String_
+  commentId: M:FractPal.API.Controllers.UserController.ToggleFollow(System.String)
+  name.vb: ToggleFollow(String)
+  fullName: FractPal.API.Controllers.UserController.ToggleFollow(string)
+  fullName.vb: FractPal.API.Controllers.UserController.ToggleFollow(String)
+  nameWithType: UserController.ToggleFollow(string)
+  nameWithType.vb: UserController.ToggleFollow(String)
+- uid: FractPal.API.Controllers.UserController.ToggleFollow*
+  name: ToggleFollow
+  href: api/FractPal.API.Controllers.UserController.html#FractPal_API_Controllers_UserController_ToggleFollow_
+  commentId: Overload:FractPal.API.Controllers.UserController.ToggleFollow
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.UserController.ToggleFollow
+  nameWithType: UserController.ToggleFollow
+- uid: FractPal.API.Controllers.UserController.UpdateProfile(FractPal.Model.DTO.User.UpdateProfileRequest)
+  name: UpdateProfile(UpdateProfileRequest)
+  href: api/FractPal.API.Controllers.UserController.html#FractPal_API_Controllers_UserController_UpdateProfile_FractPal_Model_DTO_User_UpdateProfileRequest_
+  commentId: M:FractPal.API.Controllers.UserController.UpdateProfile(FractPal.Model.DTO.User.UpdateProfileRequest)
+  fullName: FractPal.API.Controllers.UserController.UpdateProfile(FractPal.Model.DTO.User.UpdateProfileRequest)
+  nameWithType: UserController.UpdateProfile(UpdateProfileRequest)
+- uid: FractPal.API.Controllers.UserController.UpdateProfile*
+  name: UpdateProfile
+  href: api/FractPal.API.Controllers.UserController.html#FractPal_API_Controllers_UserController_UpdateProfile_
+  commentId: Overload:FractPal.API.Controllers.UserController.UpdateProfile
+  isSpec: "True"
+  fullName: FractPal.API.Controllers.UserController.UpdateProfile
+  nameWithType: UserController.UpdateProfile
+- uid: FractPal.Data
+  name: FractPal.Data
+  href: api/FractPal.Data.html
+  commentId: N:FractPal.Data
+  fullName: FractPal.Data
+  nameWithType: FractPal.Data
+- uid: FractPal.Data.IRepository`1
+  name: IRepository<T>
+  href: api/FractPal.Data.IRepository-1.html
+  commentId: T:FractPal.Data.IRepository`1
+  name.vb: IRepository(Of T)
+  fullName: FractPal.Data.IRepository<T>
+  fullName.vb: FractPal.Data.IRepository(Of T)
+  nameWithType: IRepository<T>
+  nameWithType.vb: IRepository(Of T)
+- uid: FractPal.Data.IRepository`1.AddAsync(`0)
+  name: AddAsync(T)
+  href: api/FractPal.Data.IRepository-1.html#FractPal_Data_IRepository_1_AddAsync__0_
+  commentId: M:FractPal.Data.IRepository`1.AddAsync(`0)
+  fullName: FractPal.Data.IRepository<T>.AddAsync(T)
+  fullName.vb: FractPal.Data.IRepository(Of T).AddAsync(T)
+  nameWithType: IRepository<T>.AddAsync(T)
+  nameWithType.vb: IRepository(Of T).AddAsync(T)
+- uid: FractPal.Data.IRepository`1.AddAsync*
+  name: AddAsync
+  href: api/FractPal.Data.IRepository-1.html#FractPal_Data_IRepository_1_AddAsync_
+  commentId: Overload:FractPal.Data.IRepository`1.AddAsync
+  isSpec: "True"
+  fullName: FractPal.Data.IRepository<T>.AddAsync
+  fullName.vb: FractPal.Data.IRepository(Of T).AddAsync
+  nameWithType: IRepository<T>.AddAsync
+  nameWithType.vb: IRepository(Of T).AddAsync
+- uid: FractPal.Data.IRepository`1.CountAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})
+  name: CountAsync(Expression<Func<T, bool>>?)
+  href: api/FractPal.Data.IRepository-1.html#FractPal_Data_IRepository_1_CountAsync_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___
+  commentId: M:FractPal.Data.IRepository`1.CountAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})
+  name.vb: CountAsync(Expression(Of Func(Of T, Boolean)))
+  fullName: FractPal.Data.IRepository<T>.CountAsync(System.Linq.Expressions.Expression<System.Func<T, bool>>?)
+  fullName.vb: FractPal.Data.IRepository(Of T).CountAsync(System.Linq.Expressions.Expression(Of System.Func(Of T, Boolean)))
+  nameWithType: IRepository<T>.CountAsync(Expression<Func<T, bool>>?)
+  nameWithType.vb: IRepository(Of T).CountAsync(Expression(Of Func(Of T, Boolean)))
+- uid: FractPal.Data.IRepository`1.CountAsync*
+  name: CountAsync
+  href: api/FractPal.Data.IRepository-1.html#FractPal_Data_IRepository_1_CountAsync_
+  commentId: Overload:FractPal.Data.IRepository`1.CountAsync
+  isSpec: "True"
+  fullName: FractPal.Data.IRepository<T>.CountAsync
+  fullName.vb: FractPal.Data.IRepository(Of T).CountAsync
+  nameWithType: IRepository<T>.CountAsync
+  nameWithType.vb: IRepository(Of T).CountAsync
+- uid: FractPal.Data.IRepository`1.DeleteAsync(`0)
+  name: DeleteAsync(T)
+  href: api/FractPal.Data.IRepository-1.html#FractPal_Data_IRepository_1_DeleteAsync__0_
+  commentId: M:FractPal.Data.IRepository`1.DeleteAsync(`0)
+  fullName: FractPal.Data.IRepository<T>.DeleteAsync(T)
+  fullName.vb: FractPal.Data.IRepository(Of T).DeleteAsync(T)
+  nameWithType: IRepository<T>.DeleteAsync(T)
+  nameWithType.vb: IRepository(Of T).DeleteAsync(T)
+- uid: FractPal.Data.IRepository`1.DeleteAsync*
+  name: DeleteAsync
+  href: api/FractPal.Data.IRepository-1.html#FractPal_Data_IRepository_1_DeleteAsync_
+  commentId: Overload:FractPal.Data.IRepository`1.DeleteAsync
+  isSpec: "True"
+  fullName: FractPal.Data.IRepository<T>.DeleteAsync
+  fullName.vb: FractPal.Data.IRepository(Of T).DeleteAsync
+  nameWithType: IRepository<T>.DeleteAsync
+  nameWithType.vb: IRepository(Of T).DeleteAsync
+- uid: FractPal.Data.IRepository`1.FindAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})
+  name: FindAsync(Expression<Func<T, bool>>)
+  href: api/FractPal.Data.IRepository-1.html#FractPal_Data_IRepository_1_FindAsync_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___
+  commentId: M:FractPal.Data.IRepository`1.FindAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})
+  name.vb: FindAsync(Expression(Of Func(Of T, Boolean)))
+  fullName: FractPal.Data.IRepository<T>.FindAsync(System.Linq.Expressions.Expression<System.Func<T, bool>>)
+  fullName.vb: FractPal.Data.IRepository(Of T).FindAsync(System.Linq.Expressions.Expression(Of System.Func(Of T, Boolean)))
+  nameWithType: IRepository<T>.FindAsync(Expression<Func<T, bool>>)
+  nameWithType.vb: IRepository(Of T).FindAsync(Expression(Of Func(Of T, Boolean)))
+- uid: FractPal.Data.IRepository`1.FindAsync*
+  name: FindAsync
+  href: api/FractPal.Data.IRepository-1.html#FractPal_Data_IRepository_1_FindAsync_
+  commentId: Overload:FractPal.Data.IRepository`1.FindAsync
+  isSpec: "True"
+  fullName: FractPal.Data.IRepository<T>.FindAsync
+  fullName.vb: FractPal.Data.IRepository(Of T).FindAsync
+  nameWithType: IRepository<T>.FindAsync
+  nameWithType.vb: IRepository(Of T).FindAsync
+- uid: FractPal.Data.IRepository`1.GetAllAsync
+  name: GetAllAsync()
+  href: api/FractPal.Data.IRepository-1.html#FractPal_Data_IRepository_1_GetAllAsync
+  commentId: M:FractPal.Data.IRepository`1.GetAllAsync
+  fullName: FractPal.Data.IRepository<T>.GetAllAsync()
+  fullName.vb: FractPal.Data.IRepository(Of T).GetAllAsync()
+  nameWithType: IRepository<T>.GetAllAsync()
+  nameWithType.vb: IRepository(Of T).GetAllAsync()
+- uid: FractPal.Data.IRepository`1.GetAllAsync*
+  name: GetAllAsync
+  href: api/FractPal.Data.IRepository-1.html#FractPal_Data_IRepository_1_GetAllAsync_
+  commentId: Overload:FractPal.Data.IRepository`1.GetAllAsync
+  isSpec: "True"
+  fullName: FractPal.Data.IRepository<T>.GetAllAsync
+  fullName.vb: FractPal.Data.IRepository(Of T).GetAllAsync
+  nameWithType: IRepository<T>.GetAllAsync
+  nameWithType.vb: IRepository(Of T).GetAllAsync
+- uid: FractPal.Data.IRepository`1.GetByIdAsync(System.String)
+  name: GetByIdAsync(string)
+  href: api/FractPal.Data.IRepository-1.html#FractPal_Data_IRepository_1_GetByIdAsync_System_String_
+  commentId: M:FractPal.Data.IRepository`1.GetByIdAsync(System.String)
+  name.vb: GetByIdAsync(String)
+  fullName: FractPal.Data.IRepository<T>.GetByIdAsync(string)
+  fullName.vb: FractPal.Data.IRepository(Of T).GetByIdAsync(String)
+  nameWithType: IRepository<T>.GetByIdAsync(string)
+  nameWithType.vb: IRepository(Of T).GetByIdAsync(String)
+- uid: FractPal.Data.IRepository`1.GetByIdAsync*
+  name: GetByIdAsync
+  href: api/FractPal.Data.IRepository-1.html#FractPal_Data_IRepository_1_GetByIdAsync_
+  commentId: Overload:FractPal.Data.IRepository`1.GetByIdAsync
+  isSpec: "True"
+  fullName: FractPal.Data.IRepository<T>.GetByIdAsync
+  fullName.vb: FractPal.Data.IRepository(Of T).GetByIdAsync
+  nameWithType: IRepository<T>.GetByIdAsync
+  nameWithType.vb: IRepository(Of T).GetByIdAsync
+- uid: FractPal.Data.IRepository`1.UpdateAsync(`0)
+  name: UpdateAsync(T)
+  href: api/FractPal.Data.IRepository-1.html#FractPal_Data_IRepository_1_UpdateAsync__0_
+  commentId: M:FractPal.Data.IRepository`1.UpdateAsync(`0)
+  fullName: FractPal.Data.IRepository<T>.UpdateAsync(T)
+  fullName.vb: FractPal.Data.IRepository(Of T).UpdateAsync(T)
+  nameWithType: IRepository<T>.UpdateAsync(T)
+  nameWithType.vb: IRepository(Of T).UpdateAsync(T)
+- uid: FractPal.Data.IRepository`1.UpdateAsync*
+  name: UpdateAsync
+  href: api/FractPal.Data.IRepository-1.html#FractPal_Data_IRepository_1_UpdateAsync_
+  commentId: Overload:FractPal.Data.IRepository`1.UpdateAsync
+  isSpec: "True"
+  fullName: FractPal.Data.IRepository<T>.UpdateAsync
+  fullName.vb: FractPal.Data.IRepository(Of T).UpdateAsync
+  nameWithType: IRepository<T>.UpdateAsync
+  nameWithType.vb: IRepository(Of T).UpdateAsync
+- uid: FractPal.Data.Repository`1
+  name: Repository<T>
+  href: api/FractPal.Data.Repository-1.html
+  commentId: T:FractPal.Data.Repository`1
+  name.vb: Repository(Of T)
+  fullName: FractPal.Data.Repository<T>
+  fullName.vb: FractPal.Data.Repository(Of T)
+  nameWithType: Repository<T>
+  nameWithType.vb: Repository(Of T)
+- uid: FractPal.Data.Repository`1.#ctor(FractPal.Data.ApplicationDbContext)
+  name: Repository(ApplicationDbContext)
+  href: api/FractPal.Data.Repository-1.html#FractPal_Data_Repository_1__ctor_FractPal_Data_ApplicationDbContext_
+  commentId: M:FractPal.Data.Repository`1.#ctor(FractPal.Data.ApplicationDbContext)
+  name.vb: New(ApplicationDbContext)
+  fullName: FractPal.Data.Repository<T>.Repository(FractPal.Data.ApplicationDbContext)
+  fullName.vb: FractPal.Data.Repository(Of T).New(FractPal.Data.ApplicationDbContext)
+  nameWithType: Repository<T>.Repository(ApplicationDbContext)
+  nameWithType.vb: Repository(Of T).New(ApplicationDbContext)
+- uid: FractPal.Data.Repository`1.#ctor*
+  name: Repository
+  href: api/FractPal.Data.Repository-1.html#FractPal_Data_Repository_1__ctor_
+  commentId: Overload:FractPal.Data.Repository`1.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: FractPal.Data.Repository<T>.Repository
+  fullName.vb: FractPal.Data.Repository(Of T).New
+  nameWithType: Repository<T>.Repository
+  nameWithType.vb: Repository(Of T).New
+- uid: FractPal.Data.Repository`1.AddAsync(`0)
+  name: AddAsync(T)
+  href: api/FractPal.Data.Repository-1.html#FractPal_Data_Repository_1_AddAsync__0_
+  commentId: M:FractPal.Data.Repository`1.AddAsync(`0)
+  fullName: FractPal.Data.Repository<T>.AddAsync(T)
+  fullName.vb: FractPal.Data.Repository(Of T).AddAsync(T)
+  nameWithType: Repository<T>.AddAsync(T)
+  nameWithType.vb: Repository(Of T).AddAsync(T)
+- uid: FractPal.Data.Repository`1.AddAsync*
+  name: AddAsync
+  href: api/FractPal.Data.Repository-1.html#FractPal_Data_Repository_1_AddAsync_
+  commentId: Overload:FractPal.Data.Repository`1.AddAsync
+  isSpec: "True"
+  fullName: FractPal.Data.Repository<T>.AddAsync
+  fullName.vb: FractPal.Data.Repository(Of T).AddAsync
+  nameWithType: Repository<T>.AddAsync
+  nameWithType.vb: Repository(Of T).AddAsync
+- uid: FractPal.Data.Repository`1.Context
+  name: Context
+  href: api/FractPal.Data.Repository-1.html#FractPal_Data_Repository_1_Context
+  commentId: P:FractPal.Data.Repository`1.Context
+  fullName: FractPal.Data.Repository<T>.Context
+  fullName.vb: FractPal.Data.Repository(Of T).Context
+  nameWithType: Repository<T>.Context
+  nameWithType.vb: Repository(Of T).Context
+- uid: FractPal.Data.Repository`1.Context*
+  name: Context
+  href: api/FractPal.Data.Repository-1.html#FractPal_Data_Repository_1_Context_
+  commentId: Overload:FractPal.Data.Repository`1.Context
+  isSpec: "True"
+  fullName: FractPal.Data.Repository<T>.Context
+  fullName.vb: FractPal.Data.Repository(Of T).Context
+  nameWithType: Repository<T>.Context
+  nameWithType.vb: Repository(Of T).Context
+- uid: FractPal.Data.Repository`1.CountAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})
+  name: CountAsync(Expression<Func<T, bool>>?)
+  href: api/FractPal.Data.Repository-1.html#FractPal_Data_Repository_1_CountAsync_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___
+  commentId: M:FractPal.Data.Repository`1.CountAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})
+  name.vb: CountAsync(Expression(Of Func(Of T, Boolean)))
+  fullName: FractPal.Data.Repository<T>.CountAsync(System.Linq.Expressions.Expression<System.Func<T, bool>>?)
+  fullName.vb: FractPal.Data.Repository(Of T).CountAsync(System.Linq.Expressions.Expression(Of System.Func(Of T, Boolean)))
+  nameWithType: Repository<T>.CountAsync(Expression<Func<T, bool>>?)
+  nameWithType.vb: Repository(Of T).CountAsync(Expression(Of Func(Of T, Boolean)))
+- uid: FractPal.Data.Repository`1.CountAsync*
+  name: CountAsync
+  href: api/FractPal.Data.Repository-1.html#FractPal_Data_Repository_1_CountAsync_
+  commentId: Overload:FractPal.Data.Repository`1.CountAsync
+  isSpec: "True"
+  fullName: FractPal.Data.Repository<T>.CountAsync
+  fullName.vb: FractPal.Data.Repository(Of T).CountAsync
+  nameWithType: Repository<T>.CountAsync
+  nameWithType.vb: Repository(Of T).CountAsync
+- uid: FractPal.Data.Repository`1.DeleteAsync(`0)
+  name: DeleteAsync(T)
+  href: api/FractPal.Data.Repository-1.html#FractPal_Data_Repository_1_DeleteAsync__0_
+  commentId: M:FractPal.Data.Repository`1.DeleteAsync(`0)
+  fullName: FractPal.Data.Repository<T>.DeleteAsync(T)
+  fullName.vb: FractPal.Data.Repository(Of T).DeleteAsync(T)
+  nameWithType: Repository<T>.DeleteAsync(T)
+  nameWithType.vb: Repository(Of T).DeleteAsync(T)
+- uid: FractPal.Data.Repository`1.DeleteAsync*
+  name: DeleteAsync
+  href: api/FractPal.Data.Repository-1.html#FractPal_Data_Repository_1_DeleteAsync_
+  commentId: Overload:FractPal.Data.Repository`1.DeleteAsync
+  isSpec: "True"
+  fullName: FractPal.Data.Repository<T>.DeleteAsync
+  fullName.vb: FractPal.Data.Repository(Of T).DeleteAsync
+  nameWithType: Repository<T>.DeleteAsync
+  nameWithType.vb: Repository(Of T).DeleteAsync
+- uid: FractPal.Data.Repository`1.FindAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})
+  name: FindAsync(Expression<Func<T, bool>>)
+  href: api/FractPal.Data.Repository-1.html#FractPal_Data_Repository_1_FindAsync_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___
+  commentId: M:FractPal.Data.Repository`1.FindAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})
+  name.vb: FindAsync(Expression(Of Func(Of T, Boolean)))
+  fullName: FractPal.Data.Repository<T>.FindAsync(System.Linq.Expressions.Expression<System.Func<T, bool>>)
+  fullName.vb: FractPal.Data.Repository(Of T).FindAsync(System.Linq.Expressions.Expression(Of System.Func(Of T, Boolean)))
+  nameWithType: Repository<T>.FindAsync(Expression<Func<T, bool>>)
+  nameWithType.vb: Repository(Of T).FindAsync(Expression(Of Func(Of T, Boolean)))
+- uid: FractPal.Data.Repository`1.FindAsync*
+  name: FindAsync
+  href: api/FractPal.Data.Repository-1.html#FractPal_Data_Repository_1_FindAsync_
+  commentId: Overload:FractPal.Data.Repository`1.FindAsync
+  isSpec: "True"
+  fullName: FractPal.Data.Repository<T>.FindAsync
+  fullName.vb: FractPal.Data.Repository(Of T).FindAsync
+  nameWithType: Repository<T>.FindAsync
+  nameWithType.vb: Repository(Of T).FindAsync
+- uid: FractPal.Data.Repository`1.GetAllAsync
+  name: GetAllAsync()
+  href: api/FractPal.Data.Repository-1.html#FractPal_Data_Repository_1_GetAllAsync
+  commentId: M:FractPal.Data.Repository`1.GetAllAsync
+  fullName: FractPal.Data.Repository<T>.GetAllAsync()
+  fullName.vb: FractPal.Data.Repository(Of T).GetAllAsync()
+  nameWithType: Repository<T>.GetAllAsync()
+  nameWithType.vb: Repository(Of T).GetAllAsync()
+- uid: FractPal.Data.Repository`1.GetAllAsync*
+  name: GetAllAsync
+  href: api/FractPal.Data.Repository-1.html#FractPal_Data_Repository_1_GetAllAsync_
+  commentId: Overload:FractPal.Data.Repository`1.GetAllAsync
+  isSpec: "True"
+  fullName: FractPal.Data.Repository<T>.GetAllAsync
+  fullName.vb: FractPal.Data.Repository(Of T).GetAllAsync
+  nameWithType: Repository<T>.GetAllAsync
+  nameWithType.vb: Repository(Of T).GetAllAsync
+- uid: FractPal.Data.Repository`1.GetByIdAsync(System.String)
+  name: GetByIdAsync(string)
+  href: api/FractPal.Data.Repository-1.html#FractPal_Data_Repository_1_GetByIdAsync_System_String_
+  commentId: M:FractPal.Data.Repository`1.GetByIdAsync(System.String)
+  name.vb: GetByIdAsync(String)
+  fullName: FractPal.Data.Repository<T>.GetByIdAsync(string)
+  fullName.vb: FractPal.Data.Repository(Of T).GetByIdAsync(String)
+  nameWithType: Repository<T>.GetByIdAsync(string)
+  nameWithType.vb: Repository(Of T).GetByIdAsync(String)
+- uid: FractPal.Data.Repository`1.GetByIdAsync*
+  name: GetByIdAsync
+  href: api/FractPal.Data.Repository-1.html#FractPal_Data_Repository_1_GetByIdAsync_
+  commentId: Overload:FractPal.Data.Repository`1.GetByIdAsync
+  isSpec: "True"
+  fullName: FractPal.Data.Repository<T>.GetByIdAsync
+  fullName.vb: FractPal.Data.Repository(Of T).GetByIdAsync
+  nameWithType: Repository<T>.GetByIdAsync
+  nameWithType.vb: Repository(Of T).GetByIdAsync
+- uid: FractPal.Data.Repository`1.UpdateAsync(`0)
+  name: UpdateAsync(T)
+  href: api/FractPal.Data.Repository-1.html#FractPal_Data_Repository_1_UpdateAsync__0_
+  commentId: M:FractPal.Data.Repository`1.UpdateAsync(`0)
+  fullName: FractPal.Data.Repository<T>.UpdateAsync(T)
+  fullName.vb: FractPal.Data.Repository(Of T).UpdateAsync(T)
+  nameWithType: Repository<T>.UpdateAsync(T)
+  nameWithType.vb: Repository(Of T).UpdateAsync(T)
+- uid: FractPal.Data.Repository`1.UpdateAsync*
+  name: UpdateAsync
+  href: api/FractPal.Data.Repository-1.html#FractPal_Data_Repository_1_UpdateAsync_
+  commentId: Overload:FractPal.Data.Repository`1.UpdateAsync
+  isSpec: "True"
+  fullName: FractPal.Data.Repository<T>.UpdateAsync
+  fullName.vb: FractPal.Data.Repository(Of T).UpdateAsync
+  nameWithType: Repository<T>.UpdateAsync
+  nameWithType.vb: Repository(Of T).UpdateAsync
+- uid: FractPal.Service.Implementation
+  name: FractPal.Service.Implementation
+  href: api/FractPal.Service.Implementation.html
+  commentId: N:FractPal.Service.Implementation
+  fullName: FractPal.Service.Implementation
+  nameWithType: FractPal.Service.Implementation
+- uid: FractPal.Service.Implementation.AuthService
+  name: AuthService
+  href: api/FractPal.Service.Implementation.AuthService.html
+  commentId: T:FractPal.Service.Implementation.AuthService
+  fullName: FractPal.Service.Implementation.AuthService
+  nameWithType: AuthService
+- uid: FractPal.Service.Implementation.AuthService.#ctor(Microsoft.AspNetCore.Identity.UserManager{FractPal.Model.Entities.FractPalUser},Microsoft.AspNetCore.Identity.SignInManager{FractPal.Model.Entities.FractPalUser},FractPal.Service.Interface.IJwtService)
+  name: AuthService(UserManager<FractPalUser>, SignInManager<FractPalUser>, IJwtService)
+  href: api/FractPal.Service.Implementation.AuthService.html#FractPal_Service_Implementation_AuthService__ctor_Microsoft_AspNetCore_Identity_UserManager_FractPal_Model_Entities_FractPalUser__Microsoft_AspNetCore_Identity_SignInManager_FractPal_Model_Entities_FractPalUser__FractPal_Service_Interface_IJwtService_
+  commentId: M:FractPal.Service.Implementation.AuthService.#ctor(Microsoft.AspNetCore.Identity.UserManager{FractPal.Model.Entities.FractPalUser},Microsoft.AspNetCore.Identity.SignInManager{FractPal.Model.Entities.FractPalUser},FractPal.Service.Interface.IJwtService)
+  name.vb: New(UserManager(Of FractPalUser), SignInManager(Of FractPalUser), IJwtService)
+  fullName: FractPal.Service.Implementation.AuthService.AuthService(Microsoft.AspNetCore.Identity.UserManager<FractPal.Model.Entities.FractPalUser>, Microsoft.AspNetCore.Identity.SignInManager<FractPal.Model.Entities.FractPalUser>, FractPal.Service.Interface.IJwtService)
+  fullName.vb: FractPal.Service.Implementation.AuthService.New(Microsoft.AspNetCore.Identity.UserManager(Of FractPal.Model.Entities.FractPalUser), Microsoft.AspNetCore.Identity.SignInManager(Of FractPal.Model.Entities.FractPalUser), FractPal.Service.Interface.IJwtService)
+  nameWithType: AuthService.AuthService(UserManager<FractPalUser>, SignInManager<FractPalUser>, IJwtService)
+  nameWithType.vb: AuthService.New(UserManager(Of FractPalUser), SignInManager(Of FractPalUser), IJwtService)
+- uid: FractPal.Service.Implementation.AuthService.#ctor*
+  name: AuthService
+  href: api/FractPal.Service.Implementation.AuthService.html#FractPal_Service_Implementation_AuthService__ctor_
+  commentId: Overload:FractPal.Service.Implementation.AuthService.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: FractPal.Service.Implementation.AuthService.AuthService
+  fullName.vb: FractPal.Service.Implementation.AuthService.New
+  nameWithType: AuthService.AuthService
+  nameWithType.vb: AuthService.New
+- uid: FractPal.Service.Implementation.AuthService.Login(Microsoft.AspNetCore.Http.HttpContext,FractPal.Model.DTO.Auth.LoginRequest)
+  name: Login(HttpContext, LoginRequest)
+  href: api/FractPal.Service.Implementation.AuthService.html#FractPal_Service_Implementation_AuthService_Login_Microsoft_AspNetCore_Http_HttpContext_FractPal_Model_DTO_Auth_LoginRequest_
+  commentId: M:FractPal.Service.Implementation.AuthService.Login(Microsoft.AspNetCore.Http.HttpContext,FractPal.Model.DTO.Auth.LoginRequest)
+  fullName: FractPal.Service.Implementation.AuthService.Login(Microsoft.AspNetCore.Http.HttpContext, FractPal.Model.DTO.Auth.LoginRequest)
+  nameWithType: AuthService.Login(HttpContext, LoginRequest)
+- uid: FractPal.Service.Implementation.AuthService.Login*
+  name: Login
+  href: api/FractPal.Service.Implementation.AuthService.html#FractPal_Service_Implementation_AuthService_Login_
+  commentId: Overload:FractPal.Service.Implementation.AuthService.Login
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.AuthService.Login
+  nameWithType: AuthService.Login
+- uid: FractPal.Service.Implementation.AuthService.Register(FractPal.Model.DTO.Auth.RegistrationRequest)
+  name: Register(RegistrationRequest)
+  href: api/FractPal.Service.Implementation.AuthService.html#FractPal_Service_Implementation_AuthService_Register_FractPal_Model_DTO_Auth_RegistrationRequest_
+  commentId: M:FractPal.Service.Implementation.AuthService.Register(FractPal.Model.DTO.Auth.RegistrationRequest)
+  fullName: FractPal.Service.Implementation.AuthService.Register(FractPal.Model.DTO.Auth.RegistrationRequest)
+  nameWithType: AuthService.Register(RegistrationRequest)
+- uid: FractPal.Service.Implementation.AuthService.Register*
+  name: Register
+  href: api/FractPal.Service.Implementation.AuthService.html#FractPal_Service_Implementation_AuthService_Register_
+  commentId: Overload:FractPal.Service.Implementation.AuthService.Register
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.AuthService.Register
+  nameWithType: AuthService.Register
+- uid: FractPal.Service.Implementation.CommentService
+  name: CommentService
+  href: api/FractPal.Service.Implementation.CommentService.html
+  commentId: T:FractPal.Service.Implementation.CommentService
+  fullName: FractPal.Service.Implementation.CommentService
+  nameWithType: CommentService
+- uid: FractPal.Service.Implementation.CommentService.#ctor(FractPal.Data.ApplicationDbContext)
+  name: CommentService(ApplicationDbContext)
+  href: api/FractPal.Service.Implementation.CommentService.html#FractPal_Service_Implementation_CommentService__ctor_FractPal_Data_ApplicationDbContext_
+  commentId: M:FractPal.Service.Implementation.CommentService.#ctor(FractPal.Data.ApplicationDbContext)
+  name.vb: New(ApplicationDbContext)
+  fullName: FractPal.Service.Implementation.CommentService.CommentService(FractPal.Data.ApplicationDbContext)
+  fullName.vb: FractPal.Service.Implementation.CommentService.New(FractPal.Data.ApplicationDbContext)
+  nameWithType: CommentService.CommentService(ApplicationDbContext)
+  nameWithType.vb: CommentService.New(ApplicationDbContext)
+- uid: FractPal.Service.Implementation.CommentService.#ctor*
+  name: CommentService
+  href: api/FractPal.Service.Implementation.CommentService.html#FractPal_Service_Implementation_CommentService__ctor_
+  commentId: Overload:FractPal.Service.Implementation.CommentService.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: FractPal.Service.Implementation.CommentService.CommentService
+  fullName.vb: FractPal.Service.Implementation.CommentService.New
+  nameWithType: CommentService.CommentService
+  nameWithType.vb: CommentService.New
+- uid: FractPal.Service.Implementation.CommentService.CreateComment(System.Guid,System.Guid,FractPal.Model.DTO.Comment.CreateCommentRequest)
+  name: CreateComment(Guid, Guid, CreateCommentRequest)
+  href: api/FractPal.Service.Implementation.CommentService.html#FractPal_Service_Implementation_CommentService_CreateComment_System_Guid_System_Guid_FractPal_Model_DTO_Comment_CreateCommentRequest_
+  commentId: M:FractPal.Service.Implementation.CommentService.CreateComment(System.Guid,System.Guid,FractPal.Model.DTO.Comment.CreateCommentRequest)
+  fullName: FractPal.Service.Implementation.CommentService.CreateComment(System.Guid, System.Guid, FractPal.Model.DTO.Comment.CreateCommentRequest)
+  nameWithType: CommentService.CreateComment(Guid, Guid, CreateCommentRequest)
+- uid: FractPal.Service.Implementation.CommentService.CreateComment*
+  name: CreateComment
+  href: api/FractPal.Service.Implementation.CommentService.html#FractPal_Service_Implementation_CommentService_CreateComment_
+  commentId: Overload:FractPal.Service.Implementation.CommentService.CreateComment
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.CommentService.CreateComment
+  nameWithType: CommentService.CreateComment
+- uid: FractPal.Service.Implementation.CommentService.DeleteComment(System.Guid,System.Guid)
+  name: DeleteComment(Guid, Guid)
+  href: api/FractPal.Service.Implementation.CommentService.html#FractPal_Service_Implementation_CommentService_DeleteComment_System_Guid_System_Guid_
+  commentId: M:FractPal.Service.Implementation.CommentService.DeleteComment(System.Guid,System.Guid)
+  fullName: FractPal.Service.Implementation.CommentService.DeleteComment(System.Guid, System.Guid)
+  nameWithType: CommentService.DeleteComment(Guid, Guid)
+- uid: FractPal.Service.Implementation.CommentService.DeleteComment*
+  name: DeleteComment
+  href: api/FractPal.Service.Implementation.CommentService.html#FractPal_Service_Implementation_CommentService_DeleteComment_
+  commentId: Overload:FractPal.Service.Implementation.CommentService.DeleteComment
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.CommentService.DeleteComment
+  nameWithType: CommentService.DeleteComment
+- uid: FractPal.Service.Implementation.CommentService.GetCommentById(System.Guid)
+  name: GetCommentById(Guid)
+  href: api/FractPal.Service.Implementation.CommentService.html#FractPal_Service_Implementation_CommentService_GetCommentById_System_Guid_
+  commentId: M:FractPal.Service.Implementation.CommentService.GetCommentById(System.Guid)
+  fullName: FractPal.Service.Implementation.CommentService.GetCommentById(System.Guid)
+  nameWithType: CommentService.GetCommentById(Guid)
+- uid: FractPal.Service.Implementation.CommentService.GetCommentById*
+  name: GetCommentById
+  href: api/FractPal.Service.Implementation.CommentService.html#FractPal_Service_Implementation_CommentService_GetCommentById_
+  commentId: Overload:FractPal.Service.Implementation.CommentService.GetCommentById
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.CommentService.GetCommentById
+  nameWithType: CommentService.GetCommentById
+- uid: FractPal.Service.Implementation.CommentService.GetPostComments(System.Guid)
+  name: GetPostComments(Guid)
+  href: api/FractPal.Service.Implementation.CommentService.html#FractPal_Service_Implementation_CommentService_GetPostComments_System_Guid_
+  commentId: M:FractPal.Service.Implementation.CommentService.GetPostComments(System.Guid)
+  fullName: FractPal.Service.Implementation.CommentService.GetPostComments(System.Guid)
+  nameWithType: CommentService.GetPostComments(Guid)
+- uid: FractPal.Service.Implementation.CommentService.GetPostComments*
+  name: GetPostComments
+  href: api/FractPal.Service.Implementation.CommentService.html#FractPal_Service_Implementation_CommentService_GetPostComments_
+  commentId: Overload:FractPal.Service.Implementation.CommentService.GetPostComments
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.CommentService.GetPostComments
+  nameWithType: CommentService.GetPostComments
+- uid: FractPal.Service.Implementation.CommentService.UpdateComment(System.Guid,System.Guid,FractPal.Model.DTO.Comment.UpdateCommentRequest)
+  name: UpdateComment(Guid, Guid, UpdateCommentRequest)
+  href: api/FractPal.Service.Implementation.CommentService.html#FractPal_Service_Implementation_CommentService_UpdateComment_System_Guid_System_Guid_FractPal_Model_DTO_Comment_UpdateCommentRequest_
+  commentId: M:FractPal.Service.Implementation.CommentService.UpdateComment(System.Guid,System.Guid,FractPal.Model.DTO.Comment.UpdateCommentRequest)
+  fullName: FractPal.Service.Implementation.CommentService.UpdateComment(System.Guid, System.Guid, FractPal.Model.DTO.Comment.UpdateCommentRequest)
+  nameWithType: CommentService.UpdateComment(Guid, Guid, UpdateCommentRequest)
+- uid: FractPal.Service.Implementation.CommentService.UpdateComment*
+  name: UpdateComment
+  href: api/FractPal.Service.Implementation.CommentService.html#FractPal_Service_Implementation_CommentService_UpdateComment_
+  commentId: Overload:FractPal.Service.Implementation.CommentService.UpdateComment
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.CommentService.UpdateComment
+  nameWithType: CommentService.UpdateComment
+- uid: FractPal.Service.Implementation.FractalService
+  name: FractalService
+  href: api/FractPal.Service.Implementation.FractalService.html
+  commentId: T:FractPal.Service.Implementation.FractalService
+  fullName: FractPal.Service.Implementation.FractalService
+  nameWithType: FractalService
+- uid: FractPal.Service.Implementation.FractalService.#ctor(FractPal.Data.ApplicationDbContext)
+  name: FractalService(ApplicationDbContext)
+  href: api/FractPal.Service.Implementation.FractalService.html#FractPal_Service_Implementation_FractalService__ctor_FractPal_Data_ApplicationDbContext_
+  commentId: M:FractPal.Service.Implementation.FractalService.#ctor(FractPal.Data.ApplicationDbContext)
+  name.vb: New(ApplicationDbContext)
+  fullName: FractPal.Service.Implementation.FractalService.FractalService(FractPal.Data.ApplicationDbContext)
+  fullName.vb: FractPal.Service.Implementation.FractalService.New(FractPal.Data.ApplicationDbContext)
+  nameWithType: FractalService.FractalService(ApplicationDbContext)
+  nameWithType.vb: FractalService.New(ApplicationDbContext)
+- uid: FractPal.Service.Implementation.FractalService.#ctor*
+  name: FractalService
+  href: api/FractPal.Service.Implementation.FractalService.html#FractPal_Service_Implementation_FractalService__ctor_
+  commentId: Overload:FractPal.Service.Implementation.FractalService.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: FractPal.Service.Implementation.FractalService.FractalService
+  fullName.vb: FractPal.Service.Implementation.FractalService.New
+  nameWithType: FractalService.FractalService
+  nameWithType.vb: FractalService.New
+- uid: FractPal.Service.Implementation.FractalService.CreateFractalAsync(System.Guid,FractPal.Model.DTO.Fractal.CreateFractalRequest)
+  name: CreateFractalAsync(Guid, CreateFractalRequest)
+  href: api/FractPal.Service.Implementation.FractalService.html#FractPal_Service_Implementation_FractalService_CreateFractalAsync_System_Guid_FractPal_Model_DTO_Fractal_CreateFractalRequest_
+  commentId: M:FractPal.Service.Implementation.FractalService.CreateFractalAsync(System.Guid,FractPal.Model.DTO.Fractal.CreateFractalRequest)
+  fullName: FractPal.Service.Implementation.FractalService.CreateFractalAsync(System.Guid, FractPal.Model.DTO.Fractal.CreateFractalRequest)
+  nameWithType: FractalService.CreateFractalAsync(Guid, CreateFractalRequest)
+- uid: FractPal.Service.Implementation.FractalService.CreateFractalAsync*
+  name: CreateFractalAsync
+  href: api/FractPal.Service.Implementation.FractalService.html#FractPal_Service_Implementation_FractalService_CreateFractalAsync_
+  commentId: Overload:FractPal.Service.Implementation.FractalService.CreateFractalAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.FractalService.CreateFractalAsync
+  nameWithType: FractalService.CreateFractalAsync
+- uid: FractPal.Service.Implementation.FractalService.DeleteFractalAsync(System.Guid,System.Guid,System.Boolean)
+  name: DeleteFractalAsync(Guid, Guid, bool)
+  href: api/FractPal.Service.Implementation.FractalService.html#FractPal_Service_Implementation_FractalService_DeleteFractalAsync_System_Guid_System_Guid_System_Boolean_
+  commentId: M:FractPal.Service.Implementation.FractalService.DeleteFractalAsync(System.Guid,System.Guid,System.Boolean)
+  name.vb: DeleteFractalAsync(Guid, Guid, Boolean)
+  fullName: FractPal.Service.Implementation.FractalService.DeleteFractalAsync(System.Guid, System.Guid, bool)
+  fullName.vb: FractPal.Service.Implementation.FractalService.DeleteFractalAsync(System.Guid, System.Guid, Boolean)
+  nameWithType: FractalService.DeleteFractalAsync(Guid, Guid, bool)
+  nameWithType.vb: FractalService.DeleteFractalAsync(Guid, Guid, Boolean)
+- uid: FractPal.Service.Implementation.FractalService.DeleteFractalAsync*
+  name: DeleteFractalAsync
+  href: api/FractPal.Service.Implementation.FractalService.html#FractPal_Service_Implementation_FractalService_DeleteFractalAsync_
+  commentId: Overload:FractPal.Service.Implementation.FractalService.DeleteFractalAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.FractalService.DeleteFractalAsync
+  nameWithType: FractalService.DeleteFractalAsync
+- uid: FractPal.Service.Implementation.FractalService.ForkFractalAsync(System.Guid,System.Guid)
+  name: ForkFractalAsync(Guid, Guid)
+  href: api/FractPal.Service.Implementation.FractalService.html#FractPal_Service_Implementation_FractalService_ForkFractalAsync_System_Guid_System_Guid_
+  commentId: M:FractPal.Service.Implementation.FractalService.ForkFractalAsync(System.Guid,System.Guid)
+  fullName: FractPal.Service.Implementation.FractalService.ForkFractalAsync(System.Guid, System.Guid)
+  nameWithType: FractalService.ForkFractalAsync(Guid, Guid)
+- uid: FractPal.Service.Implementation.FractalService.ForkFractalAsync*
+  name: ForkFractalAsync
+  href: api/FractPal.Service.Implementation.FractalService.html#FractPal_Service_Implementation_FractalService_ForkFractalAsync_
+  commentId: Overload:FractPal.Service.Implementation.FractalService.ForkFractalAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.FractalService.ForkFractalAsync
+  nameWithType: FractalService.ForkFractalAsync
+- uid: FractPal.Service.Implementation.FractalService.GetFeedAsync(System.Guid,System.Int32,System.Int32)
+  name: GetFeedAsync(Guid, int, int)
+  href: api/FractPal.Service.Implementation.FractalService.html#FractPal_Service_Implementation_FractalService_GetFeedAsync_System_Guid_System_Int32_System_Int32_
+  commentId: M:FractPal.Service.Implementation.FractalService.GetFeedAsync(System.Guid,System.Int32,System.Int32)
+  name.vb: GetFeedAsync(Guid, Integer, Integer)
+  fullName: FractPal.Service.Implementation.FractalService.GetFeedAsync(System.Guid, int, int)
+  fullName.vb: FractPal.Service.Implementation.FractalService.GetFeedAsync(System.Guid, Integer, Integer)
+  nameWithType: FractalService.GetFeedAsync(Guid, int, int)
+  nameWithType.vb: FractalService.GetFeedAsync(Guid, Integer, Integer)
+- uid: FractPal.Service.Implementation.FractalService.GetFeedAsync*
+  name: GetFeedAsync
+  href: api/FractPal.Service.Implementation.FractalService.html#FractPal_Service_Implementation_FractalService_GetFeedAsync_
+  commentId: Overload:FractPal.Service.Implementation.FractalService.GetFeedAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.FractalService.GetFeedAsync
+  nameWithType: FractalService.GetFeedAsync
+- uid: FractPal.Service.Implementation.FractalService.GetFractalByIdAsync(System.Guid,System.Guid)
+  name: GetFractalByIdAsync(Guid, Guid)
+  href: api/FractPal.Service.Implementation.FractalService.html#FractPal_Service_Implementation_FractalService_GetFractalByIdAsync_System_Guid_System_Guid_
+  commentId: M:FractPal.Service.Implementation.FractalService.GetFractalByIdAsync(System.Guid,System.Guid)
+  fullName: FractPal.Service.Implementation.FractalService.GetFractalByIdAsync(System.Guid, System.Guid)
+  nameWithType: FractalService.GetFractalByIdAsync(Guid, Guid)
+- uid: FractPal.Service.Implementation.FractalService.GetFractalByIdAsync*
+  name: GetFractalByIdAsync
+  href: api/FractPal.Service.Implementation.FractalService.html#FractPal_Service_Implementation_FractalService_GetFractalByIdAsync_
+  commentId: Overload:FractPal.Service.Implementation.FractalService.GetFractalByIdAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.FractalService.GetFractalByIdAsync
+  nameWithType: FractalService.GetFractalByIdAsync
+- uid: FractPal.Service.Implementation.FractalService.GetPublishedFractalsByUserAsync(System.Guid,System.Guid)
+  name: GetPublishedFractalsByUserAsync(Guid, Guid)
+  href: api/FractPal.Service.Implementation.FractalService.html#FractPal_Service_Implementation_FractalService_GetPublishedFractalsByUserAsync_System_Guid_System_Guid_
+  commentId: M:FractPal.Service.Implementation.FractalService.GetPublishedFractalsByUserAsync(System.Guid,System.Guid)
+  fullName: FractPal.Service.Implementation.FractalService.GetPublishedFractalsByUserAsync(System.Guid, System.Guid)
+  nameWithType: FractalService.GetPublishedFractalsByUserAsync(Guid, Guid)
+- uid: FractPal.Service.Implementation.FractalService.GetPublishedFractalsByUserAsync*
+  name: GetPublishedFractalsByUserAsync
+  href: api/FractPal.Service.Implementation.FractalService.html#FractPal_Service_Implementation_FractalService_GetPublishedFractalsByUserAsync_
+  commentId: Overload:FractPal.Service.Implementation.FractalService.GetPublishedFractalsByUserAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.FractalService.GetPublishedFractalsByUserAsync
+  nameWithType: FractalService.GetPublishedFractalsByUserAsync
+- uid: FractPal.Service.Implementation.FractalService.GetUserFractalsAsync(System.Guid,System.Guid)
+  name: GetUserFractalsAsync(Guid, Guid)
+  href: api/FractPal.Service.Implementation.FractalService.html#FractPal_Service_Implementation_FractalService_GetUserFractalsAsync_System_Guid_System_Guid_
+  commentId: M:FractPal.Service.Implementation.FractalService.GetUserFractalsAsync(System.Guid,System.Guid)
+  fullName: FractPal.Service.Implementation.FractalService.GetUserFractalsAsync(System.Guid, System.Guid)
+  nameWithType: FractalService.GetUserFractalsAsync(Guid, Guid)
+- uid: FractPal.Service.Implementation.FractalService.GetUserFractalsAsync*
+  name: GetUserFractalsAsync
+  href: api/FractPal.Service.Implementation.FractalService.html#FractPal_Service_Implementation_FractalService_GetUserFractalsAsync_
+  commentId: Overload:FractPal.Service.Implementation.FractalService.GetUserFractalsAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.FractalService.GetUserFractalsAsync
+  nameWithType: FractalService.GetUserFractalsAsync
+- uid: FractPal.Service.Implementation.FractalService.UpdateFractalAsync(System.Guid,System.Guid,FractPal.Model.DTO.Fractal.UpdateFractalRequest)
+  name: UpdateFractalAsync(Guid, Guid, UpdateFractalRequest)
+  href: api/FractPal.Service.Implementation.FractalService.html#FractPal_Service_Implementation_FractalService_UpdateFractalAsync_System_Guid_System_Guid_FractPal_Model_DTO_Fractal_UpdateFractalRequest_
+  commentId: M:FractPal.Service.Implementation.FractalService.UpdateFractalAsync(System.Guid,System.Guid,FractPal.Model.DTO.Fractal.UpdateFractalRequest)
+  fullName: FractPal.Service.Implementation.FractalService.UpdateFractalAsync(System.Guid, System.Guid, FractPal.Model.DTO.Fractal.UpdateFractalRequest)
+  nameWithType: FractalService.UpdateFractalAsync(Guid, Guid, UpdateFractalRequest)
+- uid: FractPal.Service.Implementation.FractalService.UpdateFractalAsync*
+  name: UpdateFractalAsync
+  href: api/FractPal.Service.Implementation.FractalService.html#FractPal_Service_Implementation_FractalService_UpdateFractalAsync_
+  commentId: Overload:FractPal.Service.Implementation.FractalService.UpdateFractalAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.FractalService.UpdateFractalAsync
+  nameWithType: FractalService.UpdateFractalAsync
+- uid: FractPal.Service.Implementation.JwtService
+  name: JwtService
+  href: api/FractPal.Service.Implementation.JwtService.html
+  commentId: T:FractPal.Service.Implementation.JwtService
+  fullName: FractPal.Service.Implementation.JwtService
+  nameWithType: JwtService
+- uid: FractPal.Service.Implementation.JwtService.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Identity.UserManager{FractPal.Model.Entities.FractPalUser})
+  name: JwtService(IConfiguration, UserManager<FractPalUser>)
+  href: api/FractPal.Service.Implementation.JwtService.html#FractPal_Service_Implementation_JwtService__ctor_Microsoft_Extensions_Configuration_IConfiguration_Microsoft_AspNetCore_Identity_UserManager_FractPal_Model_Entities_FractPalUser__
+  commentId: M:FractPal.Service.Implementation.JwtService.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Identity.UserManager{FractPal.Model.Entities.FractPalUser})
+  name.vb: New(IConfiguration, UserManager(Of FractPalUser))
+  fullName: FractPal.Service.Implementation.JwtService.JwtService(Microsoft.Extensions.Configuration.IConfiguration, Microsoft.AspNetCore.Identity.UserManager<FractPal.Model.Entities.FractPalUser>)
+  fullName.vb: FractPal.Service.Implementation.JwtService.New(Microsoft.Extensions.Configuration.IConfiguration, Microsoft.AspNetCore.Identity.UserManager(Of FractPal.Model.Entities.FractPalUser))
+  nameWithType: JwtService.JwtService(IConfiguration, UserManager<FractPalUser>)
+  nameWithType.vb: JwtService.New(IConfiguration, UserManager(Of FractPalUser))
+- uid: FractPal.Service.Implementation.JwtService.#ctor*
+  name: JwtService
+  href: api/FractPal.Service.Implementation.JwtService.html#FractPal_Service_Implementation_JwtService__ctor_
+  commentId: Overload:FractPal.Service.Implementation.JwtService.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: FractPal.Service.Implementation.JwtService.JwtService
+  fullName.vb: FractPal.Service.Implementation.JwtService.New
+  nameWithType: JwtService.JwtService
+  nameWithType.vb: JwtService.New
+- uid: FractPal.Service.Implementation.JwtService.GenerateToken(FractPal.Model.Entities.FractPalUser)
+  name: GenerateToken(FractPalUser)
+  href: api/FractPal.Service.Implementation.JwtService.html#FractPal_Service_Implementation_JwtService_GenerateToken_FractPal_Model_Entities_FractPalUser_
+  commentId: M:FractPal.Service.Implementation.JwtService.GenerateToken(FractPal.Model.Entities.FractPalUser)
+  fullName: FractPal.Service.Implementation.JwtService.GenerateToken(FractPal.Model.Entities.FractPalUser)
+  nameWithType: JwtService.GenerateToken(FractPalUser)
+- uid: FractPal.Service.Implementation.JwtService.GenerateToken*
+  name: GenerateToken
+  href: api/FractPal.Service.Implementation.JwtService.html#FractPal_Service_Implementation_JwtService_GenerateToken_
+  commentId: Overload:FractPal.Service.Implementation.JwtService.GenerateToken
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.JwtService.GenerateToken
+  nameWithType: JwtService.GenerateToken
+- uid: FractPal.Service.Implementation.LikeService
+  name: LikeService
+  href: api/FractPal.Service.Implementation.LikeService.html
+  commentId: T:FractPal.Service.Implementation.LikeService
+  fullName: FractPal.Service.Implementation.LikeService
+  nameWithType: LikeService
+- uid: FractPal.Service.Implementation.LikeService.#ctor(FractPal.Data.ApplicationDbContext)
+  name: LikeService(ApplicationDbContext)
+  href: api/FractPal.Service.Implementation.LikeService.html#FractPal_Service_Implementation_LikeService__ctor_FractPal_Data_ApplicationDbContext_
+  commentId: M:FractPal.Service.Implementation.LikeService.#ctor(FractPal.Data.ApplicationDbContext)
+  name.vb: New(ApplicationDbContext)
+  fullName: FractPal.Service.Implementation.LikeService.LikeService(FractPal.Data.ApplicationDbContext)
+  fullName.vb: FractPal.Service.Implementation.LikeService.New(FractPal.Data.ApplicationDbContext)
+  nameWithType: LikeService.LikeService(ApplicationDbContext)
+  nameWithType.vb: LikeService.New(ApplicationDbContext)
+- uid: FractPal.Service.Implementation.LikeService.#ctor*
+  name: LikeService
+  href: api/FractPal.Service.Implementation.LikeService.html#FractPal_Service_Implementation_LikeService__ctor_
+  commentId: Overload:FractPal.Service.Implementation.LikeService.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: FractPal.Service.Implementation.LikeService.LikeService
+  fullName.vb: FractPal.Service.Implementation.LikeService.New
+  nameWithType: LikeService.LikeService
+  nameWithType.vb: LikeService.New
+- uid: FractPal.Service.Implementation.LikeService.ToggleLikeAsync(System.Guid,System.Guid)
+  name: ToggleLikeAsync(Guid, Guid)
+  href: api/FractPal.Service.Implementation.LikeService.html#FractPal_Service_Implementation_LikeService_ToggleLikeAsync_System_Guid_System_Guid_
+  commentId: M:FractPal.Service.Implementation.LikeService.ToggleLikeAsync(System.Guid,System.Guid)
+  fullName: FractPal.Service.Implementation.LikeService.ToggleLikeAsync(System.Guid, System.Guid)
+  nameWithType: LikeService.ToggleLikeAsync(Guid, Guid)
+- uid: FractPal.Service.Implementation.LikeService.ToggleLikeAsync*
+  name: ToggleLikeAsync
+  href: api/FractPal.Service.Implementation.LikeService.html#FractPal_Service_Implementation_LikeService_ToggleLikeAsync_
+  commentId: Overload:FractPal.Service.Implementation.LikeService.ToggleLikeAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.LikeService.ToggleLikeAsync
+  nameWithType: LikeService.ToggleLikeAsync
+- uid: FractPal.Service.Implementation.LikeService.ToggleLikePostAsync(System.Guid,System.Guid)
+  name: ToggleLikePostAsync(Guid, Guid)
+  href: api/FractPal.Service.Implementation.LikeService.html#FractPal_Service_Implementation_LikeService_ToggleLikePostAsync_System_Guid_System_Guid_
+  commentId: M:FractPal.Service.Implementation.LikeService.ToggleLikePostAsync(System.Guid,System.Guid)
+  fullName: FractPal.Service.Implementation.LikeService.ToggleLikePostAsync(System.Guid, System.Guid)
+  nameWithType: LikeService.ToggleLikePostAsync(Guid, Guid)
+- uid: FractPal.Service.Implementation.LikeService.ToggleLikePostAsync*
+  name: ToggleLikePostAsync
+  href: api/FractPal.Service.Implementation.LikeService.html#FractPal_Service_Implementation_LikeService_ToggleLikePostAsync_
+  commentId: Overload:FractPal.Service.Implementation.LikeService.ToggleLikePostAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.LikeService.ToggleLikePostAsync
+  nameWithType: LikeService.ToggleLikePostAsync
+- uid: FractPal.Service.Implementation.PostService
+  name: PostService
+  href: api/FractPal.Service.Implementation.PostService.html
+  commentId: T:FractPal.Service.Implementation.PostService
+  fullName: FractPal.Service.Implementation.PostService
+  nameWithType: PostService
+- uid: FractPal.Service.Implementation.PostService.#ctor(FractPal.Data.ApplicationDbContext)
+  name: PostService(ApplicationDbContext)
+  href: api/FractPal.Service.Implementation.PostService.html#FractPal_Service_Implementation_PostService__ctor_FractPal_Data_ApplicationDbContext_
+  commentId: M:FractPal.Service.Implementation.PostService.#ctor(FractPal.Data.ApplicationDbContext)
+  name.vb: New(ApplicationDbContext)
+  fullName: FractPal.Service.Implementation.PostService.PostService(FractPal.Data.ApplicationDbContext)
+  fullName.vb: FractPal.Service.Implementation.PostService.New(FractPal.Data.ApplicationDbContext)
+  nameWithType: PostService.PostService(ApplicationDbContext)
+  nameWithType.vb: PostService.New(ApplicationDbContext)
+- uid: FractPal.Service.Implementation.PostService.#ctor*
+  name: PostService
+  href: api/FractPal.Service.Implementation.PostService.html#FractPal_Service_Implementation_PostService__ctor_
+  commentId: Overload:FractPal.Service.Implementation.PostService.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: FractPal.Service.Implementation.PostService.PostService
+  fullName.vb: FractPal.Service.Implementation.PostService.New
+  nameWithType: PostService.PostService
+  nameWithType.vb: PostService.New
+- uid: FractPal.Service.Implementation.PostService.DeletePostAsync(System.Guid,System.Guid,System.Boolean)
+  name: DeletePostAsync(Guid, Guid, bool)
+  href: api/FractPal.Service.Implementation.PostService.html#FractPal_Service_Implementation_PostService_DeletePostAsync_System_Guid_System_Guid_System_Boolean_
+  commentId: M:FractPal.Service.Implementation.PostService.DeletePostAsync(System.Guid,System.Guid,System.Boolean)
+  name.vb: DeletePostAsync(Guid, Guid, Boolean)
+  fullName: FractPal.Service.Implementation.PostService.DeletePostAsync(System.Guid, System.Guid, bool)
+  fullName.vb: FractPal.Service.Implementation.PostService.DeletePostAsync(System.Guid, System.Guid, Boolean)
+  nameWithType: PostService.DeletePostAsync(Guid, Guid, bool)
+  nameWithType.vb: PostService.DeletePostAsync(Guid, Guid, Boolean)
+- uid: FractPal.Service.Implementation.PostService.DeletePostAsync*
+  name: DeletePostAsync
+  href: api/FractPal.Service.Implementation.PostService.html#FractPal_Service_Implementation_PostService_DeletePostAsync_
+  commentId: Overload:FractPal.Service.Implementation.PostService.DeletePostAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.PostService.DeletePostAsync
+  nameWithType: PostService.DeletePostAsync
+- uid: FractPal.Service.Implementation.PostService.GetFeedAsync(System.Guid,System.Int32,System.Int32)
+  name: GetFeedAsync(Guid, int, int)
+  href: api/FractPal.Service.Implementation.PostService.html#FractPal_Service_Implementation_PostService_GetFeedAsync_System_Guid_System_Int32_System_Int32_
+  commentId: M:FractPal.Service.Implementation.PostService.GetFeedAsync(System.Guid,System.Int32,System.Int32)
+  name.vb: GetFeedAsync(Guid, Integer, Integer)
+  fullName: FractPal.Service.Implementation.PostService.GetFeedAsync(System.Guid, int, int)
+  fullName.vb: FractPal.Service.Implementation.PostService.GetFeedAsync(System.Guid, Integer, Integer)
+  nameWithType: PostService.GetFeedAsync(Guid, int, int)
+  nameWithType.vb: PostService.GetFeedAsync(Guid, Integer, Integer)
+- uid: FractPal.Service.Implementation.PostService.GetFeedAsync*
+  name: GetFeedAsync
+  href: api/FractPal.Service.Implementation.PostService.html#FractPal_Service_Implementation_PostService_GetFeedAsync_
+  commentId: Overload:FractPal.Service.Implementation.PostService.GetFeedAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.PostService.GetFeedAsync
+  nameWithType: PostService.GetFeedAsync
+- uid: FractPal.Service.Implementation.PostService.GetPostByIdAsync(System.Guid,System.Guid)
+  name: GetPostByIdAsync(Guid, Guid)
+  href: api/FractPal.Service.Implementation.PostService.html#FractPal_Service_Implementation_PostService_GetPostByIdAsync_System_Guid_System_Guid_
+  commentId: M:FractPal.Service.Implementation.PostService.GetPostByIdAsync(System.Guid,System.Guid)
+  fullName: FractPal.Service.Implementation.PostService.GetPostByIdAsync(System.Guid, System.Guid)
+  nameWithType: PostService.GetPostByIdAsync(Guid, Guid)
+- uid: FractPal.Service.Implementation.PostService.GetPostByIdAsync*
+  name: GetPostByIdAsync
+  href: api/FractPal.Service.Implementation.PostService.html#FractPal_Service_Implementation_PostService_GetPostByIdAsync_
+  commentId: Overload:FractPal.Service.Implementation.PostService.GetPostByIdAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.PostService.GetPostByIdAsync
+  nameWithType: PostService.GetPostByIdAsync
+- uid: FractPal.Service.Implementation.PostService.GetUserPostsAsync(System.Guid,System.Guid)
+  name: GetUserPostsAsync(Guid, Guid)
+  href: api/FractPal.Service.Implementation.PostService.html#FractPal_Service_Implementation_PostService_GetUserPostsAsync_System_Guid_System_Guid_
+  commentId: M:FractPal.Service.Implementation.PostService.GetUserPostsAsync(System.Guid,System.Guid)
+  fullName: FractPal.Service.Implementation.PostService.GetUserPostsAsync(System.Guid, System.Guid)
+  nameWithType: PostService.GetUserPostsAsync(Guid, Guid)
+- uid: FractPal.Service.Implementation.PostService.GetUserPostsAsync*
+  name: GetUserPostsAsync
+  href: api/FractPal.Service.Implementation.PostService.html#FractPal_Service_Implementation_PostService_GetUserPostsAsync_
+  commentId: Overload:FractPal.Service.Implementation.PostService.GetUserPostsAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.PostService.GetUserPostsAsync
+  nameWithType: PostService.GetUserPostsAsync
+- uid: FractPal.Service.Implementation.PostService.PublishFractalAsync(System.Guid,System.Guid,FractPal.Model.DTO.Post.CreatePostRequest)
+  name: PublishFractalAsync(Guid, Guid, CreatePostRequest)
+  href: api/FractPal.Service.Implementation.PostService.html#FractPal_Service_Implementation_PostService_PublishFractalAsync_System_Guid_System_Guid_FractPal_Model_DTO_Post_CreatePostRequest_
+  commentId: M:FractPal.Service.Implementation.PostService.PublishFractalAsync(System.Guid,System.Guid,FractPal.Model.DTO.Post.CreatePostRequest)
+  fullName: FractPal.Service.Implementation.PostService.PublishFractalAsync(System.Guid, System.Guid, FractPal.Model.DTO.Post.CreatePostRequest)
+  nameWithType: PostService.PublishFractalAsync(Guid, Guid, CreatePostRequest)
+- uid: FractPal.Service.Implementation.PostService.PublishFractalAsync*
+  name: PublishFractalAsync
+  href: api/FractPal.Service.Implementation.PostService.html#FractPal_Service_Implementation_PostService_PublishFractalAsync_
+  commentId: Overload:FractPal.Service.Implementation.PostService.PublishFractalAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.PostService.PublishFractalAsync
+  nameWithType: PostService.PublishFractalAsync
+- uid: FractPal.Service.Implementation.PostService.UnpublishFractalAsync(System.Guid,System.Guid)
+  name: UnpublishFractalAsync(Guid, Guid)
+  href: api/FractPal.Service.Implementation.PostService.html#FractPal_Service_Implementation_PostService_UnpublishFractalAsync_System_Guid_System_Guid_
+  commentId: M:FractPal.Service.Implementation.PostService.UnpublishFractalAsync(System.Guid,System.Guid)
+  fullName: FractPal.Service.Implementation.PostService.UnpublishFractalAsync(System.Guid, System.Guid)
+  nameWithType: PostService.UnpublishFractalAsync(Guid, Guid)
+- uid: FractPal.Service.Implementation.PostService.UnpublishFractalAsync*
+  name: UnpublishFractalAsync
+  href: api/FractPal.Service.Implementation.PostService.html#FractPal_Service_Implementation_PostService_UnpublishFractalAsync_
+  commentId: Overload:FractPal.Service.Implementation.PostService.UnpublishFractalAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.PostService.UnpublishFractalAsync
+  nameWithType: PostService.UnpublishFractalAsync
+- uid: FractPal.Service.Implementation.PostService.UpdatePostAsync(System.Guid,System.Guid,FractPal.Model.DTO.Post.UpdatePostRequest)
+  name: UpdatePostAsync(Guid, Guid, UpdatePostRequest)
+  href: api/FractPal.Service.Implementation.PostService.html#FractPal_Service_Implementation_PostService_UpdatePostAsync_System_Guid_System_Guid_FractPal_Model_DTO_Post_UpdatePostRequest_
+  commentId: M:FractPal.Service.Implementation.PostService.UpdatePostAsync(System.Guid,System.Guid,FractPal.Model.DTO.Post.UpdatePostRequest)
+  fullName: FractPal.Service.Implementation.PostService.UpdatePostAsync(System.Guid, System.Guid, FractPal.Model.DTO.Post.UpdatePostRequest)
+  nameWithType: PostService.UpdatePostAsync(Guid, Guid, UpdatePostRequest)
+- uid: FractPal.Service.Implementation.PostService.UpdatePostAsync*
+  name: UpdatePostAsync
+  href: api/FractPal.Service.Implementation.PostService.html#FractPal_Service_Implementation_PostService_UpdatePostAsync_
+  commentId: Overload:FractPal.Service.Implementation.PostService.UpdatePostAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.PostService.UpdatePostAsync
+  nameWithType: PostService.UpdatePostAsync
+- uid: FractPal.Service.Implementation.RefreshTokenService
+  name: RefreshTokenService
+  href: api/FractPal.Service.Implementation.RefreshTokenService.html
+  commentId: T:FractPal.Service.Implementation.RefreshTokenService
+  fullName: FractPal.Service.Implementation.RefreshTokenService
+  nameWithType: RefreshTokenService
+- uid: FractPal.Service.Implementation.RefreshTokenService.#ctor(FractPal.Service.Interface.IRepository{FractPal.Model.Entity.RefreshToken})
+  name: RefreshTokenService(IRepository<RefreshToken>)
+  href: api/FractPal.Service.Implementation.RefreshTokenService.html#FractPal_Service_Implementation_RefreshTokenService__ctor_FractPal_Service_Interface_IRepository_FractPal_Model_Entity_RefreshToken__
+  commentId: M:FractPal.Service.Implementation.RefreshTokenService.#ctor(FractPal.Service.Interface.IRepository{FractPal.Model.Entity.RefreshToken})
+  name.vb: New(IRepository(Of RefreshToken))
+  fullName: FractPal.Service.Implementation.RefreshTokenService.RefreshTokenService(FractPal.Service.Interface.IRepository<FractPal.Model.Entity.RefreshToken>)
+  fullName.vb: FractPal.Service.Implementation.RefreshTokenService.New(FractPal.Service.Interface.IRepository(Of FractPal.Model.Entity.RefreshToken))
+  nameWithType: RefreshTokenService.RefreshTokenService(IRepository<RefreshToken>)
+  nameWithType.vb: RefreshTokenService.New(IRepository(Of RefreshToken))
+- uid: FractPal.Service.Implementation.RefreshTokenService.#ctor*
+  name: RefreshTokenService
+  href: api/FractPal.Service.Implementation.RefreshTokenService.html#FractPal_Service_Implementation_RefreshTokenService__ctor_
+  commentId: Overload:FractPal.Service.Implementation.RefreshTokenService.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: FractPal.Service.Implementation.RefreshTokenService.RefreshTokenService
+  fullName.vb: FractPal.Service.Implementation.RefreshTokenService.New
+  nameWithType: RefreshTokenService.RefreshTokenService
+  nameWithType.vb: RefreshTokenService.New
+- uid: FractPal.Service.Implementation.RefreshTokenService.GenerateRefreshToken(Microsoft.AspNetCore.Identity.IdentityUser)
+  name: GenerateRefreshToken(IdentityUser)
+  href: api/FractPal.Service.Implementation.RefreshTokenService.html#FractPal_Service_Implementation_RefreshTokenService_GenerateRefreshToken_Microsoft_AspNetCore_Identity_IdentityUser_
+  commentId: M:FractPal.Service.Implementation.RefreshTokenService.GenerateRefreshToken(Microsoft.AspNetCore.Identity.IdentityUser)
+  fullName: FractPal.Service.Implementation.RefreshTokenService.GenerateRefreshToken(Microsoft.AspNetCore.Identity.IdentityUser)
+  nameWithType: RefreshTokenService.GenerateRefreshToken(IdentityUser)
+- uid: FractPal.Service.Implementation.RefreshTokenService.GenerateRefreshToken*
+  name: GenerateRefreshToken
+  href: api/FractPal.Service.Implementation.RefreshTokenService.html#FractPal_Service_Implementation_RefreshTokenService_GenerateRefreshToken_
+  commentId: Overload:FractPal.Service.Implementation.RefreshTokenService.GenerateRefreshToken
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.RefreshTokenService.GenerateRefreshToken
+  nameWithType: RefreshTokenService.GenerateRefreshToken
+- uid: FractPal.Service.Implementation.RefreshTokenService.GetUserIdByRefreshToken(System.String)
+  name: GetUserIdByRefreshToken(string)
+  href: api/FractPal.Service.Implementation.RefreshTokenService.html#FractPal_Service_Implementation_RefreshTokenService_GetUserIdByRefreshToken_System_String_
+  commentId: M:FractPal.Service.Implementation.RefreshTokenService.GetUserIdByRefreshToken(System.String)
+  name.vb: GetUserIdByRefreshToken(String)
+  fullName: FractPal.Service.Implementation.RefreshTokenService.GetUserIdByRefreshToken(string)
+  fullName.vb: FractPal.Service.Implementation.RefreshTokenService.GetUserIdByRefreshToken(String)
+  nameWithType: RefreshTokenService.GetUserIdByRefreshToken(string)
+  nameWithType.vb: RefreshTokenService.GetUserIdByRefreshToken(String)
+- uid: FractPal.Service.Implementation.RefreshTokenService.GetUserIdByRefreshToken*
+  name: GetUserIdByRefreshToken
+  href: api/FractPal.Service.Implementation.RefreshTokenService.html#FractPal_Service_Implementation_RefreshTokenService_GetUserIdByRefreshToken_
+  commentId: Overload:FractPal.Service.Implementation.RefreshTokenService.GetUserIdByRefreshToken
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.RefreshTokenService.GetUserIdByRefreshToken
+  nameWithType: RefreshTokenService.GetUserIdByRefreshToken
+- uid: FractPal.Service.Implementation.RefreshTokenService.InvalidateRefreshToken(System.String)
+  name: InvalidateRefreshToken(string)
+  href: api/FractPal.Service.Implementation.RefreshTokenService.html#FractPal_Service_Implementation_RefreshTokenService_InvalidateRefreshToken_System_String_
+  commentId: M:FractPal.Service.Implementation.RefreshTokenService.InvalidateRefreshToken(System.String)
+  name.vb: InvalidateRefreshToken(String)
+  fullName: FractPal.Service.Implementation.RefreshTokenService.InvalidateRefreshToken(string)
+  fullName.vb: FractPal.Service.Implementation.RefreshTokenService.InvalidateRefreshToken(String)
+  nameWithType: RefreshTokenService.InvalidateRefreshToken(string)
+  nameWithType.vb: RefreshTokenService.InvalidateRefreshToken(String)
+- uid: FractPal.Service.Implementation.RefreshTokenService.InvalidateRefreshToken*
+  name: InvalidateRefreshToken
+  href: api/FractPal.Service.Implementation.RefreshTokenService.html#FractPal_Service_Implementation_RefreshTokenService_InvalidateRefreshToken_
+  commentId: Overload:FractPal.Service.Implementation.RefreshTokenService.InvalidateRefreshToken
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.RefreshTokenService.InvalidateRefreshToken
+  nameWithType: RefreshTokenService.InvalidateRefreshToken
+- uid: FractPal.Service.Implementation.RefreshTokenService.ValidateRefreshToken(System.Guid,System.String)
+  name: ValidateRefreshToken(Guid, string)
+  href: api/FractPal.Service.Implementation.RefreshTokenService.html#FractPal_Service_Implementation_RefreshTokenService_ValidateRefreshToken_System_Guid_System_String_
+  commentId: M:FractPal.Service.Implementation.RefreshTokenService.ValidateRefreshToken(System.Guid,System.String)
+  name.vb: ValidateRefreshToken(Guid, String)
+  fullName: FractPal.Service.Implementation.RefreshTokenService.ValidateRefreshToken(System.Guid, string)
+  fullName.vb: FractPal.Service.Implementation.RefreshTokenService.ValidateRefreshToken(System.Guid, String)
+  nameWithType: RefreshTokenService.ValidateRefreshToken(Guid, string)
+  nameWithType.vb: RefreshTokenService.ValidateRefreshToken(Guid, String)
+- uid: FractPal.Service.Implementation.RefreshTokenService.ValidateRefreshToken*
+  name: ValidateRefreshToken
+  href: api/FractPal.Service.Implementation.RefreshTokenService.html#FractPal_Service_Implementation_RefreshTokenService_ValidateRefreshToken_
+  commentId: Overload:FractPal.Service.Implementation.RefreshTokenService.ValidateRefreshToken
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.RefreshTokenService.ValidateRefreshToken
+  nameWithType: RefreshTokenService.ValidateRefreshToken
+- uid: FractPal.Service.Implementation.UserService
+  name: UserService
+  href: api/FractPal.Service.Implementation.UserService.html
+  commentId: T:FractPal.Service.Implementation.UserService
+  fullName: FractPal.Service.Implementation.UserService
+  nameWithType: UserService
+- uid: FractPal.Service.Implementation.UserService.#ctor(FractPal.Data.ApplicationDbContext)
+  name: UserService(ApplicationDbContext)
+  href: api/FractPal.Service.Implementation.UserService.html#FractPal_Service_Implementation_UserService__ctor_FractPal_Data_ApplicationDbContext_
+  commentId: M:FractPal.Service.Implementation.UserService.#ctor(FractPal.Data.ApplicationDbContext)
+  name.vb: New(ApplicationDbContext)
+  fullName: FractPal.Service.Implementation.UserService.UserService(FractPal.Data.ApplicationDbContext)
+  fullName.vb: FractPal.Service.Implementation.UserService.New(FractPal.Data.ApplicationDbContext)
+  nameWithType: UserService.UserService(ApplicationDbContext)
+  nameWithType.vb: UserService.New(ApplicationDbContext)
+- uid: FractPal.Service.Implementation.UserService.#ctor*
+  name: UserService
+  href: api/FractPal.Service.Implementation.UserService.html#FractPal_Service_Implementation_UserService__ctor_
+  commentId: Overload:FractPal.Service.Implementation.UserService.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: FractPal.Service.Implementation.UserService.UserService
+  fullName.vb: FractPal.Service.Implementation.UserService.New
+  nameWithType: UserService.UserService
+  nameWithType.vb: UserService.New
+- uid: FractPal.Service.Implementation.UserService.GetProfileAsync(System.String,System.String)
+  name: GetProfileAsync(string, string)
+  href: api/FractPal.Service.Implementation.UserService.html#FractPal_Service_Implementation_UserService_GetProfileAsync_System_String_System_String_
+  commentId: M:FractPal.Service.Implementation.UserService.GetProfileAsync(System.String,System.String)
+  name.vb: GetProfileAsync(String, String)
+  fullName: FractPal.Service.Implementation.UserService.GetProfileAsync(string, string)
+  fullName.vb: FractPal.Service.Implementation.UserService.GetProfileAsync(String, String)
+  nameWithType: UserService.GetProfileAsync(string, string)
+  nameWithType.vb: UserService.GetProfileAsync(String, String)
+- uid: FractPal.Service.Implementation.UserService.GetProfileAsync*
+  name: GetProfileAsync
+  href: api/FractPal.Service.Implementation.UserService.html#FractPal_Service_Implementation_UserService_GetProfileAsync_
+  commentId: Overload:FractPal.Service.Implementation.UserService.GetProfileAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.UserService.GetProfileAsync
+  nameWithType: UserService.GetProfileAsync
+- uid: FractPal.Service.Implementation.UserService.SearchUsersAsync(System.String,System.String)
+  name: SearchUsersAsync(string, string)
+  href: api/FractPal.Service.Implementation.UserService.html#FractPal_Service_Implementation_UserService_SearchUsersAsync_System_String_System_String_
+  commentId: M:FractPal.Service.Implementation.UserService.SearchUsersAsync(System.String,System.String)
+  name.vb: SearchUsersAsync(String, String)
+  fullName: FractPal.Service.Implementation.UserService.SearchUsersAsync(string, string)
+  fullName.vb: FractPal.Service.Implementation.UserService.SearchUsersAsync(String, String)
+  nameWithType: UserService.SearchUsersAsync(string, string)
+  nameWithType.vb: UserService.SearchUsersAsync(String, String)
+- uid: FractPal.Service.Implementation.UserService.SearchUsersAsync*
+  name: SearchUsersAsync
+  href: api/FractPal.Service.Implementation.UserService.html#FractPal_Service_Implementation_UserService_SearchUsersAsync_
+  commentId: Overload:FractPal.Service.Implementation.UserService.SearchUsersAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.UserService.SearchUsersAsync
+  nameWithType: UserService.SearchUsersAsync
+- uid: FractPal.Service.Implementation.UserService.ToggleFollowAsync(System.String,System.String)
+  name: ToggleFollowAsync(string, string)
+  href: api/FractPal.Service.Implementation.UserService.html#FractPal_Service_Implementation_UserService_ToggleFollowAsync_System_String_System_String_
+  commentId: M:FractPal.Service.Implementation.UserService.ToggleFollowAsync(System.String,System.String)
+  name.vb: ToggleFollowAsync(String, String)
+  fullName: FractPal.Service.Implementation.UserService.ToggleFollowAsync(string, string)
+  fullName.vb: FractPal.Service.Implementation.UserService.ToggleFollowAsync(String, String)
+  nameWithType: UserService.ToggleFollowAsync(string, string)
+  nameWithType.vb: UserService.ToggleFollowAsync(String, String)
+- uid: FractPal.Service.Implementation.UserService.ToggleFollowAsync*
+  name: ToggleFollowAsync
+  href: api/FractPal.Service.Implementation.UserService.html#FractPal_Service_Implementation_UserService_ToggleFollowAsync_
+  commentId: Overload:FractPal.Service.Implementation.UserService.ToggleFollowAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.UserService.ToggleFollowAsync
+  nameWithType: UserService.ToggleFollowAsync
+- uid: FractPal.Service.Implementation.UserService.UpdateProfileAsync(System.String,FractPal.Model.DTO.User.UpdateProfileRequest)
+  name: UpdateProfileAsync(string, UpdateProfileRequest)
+  href: api/FractPal.Service.Implementation.UserService.html#FractPal_Service_Implementation_UserService_UpdateProfileAsync_System_String_FractPal_Model_DTO_User_UpdateProfileRequest_
+  commentId: M:FractPal.Service.Implementation.UserService.UpdateProfileAsync(System.String,FractPal.Model.DTO.User.UpdateProfileRequest)
+  name.vb: UpdateProfileAsync(String, UpdateProfileRequest)
+  fullName: FractPal.Service.Implementation.UserService.UpdateProfileAsync(string, FractPal.Model.DTO.User.UpdateProfileRequest)
+  fullName.vb: FractPal.Service.Implementation.UserService.UpdateProfileAsync(String, FractPal.Model.DTO.User.UpdateProfileRequest)
+  nameWithType: UserService.UpdateProfileAsync(string, UpdateProfileRequest)
+  nameWithType.vb: UserService.UpdateProfileAsync(String, UpdateProfileRequest)
+- uid: FractPal.Service.Implementation.UserService.UpdateProfileAsync*
+  name: UpdateProfileAsync
+  href: api/FractPal.Service.Implementation.UserService.html#FractPal_Service_Implementation_UserService_UpdateProfileAsync_
+  commentId: Overload:FractPal.Service.Implementation.UserService.UpdateProfileAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Implementation.UserService.UpdateProfileAsync
+  nameWithType: UserService.UpdateProfileAsync
+- uid: FractPal.Service.Interface
+  name: FractPal.Service.Interface
+  href: api/FractPal.Service.Interface.html
+  commentId: N:FractPal.Service.Interface
+  fullName: FractPal.Service.Interface
+  nameWithType: FractPal.Service.Interface
+- uid: FractPal.Service.Interface.IAuthService
+  name: IAuthService
+  href: api/FractPal.Service.Interface.IAuthService.html
+  commentId: T:FractPal.Service.Interface.IAuthService
+  fullName: FractPal.Service.Interface.IAuthService
+  nameWithType: IAuthService
+- uid: FractPal.Service.Interface.IAuthService.Login(Microsoft.AspNetCore.Http.HttpContext,FractPal.Model.DTO.Auth.LoginRequest)
+  name: Login(HttpContext, LoginRequest)
+  href: api/FractPal.Service.Interface.IAuthService.html#FractPal_Service_Interface_IAuthService_Login_Microsoft_AspNetCore_Http_HttpContext_FractPal_Model_DTO_Auth_LoginRequest_
+  commentId: M:FractPal.Service.Interface.IAuthService.Login(Microsoft.AspNetCore.Http.HttpContext,FractPal.Model.DTO.Auth.LoginRequest)
+  fullName: FractPal.Service.Interface.IAuthService.Login(Microsoft.AspNetCore.Http.HttpContext, FractPal.Model.DTO.Auth.LoginRequest)
+  nameWithType: IAuthService.Login(HttpContext, LoginRequest)
+- uid: FractPal.Service.Interface.IAuthService.Login*
+  name: Login
+  href: api/FractPal.Service.Interface.IAuthService.html#FractPal_Service_Interface_IAuthService_Login_
+  commentId: Overload:FractPal.Service.Interface.IAuthService.Login
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IAuthService.Login
+  nameWithType: IAuthService.Login
+- uid: FractPal.Service.Interface.IAuthService.Register(FractPal.Model.DTO.Auth.RegistrationRequest)
+  name: Register(RegistrationRequest)
+  href: api/FractPal.Service.Interface.IAuthService.html#FractPal_Service_Interface_IAuthService_Register_FractPal_Model_DTO_Auth_RegistrationRequest_
+  commentId: M:FractPal.Service.Interface.IAuthService.Register(FractPal.Model.DTO.Auth.RegistrationRequest)
+  fullName: FractPal.Service.Interface.IAuthService.Register(FractPal.Model.DTO.Auth.RegistrationRequest)
+  nameWithType: IAuthService.Register(RegistrationRequest)
+- uid: FractPal.Service.Interface.IAuthService.Register*
+  name: Register
+  href: api/FractPal.Service.Interface.IAuthService.html#FractPal_Service_Interface_IAuthService_Register_
+  commentId: Overload:FractPal.Service.Interface.IAuthService.Register
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IAuthService.Register
+  nameWithType: IAuthService.Register
+- uid: FractPal.Service.Interface.ICommentService
+  name: ICommentService
+  href: api/FractPal.Service.Interface.ICommentService.html
+  commentId: T:FractPal.Service.Interface.ICommentService
+  fullName: FractPal.Service.Interface.ICommentService
+  nameWithType: ICommentService
+- uid: FractPal.Service.Interface.ICommentService.CreateComment(System.Guid,System.Guid,FractPal.Model.DTO.Comment.CreateCommentRequest)
+  name: CreateComment(Guid, Guid, CreateCommentRequest)
+  href: api/FractPal.Service.Interface.ICommentService.html#FractPal_Service_Interface_ICommentService_CreateComment_System_Guid_System_Guid_FractPal_Model_DTO_Comment_CreateCommentRequest_
+  commentId: M:FractPal.Service.Interface.ICommentService.CreateComment(System.Guid,System.Guid,FractPal.Model.DTO.Comment.CreateCommentRequest)
+  fullName: FractPal.Service.Interface.ICommentService.CreateComment(System.Guid, System.Guid, FractPal.Model.DTO.Comment.CreateCommentRequest)
+  nameWithType: ICommentService.CreateComment(Guid, Guid, CreateCommentRequest)
+- uid: FractPal.Service.Interface.ICommentService.CreateComment*
+  name: CreateComment
+  href: api/FractPal.Service.Interface.ICommentService.html#FractPal_Service_Interface_ICommentService_CreateComment_
+  commentId: Overload:FractPal.Service.Interface.ICommentService.CreateComment
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.ICommentService.CreateComment
+  nameWithType: ICommentService.CreateComment
+- uid: FractPal.Service.Interface.ICommentService.DeleteComment(System.Guid,System.Guid)
+  name: DeleteComment(Guid, Guid)
+  href: api/FractPal.Service.Interface.ICommentService.html#FractPal_Service_Interface_ICommentService_DeleteComment_System_Guid_System_Guid_
+  commentId: M:FractPal.Service.Interface.ICommentService.DeleteComment(System.Guid,System.Guid)
+  fullName: FractPal.Service.Interface.ICommentService.DeleteComment(System.Guid, System.Guid)
+  nameWithType: ICommentService.DeleteComment(Guid, Guid)
+- uid: FractPal.Service.Interface.ICommentService.DeleteComment*
+  name: DeleteComment
+  href: api/FractPal.Service.Interface.ICommentService.html#FractPal_Service_Interface_ICommentService_DeleteComment_
+  commentId: Overload:FractPal.Service.Interface.ICommentService.DeleteComment
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.ICommentService.DeleteComment
+  nameWithType: ICommentService.DeleteComment
+- uid: FractPal.Service.Interface.ICommentService.GetCommentById(System.Guid)
+  name: GetCommentById(Guid)
+  href: api/FractPal.Service.Interface.ICommentService.html#FractPal_Service_Interface_ICommentService_GetCommentById_System_Guid_
+  commentId: M:FractPal.Service.Interface.ICommentService.GetCommentById(System.Guid)
+  fullName: FractPal.Service.Interface.ICommentService.GetCommentById(System.Guid)
+  nameWithType: ICommentService.GetCommentById(Guid)
+- uid: FractPal.Service.Interface.ICommentService.GetCommentById*
+  name: GetCommentById
+  href: api/FractPal.Service.Interface.ICommentService.html#FractPal_Service_Interface_ICommentService_GetCommentById_
+  commentId: Overload:FractPal.Service.Interface.ICommentService.GetCommentById
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.ICommentService.GetCommentById
+  nameWithType: ICommentService.GetCommentById
+- uid: FractPal.Service.Interface.ICommentService.GetPostComments(System.Guid)
+  name: GetPostComments(Guid)
+  href: api/FractPal.Service.Interface.ICommentService.html#FractPal_Service_Interface_ICommentService_GetPostComments_System_Guid_
+  commentId: M:FractPal.Service.Interface.ICommentService.GetPostComments(System.Guid)
+  fullName: FractPal.Service.Interface.ICommentService.GetPostComments(System.Guid)
+  nameWithType: ICommentService.GetPostComments(Guid)
+- uid: FractPal.Service.Interface.ICommentService.GetPostComments*
+  name: GetPostComments
+  href: api/FractPal.Service.Interface.ICommentService.html#FractPal_Service_Interface_ICommentService_GetPostComments_
+  commentId: Overload:FractPal.Service.Interface.ICommentService.GetPostComments
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.ICommentService.GetPostComments
+  nameWithType: ICommentService.GetPostComments
+- uid: FractPal.Service.Interface.ICommentService.UpdateComment(System.Guid,System.Guid,FractPal.Model.DTO.Comment.UpdateCommentRequest)
+  name: UpdateComment(Guid, Guid, UpdateCommentRequest)
+  href: api/FractPal.Service.Interface.ICommentService.html#FractPal_Service_Interface_ICommentService_UpdateComment_System_Guid_System_Guid_FractPal_Model_DTO_Comment_UpdateCommentRequest_
+  commentId: M:FractPal.Service.Interface.ICommentService.UpdateComment(System.Guid,System.Guid,FractPal.Model.DTO.Comment.UpdateCommentRequest)
+  fullName: FractPal.Service.Interface.ICommentService.UpdateComment(System.Guid, System.Guid, FractPal.Model.DTO.Comment.UpdateCommentRequest)
+  nameWithType: ICommentService.UpdateComment(Guid, Guid, UpdateCommentRequest)
+- uid: FractPal.Service.Interface.ICommentService.UpdateComment*
+  name: UpdateComment
+  href: api/FractPal.Service.Interface.ICommentService.html#FractPal_Service_Interface_ICommentService_UpdateComment_
+  commentId: Overload:FractPal.Service.Interface.ICommentService.UpdateComment
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.ICommentService.UpdateComment
+  nameWithType: ICommentService.UpdateComment
+- uid: FractPal.Service.Interface.IFractalService
+  name: IFractalService
+  href: api/FractPal.Service.Interface.IFractalService.html
+  commentId: T:FractPal.Service.Interface.IFractalService
+  fullName: FractPal.Service.Interface.IFractalService
+  nameWithType: IFractalService
+- uid: FractPal.Service.Interface.IFractalService.CreateFractalAsync(System.Guid,FractPal.Model.DTO.Fractal.CreateFractalRequest)
+  name: CreateFractalAsync(Guid, CreateFractalRequest)
+  href: api/FractPal.Service.Interface.IFractalService.html#FractPal_Service_Interface_IFractalService_CreateFractalAsync_System_Guid_FractPal_Model_DTO_Fractal_CreateFractalRequest_
+  commentId: M:FractPal.Service.Interface.IFractalService.CreateFractalAsync(System.Guid,FractPal.Model.DTO.Fractal.CreateFractalRequest)
+  fullName: FractPal.Service.Interface.IFractalService.CreateFractalAsync(System.Guid, FractPal.Model.DTO.Fractal.CreateFractalRequest)
+  nameWithType: IFractalService.CreateFractalAsync(Guid, CreateFractalRequest)
+- uid: FractPal.Service.Interface.IFractalService.CreateFractalAsync*
+  name: CreateFractalAsync
+  href: api/FractPal.Service.Interface.IFractalService.html#FractPal_Service_Interface_IFractalService_CreateFractalAsync_
+  commentId: Overload:FractPal.Service.Interface.IFractalService.CreateFractalAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IFractalService.CreateFractalAsync
+  nameWithType: IFractalService.CreateFractalAsync
+- uid: FractPal.Service.Interface.IFractalService.DeleteFractalAsync(System.Guid,System.Guid,System.Boolean)
+  name: DeleteFractalAsync(Guid, Guid, bool)
+  href: api/FractPal.Service.Interface.IFractalService.html#FractPal_Service_Interface_IFractalService_DeleteFractalAsync_System_Guid_System_Guid_System_Boolean_
+  commentId: M:FractPal.Service.Interface.IFractalService.DeleteFractalAsync(System.Guid,System.Guid,System.Boolean)
+  name.vb: DeleteFractalAsync(Guid, Guid, Boolean)
+  fullName: FractPal.Service.Interface.IFractalService.DeleteFractalAsync(System.Guid, System.Guid, bool)
+  fullName.vb: FractPal.Service.Interface.IFractalService.DeleteFractalAsync(System.Guid, System.Guid, Boolean)
+  nameWithType: IFractalService.DeleteFractalAsync(Guid, Guid, bool)
+  nameWithType.vb: IFractalService.DeleteFractalAsync(Guid, Guid, Boolean)
+- uid: FractPal.Service.Interface.IFractalService.DeleteFractalAsync*
+  name: DeleteFractalAsync
+  href: api/FractPal.Service.Interface.IFractalService.html#FractPal_Service_Interface_IFractalService_DeleteFractalAsync_
+  commentId: Overload:FractPal.Service.Interface.IFractalService.DeleteFractalAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IFractalService.DeleteFractalAsync
+  nameWithType: IFractalService.DeleteFractalAsync
+- uid: FractPal.Service.Interface.IFractalService.ForkFractalAsync(System.Guid,System.Guid)
+  name: ForkFractalAsync(Guid, Guid)
+  href: api/FractPal.Service.Interface.IFractalService.html#FractPal_Service_Interface_IFractalService_ForkFractalAsync_System_Guid_System_Guid_
+  commentId: M:FractPal.Service.Interface.IFractalService.ForkFractalAsync(System.Guid,System.Guid)
+  fullName: FractPal.Service.Interface.IFractalService.ForkFractalAsync(System.Guid, System.Guid)
+  nameWithType: IFractalService.ForkFractalAsync(Guid, Guid)
+- uid: FractPal.Service.Interface.IFractalService.ForkFractalAsync*
+  name: ForkFractalAsync
+  href: api/FractPal.Service.Interface.IFractalService.html#FractPal_Service_Interface_IFractalService_ForkFractalAsync_
+  commentId: Overload:FractPal.Service.Interface.IFractalService.ForkFractalAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IFractalService.ForkFractalAsync
+  nameWithType: IFractalService.ForkFractalAsync
+- uid: FractPal.Service.Interface.IFractalService.GetFeedAsync(System.Guid,System.Int32,System.Int32)
+  name: GetFeedAsync(Guid, int, int)
+  href: api/FractPal.Service.Interface.IFractalService.html#FractPal_Service_Interface_IFractalService_GetFeedAsync_System_Guid_System_Int32_System_Int32_
+  commentId: M:FractPal.Service.Interface.IFractalService.GetFeedAsync(System.Guid,System.Int32,System.Int32)
+  name.vb: GetFeedAsync(Guid, Integer, Integer)
+  fullName: FractPal.Service.Interface.IFractalService.GetFeedAsync(System.Guid, int, int)
+  fullName.vb: FractPal.Service.Interface.IFractalService.GetFeedAsync(System.Guid, Integer, Integer)
+  nameWithType: IFractalService.GetFeedAsync(Guid, int, int)
+  nameWithType.vb: IFractalService.GetFeedAsync(Guid, Integer, Integer)
+- uid: FractPal.Service.Interface.IFractalService.GetFeedAsync*
+  name: GetFeedAsync
+  href: api/FractPal.Service.Interface.IFractalService.html#FractPal_Service_Interface_IFractalService_GetFeedAsync_
+  commentId: Overload:FractPal.Service.Interface.IFractalService.GetFeedAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IFractalService.GetFeedAsync
+  nameWithType: IFractalService.GetFeedAsync
+- uid: FractPal.Service.Interface.IFractalService.GetFractalByIdAsync(System.Guid,System.Guid)
+  name: GetFractalByIdAsync(Guid, Guid)
+  href: api/FractPal.Service.Interface.IFractalService.html#FractPal_Service_Interface_IFractalService_GetFractalByIdAsync_System_Guid_System_Guid_
+  commentId: M:FractPal.Service.Interface.IFractalService.GetFractalByIdAsync(System.Guid,System.Guid)
+  fullName: FractPal.Service.Interface.IFractalService.GetFractalByIdAsync(System.Guid, System.Guid)
+  nameWithType: IFractalService.GetFractalByIdAsync(Guid, Guid)
+- uid: FractPal.Service.Interface.IFractalService.GetFractalByIdAsync*
+  name: GetFractalByIdAsync
+  href: api/FractPal.Service.Interface.IFractalService.html#FractPal_Service_Interface_IFractalService_GetFractalByIdAsync_
+  commentId: Overload:FractPal.Service.Interface.IFractalService.GetFractalByIdAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IFractalService.GetFractalByIdAsync
+  nameWithType: IFractalService.GetFractalByIdAsync
+- uid: FractPal.Service.Interface.IFractalService.GetPublishedFractalsByUserAsync(System.Guid,System.Guid)
+  name: GetPublishedFractalsByUserAsync(Guid, Guid)
+  href: api/FractPal.Service.Interface.IFractalService.html#FractPal_Service_Interface_IFractalService_GetPublishedFractalsByUserAsync_System_Guid_System_Guid_
+  commentId: M:FractPal.Service.Interface.IFractalService.GetPublishedFractalsByUserAsync(System.Guid,System.Guid)
+  fullName: FractPal.Service.Interface.IFractalService.GetPublishedFractalsByUserAsync(System.Guid, System.Guid)
+  nameWithType: IFractalService.GetPublishedFractalsByUserAsync(Guid, Guid)
+- uid: FractPal.Service.Interface.IFractalService.GetPublishedFractalsByUserAsync*
+  name: GetPublishedFractalsByUserAsync
+  href: api/FractPal.Service.Interface.IFractalService.html#FractPal_Service_Interface_IFractalService_GetPublishedFractalsByUserAsync_
+  commentId: Overload:FractPal.Service.Interface.IFractalService.GetPublishedFractalsByUserAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IFractalService.GetPublishedFractalsByUserAsync
+  nameWithType: IFractalService.GetPublishedFractalsByUserAsync
+- uid: FractPal.Service.Interface.IFractalService.GetUserFractalsAsync(System.Guid,System.Guid)
+  name: GetUserFractalsAsync(Guid, Guid)
+  href: api/FractPal.Service.Interface.IFractalService.html#FractPal_Service_Interface_IFractalService_GetUserFractalsAsync_System_Guid_System_Guid_
+  commentId: M:FractPal.Service.Interface.IFractalService.GetUserFractalsAsync(System.Guid,System.Guid)
+  fullName: FractPal.Service.Interface.IFractalService.GetUserFractalsAsync(System.Guid, System.Guid)
+  nameWithType: IFractalService.GetUserFractalsAsync(Guid, Guid)
+- uid: FractPal.Service.Interface.IFractalService.GetUserFractalsAsync*
+  name: GetUserFractalsAsync
+  href: api/FractPal.Service.Interface.IFractalService.html#FractPal_Service_Interface_IFractalService_GetUserFractalsAsync_
+  commentId: Overload:FractPal.Service.Interface.IFractalService.GetUserFractalsAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IFractalService.GetUserFractalsAsync
+  nameWithType: IFractalService.GetUserFractalsAsync
+- uid: FractPal.Service.Interface.IFractalService.UpdateFractalAsync(System.Guid,System.Guid,FractPal.Model.DTO.Fractal.UpdateFractalRequest)
+  name: UpdateFractalAsync(Guid, Guid, UpdateFractalRequest)
+  href: api/FractPal.Service.Interface.IFractalService.html#FractPal_Service_Interface_IFractalService_UpdateFractalAsync_System_Guid_System_Guid_FractPal_Model_DTO_Fractal_UpdateFractalRequest_
+  commentId: M:FractPal.Service.Interface.IFractalService.UpdateFractalAsync(System.Guid,System.Guid,FractPal.Model.DTO.Fractal.UpdateFractalRequest)
+  fullName: FractPal.Service.Interface.IFractalService.UpdateFractalAsync(System.Guid, System.Guid, FractPal.Model.DTO.Fractal.UpdateFractalRequest)
+  nameWithType: IFractalService.UpdateFractalAsync(Guid, Guid, UpdateFractalRequest)
+- uid: FractPal.Service.Interface.IFractalService.UpdateFractalAsync*
+  name: UpdateFractalAsync
+  href: api/FractPal.Service.Interface.IFractalService.html#FractPal_Service_Interface_IFractalService_UpdateFractalAsync_
+  commentId: Overload:FractPal.Service.Interface.IFractalService.UpdateFractalAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IFractalService.UpdateFractalAsync
+  nameWithType: IFractalService.UpdateFractalAsync
+- uid: FractPal.Service.Interface.IJwtService
+  name: IJwtService
+  href: api/FractPal.Service.Interface.IJwtService.html
+  commentId: T:FractPal.Service.Interface.IJwtService
+  fullName: FractPal.Service.Interface.IJwtService
+  nameWithType: IJwtService
+- uid: FractPal.Service.Interface.IJwtService.GenerateToken(FractPal.Model.Entities.FractPalUser)
+  name: GenerateToken(FractPalUser)
+  href: api/FractPal.Service.Interface.IJwtService.html#FractPal_Service_Interface_IJwtService_GenerateToken_FractPal_Model_Entities_FractPalUser_
+  commentId: M:FractPal.Service.Interface.IJwtService.GenerateToken(FractPal.Model.Entities.FractPalUser)
+  fullName: FractPal.Service.Interface.IJwtService.GenerateToken(FractPal.Model.Entities.FractPalUser)
+  nameWithType: IJwtService.GenerateToken(FractPalUser)
+- uid: FractPal.Service.Interface.IJwtService.GenerateToken*
+  name: GenerateToken
+  href: api/FractPal.Service.Interface.IJwtService.html#FractPal_Service_Interface_IJwtService_GenerateToken_
+  commentId: Overload:FractPal.Service.Interface.IJwtService.GenerateToken
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IJwtService.GenerateToken
+  nameWithType: IJwtService.GenerateToken
+- uid: FractPal.Service.Interface.ILikeService
+  name: ILikeService
+  href: api/FractPal.Service.Interface.ILikeService.html
+  commentId: T:FractPal.Service.Interface.ILikeService
+  fullName: FractPal.Service.Interface.ILikeService
+  nameWithType: ILikeService
+- uid: FractPal.Service.Interface.ILikeService.ToggleLikeAsync(System.Guid,System.Guid)
+  name: ToggleLikeAsync(Guid, Guid)
+  href: api/FractPal.Service.Interface.ILikeService.html#FractPal_Service_Interface_ILikeService_ToggleLikeAsync_System_Guid_System_Guid_
+  commentId: M:FractPal.Service.Interface.ILikeService.ToggleLikeAsync(System.Guid,System.Guid)
+  fullName: FractPal.Service.Interface.ILikeService.ToggleLikeAsync(System.Guid, System.Guid)
+  nameWithType: ILikeService.ToggleLikeAsync(Guid, Guid)
+- uid: FractPal.Service.Interface.ILikeService.ToggleLikeAsync*
+  name: ToggleLikeAsync
+  href: api/FractPal.Service.Interface.ILikeService.html#FractPal_Service_Interface_ILikeService_ToggleLikeAsync_
+  commentId: Overload:FractPal.Service.Interface.ILikeService.ToggleLikeAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.ILikeService.ToggleLikeAsync
+  nameWithType: ILikeService.ToggleLikeAsync
+- uid: FractPal.Service.Interface.ILikeService.ToggleLikePostAsync(System.Guid,System.Guid)
+  name: ToggleLikePostAsync(Guid, Guid)
+  href: api/FractPal.Service.Interface.ILikeService.html#FractPal_Service_Interface_ILikeService_ToggleLikePostAsync_System_Guid_System_Guid_
+  commentId: M:FractPal.Service.Interface.ILikeService.ToggleLikePostAsync(System.Guid,System.Guid)
+  fullName: FractPal.Service.Interface.ILikeService.ToggleLikePostAsync(System.Guid, System.Guid)
+  nameWithType: ILikeService.ToggleLikePostAsync(Guid, Guid)
+- uid: FractPal.Service.Interface.ILikeService.ToggleLikePostAsync*
+  name: ToggleLikePostAsync
+  href: api/FractPal.Service.Interface.ILikeService.html#FractPal_Service_Interface_ILikeService_ToggleLikePostAsync_
+  commentId: Overload:FractPal.Service.Interface.ILikeService.ToggleLikePostAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.ILikeService.ToggleLikePostAsync
+  nameWithType: ILikeService.ToggleLikePostAsync
+- uid: FractPal.Service.Interface.IPostService
+  name: IPostService
+  href: api/FractPal.Service.Interface.IPostService.html
+  commentId: T:FractPal.Service.Interface.IPostService
+  fullName: FractPal.Service.Interface.IPostService
+  nameWithType: IPostService
+- uid: FractPal.Service.Interface.IPostService.DeletePostAsync(System.Guid,System.Guid,System.Boolean)
+  name: DeletePostAsync(Guid, Guid, bool)
+  href: api/FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_DeletePostAsync_System_Guid_System_Guid_System_Boolean_
+  commentId: M:FractPal.Service.Interface.IPostService.DeletePostAsync(System.Guid,System.Guid,System.Boolean)
+  name.vb: DeletePostAsync(Guid, Guid, Boolean)
+  fullName: FractPal.Service.Interface.IPostService.DeletePostAsync(System.Guid, System.Guid, bool)
+  fullName.vb: FractPal.Service.Interface.IPostService.DeletePostAsync(System.Guid, System.Guid, Boolean)
+  nameWithType: IPostService.DeletePostAsync(Guid, Guid, bool)
+  nameWithType.vb: IPostService.DeletePostAsync(Guid, Guid, Boolean)
+- uid: FractPal.Service.Interface.IPostService.DeletePostAsync*
+  name: DeletePostAsync
+  href: api/FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_DeletePostAsync_
+  commentId: Overload:FractPal.Service.Interface.IPostService.DeletePostAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IPostService.DeletePostAsync
+  nameWithType: IPostService.DeletePostAsync
+- uid: FractPal.Service.Interface.IPostService.GetFeedAsync(System.Guid,System.Int32,System.Int32)
+  name: GetFeedAsync(Guid, int, int)
+  href: api/FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_GetFeedAsync_System_Guid_System_Int32_System_Int32_
+  commentId: M:FractPal.Service.Interface.IPostService.GetFeedAsync(System.Guid,System.Int32,System.Int32)
+  name.vb: GetFeedAsync(Guid, Integer, Integer)
+  fullName: FractPal.Service.Interface.IPostService.GetFeedAsync(System.Guid, int, int)
+  fullName.vb: FractPal.Service.Interface.IPostService.GetFeedAsync(System.Guid, Integer, Integer)
+  nameWithType: IPostService.GetFeedAsync(Guid, int, int)
+  nameWithType.vb: IPostService.GetFeedAsync(Guid, Integer, Integer)
+- uid: FractPal.Service.Interface.IPostService.GetFeedAsync*
+  name: GetFeedAsync
+  href: api/FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_GetFeedAsync_
+  commentId: Overload:FractPal.Service.Interface.IPostService.GetFeedAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IPostService.GetFeedAsync
+  nameWithType: IPostService.GetFeedAsync
+- uid: FractPal.Service.Interface.IPostService.GetPostByIdAsync(System.Guid,System.Guid)
+  name: GetPostByIdAsync(Guid, Guid)
+  href: api/FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_GetPostByIdAsync_System_Guid_System_Guid_
+  commentId: M:FractPal.Service.Interface.IPostService.GetPostByIdAsync(System.Guid,System.Guid)
+  fullName: FractPal.Service.Interface.IPostService.GetPostByIdAsync(System.Guid, System.Guid)
+  nameWithType: IPostService.GetPostByIdAsync(Guid, Guid)
+- uid: FractPal.Service.Interface.IPostService.GetPostByIdAsync*
+  name: GetPostByIdAsync
+  href: api/FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_GetPostByIdAsync_
+  commentId: Overload:FractPal.Service.Interface.IPostService.GetPostByIdAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IPostService.GetPostByIdAsync
+  nameWithType: IPostService.GetPostByIdAsync
+- uid: FractPal.Service.Interface.IPostService.GetUserPostsAsync(System.Guid,System.Guid)
+  name: GetUserPostsAsync(Guid, Guid)
+  href: api/FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_GetUserPostsAsync_System_Guid_System_Guid_
+  commentId: M:FractPal.Service.Interface.IPostService.GetUserPostsAsync(System.Guid,System.Guid)
+  fullName: FractPal.Service.Interface.IPostService.GetUserPostsAsync(System.Guid, System.Guid)
+  nameWithType: IPostService.GetUserPostsAsync(Guid, Guid)
+- uid: FractPal.Service.Interface.IPostService.GetUserPostsAsync*
+  name: GetUserPostsAsync
+  href: api/FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_GetUserPostsAsync_
+  commentId: Overload:FractPal.Service.Interface.IPostService.GetUserPostsAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IPostService.GetUserPostsAsync
+  nameWithType: IPostService.GetUserPostsAsync
+- uid: FractPal.Service.Interface.IPostService.PublishFractalAsync(System.Guid,System.Guid,FractPal.Model.DTO.Post.CreatePostRequest)
+  name: PublishFractalAsync(Guid, Guid, CreatePostRequest)
+  href: api/FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_PublishFractalAsync_System_Guid_System_Guid_FractPal_Model_DTO_Post_CreatePostRequest_
+  commentId: M:FractPal.Service.Interface.IPostService.PublishFractalAsync(System.Guid,System.Guid,FractPal.Model.DTO.Post.CreatePostRequest)
+  fullName: FractPal.Service.Interface.IPostService.PublishFractalAsync(System.Guid, System.Guid, FractPal.Model.DTO.Post.CreatePostRequest)
+  nameWithType: IPostService.PublishFractalAsync(Guid, Guid, CreatePostRequest)
+- uid: FractPal.Service.Interface.IPostService.PublishFractalAsync*
+  name: PublishFractalAsync
+  href: api/FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_PublishFractalAsync_
+  commentId: Overload:FractPal.Service.Interface.IPostService.PublishFractalAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IPostService.PublishFractalAsync
+  nameWithType: IPostService.PublishFractalAsync
+- uid: FractPal.Service.Interface.IPostService.UnpublishFractalAsync(System.Guid,System.Guid)
+  name: UnpublishFractalAsync(Guid, Guid)
+  href: api/FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_UnpublishFractalAsync_System_Guid_System_Guid_
+  commentId: M:FractPal.Service.Interface.IPostService.UnpublishFractalAsync(System.Guid,System.Guid)
+  fullName: FractPal.Service.Interface.IPostService.UnpublishFractalAsync(System.Guid, System.Guid)
+  nameWithType: IPostService.UnpublishFractalAsync(Guid, Guid)
+- uid: FractPal.Service.Interface.IPostService.UnpublishFractalAsync*
+  name: UnpublishFractalAsync
+  href: api/FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_UnpublishFractalAsync_
+  commentId: Overload:FractPal.Service.Interface.IPostService.UnpublishFractalAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IPostService.UnpublishFractalAsync
+  nameWithType: IPostService.UnpublishFractalAsync
+- uid: FractPal.Service.Interface.IPostService.UpdatePostAsync(System.Guid,System.Guid,FractPal.Model.DTO.Post.UpdatePostRequest)
+  name: UpdatePostAsync(Guid, Guid, UpdatePostRequest)
+  href: api/FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_UpdatePostAsync_System_Guid_System_Guid_FractPal_Model_DTO_Post_UpdatePostRequest_
+  commentId: M:FractPal.Service.Interface.IPostService.UpdatePostAsync(System.Guid,System.Guid,FractPal.Model.DTO.Post.UpdatePostRequest)
+  fullName: FractPal.Service.Interface.IPostService.UpdatePostAsync(System.Guid, System.Guid, FractPal.Model.DTO.Post.UpdatePostRequest)
+  nameWithType: IPostService.UpdatePostAsync(Guid, Guid, UpdatePostRequest)
+- uid: FractPal.Service.Interface.IPostService.UpdatePostAsync*
+  name: UpdatePostAsync
+  href: api/FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_UpdatePostAsync_
+  commentId: Overload:FractPal.Service.Interface.IPostService.UpdatePostAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IPostService.UpdatePostAsync
+  nameWithType: IPostService.UpdatePostAsync
+- uid: FractPal.Service.Interface.IRefreshTokenService
+  name: IRefreshTokenService
+  href: api/FractPal.Service.Interface.IRefreshTokenService.html
+  commentId: T:FractPal.Service.Interface.IRefreshTokenService
+  fullName: FractPal.Service.Interface.IRefreshTokenService
+  nameWithType: IRefreshTokenService
+- uid: FractPal.Service.Interface.IRefreshTokenService.GenerateRefreshToken(Microsoft.AspNetCore.Identity.IdentityUser)
+  name: GenerateRefreshToken(IdentityUser)
+  href: api/FractPal.Service.Interface.IRefreshTokenService.html#FractPal_Service_Interface_IRefreshTokenService_GenerateRefreshToken_Microsoft_AspNetCore_Identity_IdentityUser_
+  commentId: M:FractPal.Service.Interface.IRefreshTokenService.GenerateRefreshToken(Microsoft.AspNetCore.Identity.IdentityUser)
+  fullName: FractPal.Service.Interface.IRefreshTokenService.GenerateRefreshToken(Microsoft.AspNetCore.Identity.IdentityUser)
+  nameWithType: IRefreshTokenService.GenerateRefreshToken(IdentityUser)
+- uid: FractPal.Service.Interface.IRefreshTokenService.GenerateRefreshToken*
+  name: GenerateRefreshToken
+  href: api/FractPal.Service.Interface.IRefreshTokenService.html#FractPal_Service_Interface_IRefreshTokenService_GenerateRefreshToken_
+  commentId: Overload:FractPal.Service.Interface.IRefreshTokenService.GenerateRefreshToken
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IRefreshTokenService.GenerateRefreshToken
+  nameWithType: IRefreshTokenService.GenerateRefreshToken
+- uid: FractPal.Service.Interface.IRefreshTokenService.GetUserIdByRefreshToken(System.String)
+  name: GetUserIdByRefreshToken(string)
+  href: api/FractPal.Service.Interface.IRefreshTokenService.html#FractPal_Service_Interface_IRefreshTokenService_GetUserIdByRefreshToken_System_String_
+  commentId: M:FractPal.Service.Interface.IRefreshTokenService.GetUserIdByRefreshToken(System.String)
+  name.vb: GetUserIdByRefreshToken(String)
+  fullName: FractPal.Service.Interface.IRefreshTokenService.GetUserIdByRefreshToken(string)
+  fullName.vb: FractPal.Service.Interface.IRefreshTokenService.GetUserIdByRefreshToken(String)
+  nameWithType: IRefreshTokenService.GetUserIdByRefreshToken(string)
+  nameWithType.vb: IRefreshTokenService.GetUserIdByRefreshToken(String)
+- uid: FractPal.Service.Interface.IRefreshTokenService.GetUserIdByRefreshToken*
+  name: GetUserIdByRefreshToken
+  href: api/FractPal.Service.Interface.IRefreshTokenService.html#FractPal_Service_Interface_IRefreshTokenService_GetUserIdByRefreshToken_
+  commentId: Overload:FractPal.Service.Interface.IRefreshTokenService.GetUserIdByRefreshToken
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IRefreshTokenService.GetUserIdByRefreshToken
+  nameWithType: IRefreshTokenService.GetUserIdByRefreshToken
+- uid: FractPal.Service.Interface.IRefreshTokenService.InvalidateRefreshToken(System.String)
+  name: InvalidateRefreshToken(string)
+  href: api/FractPal.Service.Interface.IRefreshTokenService.html#FractPal_Service_Interface_IRefreshTokenService_InvalidateRefreshToken_System_String_
+  commentId: M:FractPal.Service.Interface.IRefreshTokenService.InvalidateRefreshToken(System.String)
+  name.vb: InvalidateRefreshToken(String)
+  fullName: FractPal.Service.Interface.IRefreshTokenService.InvalidateRefreshToken(string)
+  fullName.vb: FractPal.Service.Interface.IRefreshTokenService.InvalidateRefreshToken(String)
+  nameWithType: IRefreshTokenService.InvalidateRefreshToken(string)
+  nameWithType.vb: IRefreshTokenService.InvalidateRefreshToken(String)
+- uid: FractPal.Service.Interface.IRefreshTokenService.InvalidateRefreshToken*
+  name: InvalidateRefreshToken
+  href: api/FractPal.Service.Interface.IRefreshTokenService.html#FractPal_Service_Interface_IRefreshTokenService_InvalidateRefreshToken_
+  commentId: Overload:FractPal.Service.Interface.IRefreshTokenService.InvalidateRefreshToken
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IRefreshTokenService.InvalidateRefreshToken
+  nameWithType: IRefreshTokenService.InvalidateRefreshToken
+- uid: FractPal.Service.Interface.IRefreshTokenService.ValidateRefreshToken(System.Guid,System.String)
+  name: ValidateRefreshToken(Guid, string)
+  href: api/FractPal.Service.Interface.IRefreshTokenService.html#FractPal_Service_Interface_IRefreshTokenService_ValidateRefreshToken_System_Guid_System_String_
+  commentId: M:FractPal.Service.Interface.IRefreshTokenService.ValidateRefreshToken(System.Guid,System.String)
+  name.vb: ValidateRefreshToken(Guid, String)
+  fullName: FractPal.Service.Interface.IRefreshTokenService.ValidateRefreshToken(System.Guid, string)
+  fullName.vb: FractPal.Service.Interface.IRefreshTokenService.ValidateRefreshToken(System.Guid, String)
+  nameWithType: IRefreshTokenService.ValidateRefreshToken(Guid, string)
+  nameWithType.vb: IRefreshTokenService.ValidateRefreshToken(Guid, String)
+- uid: FractPal.Service.Interface.IRefreshTokenService.ValidateRefreshToken*
+  name: ValidateRefreshToken
+  href: api/FractPal.Service.Interface.IRefreshTokenService.html#FractPal_Service_Interface_IRefreshTokenService_ValidateRefreshToken_
+  commentId: Overload:FractPal.Service.Interface.IRefreshTokenService.ValidateRefreshToken
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IRefreshTokenService.ValidateRefreshToken
+  nameWithType: IRefreshTokenService.ValidateRefreshToken
+- uid: FractPal.Service.Interface.IRepository`1
+  name: IRepository<T>
+  href: api/FractPal.Service.Interface.IRepository-1.html
+  commentId: T:FractPal.Service.Interface.IRepository`1
+  name.vb: IRepository(Of T)
+  fullName: FractPal.Service.Interface.IRepository<T>
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T)
+  nameWithType: IRepository<T>
+  nameWithType.vb: IRepository(Of T)
+- uid: FractPal.Service.Interface.IRepository`1.AddAsync(`0)
+  name: AddAsync(T)
+  href: api/FractPal.Service.Interface.IRepository-1.html#FractPal_Service_Interface_IRepository_1_AddAsync__0_
+  commentId: M:FractPal.Service.Interface.IRepository`1.AddAsync(`0)
+  fullName: FractPal.Service.Interface.IRepository<T>.AddAsync(T)
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).AddAsync(T)
+  nameWithType: IRepository<T>.AddAsync(T)
+  nameWithType.vb: IRepository(Of T).AddAsync(T)
+- uid: FractPal.Service.Interface.IRepository`1.AddAsync*
+  name: AddAsync
+  href: api/FractPal.Service.Interface.IRepository-1.html#FractPal_Service_Interface_IRepository_1_AddAsync_
+  commentId: Overload:FractPal.Service.Interface.IRepository`1.AddAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IRepository<T>.AddAsync
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).AddAsync
+  nameWithType: IRepository<T>.AddAsync
+  nameWithType.vb: IRepository(Of T).AddAsync
+- uid: FractPal.Service.Interface.IRepository`1.CommitAsync
+  name: CommitAsync()
+  href: api/FractPal.Service.Interface.IRepository-1.html#FractPal_Service_Interface_IRepository_1_CommitAsync
+  commentId: M:FractPal.Service.Interface.IRepository`1.CommitAsync
+  fullName: FractPal.Service.Interface.IRepository<T>.CommitAsync()
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).CommitAsync()
+  nameWithType: IRepository<T>.CommitAsync()
+  nameWithType.vb: IRepository(Of T).CommitAsync()
+- uid: FractPal.Service.Interface.IRepository`1.CommitAsync*
+  name: CommitAsync
+  href: api/FractPal.Service.Interface.IRepository-1.html#FractPal_Service_Interface_IRepository_1_CommitAsync_
+  commentId: Overload:FractPal.Service.Interface.IRepository`1.CommitAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IRepository<T>.CommitAsync
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).CommitAsync
+  nameWithType: IRepository<T>.CommitAsync
+  nameWithType.vb: IRepository(Of T).CommitAsync
+- uid: FractPal.Service.Interface.IRepository`1.FilterAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  name: FilterAsync(Expression<Func<T, bool>>, params Expression<Func<T, object>>[])
+  href: api/FractPal.Service.Interface.IRepository-1.html#FractPal_Service_Interface_IRepository_1_FilterAsync_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Linq_Expressions_Expression_System_Func__0_System_Object_____
+  commentId: M:FractPal.Service.Interface.IRepository`1.FilterAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  name.vb: FilterAsync(Expression(Of Func(Of T, Boolean)), ParamArray Expression(Of Func(Of T, Object))())
+  fullName: FractPal.Service.Interface.IRepository<T>.FilterAsync(System.Linq.Expressions.Expression<System.Func<T, bool>>, params System.Linq.Expressions.Expression<System.Func<T, object>>[])
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).FilterAsync(System.Linq.Expressions.Expression(Of System.Func(Of T, Boolean)), ParamArray System.Linq.Expressions.Expression(Of System.Func(Of T, Object))())
+  nameWithType: IRepository<T>.FilterAsync(Expression<Func<T, bool>>, params Expression<Func<T, object>>[])
+  nameWithType.vb: IRepository(Of T).FilterAsync(Expression(Of Func(Of T, Boolean)), ParamArray Expression(Of Func(Of T, Object))())
+- uid: FractPal.Service.Interface.IRepository`1.FilterAsync*
+  name: FilterAsync
+  href: api/FractPal.Service.Interface.IRepository-1.html#FractPal_Service_Interface_IRepository_1_FilterAsync_
+  commentId: Overload:FractPal.Service.Interface.IRepository`1.FilterAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IRepository<T>.FilterAsync
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).FilterAsync
+  nameWithType: IRepository<T>.FilterAsync
+  nameWithType.vb: IRepository(Of T).FilterAsync
+- uid: FractPal.Service.Interface.IRepository`1.GetAllAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  name: GetAllAsync(params Expression<Func<T, object>>[])
+  href: api/FractPal.Service.Interface.IRepository-1.html#FractPal_Service_Interface_IRepository_1_GetAllAsync_System_Linq_Expressions_Expression_System_Func__0_System_Object_____
+  commentId: M:FractPal.Service.Interface.IRepository`1.GetAllAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  name.vb: GetAllAsync(ParamArray Expression(Of Func(Of T, Object))())
+  fullName: FractPal.Service.Interface.IRepository<T>.GetAllAsync(params System.Linq.Expressions.Expression<System.Func<T, object>>[])
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).GetAllAsync(ParamArray System.Linq.Expressions.Expression(Of System.Func(Of T, Object))())
+  nameWithType: IRepository<T>.GetAllAsync(params Expression<Func<T, object>>[])
+  nameWithType.vb: IRepository(Of T).GetAllAsync(ParamArray Expression(Of Func(Of T, Object))())
+- uid: FractPal.Service.Interface.IRepository`1.GetAllAsync*
+  name: GetAllAsync
+  href: api/FractPal.Service.Interface.IRepository-1.html#FractPal_Service_Interface_IRepository_1_GetAllAsync_
+  commentId: Overload:FractPal.Service.Interface.IRepository`1.GetAllAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IRepository<T>.GetAllAsync
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).GetAllAsync
+  nameWithType: IRepository<T>.GetAllAsync
+  nameWithType.vb: IRepository(Of T).GetAllAsync
+- uid: FractPal.Service.Interface.IRepository`1.GetByIdAsync(System.Guid,System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  name: GetByIdAsync(Guid, params Expression<Func<T, object>>[])
+  href: api/FractPal.Service.Interface.IRepository-1.html#FractPal_Service_Interface_IRepository_1_GetByIdAsync_System_Guid_System_Linq_Expressions_Expression_System_Func__0_System_Object_____
+  commentId: M:FractPal.Service.Interface.IRepository`1.GetByIdAsync(System.Guid,System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  name.vb: GetByIdAsync(Guid, ParamArray Expression(Of Func(Of T, Object))())
+  fullName: FractPal.Service.Interface.IRepository<T>.GetByIdAsync(System.Guid, params System.Linq.Expressions.Expression<System.Func<T, object>>[])
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).GetByIdAsync(System.Guid, ParamArray System.Linq.Expressions.Expression(Of System.Func(Of T, Object))())
+  nameWithType: IRepository<T>.GetByIdAsync(Guid, params Expression<Func<T, object>>[])
+  nameWithType.vb: IRepository(Of T).GetByIdAsync(Guid, ParamArray Expression(Of Func(Of T, Object))())
+- uid: FractPal.Service.Interface.IRepository`1.GetByIdAsync*
+  name: GetByIdAsync
+  href: api/FractPal.Service.Interface.IRepository-1.html#FractPal_Service_Interface_IRepository_1_GetByIdAsync_
+  commentId: Overload:FractPal.Service.Interface.IRepository`1.GetByIdAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IRepository<T>.GetByIdAsync
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).GetByIdAsync
+  nameWithType: IRepository<T>.GetByIdAsync
+  nameWithType.vb: IRepository(Of T).GetByIdAsync
+- uid: FractPal.Service.Interface.IRepository`1.Query
+  name: Query()
+  href: api/FractPal.Service.Interface.IRepository-1.html#FractPal_Service_Interface_IRepository_1_Query
+  commentId: M:FractPal.Service.Interface.IRepository`1.Query
+  fullName: FractPal.Service.Interface.IRepository<T>.Query()
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).Query()
+  nameWithType: IRepository<T>.Query()
+  nameWithType.vb: IRepository(Of T).Query()
+- uid: FractPal.Service.Interface.IRepository`1.Query*
+  name: Query
+  href: api/FractPal.Service.Interface.IRepository-1.html#FractPal_Service_Interface_IRepository_1_Query_
+  commentId: Overload:FractPal.Service.Interface.IRepository`1.Query
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IRepository<T>.Query
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).Query
+  nameWithType: IRepository<T>.Query
+  nameWithType.vb: IRepository(Of T).Query
+- uid: FractPal.Service.Interface.IRepository`1.Remove(`0)
+  name: Remove(T)
+  href: api/FractPal.Service.Interface.IRepository-1.html#FractPal_Service_Interface_IRepository_1_Remove__0_
+  commentId: M:FractPal.Service.Interface.IRepository`1.Remove(`0)
+  fullName: FractPal.Service.Interface.IRepository<T>.Remove(T)
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).Remove(T)
+  nameWithType: IRepository<T>.Remove(T)
+  nameWithType.vb: IRepository(Of T).Remove(T)
+- uid: FractPal.Service.Interface.IRepository`1.Remove*
+  name: Remove
+  href: api/FractPal.Service.Interface.IRepository-1.html#FractPal_Service_Interface_IRepository_1_Remove_
+  commentId: Overload:FractPal.Service.Interface.IRepository`1.Remove
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IRepository<T>.Remove
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).Remove
+  nameWithType: IRepository<T>.Remove
+  nameWithType.vb: IRepository(Of T).Remove
+- uid: FractPal.Service.Interface.IRepository`1.Update(`0)
+  name: Update(T)
+  href: api/FractPal.Service.Interface.IRepository-1.html#FractPal_Service_Interface_IRepository_1_Update__0_
+  commentId: M:FractPal.Service.Interface.IRepository`1.Update(`0)
+  fullName: FractPal.Service.Interface.IRepository<T>.Update(T)
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).Update(T)
+  nameWithType: IRepository<T>.Update(T)
+  nameWithType.vb: IRepository(Of T).Update(T)
+- uid: FractPal.Service.Interface.IRepository`1.Update*
+  name: Update
+  href: api/FractPal.Service.Interface.IRepository-1.html#FractPal_Service_Interface_IRepository_1_Update_
+  commentId: Overload:FractPal.Service.Interface.IRepository`1.Update
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IRepository<T>.Update
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).Update
+  nameWithType: IRepository<T>.Update
+  nameWithType.vb: IRepository(Of T).Update
+- uid: FractPal.Service.Interface.IUserService
+  name: IUserService
+  href: api/FractPal.Service.Interface.IUserService.html
+  commentId: T:FractPal.Service.Interface.IUserService
+  fullName: FractPal.Service.Interface.IUserService
+  nameWithType: IUserService
+- uid: FractPal.Service.Interface.IUserService.GetProfileAsync(System.String,System.String)
+  name: GetProfileAsync(string, string)
+  href: api/FractPal.Service.Interface.IUserService.html#FractPal_Service_Interface_IUserService_GetProfileAsync_System_String_System_String_
+  commentId: M:FractPal.Service.Interface.IUserService.GetProfileAsync(System.String,System.String)
+  name.vb: GetProfileAsync(String, String)
+  fullName: FractPal.Service.Interface.IUserService.GetProfileAsync(string, string)
+  fullName.vb: FractPal.Service.Interface.IUserService.GetProfileAsync(String, String)
+  nameWithType: IUserService.GetProfileAsync(string, string)
+  nameWithType.vb: IUserService.GetProfileAsync(String, String)
+- uid: FractPal.Service.Interface.IUserService.GetProfileAsync*
+  name: GetProfileAsync
+  href: api/FractPal.Service.Interface.IUserService.html#FractPal_Service_Interface_IUserService_GetProfileAsync_
+  commentId: Overload:FractPal.Service.Interface.IUserService.GetProfileAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IUserService.GetProfileAsync
+  nameWithType: IUserService.GetProfileAsync
+- uid: FractPal.Service.Interface.IUserService.SearchUsersAsync(System.String,System.String)
+  name: SearchUsersAsync(string, string)
+  href: api/FractPal.Service.Interface.IUserService.html#FractPal_Service_Interface_IUserService_SearchUsersAsync_System_String_System_String_
+  commentId: M:FractPal.Service.Interface.IUserService.SearchUsersAsync(System.String,System.String)
+  name.vb: SearchUsersAsync(String, String)
+  fullName: FractPal.Service.Interface.IUserService.SearchUsersAsync(string, string)
+  fullName.vb: FractPal.Service.Interface.IUserService.SearchUsersAsync(String, String)
+  nameWithType: IUserService.SearchUsersAsync(string, string)
+  nameWithType.vb: IUserService.SearchUsersAsync(String, String)
+- uid: FractPal.Service.Interface.IUserService.SearchUsersAsync*
+  name: SearchUsersAsync
+  href: api/FractPal.Service.Interface.IUserService.html#FractPal_Service_Interface_IUserService_SearchUsersAsync_
+  commentId: Overload:FractPal.Service.Interface.IUserService.SearchUsersAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IUserService.SearchUsersAsync
+  nameWithType: IUserService.SearchUsersAsync
+- uid: FractPal.Service.Interface.IUserService.ToggleFollowAsync(System.String,System.String)
+  name: ToggleFollowAsync(string, string)
+  href: api/FractPal.Service.Interface.IUserService.html#FractPal_Service_Interface_IUserService_ToggleFollowAsync_System_String_System_String_
+  commentId: M:FractPal.Service.Interface.IUserService.ToggleFollowAsync(System.String,System.String)
+  name.vb: ToggleFollowAsync(String, String)
+  fullName: FractPal.Service.Interface.IUserService.ToggleFollowAsync(string, string)
+  fullName.vb: FractPal.Service.Interface.IUserService.ToggleFollowAsync(String, String)
+  nameWithType: IUserService.ToggleFollowAsync(string, string)
+  nameWithType.vb: IUserService.ToggleFollowAsync(String, String)
+- uid: FractPal.Service.Interface.IUserService.ToggleFollowAsync*
+  name: ToggleFollowAsync
+  href: api/FractPal.Service.Interface.IUserService.html#FractPal_Service_Interface_IUserService_ToggleFollowAsync_
+  commentId: Overload:FractPal.Service.Interface.IUserService.ToggleFollowAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IUserService.ToggleFollowAsync
+  nameWithType: IUserService.ToggleFollowAsync
+- uid: FractPal.Service.Interface.IUserService.UpdateProfileAsync(System.String,FractPal.Model.DTO.User.UpdateProfileRequest)
+  name: UpdateProfileAsync(string, UpdateProfileRequest)
+  href: api/FractPal.Service.Interface.IUserService.html#FractPal_Service_Interface_IUserService_UpdateProfileAsync_System_String_FractPal_Model_DTO_User_UpdateProfileRequest_
+  commentId: M:FractPal.Service.Interface.IUserService.UpdateProfileAsync(System.String,FractPal.Model.DTO.User.UpdateProfileRequest)
+  name.vb: UpdateProfileAsync(String, UpdateProfileRequest)
+  fullName: FractPal.Service.Interface.IUserService.UpdateProfileAsync(string, FractPal.Model.DTO.User.UpdateProfileRequest)
+  fullName.vb: FractPal.Service.Interface.IUserService.UpdateProfileAsync(String, FractPal.Model.DTO.User.UpdateProfileRequest)
+  nameWithType: IUserService.UpdateProfileAsync(string, UpdateProfileRequest)
+  nameWithType.vb: IUserService.UpdateProfileAsync(String, UpdateProfileRequest)
+- uid: FractPal.Service.Interface.IUserService.UpdateProfileAsync*
+  name: UpdateProfileAsync
+  href: api/FractPal.Service.Interface.IUserService.html#FractPal_Service_Interface_IUserService_UpdateProfileAsync_
+  commentId: Overload:FractPal.Service.Interface.IUserService.UpdateProfileAsync
+  isSpec: "True"
+  fullName: FractPal.Service.Interface.IUserService.UpdateProfileAsync
+  nameWithType: IUserService.UpdateProfileAsync
