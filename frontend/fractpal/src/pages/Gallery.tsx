@@ -105,8 +105,7 @@ const Gallery: React.FC = () => {
                 {drafts.map(f => (
                   <FractalCard
                     key={f.id}
-                    fractal={{ id: f.id, name: f.name, username: f.username, userId: f.userId, thumbnail: f.thumbnail, likeCount: f.likeCount, isLikedByCurrentUser: f.isLikedByCurrentUser, createdAt: f.createdAt }}
-                    isPosted={false}
+                    fractal={{ id: f.id, name: f.name, username: f.username, userId: f.userId, imageUrl: f.thumbnail, likeCount: f.likeCount, isLikedByCurrentUser: f.isLikedByCurrentUser, publishedAt: undefined }}
                     showActions
                     onDelete={id => setDeleteModal({ show: true, id })}
                     onPublish={openPublishModal}
@@ -123,8 +122,7 @@ const Gallery: React.FC = () => {
                 {posted.map(f => (
                   <FractalCard
                     key={f.id}
-                    fractal={{ id: f.id, name: f.name, username: f.username, userId: f.userId, thumbnail: f.thumbnail, likeCount: f.likeCount, isLikedByCurrentUser: f.isLikedByCurrentUser, createdAt: f.createdAt }}
-                    isPosted={true}
+                    fractal={{ id: f.id, name: f.name, username: f.username, userId: f.userId, imageUrl: f.thumbnail, likeCount: f.likeCount, isLikedByCurrentUser: f.isLikedByCurrentUser, publishedAt: f.createdAt }}
                     showActions
                     onDelete={id => setDeleteModal({ show: true, id })}
                     onUnpublish={handleUnpublish}

@@ -77,14 +77,13 @@ const Home: React.FC = () => {
                 <FractalCard
                   fractal={{
                     id: post.fractalId,
-                    postId: post.id,
                     name: post.name,
                     username: post.username,
                     userId: post.authorId,
-                    thumbnail: post.thumbnail ?? undefined,
+                    imageUrl: post.thumbnail ?? undefined,
                     likeCount: post.likeCount,
                     isLikedByCurrentUser: post.isLikedByCurrentUser,
-                    createdAt: post.createdAt ?? undefined,
+                    publishedAt: post.createdAt ?? undefined,
                   }}
                   onLike={handleLike}
                   showFork={true}
