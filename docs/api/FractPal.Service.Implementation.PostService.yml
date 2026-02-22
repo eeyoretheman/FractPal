@@ -1,0 +1,1399 @@
+### YamlMime:ManagedReference
+items:
+- uid: FractPal.Service.Implementation.PostService
+  commentId: T:FractPal.Service.Implementation.PostService
+  id: PostService
+  parent: FractPal.Service.Implementation
+  children:
+  - FractPal.Service.Implementation.PostService.#ctor(FractPal.Data.ApplicationDbContext)
+  - FractPal.Service.Implementation.PostService.DeletePostAsync(System.Guid,System.Guid,System.Boolean)
+  - FractPal.Service.Implementation.PostService.GetFeedAsync(System.Guid,System.Int32,System.Int32)
+  - FractPal.Service.Implementation.PostService.GetPostByIdAsync(System.Guid,System.Guid)
+  - FractPal.Service.Implementation.PostService.GetUserPostsAsync(System.Guid,System.Guid)
+  - FractPal.Service.Implementation.PostService.PublishFractalAsync(System.Guid,System.Guid,FractPal.Model.DTO.Post.CreatePostRequest)
+  - FractPal.Service.Implementation.PostService.UnpublishFractalAsync(System.Guid,System.Guid)
+  - FractPal.Service.Implementation.PostService.UpdatePostAsync(System.Guid,System.Guid,FractPal.Model.DTO.Post.UpdatePostRequest)
+  langs:
+  - csharp
+  - vb
+  name: PostService
+  nameWithType: PostService
+  fullName: FractPal.Service.Implementation.PostService
+  type: Class
+  source:
+    remote:
+      path: backend/FractPal.Service/Implementation/PostService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: PostService
+    path: ../backend/FractPal.Service/Implementation/PostService.cs
+    startLine: 12
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Implementation
+  summary: >-
+    Implements post business logic for FractPal, including publishing fractals as posts,
+
+    feed retrieval, and post lifecycle management.
+  example: []
+  syntax:
+    content: 'public class PostService : IPostService'
+    content.vb: Public Class PostService Implements IPostService
+  inheritance:
+  - System.Object
+  implements:
+  - FractPal.Service.Interface.IPostService
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: FractPal.Service.Implementation.PostService.#ctor(FractPal.Data.ApplicationDbContext)
+  commentId: M:FractPal.Service.Implementation.PostService.#ctor(FractPal.Data.ApplicationDbContext)
+  id: '#ctor(FractPal.Data.ApplicationDbContext)'
+  parent: FractPal.Service.Implementation.PostService
+  langs:
+  - csharp
+  - vb
+  name: PostService(ApplicationDbContext)
+  nameWithType: PostService.PostService(ApplicationDbContext)
+  fullName: FractPal.Service.Implementation.PostService.PostService(FractPal.Data.ApplicationDbContext)
+  type: Constructor
+  source:
+    remote:
+      path: backend/FractPal.Service/Implementation/PostService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: .ctor
+    path: ../backend/FractPal.Service/Implementation/PostService.cs
+    startLine: 12
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Implementation
+  summary: >-
+    Implements post business logic for FractPal, including publishing fractals as posts,
+
+    feed retrieval, and post lifecycle management.
+  example: []
+  syntax:
+    content: public PostService(ApplicationDbContext dbContext)
+    parameters:
+    - id: dbContext
+      type: FractPal.Data.ApplicationDbContext
+    content.vb: Public Sub New(dbContext As ApplicationDbContext)
+  overload: FractPal.Service.Implementation.PostService.#ctor*
+  nameWithType.vb: PostService.New(ApplicationDbContext)
+  fullName.vb: FractPal.Service.Implementation.PostService.New(FractPal.Data.ApplicationDbContext)
+  name.vb: New(ApplicationDbContext)
+- uid: FractPal.Service.Implementation.PostService.GetFeedAsync(System.Guid,System.Int32,System.Int32)
+  commentId: M:FractPal.Service.Implementation.PostService.GetFeedAsync(System.Guid,System.Int32,System.Int32)
+  id: GetFeedAsync(System.Guid,System.Int32,System.Int32)
+  parent: FractPal.Service.Implementation.PostService
+  langs:
+  - csharp
+  - vb
+  name: GetFeedAsync(Guid, int, int)
+  nameWithType: PostService.GetFeedAsync(Guid, int, int)
+  fullName: FractPal.Service.Implementation.PostService.GetFeedAsync(System.Guid, int, int)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Implementation/PostService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: GetFeedAsync
+    path: ../backend/FractPal.Service/Implementation/PostService.cs
+    startLine: 17
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Implementation
+  summary: Retrieves a paginated feed of all posts, ordered by most recently created.
+  example: []
+  syntax:
+    content: public Task<PostFeedResponse> GetFeedAsync(Guid userId, int page = 1, int pageSize = 20)
+    parameters:
+    - id: userId
+      type: System.Guid
+      description: The ID of the requesting user, used to compute <code>IsLikedByCurrentUser</code>.
+    - id: page
+      type: System.Int32
+      description: The 1-based page number.
+    - id: pageSize
+      type: System.Int32
+      description: The maximum number of posts to return per page.
+    return:
+      type: System.Threading.Tasks.Task{FractPal.Model.DTO.Post.PostFeedResponse}
+      description: A <xref href="FractPal.Model.DTO.Post.PostFeedResponse" data-throw-if-not-resolved="false"></xref> containing posts and pagination metadata.
+    content.vb: Public Function GetFeedAsync(userId As Guid, page As Integer = 1, pageSize As Integer = 20) As Task(Of PostFeedResponse)
+  overload: FractPal.Service.Implementation.PostService.GetFeedAsync*
+  implements:
+  - FractPal.Service.Interface.IPostService.GetFeedAsync(System.Guid,System.Int32,System.Int32)
+  nameWithType.vb: PostService.GetFeedAsync(Guid, Integer, Integer)
+  fullName.vb: FractPal.Service.Implementation.PostService.GetFeedAsync(System.Guid, Integer, Integer)
+  name.vb: GetFeedAsync(Guid, Integer, Integer)
+- uid: FractPal.Service.Implementation.PostService.GetPostByIdAsync(System.Guid,System.Guid)
+  commentId: M:FractPal.Service.Implementation.PostService.GetPostByIdAsync(System.Guid,System.Guid)
+  id: GetPostByIdAsync(System.Guid,System.Guid)
+  parent: FractPal.Service.Implementation.PostService
+  langs:
+  - csharp
+  - vb
+  name: GetPostByIdAsync(Guid, Guid)
+  nameWithType: PostService.GetPostByIdAsync(Guid, Guid)
+  fullName: FractPal.Service.Implementation.PostService.GetPostByIdAsync(System.Guid, System.Guid)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Implementation/PostService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: GetPostByIdAsync
+    path: ../backend/FractPal.Service/Implementation/PostService.cs
+    startLine: 43
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Implementation
+  summary: Retrieves a single post by its unique identifier.
+  example: []
+  syntax:
+    content: public Task<PostDto?> GetPostByIdAsync(Guid postId, Guid currentUserId)
+    parameters:
+    - id: postId
+      type: System.Guid
+      description: The unique identifier of the post.
+    - id: currentUserId
+      type: System.Guid
+      description: The ID of the requesting user, used to compute <code>IsLikedByCurrentUser</code>.
+    return:
+      type: System.Threading.Tasks.Task{FractPal.Model.DTO.Post.PostDto}
+      description: The matching <xref href="FractPal.Model.DTO.Post.PostDto" data-throw-if-not-resolved="false"></xref>, or <code>null</code> if not found.
+    content.vb: Public Function GetPostByIdAsync(postId As Guid, currentUserId As Guid) As Task(Of PostDto)
+  overload: FractPal.Service.Implementation.PostService.GetPostByIdAsync*
+  implements:
+  - FractPal.Service.Interface.IPostService.GetPostByIdAsync(System.Guid,System.Guid)
+- uid: FractPal.Service.Implementation.PostService.GetUserPostsAsync(System.Guid,System.Guid)
+  commentId: M:FractPal.Service.Implementation.PostService.GetUserPostsAsync(System.Guid,System.Guid)
+  id: GetUserPostsAsync(System.Guid,System.Guid)
+  parent: FractPal.Service.Implementation.PostService
+  langs:
+  - csharp
+  - vb
+  name: GetUserPostsAsync(Guid, Guid)
+  nameWithType: PostService.GetUserPostsAsync(Guid, Guid)
+  fullName: FractPal.Service.Implementation.PostService.GetUserPostsAsync(System.Guid, System.Guid)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Implementation/PostService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: GetUserPostsAsync
+    path: ../backend/FractPal.Service/Implementation/PostService.cs
+    startLine: 58
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Implementation
+  summary: Retrieves all posts authored by a specific user.
+  example: []
+  syntax:
+    content: public Task<List<PostDto>> GetUserPostsAsync(Guid userId, Guid currentUserId)
+    parameters:
+    - id: userId
+      type: System.Guid
+      description: The ID of the user whose posts to retrieve.
+    - id: currentUserId
+      type: System.Guid
+      description: The ID of the requesting user, used to compute <code>IsLikedByCurrentUser</code>.
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.List{FractPal.Model.DTO.Post.PostDto}}
+      description: A list of <xref href="FractPal.Model.DTO.Post.PostDto" data-throw-if-not-resolved="false"></xref> for the specified user.
+    content.vb: Public Function GetUserPostsAsync(userId As Guid, currentUserId As Guid) As Task(Of List(Of PostDto))
+  overload: FractPal.Service.Implementation.PostService.GetUserPostsAsync*
+  implements:
+  - FractPal.Service.Interface.IPostService.GetUserPostsAsync(System.Guid,System.Guid)
+- uid: FractPal.Service.Implementation.PostService.PublishFractalAsync(System.Guid,System.Guid,FractPal.Model.DTO.Post.CreatePostRequest)
+  commentId: M:FractPal.Service.Implementation.PostService.PublishFractalAsync(System.Guid,System.Guid,FractPal.Model.DTO.Post.CreatePostRequest)
+  id: PublishFractalAsync(System.Guid,System.Guid,FractPal.Model.DTO.Post.CreatePostRequest)
+  parent: FractPal.Service.Implementation.PostService
+  langs:
+  - csharp
+  - vb
+  name: PublishFractalAsync(Guid, Guid, CreatePostRequest)
+  nameWithType: PostService.PublishFractalAsync(Guid, Guid, CreatePostRequest)
+  fullName: FractPal.Service.Implementation.PostService.PublishFractalAsync(System.Guid, System.Guid, FractPal.Model.DTO.Post.CreatePostRequest)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Implementation/PostService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: PublishFractalAsync
+    path: ../backend/FractPal.Service/Implementation/PostService.cs
+    startLine: 74
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Implementation
+  summary: Publishes a fractal as a post. Only the fractal's owner may publish it.
+  example: []
+  syntax:
+    content: public Task<PostDto> PublishFractalAsync(Guid fractalId, Guid userId, CreatePostRequest request)
+    parameters:
+    - id: fractalId
+      type: System.Guid
+      description: The unique identifier of the fractal to publish.
+    - id: userId
+      type: System.Guid
+      description: The ID of the requesting user.
+    - id: request
+      type: FractPal.Model.DTO.Post.CreatePostRequest
+      description: The post metadata including name and description.
+    return:
+      type: System.Threading.Tasks.Task{FractPal.Model.DTO.Post.PostDto}
+      description: The newly created <xref href="FractPal.Model.DTO.Post.PostDto" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Function PublishFractalAsync(fractalId As Guid, userId As Guid, request As CreatePostRequest) As Task(Of PostDto)
+  overload: FractPal.Service.Implementation.PostService.PublishFractalAsync*
+  exceptions:
+  - type: System.Collections.Generic.KeyNotFoundException
+    commentId: T:System.Collections.Generic.KeyNotFoundException
+    description: Thrown when no fractal exists with <code class="paramref">fractalId</code>.
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: Thrown when the requesting user is not the fractal's owner.
+  implements:
+  - FractPal.Service.Interface.IPostService.PublishFractalAsync(System.Guid,System.Guid,FractPal.Model.DTO.Post.CreatePostRequest)
+- uid: FractPal.Service.Implementation.PostService.UnpublishFractalAsync(System.Guid,System.Guid)
+  commentId: M:FractPal.Service.Implementation.PostService.UnpublishFractalAsync(System.Guid,System.Guid)
+  id: UnpublishFractalAsync(System.Guid,System.Guid)
+  parent: FractPal.Service.Implementation.PostService
+  langs:
+  - csharp
+  - vb
+  name: UnpublishFractalAsync(Guid, Guid)
+  nameWithType: PostService.UnpublishFractalAsync(Guid, Guid)
+  fullName: FractPal.Service.Implementation.PostService.UnpublishFractalAsync(System.Guid, System.Guid)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Implementation/PostService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: UnpublishFractalAsync
+    path: ../backend/FractPal.Service/Implementation/PostService.cs
+    startLine: 106
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Implementation
+  summary: Removes the published post associated with a fractal. Only the post's author may unpublish it.
+  example: []
+  syntax:
+    content: public Task UnpublishFractalAsync(Guid fractalId, Guid userId)
+    parameters:
+    - id: fractalId
+      type: System.Guid
+      description: The unique identifier of the fractal whose post to remove.
+    - id: userId
+      type: System.Guid
+      description: The ID of the requesting user.
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Function UnpublishFractalAsync(fractalId As Guid, userId As Guid) As Task
+  overload: FractPal.Service.Implementation.PostService.UnpublishFractalAsync*
+  exceptions:
+  - type: System.Collections.Generic.KeyNotFoundException
+    commentId: T:System.Collections.Generic.KeyNotFoundException
+    description: Thrown when no matching post exists.
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: Thrown when the requesting user is not the post's author.
+  implements:
+  - FractPal.Service.Interface.IPostService.UnpublishFractalAsync(System.Guid,System.Guid)
+- uid: FractPal.Service.Implementation.PostService.UpdatePostAsync(System.Guid,System.Guid,FractPal.Model.DTO.Post.UpdatePostRequest)
+  commentId: M:FractPal.Service.Implementation.PostService.UpdatePostAsync(System.Guid,System.Guid,FractPal.Model.DTO.Post.UpdatePostRequest)
+  id: UpdatePostAsync(System.Guid,System.Guid,FractPal.Model.DTO.Post.UpdatePostRequest)
+  parent: FractPal.Service.Implementation.PostService
+  langs:
+  - csharp
+  - vb
+  name: UpdatePostAsync(Guid, Guid, UpdatePostRequest)
+  nameWithType: PostService.UpdatePostAsync(Guid, Guid, UpdatePostRequest)
+  fullName: FractPal.Service.Implementation.PostService.UpdatePostAsync(System.Guid, System.Guid, FractPal.Model.DTO.Post.UpdatePostRequest)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Implementation/PostService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: UpdatePostAsync
+    path: ../backend/FractPal.Service/Implementation/PostService.cs
+    startLine: 120
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Implementation
+  summary: Updates the metadata (name and description) of an existing post. Only the post's author may update it.
+  example: []
+  syntax:
+    content: public Task<PostDto> UpdatePostAsync(Guid postId, Guid userId, UpdatePostRequest request)
+    parameters:
+    - id: postId
+      type: System.Guid
+      description: The unique identifier of the post to update.
+    - id: userId
+      type: System.Guid
+      description: The ID of the requesting user.
+    - id: request
+      type: FractPal.Model.DTO.Post.UpdatePostRequest
+      description: The updated post metadata.
+    return:
+      type: System.Threading.Tasks.Task{FractPal.Model.DTO.Post.PostDto}
+      description: The updated <xref href="FractPal.Model.DTO.Post.PostDto" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Function UpdatePostAsync(postId As Guid, userId As Guid, request As UpdatePostRequest) As Task(Of PostDto)
+  overload: FractPal.Service.Implementation.PostService.UpdatePostAsync*
+  exceptions:
+  - type: System.Collections.Generic.KeyNotFoundException
+    commentId: T:System.Collections.Generic.KeyNotFoundException
+    description: Thrown when no post exists with <code class="paramref">postId</code>.
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: Thrown when the requesting user is not the post's author.
+  implements:
+  - FractPal.Service.Interface.IPostService.UpdatePostAsync(System.Guid,System.Guid,FractPal.Model.DTO.Post.UpdatePostRequest)
+- uid: FractPal.Service.Implementation.PostService.DeletePostAsync(System.Guid,System.Guid,System.Boolean)
+  commentId: M:FractPal.Service.Implementation.PostService.DeletePostAsync(System.Guid,System.Guid,System.Boolean)
+  id: DeletePostAsync(System.Guid,System.Guid,System.Boolean)
+  parent: FractPal.Service.Implementation.PostService
+  langs:
+  - csharp
+  - vb
+  name: DeletePostAsync(Guid, Guid, bool)
+  nameWithType: PostService.DeletePostAsync(Guid, Guid, bool)
+  fullName: FractPal.Service.Implementation.PostService.DeletePostAsync(System.Guid, System.Guid, bool)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Implementation/PostService.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: DeletePostAsync
+    path: ../backend/FractPal.Service/Implementation/PostService.cs
+    startLine: 143
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Implementation
+  summary: Permanently deletes a post. Admins may delete any post; regular users may only delete their own.
+  example: []
+  syntax:
+    content: public Task DeletePostAsync(Guid postId, Guid userId, bool isAdmin = false)
+    parameters:
+    - id: postId
+      type: System.Guid
+      description: The unique identifier of the post to delete.
+    - id: userId
+      type: System.Guid
+      description: The ID of the requesting user.
+    - id: isAdmin
+      type: System.Boolean
+      description: Whether the requesting user has admin privileges.
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Function DeletePostAsync(postId As Guid, userId As Guid, isAdmin As Boolean = False) As Task
+  overload: FractPal.Service.Implementation.PostService.DeletePostAsync*
+  exceptions:
+  - type: System.Collections.Generic.KeyNotFoundException
+    commentId: T:System.Collections.Generic.KeyNotFoundException
+    description: Thrown when no post exists with <code class="paramref">postId</code>.
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: Thrown when a non-admin user attempts to delete another user's post.
+  implements:
+  - FractPal.Service.Interface.IPostService.DeletePostAsync(System.Guid,System.Guid,System.Boolean)
+  nameWithType.vb: PostService.DeletePostAsync(Guid, Guid, Boolean)
+  fullName.vb: FractPal.Service.Implementation.PostService.DeletePostAsync(System.Guid, System.Guid, Boolean)
+  name.vb: DeletePostAsync(Guid, Guid, Boolean)
+references:
+- uid: FractPal.Service.Implementation
+  commentId: N:FractPal.Service.Implementation
+  href: FractPal.html
+  name: FractPal.Service.Implementation
+  nameWithType: FractPal.Service.Implementation
+  fullName: FractPal.Service.Implementation
+  spec.csharp:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Service
+    name: Service
+    href: FractPal.Service.html
+  - name: .
+  - uid: FractPal.Service.Implementation
+    name: Implementation
+    href: FractPal.Service.Implementation.html
+  spec.vb:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Service
+    name: Service
+    href: FractPal.Service.html
+  - name: .
+  - uid: FractPal.Service.Implementation
+    name: Implementation
+    href: FractPal.Service.Implementation.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: FractPal.Service.Interface.IPostService
+  commentId: T:FractPal.Service.Interface.IPostService
+  parent: FractPal.Service.Interface
+  href: FractPal.Service.Interface.IPostService.html
+  name: IPostService
+  nameWithType: IPostService
+  fullName: FractPal.Service.Interface.IPostService
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FractPal.Service.Interface
+  commentId: N:FractPal.Service.Interface
+  href: FractPal.html
+  name: FractPal.Service.Interface
+  nameWithType: FractPal.Service.Interface
+  fullName: FractPal.Service.Interface
+  spec.csharp:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Service
+    name: Service
+    href: FractPal.Service.html
+  - name: .
+  - uid: FractPal.Service.Interface
+    name: Interface
+    href: FractPal.Service.Interface.html
+  spec.vb:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Service
+    name: Service
+    href: FractPal.Service.html
+  - name: .
+  - uid: FractPal.Service.Interface
+    name: Interface
+    href: FractPal.Service.Interface.html
+- uid: FractPal.Service.Implementation.PostService.#ctor*
+  commentId: Overload:FractPal.Service.Implementation.PostService.#ctor
+  href: FractPal.Service.Implementation.PostService.html#FractPal_Service_Implementation_PostService__ctor_FractPal_Data_ApplicationDbContext_
+  name: PostService
+  nameWithType: PostService.PostService
+  fullName: FractPal.Service.Implementation.PostService.PostService
+  nameWithType.vb: PostService.New
+  fullName.vb: FractPal.Service.Implementation.PostService.New
+  name.vb: New
+- uid: FractPal.Data.ApplicationDbContext
+  commentId: T:FractPal.Data.ApplicationDbContext
+  parent: FractPal.Data
+  name: ApplicationDbContext
+  nameWithType: ApplicationDbContext
+  fullName: FractPal.Data.ApplicationDbContext
+- uid: FractPal.Data
+  commentId: N:FractPal.Data
+  href: FractPal.html
+  name: FractPal.Data
+  nameWithType: FractPal.Data
+  fullName: FractPal.Data
+  spec.csharp:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Data
+    name: Data
+    href: FractPal.Data.html
+  spec.vb:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Data
+    name: Data
+    href: FractPal.Data.html
+- uid: FractPal.Model.DTO.Post.PostFeedResponse
+  commentId: T:FractPal.Model.DTO.Post.PostFeedResponse
+  name: PostFeedResponse
+  nameWithType: PostFeedResponse
+  fullName: FractPal.Model.DTO.Post.PostFeedResponse
+- uid: FractPal.Service.Implementation.PostService.GetFeedAsync*
+  commentId: Overload:FractPal.Service.Implementation.PostService.GetFeedAsync
+  href: FractPal.Service.Implementation.PostService.html#FractPal_Service_Implementation_PostService_GetFeedAsync_System_Guid_System_Int32_System_Int32_
+  name: GetFeedAsync
+  nameWithType: PostService.GetFeedAsync
+  fullName: FractPal.Service.Implementation.PostService.GetFeedAsync
+- uid: FractPal.Service.Interface.IPostService.GetFeedAsync(System.Guid,System.Int32,System.Int32)
+  commentId: M:FractPal.Service.Interface.IPostService.GetFeedAsync(System.Guid,System.Int32,System.Int32)
+  parent: FractPal.Service.Interface.IPostService
+  isExternal: true
+  href: FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_GetFeedAsync_System_Guid_System_Int32_System_Int32_
+  name: GetFeedAsync(Guid, int, int)
+  nameWithType: IPostService.GetFeedAsync(Guid, int, int)
+  fullName: FractPal.Service.Interface.IPostService.GetFeedAsync(System.Guid, int, int)
+  nameWithType.vb: IPostService.GetFeedAsync(Guid, Integer, Integer)
+  fullName.vb: FractPal.Service.Interface.IPostService.GetFeedAsync(System.Guid, Integer, Integer)
+  name.vb: GetFeedAsync(Guid, Integer, Integer)
+  spec.csharp:
+  - uid: FractPal.Service.Interface.IPostService.GetFeedAsync(System.Guid,System.Int32,System.Int32)
+    name: GetFeedAsync
+    href: FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_GetFeedAsync_System_Guid_System_Int32_System_Int32_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: FractPal.Service.Interface.IPostService.GetFeedAsync(System.Guid,System.Int32,System.Int32)
+    name: GetFeedAsync
+    href: FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_GetFeedAsync_System_Guid_System_Int32_System_Int32_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Guid
+  commentId: T:System.Guid
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.guid
+  name: Guid
+  nameWithType: Guid
+  fullName: System.Guid
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Threading.Tasks.Task{FractPal.Model.DTO.Post.PostFeedResponse}
+  commentId: T:System.Threading.Tasks.Task{FractPal.Model.DTO.Post.PostFeedResponse}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<PostFeedResponse>
+  nameWithType: Task<PostFeedResponse>
+  fullName: System.Threading.Tasks.Task<FractPal.Model.DTO.Post.PostFeedResponse>
+  nameWithType.vb: Task(Of PostFeedResponse)
+  fullName.vb: System.Threading.Tasks.Task(Of FractPal.Model.DTO.Post.PostFeedResponse)
+  name.vb: Task(Of PostFeedResponse)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: FractPal.Model.DTO.Post.PostFeedResponse
+    name: PostFeedResponse
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FractPal.Model.DTO.Post.PostFeedResponse
+    name: PostFeedResponse
+  - name: )
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: FractPal.Model.DTO.Post.PostDto
+  commentId: T:FractPal.Model.DTO.Post.PostDto
+  name: PostDto
+  nameWithType: PostDto
+  fullName: FractPal.Model.DTO.Post.PostDto
+- uid: FractPal.Service.Implementation.PostService.GetPostByIdAsync*
+  commentId: Overload:FractPal.Service.Implementation.PostService.GetPostByIdAsync
+  href: FractPal.Service.Implementation.PostService.html#FractPal_Service_Implementation_PostService_GetPostByIdAsync_System_Guid_System_Guid_
+  name: GetPostByIdAsync
+  nameWithType: PostService.GetPostByIdAsync
+  fullName: FractPal.Service.Implementation.PostService.GetPostByIdAsync
+- uid: FractPal.Service.Interface.IPostService.GetPostByIdAsync(System.Guid,System.Guid)
+  commentId: M:FractPal.Service.Interface.IPostService.GetPostByIdAsync(System.Guid,System.Guid)
+  parent: FractPal.Service.Interface.IPostService
+  isExternal: true
+  href: FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_GetPostByIdAsync_System_Guid_System_Guid_
+  name: GetPostByIdAsync(Guid, Guid)
+  nameWithType: IPostService.GetPostByIdAsync(Guid, Guid)
+  fullName: FractPal.Service.Interface.IPostService.GetPostByIdAsync(System.Guid, System.Guid)
+  spec.csharp:
+  - uid: FractPal.Service.Interface.IPostService.GetPostByIdAsync(System.Guid,System.Guid)
+    name: GetPostByIdAsync
+    href: FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_GetPostByIdAsync_System_Guid_System_Guid_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+  spec.vb:
+  - uid: FractPal.Service.Interface.IPostService.GetPostByIdAsync(System.Guid,System.Guid)
+    name: GetPostByIdAsync
+    href: FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_GetPostByIdAsync_System_Guid_System_Guid_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+- uid: System.Threading.Tasks.Task{FractPal.Model.DTO.Post.PostDto}
+  commentId: T:System.Threading.Tasks.Task{FractPal.Model.DTO.Post.PostDto}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<PostDto>
+  nameWithType: Task<PostDto>
+  fullName: System.Threading.Tasks.Task<FractPal.Model.DTO.Post.PostDto>
+  nameWithType.vb: Task(Of PostDto)
+  fullName.vb: System.Threading.Tasks.Task(Of FractPal.Model.DTO.Post.PostDto)
+  name.vb: Task(Of PostDto)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: FractPal.Model.DTO.Post.PostDto
+    name: PostDto
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FractPal.Model.DTO.Post.PostDto
+    name: PostDto
+  - name: )
+- uid: FractPal.Service.Implementation.PostService.GetUserPostsAsync*
+  commentId: Overload:FractPal.Service.Implementation.PostService.GetUserPostsAsync
+  href: FractPal.Service.Implementation.PostService.html#FractPal_Service_Implementation_PostService_GetUserPostsAsync_System_Guid_System_Guid_
+  name: GetUserPostsAsync
+  nameWithType: PostService.GetUserPostsAsync
+  fullName: FractPal.Service.Implementation.PostService.GetUserPostsAsync
+- uid: FractPal.Service.Interface.IPostService.GetUserPostsAsync(System.Guid,System.Guid)
+  commentId: M:FractPal.Service.Interface.IPostService.GetUserPostsAsync(System.Guid,System.Guid)
+  parent: FractPal.Service.Interface.IPostService
+  isExternal: true
+  href: FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_GetUserPostsAsync_System_Guid_System_Guid_
+  name: GetUserPostsAsync(Guid, Guid)
+  nameWithType: IPostService.GetUserPostsAsync(Guid, Guid)
+  fullName: FractPal.Service.Interface.IPostService.GetUserPostsAsync(System.Guid, System.Guid)
+  spec.csharp:
+  - uid: FractPal.Service.Interface.IPostService.GetUserPostsAsync(System.Guid,System.Guid)
+    name: GetUserPostsAsync
+    href: FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_GetUserPostsAsync_System_Guid_System_Guid_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+  spec.vb:
+  - uid: FractPal.Service.Interface.IPostService.GetUserPostsAsync(System.Guid,System.Guid)
+    name: GetUserPostsAsync
+    href: FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_GetUserPostsAsync_System_Guid_System_Guid_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.List{FractPal.Model.DTO.Post.PostDto}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.List{FractPal.Model.DTO.Post.PostDto}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<List<PostDto>>
+  nameWithType: Task<List<PostDto>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.List<FractPal.Model.DTO.Post.PostDto>>
+  nameWithType.vb: Task(Of List(Of PostDto))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.List(Of FractPal.Model.DTO.Post.PostDto))
+  name.vb: Task(Of List(Of PostDto))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: FractPal.Model.DTO.Post.PostDto
+    name: PostDto
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FractPal.Model.DTO.Post.PostDto
+    name: PostDto
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.KeyNotFoundException
+  commentId: T:System.Collections.Generic.KeyNotFoundException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keynotfoundexception
+  name: KeyNotFoundException
+  nameWithType: KeyNotFoundException
+  fullName: System.Collections.Generic.KeyNotFoundException
+- uid: System.UnauthorizedAccessException
+  commentId: T:System.UnauthorizedAccessException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception
+  name: UnauthorizedAccessException
+  nameWithType: UnauthorizedAccessException
+  fullName: System.UnauthorizedAccessException
+- uid: FractPal.Service.Implementation.PostService.PublishFractalAsync*
+  commentId: Overload:FractPal.Service.Implementation.PostService.PublishFractalAsync
+  href: FractPal.Service.Implementation.PostService.html#FractPal_Service_Implementation_PostService_PublishFractalAsync_System_Guid_System_Guid_FractPal_Model_DTO_Post_CreatePostRequest_
+  name: PublishFractalAsync
+  nameWithType: PostService.PublishFractalAsync
+  fullName: FractPal.Service.Implementation.PostService.PublishFractalAsync
+- uid: FractPal.Service.Interface.IPostService.PublishFractalAsync(System.Guid,System.Guid,FractPal.Model.DTO.Post.CreatePostRequest)
+  commentId: M:FractPal.Service.Interface.IPostService.PublishFractalAsync(System.Guid,System.Guid,FractPal.Model.DTO.Post.CreatePostRequest)
+  parent: FractPal.Service.Interface.IPostService
+  isExternal: true
+  href: FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_PublishFractalAsync_System_Guid_System_Guid_FractPal_Model_DTO_Post_CreatePostRequest_
+  name: PublishFractalAsync(Guid, Guid, CreatePostRequest)
+  nameWithType: IPostService.PublishFractalAsync(Guid, Guid, CreatePostRequest)
+  fullName: FractPal.Service.Interface.IPostService.PublishFractalAsync(System.Guid, System.Guid, FractPal.Model.DTO.Post.CreatePostRequest)
+  spec.csharp:
+  - uid: FractPal.Service.Interface.IPostService.PublishFractalAsync(System.Guid,System.Guid,FractPal.Model.DTO.Post.CreatePostRequest)
+    name: PublishFractalAsync
+    href: FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_PublishFractalAsync_System_Guid_System_Guid_FractPal_Model_DTO_Post_CreatePostRequest_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: FractPal.Model.DTO.Post.CreatePostRequest
+    name: CreatePostRequest
+  - name: )
+  spec.vb:
+  - uid: FractPal.Service.Interface.IPostService.PublishFractalAsync(System.Guid,System.Guid,FractPal.Model.DTO.Post.CreatePostRequest)
+    name: PublishFractalAsync
+    href: FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_PublishFractalAsync_System_Guid_System_Guid_FractPal_Model_DTO_Post_CreatePostRequest_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: FractPal.Model.DTO.Post.CreatePostRequest
+    name: CreatePostRequest
+  - name: )
+- uid: FractPal.Model.DTO.Post.CreatePostRequest
+  commentId: T:FractPal.Model.DTO.Post.CreatePostRequest
+  parent: FractPal.Model.DTO.Post
+  name: CreatePostRequest
+  nameWithType: CreatePostRequest
+  fullName: FractPal.Model.DTO.Post.CreatePostRequest
+- uid: FractPal.Model.DTO.Post
+  commentId: N:FractPal.Model.DTO.Post
+  name: FractPal.Model.DTO.Post
+  nameWithType: FractPal.Model.DTO.Post
+  fullName: FractPal.Model.DTO.Post
+  spec.csharp:
+  - uid: FractPal
+    name: FractPal
+  - name: .
+  - uid: FractPal.Model
+    name: Model
+  - name: .
+  - uid: FractPal.Model.DTO
+    name: DTO
+  - name: .
+  - uid: FractPal.Model.DTO.Post
+    name: Post
+  spec.vb:
+  - uid: FractPal
+    name: FractPal
+  - name: .
+  - uid: FractPal.Model
+    name: Model
+  - name: .
+  - uid: FractPal.Model.DTO
+    name: DTO
+  - name: .
+  - uid: FractPal.Model.DTO.Post
+    name: Post
+- uid: FractPal.Service.Implementation.PostService.UnpublishFractalAsync*
+  commentId: Overload:FractPal.Service.Implementation.PostService.UnpublishFractalAsync
+  href: FractPal.Service.Implementation.PostService.html#FractPal_Service_Implementation_PostService_UnpublishFractalAsync_System_Guid_System_Guid_
+  name: UnpublishFractalAsync
+  nameWithType: PostService.UnpublishFractalAsync
+  fullName: FractPal.Service.Implementation.PostService.UnpublishFractalAsync
+- uid: FractPal.Service.Interface.IPostService.UnpublishFractalAsync(System.Guid,System.Guid)
+  commentId: M:FractPal.Service.Interface.IPostService.UnpublishFractalAsync(System.Guid,System.Guid)
+  parent: FractPal.Service.Interface.IPostService
+  isExternal: true
+  href: FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_UnpublishFractalAsync_System_Guid_System_Guid_
+  name: UnpublishFractalAsync(Guid, Guid)
+  nameWithType: IPostService.UnpublishFractalAsync(Guid, Guid)
+  fullName: FractPal.Service.Interface.IPostService.UnpublishFractalAsync(System.Guid, System.Guid)
+  spec.csharp:
+  - uid: FractPal.Service.Interface.IPostService.UnpublishFractalAsync(System.Guid,System.Guid)
+    name: UnpublishFractalAsync
+    href: FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_UnpublishFractalAsync_System_Guid_System_Guid_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+  spec.vb:
+  - uid: FractPal.Service.Interface.IPostService.UnpublishFractalAsync(System.Guid,System.Guid)
+    name: UnpublishFractalAsync
+    href: FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_UnpublishFractalAsync_System_Guid_System_Guid_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: )
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: FractPal.Service.Implementation.PostService.UpdatePostAsync*
+  commentId: Overload:FractPal.Service.Implementation.PostService.UpdatePostAsync
+  href: FractPal.Service.Implementation.PostService.html#FractPal_Service_Implementation_PostService_UpdatePostAsync_System_Guid_System_Guid_FractPal_Model_DTO_Post_UpdatePostRequest_
+  name: UpdatePostAsync
+  nameWithType: PostService.UpdatePostAsync
+  fullName: FractPal.Service.Implementation.PostService.UpdatePostAsync
+- uid: FractPal.Service.Interface.IPostService.UpdatePostAsync(System.Guid,System.Guid,FractPal.Model.DTO.Post.UpdatePostRequest)
+  commentId: M:FractPal.Service.Interface.IPostService.UpdatePostAsync(System.Guid,System.Guid,FractPal.Model.DTO.Post.UpdatePostRequest)
+  parent: FractPal.Service.Interface.IPostService
+  isExternal: true
+  href: FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_UpdatePostAsync_System_Guid_System_Guid_FractPal_Model_DTO_Post_UpdatePostRequest_
+  name: UpdatePostAsync(Guid, Guid, UpdatePostRequest)
+  nameWithType: IPostService.UpdatePostAsync(Guid, Guid, UpdatePostRequest)
+  fullName: FractPal.Service.Interface.IPostService.UpdatePostAsync(System.Guid, System.Guid, FractPal.Model.DTO.Post.UpdatePostRequest)
+  spec.csharp:
+  - uid: FractPal.Service.Interface.IPostService.UpdatePostAsync(System.Guid,System.Guid,FractPal.Model.DTO.Post.UpdatePostRequest)
+    name: UpdatePostAsync
+    href: FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_UpdatePostAsync_System_Guid_System_Guid_FractPal_Model_DTO_Post_UpdatePostRequest_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: FractPal.Model.DTO.Post.UpdatePostRequest
+    name: UpdatePostRequest
+  - name: )
+  spec.vb:
+  - uid: FractPal.Service.Interface.IPostService.UpdatePostAsync(System.Guid,System.Guid,FractPal.Model.DTO.Post.UpdatePostRequest)
+    name: UpdatePostAsync
+    href: FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_UpdatePostAsync_System_Guid_System_Guid_FractPal_Model_DTO_Post_UpdatePostRequest_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: FractPal.Model.DTO.Post.UpdatePostRequest
+    name: UpdatePostRequest
+  - name: )
+- uid: FractPal.Model.DTO.Post.UpdatePostRequest
+  commentId: T:FractPal.Model.DTO.Post.UpdatePostRequest
+  parent: FractPal.Model.DTO.Post
+  name: UpdatePostRequest
+  nameWithType: UpdatePostRequest
+  fullName: FractPal.Model.DTO.Post.UpdatePostRequest
+- uid: FractPal.Service.Implementation.PostService.DeletePostAsync*
+  commentId: Overload:FractPal.Service.Implementation.PostService.DeletePostAsync
+  href: FractPal.Service.Implementation.PostService.html#FractPal_Service_Implementation_PostService_DeletePostAsync_System_Guid_System_Guid_System_Boolean_
+  name: DeletePostAsync
+  nameWithType: PostService.DeletePostAsync
+  fullName: FractPal.Service.Implementation.PostService.DeletePostAsync
+- uid: FractPal.Service.Interface.IPostService.DeletePostAsync(System.Guid,System.Guid,System.Boolean)
+  commentId: M:FractPal.Service.Interface.IPostService.DeletePostAsync(System.Guid,System.Guid,System.Boolean)
+  parent: FractPal.Service.Interface.IPostService
+  isExternal: true
+  href: FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_DeletePostAsync_System_Guid_System_Guid_System_Boolean_
+  name: DeletePostAsync(Guid, Guid, bool)
+  nameWithType: IPostService.DeletePostAsync(Guid, Guid, bool)
+  fullName: FractPal.Service.Interface.IPostService.DeletePostAsync(System.Guid, System.Guid, bool)
+  nameWithType.vb: IPostService.DeletePostAsync(Guid, Guid, Boolean)
+  fullName.vb: FractPal.Service.Interface.IPostService.DeletePostAsync(System.Guid, System.Guid, Boolean)
+  name.vb: DeletePostAsync(Guid, Guid, Boolean)
+  spec.csharp:
+  - uid: FractPal.Service.Interface.IPostService.DeletePostAsync(System.Guid,System.Guid,System.Boolean)
+    name: DeletePostAsync
+    href: FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_DeletePostAsync_System_Guid_System_Guid_System_Boolean_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: FractPal.Service.Interface.IPostService.DeletePostAsync(System.Guid,System.Guid,System.Boolean)
+    name: DeletePostAsync
+    href: FractPal.Service.Interface.IPostService.html#FractPal_Service_Interface_IPostService_DeletePostAsync_System_Guid_System_Guid_System_Boolean_
+  - name: (
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.Guid
+    name: Guid
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.guid
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean

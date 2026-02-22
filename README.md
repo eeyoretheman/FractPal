@@ -4,6 +4,9 @@ Use the provided scripts:
 - 'run.ps1' for Windows
 - 'run.sh' for Linux and other Unix-like OSs
 
+Setting the environment variables and running the docker commands manually
+is still the recommended approach for Windows users. 
+
 Running migrations:
 ```
 cd backend

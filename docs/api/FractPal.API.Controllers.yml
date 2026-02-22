@@ -1,0 +1,51 @@
+### YamlMime:ManagedReference
+items:
+- uid: FractPal.API.Controllers
+  commentId: N:FractPal.API.Controllers
+  id: FractPal.API.Controllers
+  children:
+  - FractPal.API.Controllers.AuthController
+  - FractPal.API.Controllers.CommentsController
+  - FractPal.API.Controllers.FractalController
+  - FractPal.API.Controllers.PostsController
+  - FractPal.API.Controllers.UserController
+  langs:
+  - csharp
+  - vb
+  name: FractPal.API.Controllers
+  nameWithType: FractPal.API.Controllers
+  fullName: FractPal.API.Controllers
+  type: Namespace
+  assemblies:
+  - FractPal.API
+references:
+- uid: FractPal.API.Controllers.AuthController
+  commentId: T:FractPal.API.Controllers.AuthController
+  href: FractPal.API.Controllers.AuthController.html
+  name: AuthController
+  nameWithType: AuthController
+  fullName: FractPal.API.Controllers.AuthController
+- uid: FractPal.API.Controllers.CommentsController
+  commentId: T:FractPal.API.Controllers.CommentsController
+  href: FractPal.API.Controllers.CommentsController.html
+  name: CommentsController
+  nameWithType: CommentsController
+  fullName: FractPal.API.Controllers.CommentsController
+- uid: FractPal.API.Controllers.FractalController
+  commentId: T:FractPal.API.Controllers.FractalController
+  href: FractPal.API.Controllers.FractalController.html
+  name: FractalController
+  nameWithType: FractalController
+  fullName: FractPal.API.Controllers.FractalController
+- uid: FractPal.API.Controllers.PostsController
+  commentId: T:FractPal.API.Controllers.PostsController
+  href: FractPal.API.Controllers.PostsController.html
+  name: PostsController
+  nameWithType: PostsController
+  fullName: FractPal.API.Controllers.PostsController
+- uid: FractPal.API.Controllers.UserController
+  commentId: T:FractPal.API.Controllers.UserController
+  href: FractPal.API.Controllers.UserController.html
+  name: UserController
+  nameWithType: UserController
+  fullName: FractPal.API.Controllers.UserController

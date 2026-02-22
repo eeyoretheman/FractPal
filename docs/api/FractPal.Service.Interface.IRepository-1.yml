@@ -1,0 +1,895 @@
+### YamlMime:ManagedReference
+items:
+- uid: FractPal.Service.Interface.IRepository`1
+  commentId: T:FractPal.Service.Interface.IRepository`1
+  id: IRepository`1
+  parent: FractPal.Service.Interface
+  children:
+  - FractPal.Service.Interface.IRepository`1.AddAsync(`0)
+  - FractPal.Service.Interface.IRepository`1.CommitAsync
+  - FractPal.Service.Interface.IRepository`1.FilterAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  - FractPal.Service.Interface.IRepository`1.GetAllAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  - FractPal.Service.Interface.IRepository`1.GetByIdAsync(System.Guid,System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  - FractPal.Service.Interface.IRepository`1.Query
+  - FractPal.Service.Interface.IRepository`1.Remove(`0)
+  - FractPal.Service.Interface.IRepository`1.Update(`0)
+  langs:
+  - csharp
+  - vb
+  name: IRepository<T>
+  nameWithType: IRepository<T>
+  fullName: FractPal.Service.Interface.IRepository<T>
+  type: Interface
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/IRepository.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: IRepository
+    path: ../backend/FractPal.Service/Interface/IRepository.cs
+    startLine: 12
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: Defines a generic repository interface for common data access operations
+  example: []
+  syntax:
+    content: 'public interface IRepository<T> where T : class'
+    typeParameters:
+    - id: T
+      description: The type of the entity
+    content.vb: Public Interface IRepository(Of T As Class)
+  nameWithType.vb: IRepository(Of T)
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T)
+  name.vb: IRepository(Of T)
+- uid: FractPal.Service.Interface.IRepository`1.GetByIdAsync(System.Guid,System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  commentId: M:FractPal.Service.Interface.IRepository`1.GetByIdAsync(System.Guid,System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  id: GetByIdAsync(System.Guid,System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  parent: FractPal.Service.Interface.IRepository`1
+  langs:
+  - csharp
+  - vb
+  name: GetByIdAsync(Guid, params Expression<Func<T, object>>[])
+  nameWithType: IRepository<T>.GetByIdAsync(Guid, params Expression<Func<T, object>>[])
+  fullName: FractPal.Service.Interface.IRepository<T>.GetByIdAsync(System.Guid, params System.Linq.Expressions.Expression<System.Func<T, object>>[])
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/IRepository.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: GetByIdAsync
+    path: ../backend/FractPal.Service/Interface/IRepository.cs
+    startLine: 20
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: Retrives single entity by its GUID
+  example: []
+  syntax:
+    content: Task<T?> GetByIdAsync(Guid id, params Expression<Func<T, object>>[] includes)
+    parameters:
+    - id: id
+      type: System.Guid
+      description: The unique identifier of the entity
+    - id: includes
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.Object}}[]
+      description: Optional navigation properties to include
+    return:
+      type: System.Threading.Tasks.Task{{T}}
+      description: The entity if found; otherwise, null
+    content.vb: Function GetByIdAsync(id As Guid, ParamArray includes As Expression(Of Func(Of T, Object))()) As Task(Of T)
+  overload: FractPal.Service.Interface.IRepository`1.GetByIdAsync*
+  nameWithType.vb: IRepository(Of T).GetByIdAsync(Guid, ParamArray Expression(Of Func(Of T, Object))())
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).GetByIdAsync(System.Guid, ParamArray System.Linq.Expressions.Expression(Of System.Func(Of T, Object))())
+  name.vb: GetByIdAsync(Guid, ParamArray Expression(Of Func(Of T, Object))())
+- uid: FractPal.Service.Interface.IRepository`1.GetAllAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  commentId: M:FractPal.Service.Interface.IRepository`1.GetAllAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  id: GetAllAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  parent: FractPal.Service.Interface.IRepository`1
+  langs:
+  - csharp
+  - vb
+  name: GetAllAsync(params Expression<Func<T, object>>[])
+  nameWithType: IRepository<T>.GetAllAsync(params Expression<Func<T, object>>[])
+  fullName: FractPal.Service.Interface.IRepository<T>.GetAllAsync(params System.Linq.Expressions.Expression<System.Func<T, object>>[])
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/IRepository.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: GetAllAsync
+    path: ../backend/FractPal.Service/Interface/IRepository.cs
+    startLine: 27
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: Retrieves all entities
+  example: []
+  syntax:
+    content: Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includes)
+    parameters:
+    - id: includes
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.Object}}[]
+      description: Optional navigation properties to include
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{{T}}}
+      description: A list of all entities
+    content.vb: Function GetAllAsync(ParamArray includes As Expression(Of Func(Of T, Object))()) As Task(Of IEnumerable(Of T))
+  overload: FractPal.Service.Interface.IRepository`1.GetAllAsync*
+  nameWithType.vb: IRepository(Of T).GetAllAsync(ParamArray Expression(Of Func(Of T, Object))())
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).GetAllAsync(ParamArray System.Linq.Expressions.Expression(Of System.Func(Of T, Object))())
+  name.vb: GetAllAsync(ParamArray Expression(Of Func(Of T, Object))())
+- uid: FractPal.Service.Interface.IRepository`1.FilterAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  commentId: M:FractPal.Service.Interface.IRepository`1.FilterAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  id: FilterAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])
+  parent: FractPal.Service.Interface.IRepository`1
+  langs:
+  - csharp
+  - vb
+  name: FilterAsync(Expression<Func<T, bool>>, params Expression<Func<T, object>>[])
+  nameWithType: IRepository<T>.FilterAsync(Expression<Func<T, bool>>, params Expression<Func<T, object>>[])
+  fullName: FractPal.Service.Interface.IRepository<T>.FilterAsync(System.Linq.Expressions.Expression<System.Func<T, bool>>, params System.Linq.Expressions.Expression<System.Func<T, object>>[])
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/IRepository.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: FilterAsync
+    path: ../backend/FractPal.Service/Interface/IRepository.cs
+    startLine: 35
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: Finds all entities matching the specified predicate
+  example: []
+  syntax:
+    content: Task<IEnumerable<T>> FilterAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes)
+    parameters:
+    - id: predicate
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.Boolean}}
+      description: The filtering condition
+    - id: includes
+      type: System.Linq.Expressions.Expression{System.Func{{T},System.Object}}[]
+      description: Optional navigation properties to include
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{{T}}}
+      description: A list of matching entities
+    content.vb: Function FilterAsync(predicate As Expression(Of Func(Of T, Boolean)), ParamArray includes As Expression(Of Func(Of T, Object))()) As Task(Of IEnumerable(Of T))
+  overload: FractPal.Service.Interface.IRepository`1.FilterAsync*
+  nameWithType.vb: IRepository(Of T).FilterAsync(Expression(Of Func(Of T, Boolean)), ParamArray Expression(Of Func(Of T, Object))())
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).FilterAsync(System.Linq.Expressions.Expression(Of System.Func(Of T, Boolean)), ParamArray System.Linq.Expressions.Expression(Of System.Func(Of T, Object))())
+  name.vb: FilterAsync(Expression(Of Func(Of T, Boolean)), ParamArray Expression(Of Func(Of T, Object))())
+- uid: FractPal.Service.Interface.IRepository`1.AddAsync(`0)
+  commentId: M:FractPal.Service.Interface.IRepository`1.AddAsync(`0)
+  id: AddAsync(`0)
+  parent: FractPal.Service.Interface.IRepository`1
+  langs:
+  - csharp
+  - vb
+  name: AddAsync(T)
+  nameWithType: IRepository<T>.AddAsync(T)
+  fullName: FractPal.Service.Interface.IRepository<T>.AddAsync(T)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/IRepository.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: AddAsync
+    path: ../backend/FractPal.Service/Interface/IRepository.cs
+    startLine: 41
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: Add a new entity to the repository
+  example: []
+  syntax:
+    content: Task AddAsync(T entity)
+    parameters:
+    - id: entity
+      type: '{T}'
+      description: The entity to add
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Function AddAsync(entity As T) As Task
+  overload: FractPal.Service.Interface.IRepository`1.AddAsync*
+  nameWithType.vb: IRepository(Of T).AddAsync(T)
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).AddAsync(T)
+- uid: FractPal.Service.Interface.IRepository`1.Update(`0)
+  commentId: M:FractPal.Service.Interface.IRepository`1.Update(`0)
+  id: Update(`0)
+  parent: FractPal.Service.Interface.IRepository`1
+  langs:
+  - csharp
+  - vb
+  name: Update(T)
+  nameWithType: IRepository<T>.Update(T)
+  fullName: FractPal.Service.Interface.IRepository<T>.Update(T)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/IRepository.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: Update
+    path: ../backend/FractPal.Service/Interface/IRepository.cs
+    startLine: 47
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: Updates an existing entity
+  example: []
+  syntax:
+    content: void Update(T entity)
+    parameters:
+    - id: entity
+      type: '{T}'
+      description: The entity to update
+    content.vb: Sub Update(entity As T)
+  overload: FractPal.Service.Interface.IRepository`1.Update*
+  nameWithType.vb: IRepository(Of T).Update(T)
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).Update(T)
+- uid: FractPal.Service.Interface.IRepository`1.Remove(`0)
+  commentId: M:FractPal.Service.Interface.IRepository`1.Remove(`0)
+  id: Remove(`0)
+  parent: FractPal.Service.Interface.IRepository`1
+  langs:
+  - csharp
+  - vb
+  name: Remove(T)
+  nameWithType: IRepository<T>.Remove(T)
+  fullName: FractPal.Service.Interface.IRepository<T>.Remove(T)
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/IRepository.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: Remove
+    path: ../backend/FractPal.Service/Interface/IRepository.cs
+    startLine: 53
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: Removes an entity from the repository
+  example: []
+  syntax:
+    content: void Remove(T entity)
+    parameters:
+    - id: entity
+      type: '{T}'
+      description: The entity to remove
+    content.vb: Sub Remove(entity As T)
+  overload: FractPal.Service.Interface.IRepository`1.Remove*
+  nameWithType.vb: IRepository(Of T).Remove(T)
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).Remove(T)
+- uid: FractPal.Service.Interface.IRepository`1.CommitAsync
+  commentId: M:FractPal.Service.Interface.IRepository`1.CommitAsync
+  id: CommitAsync
+  parent: FractPal.Service.Interface.IRepository`1
+  langs:
+  - csharp
+  - vb
+  name: CommitAsync()
+  nameWithType: IRepository<T>.CommitAsync()
+  fullName: FractPal.Service.Interface.IRepository<T>.CommitAsync()
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/IRepository.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: CommitAsync
+    path: ../backend/FractPal.Service/Interface/IRepository.cs
+    startLine: 59
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: Commits all changes made in the current unit of work
+  example: []
+  syntax:
+    content: Task<int> CommitAsync()
+    return:
+      type: System.Threading.Tasks.Task{System.Int32}
+      description: The number of affected rows
+    content.vb: Function CommitAsync() As Task(Of Integer)
+  overload: FractPal.Service.Interface.IRepository`1.CommitAsync*
+  nameWithType.vb: IRepository(Of T).CommitAsync()
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).CommitAsync()
+- uid: FractPal.Service.Interface.IRepository`1.Query
+  commentId: M:FractPal.Service.Interface.IRepository`1.Query
+  id: Query
+  parent: FractPal.Service.Interface.IRepository`1
+  langs:
+  - csharp
+  - vb
+  name: Query()
+  nameWithType: IRepository<T>.Query()
+  fullName: FractPal.Service.Interface.IRepository<T>.Query()
+  type: Method
+  source:
+    remote:
+      path: backend/FractPal.Service/Interface/IRepository.cs
+      branch: main
+      repo: git@github.com:eeyoretheman/FractPal.git
+    id: Query
+    path: ../backend/FractPal.Service/Interface/IRepository.cs
+    startLine: 65
+  assemblies:
+  - FractPal.Service
+  namespace: FractPal.Service.Interface
+  summary: Provides a queryable interface for the repository, allowing for LINQ queries
+  example: []
+  syntax:
+    content: IQueryable<T> Query()
+    return:
+      type: System.Linq.IQueryable{{T}}
+      description: An <xref href="System.Linq.IQueryable%601" data-throw-if-not-resolved="false"></xref> for entity type.
+    content.vb: Function Query() As IQueryable(Of T)
+  overload: FractPal.Service.Interface.IRepository`1.Query*
+  nameWithType.vb: IRepository(Of T).Query()
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).Query()
+references:
+- uid: FractPal.Service.Interface
+  commentId: N:FractPal.Service.Interface
+  href: FractPal.html
+  name: FractPal.Service.Interface
+  nameWithType: FractPal.Service.Interface
+  fullName: FractPal.Service.Interface
+  spec.csharp:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Service
+    name: Service
+    href: FractPal.Service.html
+  - name: .
+  - uid: FractPal.Service.Interface
+    name: Interface
+    href: FractPal.Service.Interface.html
+  spec.vb:
+  - uid: FractPal
+    name: FractPal
+    href: FractPal.html
+  - name: .
+  - uid: FractPal.Service
+    name: Service
+    href: FractPal.Service.html
+  - name: .
+  - uid: FractPal.Service.Interface
+    name: Interface
+    href: FractPal.Service.Interface.html
+- uid: FractPal.Service.Interface.IRepository`1.GetByIdAsync*
+  commentId: Overload:FractPal.Service.Interface.IRepository`1.GetByIdAsync
+  href: FractPal.Service.Interface.IRepository-1.html#FractPal_Service_Interface_IRepository_1_GetByIdAsync_System_Guid_System_Linq_Expressions_Expression_System_Func__0_System_Object_____
+  name: GetByIdAsync
+  nameWithType: IRepository<T>.GetByIdAsync
+  fullName: FractPal.Service.Interface.IRepository<T>.GetByIdAsync
+  nameWithType.vb: IRepository(Of T).GetByIdAsync
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).GetByIdAsync
+- uid: System.Guid
+  commentId: T:System.Guid
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.guid
+  name: Guid
+  nameWithType: Guid
+  fullName: System.Guid
+- uid: System.Linq.Expressions.Expression{System.Func{{T},System.Object}}[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  name: Expression<Func<T, object>>[]
+  nameWithType: Expression<Func<T, object>>[]
+  fullName: System.Linq.Expressions.Expression<System.Func<T, object>>[]
+  nameWithType.vb: Expression(Of Func(Of T, Object))()
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T, Object))()
+  name.vb: Expression(Of Func(Of T, Object))()
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '>'
+  - name: '>'
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  - name: )
+  - name: (
+  - name: )
+- uid: System.Threading.Tasks.Task{{T}}
+  commentId: T:System.Threading.Tasks.Task{`0}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<T>
+  nameWithType: Task<T>
+  fullName: System.Threading.Tasks.Task<T>
+  nameWithType.vb: Task(Of T)
+  fullName.vb: System.Threading.Tasks.Task(Of T)
+  name.vb: Task(Of T)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: FractPal.Service.Interface.IRepository`1.GetAllAsync*
+  commentId: Overload:FractPal.Service.Interface.IRepository`1.GetAllAsync
+  href: FractPal.Service.Interface.IRepository-1.html#FractPal_Service_Interface_IRepository_1_GetAllAsync_System_Linq_Expressions_Expression_System_Func__0_System_Object_____
+  name: GetAllAsync
+  nameWithType: IRepository<T>.GetAllAsync
+  fullName: FractPal.Service.Interface.IRepository<T>.GetAllAsync
+  nameWithType.vb: IRepository(Of T).GetAllAsync
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).GetAllAsync
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{{T}}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{`0}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<IEnumerable<T>>
+  nameWithType: Task<IEnumerable<T>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<T>>
+  nameWithType.vb: Task(Of IEnumerable(Of T))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.IEnumerable(Of T))
+  name.vb: Task(Of IEnumerable(Of T))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: )
+- uid: FractPal.Service.Interface.IRepository`1.FilterAsync*
+  commentId: Overload:FractPal.Service.Interface.IRepository`1.FilterAsync
+  href: FractPal.Service.Interface.IRepository-1.html#FractPal_Service_Interface_IRepository_1_FilterAsync_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Linq_Expressions_Expression_System_Func__0_System_Object_____
+  name: FilterAsync
+  nameWithType: IRepository<T>.FilterAsync
+  fullName: FractPal.Service.Interface.IRepository<T>.FilterAsync
+  nameWithType.vb: IRepository(Of T).FilterAsync
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).FilterAsync
+- uid: System.Linq.Expressions.Expression{System.Func{{T},System.Boolean}}
+  commentId: T:System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}}
+  parent: System.Linq.Expressions
+  definition: System.Linq.Expressions.Expression`1
+  href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  name: Expression<Func<T, bool>>
+  nameWithType: Expression<Func<T, bool>>
+  fullName: System.Linq.Expressions.Expression<System.Func<T, bool>>
+  nameWithType.vb: Expression(Of Func(Of T, Boolean))
+  fullName.vb: System.Linq.Expressions.Expression(Of System.Func(Of T, Boolean))
+  name.vb: Expression(Of Func(Of T, Boolean))
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: <
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  - name: )
+- uid: System.Linq.Expressions.Expression`1
+  commentId: T:System.Linq.Expressions.Expression`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  name: Expression<TDelegate>
+  nameWithType: Expression<TDelegate>
+  fullName: System.Linq.Expressions.Expression<TDelegate>
+  nameWithType.vb: Expression(Of TDelegate)
+  fullName.vb: System.Linq.Expressions.Expression(Of TDelegate)
+  name.vb: Expression(Of TDelegate)
+  spec.csharp:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: <
+  - name: TDelegate
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TDelegate
+  - name: )
+- uid: System.Linq.Expressions
+  commentId: N:System.Linq.Expressions
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Linq.Expressions
+  nameWithType: System.Linq.Expressions
+  fullName: System.Linq.Expressions
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Linq
+    name: Linq
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq
+  - name: .
+  - uid: System.Linq.Expressions
+    name: Expressions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Linq
+    name: Linq
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq
+  - name: .
+  - uid: System.Linq.Expressions
+    name: Expressions
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.expressions
+- uid: FractPal.Service.Interface.IRepository`1.AddAsync*
+  commentId: Overload:FractPal.Service.Interface.IRepository`1.AddAsync
+  href: FractPal.Service.Interface.IRepository-1.html#FractPal_Service_Interface_IRepository_1_AddAsync__0_
+  name: AddAsync
+  nameWithType: IRepository<T>.AddAsync
+  fullName: FractPal.Service.Interface.IRepository<T>.AddAsync
+  nameWithType.vb: IRepository(Of T).AddAsync
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).AddAsync
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: FractPal.Service.Interface.IRepository`1.Update*
+  commentId: Overload:FractPal.Service.Interface.IRepository`1.Update
+  href: FractPal.Service.Interface.IRepository-1.html#FractPal_Service_Interface_IRepository_1_Update__0_
+  name: Update
+  nameWithType: IRepository<T>.Update
+  fullName: FractPal.Service.Interface.IRepository<T>.Update
+  nameWithType.vb: IRepository(Of T).Update
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).Update
+- uid: FractPal.Service.Interface.IRepository`1.Remove*
+  commentId: Overload:FractPal.Service.Interface.IRepository`1.Remove
+  href: FractPal.Service.Interface.IRepository-1.html#FractPal_Service_Interface_IRepository_1_Remove__0_
+  name: Remove
+  nameWithType: IRepository<T>.Remove
+  fullName: FractPal.Service.Interface.IRepository<T>.Remove
+  nameWithType.vb: IRepository(Of T).Remove
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).Remove
+- uid: FractPal.Service.Interface.IRepository`1.CommitAsync*
+  commentId: Overload:FractPal.Service.Interface.IRepository`1.CommitAsync
+  href: FractPal.Service.Interface.IRepository-1.html#FractPal_Service_Interface_IRepository_1_CommitAsync
+  name: CommitAsync
+  nameWithType: IRepository<T>.CommitAsync
+  fullName: FractPal.Service.Interface.IRepository<T>.CommitAsync
+  nameWithType.vb: IRepository(Of T).CommitAsync
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).CommitAsync
+- uid: System.Threading.Tasks.Task{System.Int32}
+  commentId: T:System.Threading.Tasks.Task{System.Int32}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<int>
+  nameWithType: Task<int>
+  fullName: System.Threading.Tasks.Task<int>
+  nameWithType.vb: Task(Of Integer)
+  fullName.vb: System.Threading.Tasks.Task(Of Integer)
+  name.vb: Task(Of Integer)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Linq.IQueryable`1
+  commentId: T:System.Linq.IQueryable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1
+  name: IQueryable<T>
+  nameWithType: IQueryable<T>
+  fullName: System.Linq.IQueryable<T>
+  nameWithType.vb: IQueryable(Of T)
+  fullName.vb: System.Linq.IQueryable(Of T)
+  name.vb: IQueryable(Of T)
+  spec.csharp:
+  - uid: System.Linq.IQueryable`1
+    name: IQueryable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.IQueryable`1
+    name: IQueryable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FractPal.Service.Interface.IRepository`1.Query*
+  commentId: Overload:FractPal.Service.Interface.IRepository`1.Query
+  href: FractPal.Service.Interface.IRepository-1.html#FractPal_Service_Interface_IRepository_1_Query
+  name: Query
+  nameWithType: IRepository<T>.Query
+  fullName: FractPal.Service.Interface.IRepository<T>.Query
+  nameWithType.vb: IRepository(Of T).Query
+  fullName.vb: FractPal.Service.Interface.IRepository(Of T).Query
+- uid: System.Linq.IQueryable{{T}}
+  commentId: T:System.Linq.IQueryable{`0}
+  parent: System.Linq
+  definition: System.Linq.IQueryable`1
+  href: https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1
+  name: IQueryable<T>
+  nameWithType: IQueryable<T>
+  fullName: System.Linq.IQueryable<T>
+  nameWithType.vb: IQueryable(Of T)
+  fullName.vb: System.Linq.IQueryable(Of T)
+  name.vb: IQueryable(Of T)
+  spec.csharp:
+  - uid: System.Linq.IQueryable`1
+    name: IQueryable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Linq.IQueryable`1
+    name: IQueryable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Linq
+  commentId: N:System.Linq
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Linq
+  nameWithType: System.Linq
+  fullName: System.Linq
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Linq
+    name: Linq
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Linq
+    name: Linq
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.linq
