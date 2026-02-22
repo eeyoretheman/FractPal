@@ -96,6 +96,30 @@ export const postApi = {
 };
 
 // ===========================
+// Comment API
+// ===========================
+
+export const commentApi = {
+  getCommentsByFractal: (fractalId: string): Promise<any[]> =>
+    apiFetch(`/comments/fractal/${fractalId}`),
+
+  createComment: (fractalId: string, content: string): Promise<any> =>
+    apiFetch(`/comments/fractal/${fractalId}`, { 
+      method: 'POST', 
+      body: JSON.stringify({ content }) 
+    }),
+
+  updateComment: (id: string, content: string): Promise<any> =>
+    apiFetch(`/comments/${id}`, { 
+      method: 'PUT', 
+      body: JSON.stringify({ content }) 
+    }),
+
+  deleteComment: (id: string): Promise<void> =>
+    apiFetch(`/comments/${id}`, { method: 'DELETE' }),
+};
+
+// ===========================
 // User API
 // ===========================
 

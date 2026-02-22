@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Gallery from './pages/Gallery';
 import Workbench from './pages/Workbench';
 import Profile from './pages/Profile';
+import PostDetail from './pages/PostDetail';
 import Layout from './components/Layout';
 import './App.css';
 
@@ -24,6 +25,7 @@ const App: React.FC = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<ProtectedRoute><Layout><Home /></Layout></ProtectedRoute>} />
           <Route path="/gallery" element={<ProtectedRoute><Layout><Gallery /></Layout></ProtectedRoute>} />
+          <Route path="/post/:id" element={<ProtectedRoute><Layout><PostDetail /></Layout></ProtectedRoute>} />
           <Route path="/workbench" element={<ProtectedRoute><Layout><Workbench /></Layout></ProtectedRoute>} />
           <Route path="/workbench/:id" element={<ProtectedRoute><Layout><Workbench /></Layout></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><Layout><Profile /></Layout></ProtectedRoute>} />
