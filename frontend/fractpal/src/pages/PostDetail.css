@@ -1,0 +1,323 @@
+.post-detail-page {
+  min-height: 100vh;
+  padding: 2rem 0;
+}
+
+.post-detail-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.back-link {
+  display: inline-block;
+  color: var(--accent);
+  text-decoration: none;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.back-link:hover {
+  color: var(--accent-hover, var(--accent));
+  text-decoration: underline;
+}
+
+.post-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.post-detail-title-section {
+  flex: 1;
+}
+
+.post-detail-title {
+  font-size: 2rem;
+  font-weight: 400;
+  margin: 0 0 1rem 0;
+  color: var(--text-primary);
+}
+
+.post-detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.post-author {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.post-author:hover {
+  text-decoration: underline;
+}
+
+.post-date {
+  color: var(--text-muted);
+}
+
+.post-detail-actions {
+  display: flex;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.delete-btn {
+  padding: 0.65rem 1.5rem;
+  background: var(--error-alpha);
+  color: var(--error);
+  border: 1px solid var(--error);
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.delete-btn:hover {
+  background: var(--error);
+  color: white;
+}
+
+.post-detail-description {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.post-detail-fractal {
+  margin-bottom: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--bg-secondary);
+}
+
+.fractal-display {
+  display: flex;
+  flex-direction: column;
+}
+
+.fractal-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: var(--bg-secondary);
+  max-height: 600px;
+  object-fit: contain;
+}
+
+.fractal-info {
+  padding: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.fractal-info h3 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.fractal-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.fractal-meta span {
+  display: flex;
+  align-items: center;
+}
+
+.view-fractal-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: var(--accent);
+  color: white;
+  text-decoration: none;
+  border-radius: 2px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.view-fractal-btn:hover {
+  background: var(--accent-dark);
+  transform: translateY(-1px);
+}
+
+.post-detail-stats {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  margin-bottom: 2rem;
+}
+
+.stat-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  padding: 0.5rem 1rem;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+
+.stat-btn:hover:not(:disabled) {
+  background: var(--accent-alpha);
+  color: var(--accent);
+}
+
+.stat-btn.liked {
+  color: var(--error);
+}
+
+.stat-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.heart-icon {
+  font-size: 1.2rem;
+}
+
+.stat-count {
+  font-weight: 500;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.stat-label {
+  color: var(--text-muted);
+}
+
+.fractal-link {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.fractal-link:hover {
+  text-decoration: underline;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.loading {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error-container {
+  background: var(--error-alpha);
+  border: 1px solid var(--error);
+  border-radius: 2px;
+  padding: 2rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.error-container p {
+  color: var(--error);
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .post-detail-container {
+    padding: 0 1rem;
+  }
+
+  .post-detail-header {
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .post-detail-title {
+    font-size: 1.5rem;
+  }
+
+  .post-detail-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .post-detail-actions {
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .delete-btn {
+    flex: 1;
+  }
+
+  .post-detail-stats {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .fractal-info {
+    padding: 1rem;
+  }
+
+  .fractal-info h3 {
+    font-size: 1.1rem;
+  }
+
+  .fractal-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
