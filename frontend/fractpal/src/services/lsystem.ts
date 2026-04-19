@@ -1,3 +1,65 @@
+import {
+  generateVertices,
+  type FractalRenderDefinition,
+  type WorkerRequest,
+  type WorkerResponse,
+} from './lsystem-core';
+
+export type { FractalRenderDefinition } from './lsystem-core';
+
+export function createLSystemWorker(): Worker | null {
+  if (typeof Worker === 'undefined') {
+    return null;
+  }
+
+  return new Worker(new URL('./lsystem-worker.ts', import.meta.url), {
+    type: 'module',
+  });
+}
+
+export function requestVertices(
+  worker: Worker | null,
+  definition: FractalRenderDefinition,
+  requestId: number
+): Promise<Float32Array> {
+  if (!worker) {
+    return Promise.resolve(generateVertices(definition));
+  }
+
+  return new Promise<Float32Array>((resolve, reject) => {
+    const handleMessage = (event: MessageEvent<WorkerResponse>) => {
+      if (event.data.requestId !== requestId) {
+        return;
+      }
+
+      cleanup();
+
+      if (event.data.error) {
+        reject(new Error(event.data.error));
+        return;
+      }
+
+      resolve(event.data.vertices ?? new Float32Array());
+    };
+
+    const handleError = (event: ErrorEvent) => {
+      cleanup();
+      reject(event.error instanceof Error ? event.error : new Error(event.message));
+    };
+
+    const cleanup = () => {
+      worker.removeEventListener('message', handleMessage);
+      worker.removeEventListener('error', handleError);
+    };
+
+    worker.addEventListener('message', handleMessage);
+    worker.addEventListener('error', handleError);
+
+    const payload: WorkerRequest = { requestId, definition };
+    worker.postMessage(payload);
+  });
+}
+
 export function setupWebGL(
   canvas: HTMLCanvasElement,
   xTranslation: number,
@@ -80,6 +142,10 @@ export function setupWebGL(
 }
 
 export function drawVertices(gl: WebGL2RenderingContext, vertices: Float32Array) {
+  if (vertices.length === 0) {
+    return;
+  }
+
   const buffer = gl.createBuffer();
   if (!buffer) return;
 

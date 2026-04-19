@@ -1,13 +1,22 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fractalApi } from '../services/api';
-import { lindenmayer, turtle, setupWebGL } from '../services/lsystem';
+import {
+  createLSystemWorker,
+  drawVertices,
+  requestVertices,
+  resizeCanvas,
+  setupWebGL,
+  type FractalRenderDefinition,
+} from '../services/lsystem';
 import './Workbench.css';
 
 const Workbench: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const workerRef = useRef<Worker | null>(null);
+  const renderRequestIdRef = useRef(0);
 
   const [name, setName] = useState('Untitled Fractal');
   const [axiom, setAxiom] = useState('F - - F - - F');
@@ -44,8 +53,17 @@ const Workbench: React.FC = () => {
 
   useEffect(() => { loadFractal(); }, [loadFractal]);
 
+  useEffect(() => {
+    workerRef.current = createLSystemWorker();
+
+    return () => {
+      workerRef.current?.terminate();
+      workerRef.current = null;
+    };
+  }, []);
+
   // ------------------ Render Fractal ------------------
-  const renderFractal = useCallback(() => {
+  const renderFractal = useCallback(async () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -53,50 +71,42 @@ const Workbench: React.FC = () => {
       // Maintain 4:3 aspect ratio
       const width = Math.min(canvas.parentElement?.clientWidth ?? 800, 800);
       const height = Math.floor((width / 4) * 3);
-      canvas.width = width;
-      canvas.height = height;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      resizeCanvas(canvas);
 
       const gl = setupWebGL(canvas, xTranslation, yTranslation, zoom);
       if (!gl) return;
 
-      const axiomSymbols = axiom.trim().replace(/\s+/g, ' ').split(' ');
-      const rulesMap = new Map<string, string[]>();
-      rules.split('\n').forEach(line => {
-        const parts = line.split('=');
-        if (parts.length !== 2) return;
-        rulesMap.set(parts[0].trim(), parts[1].trim().replace(/\s+/g, ' ').split(' '));
-      });
+      const definition: FractalRenderDefinition = {
+        axiom,
+        rules,
+        instructions,
+        generations,
+      };
+      const requestId = ++renderRequestIdRef.current;
+      const vertices = await requestVertices(workerRef.current, definition, requestId);
 
-      const instructionMap: Record<string, string> = {};
-      instructions.split('\n').forEach(line => {
-        const parts = line.split('=');
-        if (parts.length !== 2) return;
-        instructionMap[parts[0].trim()] = parts[1].trim();
-      });
+      if (requestId !== renderRequestIdRef.current) {
+        return;
+      }
 
-      const symbols = lindenmayer(axiomSymbols, rulesMap, generations);
-      const processedSymbols: string[] = [];
-      symbols.forEach(symbol => {
-        const replacement = instructionMap[symbol];
-        if (replacement) processedSymbols.push(...replacement.split(' '));
-        else processedSymbols.push(symbol);
-      });
-
-      turtle(processedSymbols, gl);
+      drawVertices(gl, vertices);
     } catch (err) {
       console.error('Render error:', err);
     }
   }, [axiom, rules, instructions, generations, xTranslation, yTranslation, zoom]);
 
   useEffect(() => {
-    renderFractal();
+    void renderFractal();
   }, [renderFractal]);
 
   // ------------------ Capture Thumbnail ------------------
   const captureThumbnail = async (canvas: HTMLCanvasElement): Promise<string> => {
-    // Force re-render for WebGL before capture
-    renderFractal();
-    await new Promise(r => setTimeout(r, 50)); // allow GPU to finish
+    await renderFractal();
+    await new Promise<void>(resolve => {
+      requestAnimationFrame(() => resolve());
+    });
 
     // Draw to smaller canvas for thumbnail
     const thumb = document.createElement('canvas');
