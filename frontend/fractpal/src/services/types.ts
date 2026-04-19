@@ -163,3 +163,24 @@ export interface UserProfile {
   bio: string;
   favoriteMathematician: string;
 }
+
+//  Comment DTOs
+// Matches CommentDto.cs exactly
+
+export interface CommentDto {
+  id: string;
+  postId: string;
+  authorId: string;
+  username: string;
+  content: string;
+  createdAt: string;
+  updatedAt?: string | null;
+}
+
+export interface CreateCommentRequest {
+  content: string;
+}
+
+export interface UpdateCommentRequest {
+  content: string;
+}

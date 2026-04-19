@@ -1,4 +1,6 @@
 import type {
+  CommentDto,
+  CreateCommentRequest,
   CreateFractalRequest,
   CreatePostRequest,
   FractalDto,
@@ -7,6 +9,7 @@ import type {
   PostFeedResponse,
   ToggleFollowResponse,
   ToggleLikeResponse,
+  UpdateCommentRequest,
   UpdateFractalRequest,
   UpdatePostRequest,
   UpdateProfileRequest,
@@ -116,3 +119,21 @@ export const userApi = {
   searchUsers: (query: string): Promise<UserSearchDto[]> =>
     apiFetch(`/user/search?query=${encodeURIComponent(query)}`),
 };
+
+export const commentApi = {
+  getCommentById: (id: string): Promise<CommentDto> =>
+    apiFetch(`/comments/${id}`),
+
+  getPostComments: (postId: string): Promise<CommentDto[]> =>
+    apiFetch(`/comments/post/${postId}`),
+
+  createComment: (postId: string, data: CreateCommentRequest): Promise<CommentDto> =>
+    apiFetch(`/comments/${postId}`, { method: 'POST', body: JSON.stringify(data) }),
+
+  updateComment: (id: string, data: UpdateCommentRequest): Promise<CommentDto> =>
+    apiFetch(`/comments/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+
+  deleteComment: (id: string): Promise<void> =>
+    apiFetch(`/comments/${id}`, { method: 'DELETE' }),
+};
+

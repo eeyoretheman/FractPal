@@ -1,6 +1,8 @@
 export type {
   AuthResponse,
   AuthUser,
+  CommentDto,
+  CreateCommentRequest,
   CreateFractalRequest,
   CreatePostRequest,
   Fractal,
@@ -10,6 +12,7 @@ export type {
   PostFeedResponse,
   ToggleFollowResponse,
   ToggleLikeResponse,
+  UpdateCommentRequest,
   UpdateFractalRequest,
   UpdatePostRequest,
   UpdateProfileRequest,
