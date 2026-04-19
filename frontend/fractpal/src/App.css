@@ -11,12 +11,14 @@
   --accent: #8b6f47;
   --accent-light: #b89968;
   --accent-dark: #6b5435;
+  --accent-alpha: rgba(139, 111, 71, 0.1);
   --border: #d9d4ce;
   --border-light: #ccc5bd;
   --shadow: rgba(45, 42, 38, 0.08);
   --shadow-strong: rgba(45, 42, 38, 0.15);
   --success: #5a7a5f;
   --error: #a65a5a;
+  --error-alpha: rgba(166, 90, 90, 0.1);
   --warning: #d4941b;
   --canvas-bg: #ffffff;
 }
