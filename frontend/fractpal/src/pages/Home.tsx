@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { postApi } from '../services/api';
 import type { PostDto } from '../services/types';
-import FractalCard from '../components/FractalCard';
+import PostCard from '../components/PostCard';
 import './Home.css';
 
 const Home: React.FC = () => {
@@ -71,23 +71,12 @@ const Home: React.FC = () => {
         </div>
       ) : (
         <>
-          <div className="fractals-grid">
+          <div className="posts-grid">
             {posts.map((post, index) => (
               <div key={post.id} className="fade-in" style={{ animationDelay: `${index * 0.05}s` }}>
-                <FractalCard
-                  fractal={{
-                    id: post.fractalId,
-                    postId: post.id,
-                    name: post.name,
-                    username: post.username,
-                    userId: post.authorId,
-                    thumbnail: post.thumbnail ?? undefined,
-                    likeCount: post.likeCount,
-                    isLikedByCurrentUser: post.isLikedByCurrentUser,
-                    createdAt: post.createdAt ?? undefined,
-                  }}
+                <PostCard
+                  post={post}
                   onLike={handleLike}
-                  showFork={true}
                 />
               </div>
             ))}
