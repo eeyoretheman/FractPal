@@ -89,8 +89,9 @@ public class CommentsController(ICommentService commentService) : ControllerBase
     public async Task<IActionResult> CreateComment(Guid postId, [FromBody] CreateCommentRequest request)
     {
         if (!this.ModelState.IsValid)
+        {
             return this.BadRequest(this.ModelState);
-
+        }
         try
         {
             var userId = this.GetCurrentUserId();
@@ -123,8 +124,9 @@ public class CommentsController(ICommentService commentService) : ControllerBase
     public async Task<IActionResult> UpdateComment(Guid id, [FromBody] UpdateCommentRequest request)
     {
         if (!this.ModelState.IsValid)
+        {
             return this.BadRequest(this.ModelState);
-
+        }
         try
         {
             var userId = this.GetCurrentUserId();
